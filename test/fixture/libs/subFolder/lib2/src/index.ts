@@ -1,0 +1,11 @@
+import { TestLib2RuI18n } from './i18n/ru.i18n';
+export { TestLib2RuI18n } from './i18n/ru.i18n';
+import { Model2 } from './shared/models/model2.model';
+export { Model2 } from './shared/models/model2.model';
+import { Service2Service } from './shared/services/service2.service';
+export { Service2Service } from './shared/services/service2.service';
+export const TestLib2Modules: any[] = [];
+export const TestLib2Components: any[] = [];
+export const TestLib2Shareds: any[] = [TestLib2RuI18n, Model2];
+export const TestLib2Services: any[] = [Service2Service];
+export const TestLib2Pipes: any[] = [];

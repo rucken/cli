@@ -1,0 +1,12 @@
+{
+    "po": {
+        "input": {
+            "dir": "./test/libs/lib1/src/i18n"
+        }
+    },
+    "ts": {
+        "output": {
+            "dir": "./test/libs/lib1/src/i18n"
+        }
+    }
+}

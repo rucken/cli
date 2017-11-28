@@ -1,0 +1,79 @@
+{
+	"name": "@rucken/cli",
+	"version": "1.0.0",
+	"description": "Console tools for create and build Angular5+ application based on rucken",
+	"bugs": {
+		"url": "https://github.com/rucken/cli/issues"
+	},
+	"homepage": "https://github.com/rucken/cli",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rucken/cli.git"
+	},
+	"license": "MIT",
+	"scripts": {
+		"clean": "del-cli dist",
+		"build": "npm run clean && tsc --pretty",
+		"test": "npm run build && mocha --timeout 300000 --require ts-node/register --recursive test/**/*-spec.ts",
+		"watch": "npm run build -- --watch",
+		"watch:test": "npm run test -- --watch"
+	},
+	"keywords": [
+		"angular5",
+		"web application",
+		"seed",
+		"i18n",
+		"scaffold",
+		"rucken"
+	],
+	"author": {
+		"name": "endy",
+		"email": "admin@site15.ru"
+	},
+	"main": "dist/bin/app.js",
+	"typings": "dist/bin/app.d.ts",
+	"bin": {
+		"rucken": "bin/rucken"
+	},
+	"files": [
+		"bin",
+		"dist"
+	],
+	"devDependencies": {
+		"@types/chai": "^4.0.6",
+		"@types/commander": "^2.11.0",
+		"@types/mocha": "^2.2.44",
+		"@types/node": "^8.0.53",
+		"@types/sinon": "^4.0.0",
+		"chai": "^4.1.2",
+		"mocha": "^4.0.1",
+		"sinon": "^4.1.2",
+		"ts-node": "^3.3.0",
+		"typescript": "^2.6.2"
+	},
+	"dependencies": {
+		"@angular/common": "^5.0.3",
+		"@angular/compiler": "^5.0.3",
+		"@angular/core": "^5.0.3",
+		"@biesbjerg/ngx-translate-extract": "^2.3.4",
+		"@types/del": "^3.0.0",
+		"@types/fs-extra": "^4.0.5",
+		"@types/lodash": "^4.14.86",
+		"@types/loglevel": "^1.5.3",
+		"commander": "^2.12.2",
+		"del": "^3.0.0",
+		"del-cli": "^1.1.0",
+		"fs-extra": "^4.0.2",
+		"lodash": "^4.17.4",
+		"loglevel": "^1.6.0",
+		"ngm-cli": "^0.8.3",
+		"npm-run": "^4.1.2",
+		"po2json": "^0.4.5",
+		"recursive-readdir": "^2.2.1",
+		"srcgen": "^0.3.0",
+		"conventional-changelog-cli": "^1.3.5",
+		"conventional-commits-detector": "^0.1.1",
+		"conventional-recommended-bump": "^1.0.3",
+		"gh-pages": "^1.1.0"
+	}
+}
