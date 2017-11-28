@@ -7,7 +7,7 @@ import { Apps } from '../src/lib/apps';
 
 const assert = chai.assert;
 describe('Apps', () => {
-    const debug = process.env.DEBUG; 
+    const debug = process.env.DEBUG === 'true'; 
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');

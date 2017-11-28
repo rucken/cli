@@ -7,7 +7,7 @@ import { App } from '../src/lib/app';
 
 const assert = chai.assert;
 describe('App', () => {
-    const debug = process.env.DEBUG; 
+    const debug = (process.env.DEBUG === 'true');
     describe('#clear()', () => {
         const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirDist = path.resolve(`${dir}/dist`);
@@ -22,7 +22,7 @@ describe('App', () => {
         it('del-cli ./test/fixture/apps/app1/src/node_modules ./test/fixture/apps/app1/dist ./test/fixture/apps/app1/.tmp', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.clear().then((data:any) => {
+            app.clear().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
             }).catch(function (e) {
@@ -45,7 +45,7 @@ describe('App', () => {
         it('srcgen -x -t make.list.ts.files -f ./srcgen/app1-make.list.ts.files.json', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.makeTsList().then((data:any) => {
+            app.makeTsList().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
             }).catch(function (e) {
@@ -71,7 +71,7 @@ describe('App', () => {
         it('ngm build -p ./test/fixture/apps/app1/src --clean', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.build().then((data:any) => {
+            app.build().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -98,7 +98,7 @@ describe('App', () => {
         it('ngm link -p ./test/fixture/apps/app1/src --here', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.link().then((data:any) => {
+            app.link().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -186,7 +186,7 @@ describe('App', () => {
         it('changeVersion ./test/fixture/apps/app1/src', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.changeVersion().then((data:any) => {
+            app.changeVersion().then((data: any) => {
                 if (fsExtra.existsSync(srcPackagePath)) {
                     srcPackage = fsExtra.readJSONSync(srcPackagePath);
                 }
@@ -211,7 +211,7 @@ describe('App', () => {
         it('ngx-translate-extract --input ./test/fixture/apps/app1/src --output ./test/fixture/apps/app1/src/i18n/template.pot --format=pot --marker translate --clean', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.extractTranslate().then((data:any) => {
+            app.extractTranslate().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexFile), true);
                 done();
             }).catch(function (e) {
@@ -234,7 +234,7 @@ describe('App', () => {
         it('srcgen -x -t convert.po.to.ts -f ./srcgen/convert.po.to.ts.json', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.po2ts().then((data:any) => {
+            app.po2ts().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 done();
             }).catch(function (e) {
@@ -264,7 +264,7 @@ describe('App', () => {
         it('npm-run-all app1:tools-extract_translate app1:tools-po2ts app1:tools-make_ts_list', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.prepare().then((data:any) => {
+            app.prepare().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
