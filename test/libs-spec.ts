@@ -53,12 +53,12 @@ describe('Libs', () => {
             const dirs = items.map((item: any) => item.dir);
             const lib = new Libs(dirs, dirRoot);
             lib.debug = debug;
-            lib.prepare().then((data: any[]) => {
+            lib.prepare().then((data: boolean) => {
                 items.map(({
                         dir: dir,
                     translateTsFile: translateTsFile,
                     indexTsFile: indexTsFile
-                     }) => {
+                }) => {
                     assert.equal(fsExtra.existsSync(translateTsFile), true);
                     assert.equal(fsExtra.existsSync(indexTsFile), true);
                 });

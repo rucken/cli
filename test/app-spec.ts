@@ -126,7 +126,7 @@ describe('App', () => {
         it('npm link ./test/fixture/apps/app1/src', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = false;
-            app.linkNpm().then((data: any[]) => {
+            app.linkNpm().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -149,7 +149,7 @@ describe('App', () => {
         it('del-cli ./test/fixture/apps/app1/src/node_modules ./test/fixture/apps/app1/dist/node_modules', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.linkNpmClear().then((data:any) => {
+            app.linkNpmClear().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
             }).catch(function (e) {

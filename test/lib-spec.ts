@@ -98,7 +98,7 @@ describe('Lib', () => {
         it('ngm link -p ./test/fixture/libs/lib1/src --here', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.link().then((data: any[][]) => {
+            lib.link().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();

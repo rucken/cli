@@ -53,7 +53,7 @@ describe('Apps', () => {
             const dirs = items.map((item: any) => item.dir);
             const app = new Apps(dirs, dirRoot);
             app.debug = debug;
-            app.prepare().then((data: any[]) => {
+            app.prepare().then((data: boolean) => {
                 items.forEach(({
                         dir: dir,
                     translateTsFile: translateTsFile,
