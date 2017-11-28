@@ -7,7 +7,7 @@ import { Lib } from '../src/lib/lib';
 
 const assert = chai.assert;
 describe('Lib', () => {
-    const debug = false;
+    const debug = process.env.DEBUG; 
     describe('#clear()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/dist`);

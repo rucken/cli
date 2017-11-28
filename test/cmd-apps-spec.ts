@@ -7,7 +7,7 @@ const npmRun = require('npm-run');
 const assert = chai.assert;
 
 describe('Apps:run from console', () => {
-    const debug = false;
+    const debug = process.env.DEBUG; 
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');

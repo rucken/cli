@@ -7,7 +7,7 @@ import { App } from '../src/lib/app';
 
 const assert = chai.assert;
 describe('App', () => {
-    const debug = false;
+    const debug = process.env.DEBUG; 
     describe('#clear()', () => {
         const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirDist = path.resolve(`${dir}/dist`);
