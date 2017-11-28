@@ -11,13 +11,13 @@ describe('Apps:run from console', () => {
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
-        let _dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        let _dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
             indexTsFile: path.resolve(`${_dir}/src/index.ts`)
         });
-        _dir = path.resolve(`${__dirname}\\fixture/apps/subFolder/app2`);
+        _dir = path.resolve(`${__dirname}/fixture/apps/subFolder/app2`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),

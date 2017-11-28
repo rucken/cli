@@ -11,13 +11,13 @@ describe('Libs:run from console', () => {
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
-        let _dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        let _dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
             indexTsFile: path.resolve(`${_dir}/src/index.ts`)
         });
-        _dir = path.resolve(`${__dirname}\\fixture/libs/subFolder/lib2`);
+        _dir = path.resolve(`${__dirname}/fixture/libs/subFolder/lib2`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),

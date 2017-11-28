@@ -9,7 +9,7 @@ const assert = chai.assert;
 describe('Lib', () => {
     const debug = false;
     describe('#clear()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/dist`);
         beforeEach(() => {
             if (!fsExtra.existsSync(dirDist)) {
@@ -31,7 +31,7 @@ describe('Lib', () => {
         });
     });
     describe('#makeTsList()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const indexTsFile = path.resolve(`${dir}/src/index.ts`);
         beforeEach(() => {
@@ -54,7 +54,7 @@ describe('Lib', () => {
         });
     });
     describe('#build()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/dist`);
         const dirDistIndex = path.resolve(`${dirDist}/index.js`);
         beforeEach(() => {
@@ -81,7 +81,7 @@ describe('Lib', () => {
         });
     });
     describe('#link()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/lib1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.js`);
         beforeEach(() => {
@@ -108,7 +108,7 @@ describe('Lib', () => {
         });
     });
     describe('#linkNpm()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirRoot = path.resolve(__dirname);
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/lib1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.ts`);
@@ -136,7 +136,7 @@ describe('Lib', () => {
         });
     });
     describe('#linkNpmClear()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/dist/node_modules`);
         beforeEach(() => {
             if (!fsExtra.existsSync(dirDist)) {
@@ -158,7 +158,7 @@ describe('Lib', () => {
         });
     });
     describe('#changeVersion()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const dirSrc = path.resolve(`${dir}/src`);
         const rootPackagePath = path.resolve(dirRoot + '/package.json');
@@ -198,7 +198,7 @@ describe('Lib', () => {
         });
     });
     describe('#extractTranslate()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const indexFile = path.resolve(`${dir}/src/i18n/template.pot`);
         beforeEach(() => {
             if (fsExtra.existsSync(indexFile)) {
@@ -220,7 +220,7 @@ describe('Lib', () => {
         });
     });
     describe('#po2ts()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const translateTsFile = path.resolve(`${dir}/src/i18n/ru.i18n.ts`);
         beforeEach(() => {
@@ -243,7 +243,7 @@ describe('Lib', () => {
         });
     });
     describe('#prepare()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const translateTsFile = path.resolve(`${dir}/src/i18n/ru.i18n.ts`);
         const indexTsFile = path.resolve(`${dir}/src/index.ts`);
