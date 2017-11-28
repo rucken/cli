@@ -37,7 +37,9 @@
 	},
 	"files": [
 		"bin",
-		"dist"
+		"dist",
+		"scripts",
+		"srcgen"
 	],
 	"devDependencies": {
 		"@types/chai": "^4.0.6",
