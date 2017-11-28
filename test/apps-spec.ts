@@ -7,7 +7,7 @@ import { Apps } from '../src/lib/apps';
 
 const assert = chai.assert;
 describe('Apps', () => {
-    const debug = process.env.DEBUG === 'true'; 
+    const debug = process.env.TEST_DEBUG === 'true'; 
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
@@ -52,7 +52,7 @@ describe('Apps', () => {
         it('npm-run-all apps:tools-extract_translate apps:tools-po2ts apps:tools-make_ts_list', (done) => {
             const dirs = items.map((item: any) => item.dir);
             const app = new Apps(dirs, dirRoot);
-            app.debug = debug;
+            app.TEST_DEBUG = debug;
             app.prepare().then((data: boolean) => {
                 items.forEach(({
                         dir: dir,
