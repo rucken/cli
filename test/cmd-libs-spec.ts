@@ -50,7 +50,7 @@ describe('Libs:run from console', () => {
             });
         });
         it('rucken prepare --lib --root ./test/fixture', () => {
-            const commandString = 'node ./dist/bin/app.js prepare --lib --root ./test/fixture';
+            const commandString = 'node ./bin/rucken prepare --lib --root ./test/fixture';
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             const child = npmRun.spawnSync(
