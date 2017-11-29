@@ -228,7 +228,7 @@ export class Base {
         if (!fsExtra.existsSync(optionsFile)) {
             this.log.debug('extractTranslate#', `File does not exists: ${optionsFile}`);
         }
-        const commandString = 'srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
+        const commandString = './node_modules/.bin/srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
         if (!fsExtra.existsSync(folder)) {
             this.log.debug('extractTranslate#', commandString);
             this.log.debug('extractTranslate#', `Folder does not exists: ${path.resolve(folder)}`);
@@ -275,7 +275,7 @@ export class Base {
         if (!fsExtra.existsSync(optionsFile)) {
             this.log.debug('extractTranslate#', `File does not exists: ${optionsFile}`);
         }
-        const commandString = 'srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
+        const commandString = './node_modules/.bin/srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
         if (!fsExtra.existsSync(folder)) {
             this.log.debug('makeTsList#', commandString);
             this.log.debug('makeTsList#', `Folder does not exists: ${folder}`);
