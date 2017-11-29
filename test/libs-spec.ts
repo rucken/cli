@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import * as del from 'del';
+import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 
@@ -7,17 +8,18 @@ import { Libs } from '../src/lib/libs';
 
 const assert = chai.assert;
 describe('Libs', () => {
-    const debug = false;
+    config();
+    const debug = process.env.TEST_DEBUG === 'true'; 
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
-        let _dir = path.resolve(`${__dirname}\\fixture/libs/lib1`);
+        let _dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
             indexTsFile: path.resolve(`${_dir}/src/index.ts`)
         });
-        _dir = path.resolve(`${__dirname}\\fixture/libs/subFolder/lib2`);
+        _dir = path.resolve(`${__dirname}/fixture/libs/subFolder/lib2`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
@@ -53,12 +55,12 @@ describe('Libs', () => {
             const dirs = items.map((item: any) => item.dir);
             const lib = new Libs(dirs, dirRoot);
             lib.debug = debug;
-            lib.prepare().then((data: any[]) => {
+            lib.prepare().then((data: boolean) => {
                 items.map(({
                         dir: dir,
                     translateTsFile: translateTsFile,
                     indexTsFile: indexTsFile
-                     }) => {
+                }) => {
                     assert.equal(fsExtra.existsSync(translateTsFile), true);
                     assert.equal(fsExtra.existsSync(indexTsFile), true);
                 });

@@ -1,15 +1,17 @@
 import * as chai from 'chai';
+import * as del from 'del';
+import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
-import * as del from 'del';
 
 import { App } from '../src/lib/app';
 
 const assert = chai.assert;
 describe('App', () => {
-    const debug = false;
+    config();
+    const debug = (process.env.TEST_DEBUG === 'true');
     describe('#clear()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirDist = path.resolve(`${dir}/dist`);
         beforeEach(() => {
             if (!fsExtra.existsSync(dirDist)) {
@@ -22,7 +24,7 @@ describe('App', () => {
         it('del-cli ./test/fixture/apps/app1/src/node_modules ./test/fixture/apps/app1/dist ./test/fixture/apps/app1/.tmp', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.clear().then((data:any) => {
+            app.clear().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
             }).catch(function (e) {
@@ -31,7 +33,7 @@ describe('App', () => {
         });
     });
     describe('#makeTsList()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const indexTsFile = path.resolve(`${dir}/src/index.ts`);
         beforeEach(() => {
@@ -45,7 +47,7 @@ describe('App', () => {
         it('srcgen -x -t make.list.ts.files -f ./srcgen/app1-make.list.ts.files.json', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.makeTsList().then((data:any) => {
+            app.makeTsList().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
             }).catch(function (e) {
@@ -54,7 +56,7 @@ describe('App', () => {
         });
     });
     describe('#build()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirDist = path.resolve(`${dir}/dist`);
         const dirDistIndex = path.resolve(`${dirDist}/index.js`);
         beforeEach(() => {
@@ -71,7 +73,7 @@ describe('App', () => {
         it('ngm build -p ./test/fixture/apps/app1/src --clean', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.build().then((data:any) => {
+            app.build().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -81,7 +83,7 @@ describe('App', () => {
         });
     });
     describe('#link()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/app1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.js`);
         beforeEach(() => {
@@ -98,7 +100,7 @@ describe('App', () => {
         it('ngm link -p ./test/fixture/apps/app1/src --here', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.link().then((data:any) => {
+            app.link().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -108,7 +110,7 @@ describe('App', () => {
         });
     });
     describe('#linkNpm()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirRoot = path.resolve(__dirname);
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/app1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.ts`);
@@ -126,7 +128,7 @@ describe('App', () => {
         it('npm link ./test/fixture/apps/app1/src', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = false;
-            app.linkNpm().then((data: any[]) => {
+            app.linkNpm().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -136,7 +138,7 @@ describe('App', () => {
         });
     });
     describe('#linkNpmClear()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirDist = path.resolve(`${dir}/dist/node_modules`);
         beforeEach(() => {
             if (!fsExtra.existsSync(dirDist)) {
@@ -149,7 +151,7 @@ describe('App', () => {
         it('del-cli ./test/fixture/apps/app1/src/node_modules ./test/fixture/apps/app1/dist/node_modules', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.linkNpmClear().then((data:any) => {
+            app.linkNpmClear().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
             }).catch(function (e) {
@@ -158,7 +160,7 @@ describe('App', () => {
         });
     });
     describe('#changeVersion()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const dirSrc = path.resolve(`${dir}/src`);
         const rootPackagePath = path.resolve(dirRoot + '/package.json');
@@ -186,7 +188,7 @@ describe('App', () => {
         it('changeVersion ./test/fixture/apps/app1/src', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.changeVersion().then((data:any) => {
+            app.changeVersion().then((data: any) => {
                 if (fsExtra.existsSync(srcPackagePath)) {
                     srcPackage = fsExtra.readJSONSync(srcPackagePath);
                 }
@@ -198,7 +200,7 @@ describe('App', () => {
         });
     });
     describe('#extractTranslate()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const indexFile = path.resolve(`${dir}/src/i18n/template.pot`);
         beforeEach(() => {
             if (fsExtra.existsSync(indexFile)) {
@@ -211,7 +213,7 @@ describe('App', () => {
         it('ngx-translate-extract --input ./test/fixture/apps/app1/src --output ./test/fixture/apps/app1/src/i18n/template.pot --format=pot --marker translate --clean', (done) => {
             const app = new App(dir);
             app.debug = debug;
-            app.extractTranslate().then((data:any) => {
+            app.extractTranslate().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexFile), true);
                 done();
             }).catch(function (e) {
@@ -220,7 +222,7 @@ describe('App', () => {
         });
     });
     describe('#po2ts()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const translateTsFile = path.resolve(`${dir}/src/i18n/ru.i18n.ts`);
         beforeEach(() => {
@@ -234,7 +236,7 @@ describe('App', () => {
         it('srcgen -x -t convert.po.to.ts -f ./srcgen/convert.po.to.ts.json', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.po2ts().then((data:any) => {
+            app.po2ts().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 done();
             }).catch(function (e) {
@@ -243,7 +245,7 @@ describe('App', () => {
         });
     });
     describe('#prepare()', () => {
-        const dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        const dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         const dirRoot = path.resolve(__dirname + '/../');
         const translateTsFile = path.resolve(`${dir}/src/i18n/ru.i18n.ts`);
         const indexTsFile = path.resolve(`${dir}/src/index.ts`);
@@ -264,7 +266,7 @@ describe('App', () => {
         it('npm-run-all app1:tools-extract_translate app1:tools-po2ts app1:tools-make_ts_list', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.prepare().then((data:any) => {
+            app.prepare().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();

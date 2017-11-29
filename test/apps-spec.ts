@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import * as del from 'del';
+import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 
@@ -7,17 +8,18 @@ import { Apps } from '../src/lib/apps';
 
 const assert = chai.assert;
 describe('Apps', () => {
-    const debug = false;
+    config();
+    const debug = process.env.TEST_DEBUG === 'true'; 
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
-        let _dir = path.resolve(`${__dirname}\\fixture/apps/app1`);
+        let _dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
             indexTsFile: path.resolve(`${_dir}/src/index.ts`)
         });
-        _dir = path.resolve(`${__dirname}\\fixture/apps/subFolder/app2`);
+        _dir = path.resolve(`${__dirname}/fixture/apps/subFolder/app2`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
@@ -53,7 +55,7 @@ describe('Apps', () => {
             const dirs = items.map((item: any) => item.dir);
             const app = new Apps(dirs, dirRoot);
             app.debug = debug;
-            app.prepare().then((data: any[]) => {
+            app.prepare().then((data: boolean) => {
                 items.forEach(({
                         dir: dir,
                     translateTsFile: translateTsFile,
