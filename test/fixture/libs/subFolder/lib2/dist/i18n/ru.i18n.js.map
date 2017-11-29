@@ -1,1 +1,0 @@
-{"version":3,"file":"ru.i18n.js","sourceRoot":"","sources":["../../.tmp/i18n/ru.i18n.ts"],"names":[],"mappings":";;AAAa,QAAA,cAAc,GAAG;IAC1B,KAAK,EAAE,IAAI;IACX,IAAI,EAAE,KAAK;CACd","sourcesContent":["export const TestLib2RuI18n = {\n    'Yes': 'Да',\n    'No': 'Нет'\n};\n"]}

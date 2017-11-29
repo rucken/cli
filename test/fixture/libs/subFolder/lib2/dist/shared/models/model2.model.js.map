@@ -1,1 +1,0 @@
-{"version":3,"file":"model2.model.js","sourceRoot":"","sources":["../../../.tmp/shared/models/model2.model.ts"],"names":[],"mappings":";;AAAA,IAAA;;;iBAAA;IACC,CAAA;AADY,wBAAM","sourcesContent":["export class Model2 {\n}\n"]}
