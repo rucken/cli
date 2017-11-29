@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import * as del from 'del';
+import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 
@@ -7,6 +8,7 @@ import { Libs } from '../src/lib/libs';
 
 const assert = chai.assert;
 describe('Libs', () => {
+    config();
     const debug = process.env.TEST_DEBUG === 'true'; 
     describe('#prepare()', () => {
         const items: any[] = [];

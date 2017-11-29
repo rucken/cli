@@ -1,13 +1,14 @@
 import * as chai from 'chai';
 import * as del from 'del';
+import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 
 const npmRun = require('npm-run');
 const assert = chai.assert;
-
 describe('Libs:run from console', () => {
-    const debug = process.env.TEST_DEBUG === 'true'; 
+    config();
+    const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
@@ -50,7 +51,7 @@ describe('Libs:run from console', () => {
             });
         });
         it('rucken prepare --lib --root ./test/fixture', () => {
-            const commandString = 'node ./bin/rucken prepare --lib --root ./test/fixture';
+            const commandString = 'node ./bin/rucken prepare --lib --root ./test/fixture' + (this.debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             const child = npmRun.spawnSync(

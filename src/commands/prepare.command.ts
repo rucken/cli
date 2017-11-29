@@ -9,47 +9,47 @@ export class PrepareCommand extends BaseCommand {
         super(action);
     }
     processLibs(folders: string[], rootFolder: string) {
-        this.log.info('Prepare all libs on ' + this.rootFolder);
+        this.log('prepare').info('Prepare all libs on ' + this.rootFolder);
         const libs = new Libs(folders, rootFolder);
         libs.debug = this.debug;
         libs.prepare().then((result: boolean) => {
-            this.log.info('Done!');
+            this.log('prepare').info('Done!');
         }).catch((e:any) => {
-            this.log.error(e);
-            this.log.info('Done with errors!');
+            this.log('prepare').error(e);
+            this.log('prepare').info('Done with errors!');
         });
     }
     processLib(folder: string, rootFolder: string) {
-        this.log.info('Prepare lib ' + folder + ' on ' + rootFolder);
+        this.log('prepare').info('Prepare lib ' + folder + ' on ' + rootFolder);
         const lib = new Lib(folder, rootFolder);
         lib.debug = this.debug;
         lib.prepare().then((result: boolean) => {
-            this.log.info('Done!');
+            this.log('prepare').info('Done!');
         }).catch((e:any) => {
-            this.log.error(e);
-            this.log.info('Done with errors!');
+            this.log('prepare').error(e);
+            this.log('prepare').info('Done with errors!');
         });
     }
     processApps(folders: string[], rootFolder: string) {
-        this.log.info('Prepare all apps on ' + rootFolder);
+        this.log('prepare').info('Prepare all apps on ' + rootFolder);
         const apps = new Apps(folders, rootFolder);
         apps.debug = this.debug;
         apps.prepare().then((result: boolean) => {
-            this.log.info('Done!');
+            this.log('prepare').info('Done!');
         }).catch((e:any) => {
-            this.log.error(e);
-            this.log.info('Done with errors!');
+            this.log('prepare').error(e);
+            this.log('prepare').info('Done with errors!');
         });
     }
     processApp(folder: string, rootFolder: string) {
-        this.log.info('Prepare app ' + this.action.parent.app + ' on ' + rootFolder);
+        this.log('prepare').info('Prepare app ' + this.action.parent.app + ' on ' + rootFolder);
         const app = new App(folder, rootFolder);
         app.debug = this.debug;
         app.prepare().then((result: boolean) => {
-            this.log.info('Done!');
+            this.log('prepare').info('Done!');
         }).catch((e:any) => {
-            this.log.error(e);
-            this.log.info('Done with errors!');
+            this.log('prepare').error(e);
+            this.log('prepare').info('Done with errors!');
         });
     }
 }

@@ -1,12 +1,14 @@
 import * as chai from 'chai';
+import * as del from 'del';
+import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
-import * as del from 'del';
 
 import { Lib } from '../src/lib/lib';
 
 const assert = chai.assert;
 describe('Lib', () => {
+    config();
     const debug = process.env.TEST_DEBUG === 'true'; 
     describe('#clear()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
