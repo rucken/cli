@@ -51,7 +51,9 @@ describe('Libs:run from console', () => {
             });
         });
         it('rucken prepare --lib --root ./test/fixture', () => {
-            const commandString = 'node ./dist/bin/app.js prepare --lib --root ./test/fixture' + (debug ? ' --verbose' : '');
+            const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
+            assert.equal(fsExtra.existsSync(file), true);
+            const commandString = 'node ' + file + ' prepare--lib --root./ test / fixture' + (debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             if (debug) {
