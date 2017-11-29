@@ -5,6 +5,7 @@ import * as path from 'path';
 import * as log from 'loglevel';
 
 const npmRun = require('npm-run');
+const tmp = require('tmp');
 
 export class Base {
 
@@ -15,6 +16,9 @@ export class Base {
         if (this.rootFolder === undefined) {
             this.rootFolder = path.resolve(this.folder + '/../../');
         }
+    }
+    getTempFile(){
+        return tmp.fileSync();
     }
     get debug() {
         return this._debug;
@@ -221,6 +225,9 @@ export class Base {
         const srcgenTemplate = 'convert.po.to.ts';
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-convert.po.to.ts.json');
         fsExtra.writeJSONSync(optionsFile, options);
+        if (!fsExtra.existsSync(optionsFile)) {
+            this.log.debug('extractTranslate#', `File does not exists: ${optionsFile}`);
+        }
         const commandString = 'srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
         if (!fsExtra.existsSync(folder)) {
             this.log.debug('extractTranslate#', commandString);
@@ -265,6 +272,9 @@ export class Base {
         const srcgenTemplate = 'make.list.ts.files';
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-make.list.ts.files.json');
         fsExtra.writeJSONSync(optionsFile, options);
+        if (!fsExtra.existsSync(optionsFile)) {
+            this.log.debug('extractTranslate#', `File does not exists: ${optionsFile}`);
+        }
         const commandString = 'srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
         if (!fsExtra.existsSync(folder)) {
             this.log.debug('makeTsList#', commandString);
