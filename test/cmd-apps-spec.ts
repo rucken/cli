@@ -3,23 +3,25 @@ import * as del from 'del';
 import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
+
 import { Base } from '../src/lib/base';
 
 const npmRun = require('npm-run');
 const assert = chai.assert;
-describe('Libs:run from console', () => {
+
+describe('Apps:run from console', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
-        let _dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
+        let _dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
             indexTsFile: path.resolve(`${_dir}/src/index.ts`)
         });
-        _dir = path.resolve(`${__dirname}/fixture/libs/subFolder/lib2`);
+        _dir = path.resolve(`${__dirname}/fixture/apps/subFolder/app2`);
         items.push({
             dir: _dir,
             translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
@@ -64,9 +66,9 @@ describe('Libs:run from console', () => {
                 done(e);
             });
         });
-        it('rucken prepare --lib --root ./test/fixture', (done) => {
+        it('rucken prepare --app --root ./test/fixture', (done) => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'node . prepare --lib --root ./test/fixture' + (debug ? ' --verbose' : '');
+            const commandString = 'node . prepare --app --root ./test/fixture' + (debug ? ' --verbose' : '');
 
             assert.equal(fsExtra.existsSync(file), true);
 

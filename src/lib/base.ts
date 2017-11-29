@@ -50,13 +50,14 @@ export class Base {
     }
     async commandRunner(commandString: string) {
         this.log('commandRunner').debug('start');
+        this.log('commandRunner').debug('rootFolder', this.rootFolder);
         this.log('commandRunner').debug(commandString);
         const commandBin = commandString.split(' ')[0];
         const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
         const child = npmRun.spawnSync(
             commandBin,
             commandArgs,
-            { cwd: path.resolve(__dirname, '..', '..') }
+            { cwd: process.cwd() }
         );
         if (child.status === 0 || child.status === '0') {
             this.log('commandRunner').debug('status', child.status);
