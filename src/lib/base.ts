@@ -54,11 +54,11 @@ export class Base {
             commandArgs,
             { cwd: path.resolve(__dirname, '..', '..') }
         );
-        if (child.status === 1) {
-            this.log.debug('commandRunner', child.stderr.toString());
-        } else {
-            this.log.debug('commandRunner#', child.stdout.toString());
-        }
+        //if (child.status === 1) {5
+            this.log.debug('commandRunner#stderr#', child.stderr.toString());
+        //} else {
+            this.log.debug('commandRunner#stdout#', child.stdout.toString());
+        //}
         this.log.debug('commandRunner#end');
         return await child.status === 0;
     };
