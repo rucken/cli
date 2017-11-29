@@ -7,7 +7,7 @@ import { Base } from '../src/lib/base';
 
 const npmRun = require('npm-run');
 const assert = chai.assert;
-describe('Libs:run from console', () => {
+describe('Libs: run from console', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {

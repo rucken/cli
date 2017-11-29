@@ -9,7 +9,7 @@ import { Base } from '../src/lib/base';
 const npmRun = require('npm-run');
 const assert = chai.assert;
 
-describe('Apps: run from console', () => {
+describe('Commands: run from console', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
@@ -66,9 +66,9 @@ describe('Apps: run from console', () => {
                 done(e);
             });
         });
-        it('rucken prepare --app --root ./test/fixture', (done) => {
+        it('rucken commands clear ~~root ./test/fixture prepare ~~root ./test/fixture', (done) => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'node . prepare --app --root ./test/fixture' + (debug ? ' --verbose' : '');
+            const commandString = 'node . commands clear ~~root ./test/fixture prepare ~~root ./test/fixture' + (debug ? ' --verbose' : '');
 
             assert.equal(fsExtra.existsSync(file), true);
 

@@ -1,5 +1,7 @@
 import * as commander from 'commander';
 import { config } from 'dotenv';
+import * as fsExtra from 'fs-extra';
+import * as path from 'path';
 
 import { BaseCommand } from '../commands/base.command';
 import { BuildCommand } from '../commands/build.command';
@@ -8,8 +10,6 @@ import { LinkNpmCommand } from '../commands/link-npm.command';
 import { LinkCommand } from '../commands/link.command';
 import { MakeTsListCommand } from '../commands/make-ts-list.command';
 import { PrepareCommand } from '../commands/prepare.command';
-import * as fsExtra from 'fs-extra';
-import * as path from 'path';
 
 export class App {
 
@@ -68,7 +68,6 @@ export class App {
                 const binNames = Object.keys(this.package.bin);
                 const cwdPackage = fsExtra.readJSONSync(path.resolve(process.cwd() + '/package.json'));
                 const commandsNames = this.program.commands.map((command: any) => command.name());
-                commandsNames.push('npm run');
                 const commands = listOfCommands.map(
                     (item: string) =>
                         (commandsNames.indexOf(item.toLowerCase()) !== -1 ? '#COMMAND#' : '') + item
@@ -77,9 +76,7 @@ export class App {
                     .split('#COMMAND#')
                     .filter((item: string) => item !== '')
                     .map((item: string) => item.trim())
-                    .map((item: string) => (item.indexOf('npm run') !== 0) ?
-                        'node ' + ((cwdPackage.name === this.package.name) ? '.' : binNames[0]) + ' ' + item : item
-                    );
+                    .map((item: string) => 'node ' + ((cwdPackage.name === this.package.name) ? '.' : binNames[0]) + ' ' + item);
                 commands.forEach(async (command: string) =>
                     await (new BaseCommand(this.program)).commandRunner(command)
                 );
