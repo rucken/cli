@@ -52,7 +52,7 @@ describe('Libs:run from console', () => {
         });
         it('tsc --pretty', () => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'tsc --pretty';
+            const commandString = './node_modules/.bin/tsc --pretty';
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             if (debug) {
@@ -75,7 +75,7 @@ describe('Libs:run from console', () => {
         });
         it('rucken prepare --lib --root ./test/fixture', () => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'node ' + file + ' prepare--lib --root./ test / fixture' + (debug ? ' --verbose' : '');
+            const commandString = 'node ' + file + ' prepare --lib --root./test/fixture' + (debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             if (debug) {

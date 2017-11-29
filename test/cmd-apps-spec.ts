@@ -53,7 +53,7 @@ describe('Apps:run from console', () => {
         });
         it('tsc --pretty', () => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'tsc --pretty';
+            const commandString = './node_modules/.bin/tsc --pretty';
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             if (debug) {
