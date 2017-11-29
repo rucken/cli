@@ -2,9 +2,9 @@
 
 # compiled output
 .env
-bin
 .tmp
-dist
+# bin
+# dist
 tmp
 out-tsc
 *.tgz
