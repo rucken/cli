@@ -3,8 +3,8 @@
 # compiled output
 .env
 .tmp
-# bin
-# dist
+bin
+dist
 tmp
 out-tsc
 *.tgz
