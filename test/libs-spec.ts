@@ -52,7 +52,7 @@ describe('Libs', () => {
         it('npm-run-all libs:tools-extract_translate libs:tools-po2ts libs:tools-make_ts_list', (done) => {
             const dirs = items.map((item: any) => item.dir);
             const lib = new Libs(dirs, dirRoot);
-            lib.TEST_DEBUG = debug;
+            lib.debug = debug;
             lib.prepare().then((data: boolean) => {
                 items.map(({
                         dir: dir,
