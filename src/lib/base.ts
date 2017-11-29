@@ -21,9 +21,9 @@ export class Base {
     }
     set debug(value: boolean) {
         this._debug = value;
-        if (value){
+        if (value) {
             log.enableAll();
-        }else{
+        } else {
             log.disableAll();
             log.setLevel('info');
         }
@@ -54,11 +54,9 @@ export class Base {
             commandArgs,
             { cwd: path.resolve(__dirname, '..', '..') }
         );
-        if (child.status === 1) {
-            this.log.debug('commandRunner', child.stderr.toString());
-        } else {
-            this.log.debug('commandRunner#', child.stdout.toString());
-        }
+        this.log.debug('commandRunner#status', child.status);
+        this.log.debug('commandRunner#stderr', child.stderr.toString());
+        this.log.debug('commandRunner#stdout', child.stdout.toString());
         this.log.debug('commandRunner#end');
         return await child.status === 0;
     };
