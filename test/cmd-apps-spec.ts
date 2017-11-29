@@ -52,7 +52,8 @@ describe('Apps:run from console', () => {
             });
         });
         it('rucken prepare --app --root ./test/fixture', () => {
-            const file = path.resolve(`${__dirname}/../dist/bin/app.js`);
+            npmRun.execSync('npm run build', { cwd: dirRoot });
+            const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
             const commandString = 'node ' + file + ' prepare --app --root ./test/fixture' + (debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
