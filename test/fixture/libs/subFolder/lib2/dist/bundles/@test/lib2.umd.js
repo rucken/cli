@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["@test/lib1.umd"] = factory();
+		exports["@test/lib2.umd"] = factory();
 	else
-		root["@test/lib1.umd"] = factory();
+		root["@test/lib2.umd"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -80,7 +80,7 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TestLib1RuI18n = {
+exports.TestLib2RuI18n = {
     'Yes': 'Да',
     'No': 'Нет'
 };
@@ -93,12 +93,12 @@ exports.TestLib1RuI18n = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Service1Service = /** @class */ (function () {
-    function Service1Service() {
+var Model2 = /** @class */ (function () {
+    function Model2() {
     }
-    return Service1Service;
+    return Model2;
 }());
-exports.Service1Service = Service1Service;
+exports.Model2 = Model2;
 
 
 /***/ }),
@@ -108,12 +108,12 @@ exports.Service1Service = Service1Service;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Model1 = /** @class */ (function () {
-    function Model1() {
+var Service2Service = /** @class */ (function () {
+    function Service2Service() {
     }
-    return Model1;
+    return Service2Service;
 }());
-exports.Model1 = Model1;
+exports.Service2Service = Service2Service;
 
 
 /***/ }),
@@ -125,21 +125,21 @@ exports.Model1 = Model1;
 Object.defineProperty(exports, "__esModule", { value: true });
 var ru_i18n_1 = __webpack_require__(0);
 var ru_i18n_2 = __webpack_require__(0);
-exports.TestLib1RuI18n = ru_i18n_2.TestLib1RuI18n;
-var service1_service_1 = __webpack_require__(1);
-var service1_service_2 = __webpack_require__(1);
-exports.Service1Service = service1_service_2.Service1Service;
-var model1_model_1 = __webpack_require__(2);
-var model1_model_2 = __webpack_require__(2);
-exports.Model1 = model1_model_2.Model1;
-exports.TestLib1Modules = [];
-exports.TestLib1Components = [];
-exports.TestLib1Shareds = [ru_i18n_1.TestLib1RuI18n, model1_model_1.Model1];
-exports.TestLib1Services = [service1_service_1.Service1Service];
-exports.TestLib1Pipes = [];
+exports.TestLib2RuI18n = ru_i18n_2.TestLib2RuI18n;
+var model2_model_1 = __webpack_require__(1);
+var model2_model_2 = __webpack_require__(1);
+exports.Model2 = model2_model_2.Model2;
+var service2_service_1 = __webpack_require__(2);
+var service2_service_2 = __webpack_require__(2);
+exports.Service2Service = service2_service_2.Service2Service;
+exports.TestLib2Modules = [];
+exports.TestLib2Components = [];
+exports.TestLib2Shareds = [ru_i18n_1.TestLib2RuI18n, model2_model_1.Model2];
+exports.TestLib2Services = [service2_service_1.Service2Service];
+exports.TestLib2Pipes = [];
 
 
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=lib1.umd.js.map
+//# sourceMappingURL=lib2.umd.js.map
