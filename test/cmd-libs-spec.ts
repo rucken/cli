@@ -50,8 +50,37 @@ describe('Libs:run from console', () => {
                 assert.equal(fsExtra.existsSync(indexTsFile), false);
             });
         });
+        it('npm run build', () => {
+            const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
+            const commandString = 'npm run build';
+            const commandBin = commandString.split(' ')[0];
+            const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
+            if (debug) {
+                console.log('commandRunner#start');
+                console.log('commandRunner#', commandString);
+            }
+            assert.equal(fsExtra.existsSync(file), true);
+            const child = npmRun.spawnSync(
+                commandBin,
+                commandArgs,
+                { cwd: dirRoot }
+            );
+            if (debug) {
+                console.log('commandRunner#status', child.status);
+                console.log('commandRunner#stderr', child.stderr.toString());
+                console.log('commandRunner#stdout', child.stdout.toString());
+                console.log('commandRunner#end');
+            }
+            items.forEach(({
+                dir: dir,
+                translateTsFile: translateTsFile,
+                indexTsFile: indexTsFile
+            }) => {
+                assert.equal(fsExtra.existsSync(translateTsFile), true);
+                assert.equal(fsExtra.existsSync(indexTsFile), true);
+            });
+        });
         it('rucken prepare --lib --root ./test/fixture', () => {
-            npmRun.execSync('npm run build', { cwd: dirRoot });
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
             const commandString = 'node ' + file + ' prepare--lib --root./ test / fixture' + (debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
