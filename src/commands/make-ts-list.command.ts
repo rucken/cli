@@ -4,67 +4,66 @@ import { Lib } from '../lib/lib';
 import { Libs } from '../lib/libs';
 import { BaseCommand } from './base.command';
 
-export class BuildCommand extends BaseCommand {
+export class MakeTsListCommand extends BaseCommand {
     constructor(public options: any) {
         super(options);
     }
     async processLibs(folders: string[], rootFolder: string) {
-        this.log('build').info('Build all libs on ' + this.rootFolder);
+        this.log('make-ts-list').info('Make ts list for all libs on ' + this.rootFolder);
         const libs = new Libs(folders, rootFolder);
         libs.debug = this.debug;
-        const result = false;
         return await new Promise<boolean>((resolve: any) =>
-            libs.build(this.options).then((result: boolean) => {
-                this.log('build').info('Done!');
+            libs.makeTsList(this.options).then((result: boolean) => {
+                this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
-                this.log('build').error(e);
-                this.log('build').info('Done with errors!');
+                this.log('make-ts-list').error(e);
+                this.log('make-ts-list').info('Done with errors!');
                 resolve(false);
             })
         );
     }
     async processLib(folder: string, rootFolder: string) {
-        this.log('build').info('Build lib ' + folder + ' on ' + rootFolder);
+        this.log('make-ts-list').info('Make ts list for lib ' + folder + ' on ' + rootFolder);
         const lib = new Lib(folder, rootFolder);
         lib.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            lib.build(this.options).then((result: boolean) => {
-                this.log('build').info('Done!');
+            lib.makeTsList(this.options).then((result: boolean) => {
+                this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
-                this.log('build').error(e);
-                this.log('build').info('Done with errors!');
+                this.log('make-ts-list').error(e);
+                this.log('make-ts-list').info('Done with errors!');
                 resolve(false);
             })
         );
     }
     async processApps(folders: string[], rootFolder: string) {
-        this.log('build').info('Build all apps on ' + rootFolder);
+        this.log('make-ts-list').info('Make ts list for all apps on ' + rootFolder);
         const apps = new Apps(folders, rootFolder);
         apps.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            apps.build(this.options).then((result: boolean) => {
-                this.log('build').info('Done!');
+            apps.makeTsList(this.options).then((result: boolean) => {
+                this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
-                this.log('build').error(e);
-                this.log('build').info('Done with errors!');
+                this.log('make-ts-list').error(e);
+                this.log('make-ts-list').info('Done with errors!');
                 resolve(false);
             })
         );
     }
     async processApp(folder: string, rootFolder: string) {
-        this.log('build').info('Build app ' + this.options.app + ' on ' + rootFolder);
+        this.log('make-ts-list').info('Make ts list for app ' + this.options.app + ' on ' + rootFolder);
         const app = new App(folder, rootFolder);
         app.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            app.build(this.options).then((result: boolean) => {
-                this.log('build').info('Done!');
+            app.makeTsList(this.options).then((result: boolean) => {
+                this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
-                this.log('build').error(e);
-                this.log('build').info('Done with errors!');
+                this.log('make-ts-list').error(e);
+                this.log('make-ts-list').info('Done with errors!');
                 resolve(false);
             })
         );

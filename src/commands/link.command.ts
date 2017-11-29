@@ -5,51 +5,67 @@ import { Libs } from '../lib/libs';
 import { BaseCommand } from './base.command';
 
 export class LinkCommand extends BaseCommand {
-    constructor(public action: any) {
-        super(action);
+    constructor(public options: any) {
+        super(options);
     }
-    processLibs(folders: string[], rootFolder: string) {
+    async processLibs(folders: string[], rootFolder: string) {
         this.log('link').info('Link all libs on ' + this.rootFolder);
         const libs = new Libs(folders, rootFolder);
         libs.debug = this.debug;
-        libs.link().then((result: boolean) => {
-            this.log('link').info('Done!');
-        }).catch((e:any) => {
-            this.log('link').error(e);
-            this.log('link').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            libs.link(this.options).then((result: boolean) => {
+                this.log('link').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('link').error(e);
+                this.log('link').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
-    processLib(folder: string, rootFolder: string) {
+    async processLib(folder: string, rootFolder: string) {
         this.log('link').info('Link lib ' + folder + ' on ' + rootFolder);
         const lib = new Lib(folder, rootFolder);
         lib.debug = this.debug;
-        lib.link().then((result: boolean) => {
-            this.log('link').info('Done!');
-        }).catch((e:any) => {
-            this.log('link').error(e);
-            this.log('link').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            lib.link(this.options).then((result: boolean) => {
+                this.log('link').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('link').error(e);
+                this.log('link').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
-    processApps(folders: string[], rootFolder: string) {
+    async processApps(folders: string[], rootFolder: string) {
         this.log('link').info('Link all apps on ' + rootFolder);
         const apps = new Apps(folders, rootFolder);
         apps.debug = this.debug;
-        apps.link().then((result: boolean) => {
-            this.log('link').info('Done!');
-        }).catch((e:any) => {
-            this.log('link').error(e);
-            this.log('link').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            apps.link(this.options).then((result: boolean) => {
+                this.log('link').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('link').error(e);
+                this.log('link').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
-    processApp(folder: string, rootFolder: string) {
-        this.log('link').info('Link app ' + this.action.parent.app + ' on ' + rootFolder);
+    async processApp(folder: string, rootFolder: string) {
+        this.log('link').info('Link app ' + this.options.app + ' on ' + rootFolder);
         const app = new App(folder, rootFolder);
         app.debug = this.debug;
-        app.link().then((result: boolean) => {
-            this.log('link').info('Done!');
-        }).catch((e:any) => {
-            this.log('link').error(e);
-            this.log('link').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            app.link(this.options).then((result: boolean) => {
+                this.log('link').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('link').error(e);
+                this.log('link').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
 }

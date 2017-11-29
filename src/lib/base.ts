@@ -32,14 +32,14 @@ export class Base {
             this.log().setLevel('info');
         }
     }
-    timeout(ms: number) {
+    timeout(customOptions?: any) {
         this.log('timeout').debug('start');
-        this.log('timeout').debug(ms);
+        this.log('timeout').debug(customOptions.ms);
         return new Promise(resolve =>
             setTimeout(() => {
                 this.log('timeout').debug('end');
                 resolve(true);
-            }, ms)
+            }, customOptions.ms)
         );
     }
     log(subName?: string) {
@@ -72,7 +72,7 @@ export class Base {
         }
         return await child.status === 0;
     };
-    async clear() {
+    async clear(customOptions?: any) {
         this.log('clear').debug('start');
         const folder = path.resolve(this.folder);
         this.log('clear').debug(folder);
@@ -90,7 +90,7 @@ export class Base {
         this.log('clear').debug('end');
         return result;
     }
-    async build() {
+    async build(customOptions?: any) {
         this.log('build').debug('start');
         const folder = path.resolve(this.folder + '/src');
         this.log('build').debug(folder);
@@ -105,7 +105,7 @@ export class Base {
         this.log('build').debug('end');
         return result;
     }
-    async link() {
+    async link(customOptions?: any) {
         this.log('link').debug('start');
         const items = [
             await this.linkNpmClear(),
@@ -114,7 +114,7 @@ export class Base {
         this.log('link').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkNpm() {
+    async linkNpm(customOptions?: any) {
         this.log('linkNpm').debug('start');
         const items = [
             await this.linkNpmClear(),
@@ -123,7 +123,7 @@ export class Base {
         this.log('linkNpm').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkDist() {
+    async linkDist(customOptions?: any) {
         this.log('linkDist').debug('start');
         const folder = path.resolve(this.folder + '/src');
         this.log('linkDist').debug(folder);
@@ -138,7 +138,7 @@ export class Base {
         this.log('linkDist').debug('end');
         return result;
     }
-    async linkSrc() {
+    async linkSrc(customOptions?: any) {
         this.log('linkSrc').debug('start');
         const folder = path.resolve(this.folder + '/src');
         this.log('linkSrc').debug(folder);
@@ -153,7 +153,7 @@ export class Base {
         this.log('linkSrc').debug('end');
         return result;
     }
-    async linkNpmClear() {
+    async linkNpmClear(customOptions?: any) {
         this.log('linkNpmClear').debug('start');
         const folder = path.resolve(this.folder);
         this.log('linkNpmClear').debug(folder);
@@ -170,7 +170,7 @@ export class Base {
         this.log('linkNpmClear').debug('end');
         return result;
     }
-    async changeVersion() {
+    async changeVersion(customOptions?: any) {
         this.log('changeVersion').debug('start');
         const rootPackagePath = path.resolve(this.rootFolder + '/package.json');
         const srcPackagePath = path.resolve(this.folder + '/src/package.json');
@@ -192,7 +192,7 @@ export class Base {
         this.log('changeVersion').debug('end');
         return await true;
     }
-    async extractTranslate() {
+    async extractTranslate(customOptions?: any) {
         this.log('extractTranslate').debug('start');
         const folder = path.resolve(this.folder + '/src');
         this.log('extractTranslate').debug(folder);
@@ -226,8 +226,7 @@ export class Base {
                         'dir': folder
                     }
                 }
-            },
-            customOptions ? customOptions : {}
+            }
         );
         this.log('po2ts').debug(options);
         const srcgenTemplate = 'convert.po.to.ts';
@@ -249,14 +248,14 @@ export class Base {
         }
         return result;
     }
-    async prepare() {
+    async prepare(customOptions?: any) {
         this.log('prepare').debug('start');
         const results = [
-            await this.extractTranslate(),
-            await this.po2ts(),
-            await this.extractTranslate(),
-            await this.makeTsList(),
-            await this.changeVersion()
+            await this.extractTranslate(customOptions),
+            await this.po2ts(customOptions),
+            await this.extractTranslate(customOptions),
+            await this.makeTsList(customOptions),
+            await this.changeVersion(customOptions)
         ];
         this.log('prepare').debug('end');
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
@@ -270,11 +269,10 @@ export class Base {
                 'scan': {
                     'path': folder,
                     'list': {
-                        'name': ''
+                        'name': (customOptions && customOptions.listComponentsPostfix ? customOptions.listComponentsPostfix : '')
                     }
                 }
-            },
-            customOptions ? customOptions : {}
+            }
         );
         this.log('makeTsList').debug(options);
         const srcgenTemplate = 'make.list.ts.files';
