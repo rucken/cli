@@ -4,7 +4,7 @@
 .env
 bin
 .tmp
-dist
+# dist
 tmp
 out-tsc
 *.tgz
