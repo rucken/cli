@@ -58,27 +58,18 @@ describe('Libs:run from console', () => {
             if (debug) {
                 console.log('commandRunner#start');
                 console.log('commandRunner#', commandString);
+                console.log('commandRunner#', file);
             }
-            assert.equal(fsExtra.existsSync(file), true);
-            const child = npmRun.spawnSync(
+            const stdout = npmRun.execSync(
                 commandBin,
                 commandArgs,
                 { cwd: dirRoot }
             );
             if (debug) {
-                console.log('commandRunner#status', child.status);
-                console.log('commandRunner#stderr', child.stderr.toString());
-                console.log('commandRunner#stdout', child.stdout.toString());
+                console.log('commandRunner#stdout', stdout.toString());
                 console.log('commandRunner#end');
             }
-            items.forEach(({
-                dir: dir,
-                translateTsFile: translateTsFile,
-                indexTsFile: indexTsFile
-            }) => {
-                assert.equal(fsExtra.existsSync(translateTsFile), true);
-                assert.equal(fsExtra.existsSync(indexTsFile), true);
-            });
+            assert.equal(fsExtra.existsSync(file), true);
         });
         it('rucken prepare --lib --root ./test/fixture', () => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
