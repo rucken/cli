@@ -54,11 +54,21 @@ describe('Libs:run from console', () => {
             const commandString = 'node ./bin/rucken prepare --lib --root ./test/fixture' + (this.debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
+            if (debug) {
+                console.log('commandRunner#start');
+                console.log('commandRunner#', commandString);
+            }
             const child = npmRun.spawnSync(
                 commandBin,
                 commandArgs,
                 { cwd: dirRoot }
             );
+            if (debug) {
+                console.log('commandRunner#status', child.status);
+                console.log('commandRunner#stderr', child.stderr.toString());
+                console.log('commandRunner#stdout', child.stdout.toString());
+                console.log('commandRunner#end');
+            }
             items.forEach(({
                 dir: dir,
                 translateTsFile: translateTsFile,
