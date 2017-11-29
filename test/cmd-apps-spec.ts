@@ -51,9 +51,9 @@ describe('Apps:run from console', () => {
                 assert.equal(fsExtra.existsSync(indexTsFile), false);
             });
         });
-        it('npm run build', () => {
+        it('tsc --pretty', () => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'npm run build';
+            const commandString = 'tsc --pretty';
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             if (debug) {
@@ -61,13 +61,15 @@ describe('Apps:run from console', () => {
                 console.log('commandRunner#', commandString);
                 console.log('commandRunner#', file);
             }
-            const stdout = npmRun.execSync(
+            const child = npmRun.spawnSync(
                 commandBin,
                 commandArgs,
                 { cwd: dirRoot }
             );
             if (debug) {
-                console.log('commandRunner#stdout', stdout.toString());
+                console.log('commandRunner#status', child.status);
+                console.log('commandRunner#stderr', child.stderr.toString());
+                console.log('commandRunner#stdout', child.stdout.toString());
                 console.log('commandRunner#end');
             }
             assert.equal(fsExtra.existsSync(file), true);
