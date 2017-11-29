@@ -52,7 +52,7 @@ describe('Apps:run from console', () => {
             });
         });
         it('rucken prepare --app --root ./test/fixture', () => {
-            const commandString = 'node . --app --root ./test/fixture' + (this.debug ? ' --verbose' : '');
+            const commandString = 'node ./dist/bin/app.js prepare --app --root ./test/fixture' + (debug ? ' --verbose' : '');
             const commandBin = commandString.split(' ')[0];
             const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
             if (debug) {
