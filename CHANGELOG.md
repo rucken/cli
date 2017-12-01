@@ -1,3 +1,13 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/rucken/cli/compare/1.2.0...1.2.1) (2017-12-01)
+
+
+### Bug Fixes
+
+* Remove bin folder from gitignore ([402ec66](https://github.com/rucken/cli/commit/402ec66))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/rucken/cli/compare/1.1.0...1.2.0) (2017-12-01)
 
