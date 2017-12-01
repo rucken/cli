@@ -47,5 +47,6 @@ Thumbs.db
 temp_*.json
 /test/fixture/**/package-lock.json
 /test/fixture/**/src/index.ts
+/test/fixture/**/src/app/index.ts
 /test/fixture/**/i18n/ru.i18n.ts
 /test/fixture/**/i18n/template.pot
