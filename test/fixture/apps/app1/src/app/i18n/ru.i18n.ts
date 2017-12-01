@@ -1,4 +1,4 @@
-export const TestApp2RuI18n = {
+export const RuI18n = {
     'Yes': 'Да',
     'No': 'Нет'
 };

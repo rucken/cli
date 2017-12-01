@@ -8,9 +8,9 @@ export class LinkCommand extends BaseCommand {
     constructor(public options: any) {
         super(options);
     }
-    async processLibs(folders: string[], rootFolder: string) {
+    async processLibs(options: any) {
         this.log('link').info('Link all libs on ' + this.rootFolder);
-        const libs = new Libs(folders, rootFolder);
+        const libs = new Libs(options.folders, options.rootFolder);
         libs.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
             libs.link(this.options).then((result: boolean) => {
@@ -23,9 +23,9 @@ export class LinkCommand extends BaseCommand {
             })
         );
     }
-    async processLib(folder: string, rootFolder: string) {
-        this.log('link').info('Link lib ' + folder + ' on ' + rootFolder);
-        const lib = new Lib(folder, rootFolder);
+    async processLib(options?: any) {
+        this.log('link').info('Link lib ' + options.folder + ' on ' + options.rootFolder);
+        const lib = new Lib(options.folder, options.rootFolder);
         lib.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
             lib.link(this.options).then((result: boolean) => {
@@ -38,9 +38,9 @@ export class LinkCommand extends BaseCommand {
             })
         );
     }
-    async processApps(folders: string[], rootFolder: string) {
-        this.log('link').info('Link all apps on ' + rootFolder);
-        const apps = new Apps(folders, rootFolder);
+    async processApps(options: any) {
+        this.log('link').info('Link all apps on ' + options.rootFolder);
+        const apps = new Apps(options.folders, options.rootFolder);
         apps.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
             apps.link(this.options).then((result: boolean) => {
@@ -53,9 +53,9 @@ export class LinkCommand extends BaseCommand {
             })
         );
     }
-    async processApp(folder: string, rootFolder: string) {
-        this.log('link').info('Link app ' + this.options.app + ' on ' + rootFolder);
-        const app = new App(folder, rootFolder);
+    async processApp(options?: any) {
+        this.log('link').info('Link app ' + this.options.app + ' on ' + options.rootFolder);
+        const app = new App(options.folder, options.rootFolder);
         app.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
             app.link(this.options).then((result: boolean) => {

@@ -9,7 +9,7 @@ import { Lib } from '../src/lib/lib';
 const assert = chai.assert;
 describe('Lib', () => {
     config();
-    const debug = process.env.TEST_DEBUG === 'true'; 
+    const debug = process.env.TEST_DEBUG === 'true';
     describe('#clear()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/dist`);
@@ -24,7 +24,7 @@ describe('Lib', () => {
         it('del-cli ./test/fixture/libs/lib1/src/node_modules ./test/fixture/libs/lib1/dist ./test/fixture/libs/lib1/.tmp', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.clear().then((data:any) => {
+            lib.clear({ folder: '' }).then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
             }).catch(function (e) {
@@ -47,7 +47,7 @@ describe('Lib', () => {
         it('srcgen -x -t make.list.ts.files -f ./srcgen/lib1-make.list.ts.files.json', (done) => {
             const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
-            lib.makeTsList().then((data:any) => {
+            lib.makeTsList({ srcFolder: '', package: { name: '' }, listComponentsPostfix: '' }).then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
             }).catch(function (e) {
@@ -73,7 +73,7 @@ describe('Lib', () => {
         it('ngm build -p ./test/fixture/libs/lib1/src --clean', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.build().then((data:any) => {
+            lib.build({ folder: '', srcFolder: '' }).then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -100,7 +100,7 @@ describe('Lib', () => {
         it('ngm link -p ./test/fixture/libs/lib1/src --here', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.link().then((data: boolean) => {
+            lib.link({ folder: '', srcFolder: '' }).then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -128,7 +128,7 @@ describe('Lib', () => {
         it('npm link ./test/fixture/libs/lib1/src', (done) => {
             const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
-            lib.linkNpm().then((data:any) => {
+            lib.linkNpm().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
@@ -151,7 +151,7 @@ describe('Lib', () => {
         it('del-cli ./test/fixture/libs/lib1/src/node_modules ./test/fixture/libs/lib1/dist/node_modules', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.linkNpmClear().then((data:any) => {
+            lib.linkNpmClear().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
             }).catch(function (e) {
@@ -188,7 +188,7 @@ describe('Lib', () => {
         it('changeVersion ./test/fixture/libs/lib1/src', (done) => {
             const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
-            lib.changeVersion().then((data:any) => {
+            lib.changeVersion().then((data: any) => {
                 if (fsExtra.existsSync(srcPackagePath)) {
                     srcPackage = fsExtra.readJSONSync(srcPackagePath);
                 }
@@ -213,7 +213,7 @@ describe('Lib', () => {
         it('ngx-translate-extract --input ./test/fixture/libs/lib1/src --output ./test/fixture/libs/lib1/src/i18n/template.pot --format=pot --marker translate --clean', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.extractTranslate().then((data:any) => {
+            lib.extractTranslate().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexFile), true);
                 done();
             }).catch(function (e) {
@@ -236,7 +236,7 @@ describe('Lib', () => {
         it('srcgen -x -t convert.po.to.ts -f ./srcgen/convert.po.to.ts.json', (done) => {
             const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
-            lib.po2ts().then((data:any) => {
+            lib.po2ts().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 done();
             }).catch(function (e) {
@@ -266,7 +266,7 @@ describe('Lib', () => {
         it('npm-run-all lib1:tools-extract_translate lib1:tools-po2ts lib1:tools-make_ts_list', (done) => {
             const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
-            lib.prepare().then((data:any) => {
+            lib.prepare().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();

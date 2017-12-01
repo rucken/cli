@@ -32,7 +32,7 @@ export class Base {
             this.log().setLevel('info');
         }
     }
-    timeout(customOptions?: any) {
+    timeout(customOptions: { ms: number }) {
         this.log('timeout').debug('start');
         this.log('timeout').debug(customOptions.ms);
         return new Promise(resolve =>
@@ -72,9 +72,12 @@ export class Base {
         }
         return await child.status === 0;
     };
-    async clear(customOptions?: any) {
+    async clear(customOptions?: { folder?: string }) {
         this.log('clear').debug('start');
-        const folder = path.resolve(this.folder);
+        let folder = path.resolve(this.folder);
+        if (customOptions && customOptions.folder) {
+            folder = customOptions.folder;
+        }
         this.log('clear').debug(folder);
         const commandString = './node_modules/.bin/del-cli ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
@@ -90,11 +93,14 @@ export class Base {
         this.log('clear').debug('end');
         return result;
     }
-    async build(customOptions?: any) {
+    async build(customOptions?: { folder?: string, srcFolder?: string }) {
         this.log('build').debug('start');
-        const folder = path.resolve(this.folder + '/src');
+        let folder = path.resolve(this.folder + '/src');
+        if (customOptions && customOptions.srcFolder) {
+            folder = customOptions.srcFolder;
+        }
         this.log('build').debug(folder);
-        const commandString = 'ngm build -p ' + path.resolve(folder) + ' --clean';
+        const commandString = 'ngm build -p ' + folder + ' --clean';
         if (!fsExtra.existsSync(folder)) {
             this.log('build').debug(commandString);
             this.log('build').debug(`Folder does not exists: ${folder}`);
@@ -105,29 +111,32 @@ export class Base {
         this.log('build').debug('end');
         return result;
     }
-    async link(customOptions?: any) {
+    async link(customOptions?: { folder?: string, srcFolder?: string }) {
         this.log('link').debug('start');
         const items = [
-            await this.linkNpmClear(),
-            await this.linkDist()
+            await this.linkNpmClear(customOptions),
+            await this.linkDist(customOptions)
         ];
         this.log('link').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkNpm(customOptions?: any) {
+    async linkNpm(customOptions?: { folder?: string, srcFolder?: string }) {
         this.log('linkNpm').debug('start');
         const items = [
-            await this.linkNpmClear(),
-            await this.linkSrc()
+            await this.linkNpmClear(customOptions),
+            await this.linkSrc(customOptions)
         ];
         this.log('linkNpm').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkDist(customOptions?: any) {
+    async linkDist(customOptions?: { folder?: string, srcFolder?: string }) {
         this.log('linkDist').debug('start');
-        const folder = path.resolve(this.folder + '/src');
+        let folder = path.resolve(this.folder + '/src');
+        if (customOptions && customOptions.srcFolder) {
+            folder = customOptions.srcFolder;
+        }
         this.log('linkDist').debug(folder);
-        const commandString = 'ngm link -p ' + path.resolve(folder) + ' --here';
+        const commandString = 'ngm link -p ' + folder + ' --here';
         if (!fsExtra.existsSync(folder)) {
             this.log('linkDist').debug(commandString);
             this.log('linkDist').debug(`Folder does not exists: ${folder}`);
@@ -138,9 +147,12 @@ export class Base {
         this.log('linkDist').debug('end');
         return result;
     }
-    async linkSrc(customOptions?: any) {
+    async linkSrc(customOptions?: { folder?: string, srcFolder?: string }) {
         this.log('linkSrc').debug('start');
-        const folder = path.resolve(this.folder + '/src');
+        let folder = path.resolve(this.folder + '/src');
+        if (customOptions && customOptions.srcFolder) {
+            folder = customOptions.srcFolder;
+        }
         this.log('linkSrc').debug(folder);
         const commandString = 'npm link ' + path.resolve(folder);
         if (!fsExtra.existsSync(folder)) {
@@ -153,9 +165,12 @@ export class Base {
         this.log('linkSrc').debug('end');
         return result;
     }
-    async linkNpmClear(customOptions?: any) {
+    async linkNpmClear(customOptions?: { folder?: string }) {
         this.log('linkNpmClear').debug('start');
-        const folder = path.resolve(this.folder);
+        let folder = path.resolve(this.folder);
+        if (customOptions && customOptions.folder) {
+            folder = customOptions.folder;
+        }
         this.log('linkNpmClear').debug(folder);
         const commandString = './node_modules/.bin/del-cli ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
@@ -170,10 +185,16 @@ export class Base {
         this.log('linkNpmClear').debug('end');
         return result;
     }
-    async changeVersion(customOptions?: any) {
+    async changeVersion(customOptions?: { rootPackagePath?: string, srcPackagePath?: string }) {
         this.log('changeVersion').debug('start');
-        const rootPackagePath = path.resolve(this.rootFolder + '/package.json');
-        const srcPackagePath = path.resolve(this.folder + '/src/package.json');
+        let rootPackagePath = path.resolve(this.rootFolder + '/package.json');
+        let srcPackagePath = path.resolve(this.folder + '/src/package.json');
+        if (customOptions && customOptions.rootPackagePath) {
+            rootPackagePath = customOptions.rootPackagePath;
+        }
+        if (customOptions && customOptions.srcPackagePath) {
+            srcPackagePath = customOptions.srcPackagePath;
+        }
 
         let rootPackage: any = null;
         let srcPackage: any = null;
@@ -192,9 +213,12 @@ export class Base {
         this.log('changeVersion').debug('end');
         return await true;
     }
-    async extractTranslate(customOptions?: any) {
+    async extractTranslate(customOptions?: { srcFolder?: string }) {
         this.log('extractTranslate').debug('start');
-        const folder = path.resolve(this.folder + '/src');
+        let folder = path.resolve(this.folder + '/src');
+        if (customOptions && customOptions.srcFolder) {
+            folder = customOptions.srcFolder;
+        }
         this.log('extractTranslate').debug(folder);
         const commandString = 'ngx-translate-extract ' +
             '--input ' + path.resolve(folder) + ' ' +
@@ -210,9 +234,16 @@ export class Base {
         this.log('extractTranslate').debug('end');
         return result;
     }
-    async po2ts(customOptions?: any) {
+    async po2ts(customOptions?: { i18nFolder?: string, package?: any }) {
         this.log('po2ts').debug('start');
-        const folder = path.resolve(this.folder + '/src/i18n');
+        let folder = path.resolve(this.folder + '/src/i18n');
+        let packageData: any = { name: '' };
+        if (customOptions && customOptions.i18nFolder) {
+            folder = customOptions.i18nFolder;
+        }
+        if (customOptions && customOptions.package) {
+            packageData = customOptions.package;
+        }
         this.log('po2ts').debug(folder);
         const options = _.merge(
             {
@@ -225,7 +256,8 @@ export class Base {
                     'output': {
                         'dir': folder
                     }
-                }
+                },
+                'package': packageData
             }
         );
         this.log('po2ts').debug(options);
@@ -248,7 +280,14 @@ export class Base {
         }
         return result;
     }
-    async prepare(customOptions?: any) {
+    async prepare(customOptions?: {
+        i18nFolder?: string,
+        srcFolder?: string,
+        package?: any,
+        listComponentsPostfix?: string
+        rootPackagePath?: string,
+        srcPackagePath?: string
+    }) {
         this.log('prepare').debug('start');
         const results = [
             await this.extractTranslate(customOptions),
@@ -260,18 +299,30 @@ export class Base {
         this.log('prepare').debug('end');
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async makeTsList(customOptions?: any) {
+    async makeTsList(customOptions?: { srcFolder?: string, package?: any, listComponentsPostfix?: string }) {
         this.log('makeTsList').debug('start');
-        const folder = path.resolve(this.folder + '/src');
+        let folder = path.resolve(this.folder + '/src');
+        let packageData: any = { name: '' };
+        let listComponentsPostfix = '';
+        if (customOptions && customOptions.srcFolder) {
+            folder = customOptions.srcFolder;
+        }
+        if (customOptions && customOptions.package) {
+            packageData = customOptions.package;
+        }
+        if (customOptions && customOptions.listComponentsPostfix) {
+            listComponentsPostfix = customOptions.listComponentsPostfix;
+        }
         this.log('makeTsList').debug(folder);
         const options = _.merge(
             {
                 'scan': {
                     'path': folder,
                     'list': {
-                        'name': (customOptions && customOptions.listComponentsPostfix ? customOptions.listComponentsPostfix : '')
+                        'name': listComponentsPostfix
                     }
-                }
+                },
+                'package': packageData
             }
         );
         this.log('makeTsList').debug(options);

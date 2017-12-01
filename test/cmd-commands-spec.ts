@@ -9,7 +9,7 @@ import { Base } from '../src/lib/base';
 const npmRun = require('npm-run');
 const assert = chai.assert;
 
-describe('Commands: run from console', () => {
+describe('Apps-commands: run from console', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
@@ -18,14 +18,14 @@ describe('Commands: run from console', () => {
         let _dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         _dir = path.resolve(`${__dirname}/fixture/apps/subFolder/app2`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         beforeEach(() => {
             items.forEach(({ dir: dir,

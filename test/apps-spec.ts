@@ -9,21 +9,21 @@ import { Apps } from '../src/lib/apps';
 const assert = chai.assert;
 describe('Apps', () => {
     config();
-    const debug = process.env.TEST_DEBUG === 'true'; 
+    const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
         let _dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         _dir = path.resolve(`${__dirname}/fixture/apps/subFolder/app2`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         beforeEach(() => {
             items.forEach(({ dir: dir,
@@ -55,7 +55,15 @@ describe('Apps', () => {
             const dirs = items.map((item: any) => item.dir);
             const app = new Apps(dirs, dirRoot);
             app.debug = debug;
-            app.prepare().then((data: boolean) => {
+            app.prepare({
+                i18nFolder: '',
+                srcFolder: '',
+                package: { name: '' },
+                packages: [],
+                listComponentsPostfix: '',
+                rootPackagePath: '',
+                srcPackagePath: ''
+            }).then((data: boolean) => {
                 items.forEach(({
                         dir: dir,
                     translateTsFile: translateTsFile,

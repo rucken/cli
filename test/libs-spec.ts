@@ -9,7 +9,7 @@ import { Libs } from '../src/lib/libs';
 const assert = chai.assert;
 describe('Libs', () => {
     config();
-    const debug = process.env.TEST_DEBUG === 'true'; 
+    const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
@@ -53,11 +53,11 @@ describe('Libs', () => {
         });
         it('npm-run-all libs:tools-extract_translate libs:tools-po2ts libs:tools-make_ts_list', (done) => {
             const dirs = items.map((item: any) => item.dir);
-            const lib = new Libs(dirs, dirRoot);
-            lib.debug = debug;
-            lib.prepare().then((data: boolean) => {
+            const libs = new Libs(dirs, dirRoot);
+            libs.debug = debug;
+            libs.prepare().then((data: boolean) => {
                 items.map(({
-                        dir: dir,
+                    dir: dir,
                     translateTsFile: translateTsFile,
                     indexTsFile: indexTsFile
                 }) => {

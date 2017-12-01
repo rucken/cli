@@ -31,7 +31,7 @@
         "**/*/node_modules"
     ],
     "files": [
-        "./index.ts"
+        "./app/index.ts"
     ],
     "angularCompilerOptions": {
         "genDir": "../temp/factories",
