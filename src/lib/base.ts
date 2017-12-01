@@ -65,7 +65,9 @@ export class Base {
         );
         if (child.status === 0 || child.status === '0') {
             this.log('commandRunner').debug('status', child.status);
-            this.log('commandRunner').debug('stderr', child.stderr.toString());
+            if (child.stderr.toString()) {
+                this.log('commandRunner').error('stderr', child.stderr.toString());
+            }
             this.log('commandRunner').debug('stdout', child.stdout.toString());
             this.log('commandRunner').debug('end');
         } else {
@@ -86,10 +88,10 @@ export class Base {
         const commandString = './node_modules/.bin/del-cli ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
             path.resolve(folder + '/dist') + ' ' +
-            path.resolve(folder + '/.tmp');
+            path.resolve(folder + '/.tmp') + ' --force';
         if (!fsExtra.existsSync(folder)) {
             this.log('clear').debug(commandString);
-            this.log('clear').debug(`Folder does not exists: ${folder}`);
+            this.log('clear').error(`Folder does not exists: ${folder}`);
             this.log('clear').debug('end');
             return await false;
         }
@@ -107,7 +109,7 @@ export class Base {
         const commandString = 'ngm build -p ' + folder + ' --clean';
         if (!fsExtra.existsSync(folder)) {
             this.log('build').debug(commandString);
-            this.log('build').debug(`Folder does not exists: ${folder}`);
+            this.log('build').error(`Folder does not exists: ${folder}`);
             this.log('build').debug('end');
             return await false;
         }
@@ -143,7 +145,7 @@ export class Base {
         const commandString = 'ngm link -p ' + folder + ' --here';
         if (!fsExtra.existsSync(folder)) {
             this.log('linkDist').debug(commandString);
-            this.log('linkDist').debug(`Folder does not exists: ${folder}`);
+            this.log('linkDist').error(`Folder does not exists: ${folder}`);
             this.log('linkDist').debug('end');
             return await false;
         }
@@ -161,7 +163,7 @@ export class Base {
         const commandString = 'npm link ' + path.resolve(folder);
         if (!fsExtra.existsSync(folder)) {
             this.log('linkSrc').debug(commandString);
-            this.log('linkSrc').debug(`Folder does not exists: ${folder}`);
+            this.log('linkSrc').error(`Folder does not exists: ${folder}`);
             this.log('linkSrc').debug('end');
             return await false;
         }
@@ -178,10 +180,10 @@ export class Base {
         this.log('linkNpmClear').debug(folder);
         const commandString = './node_modules/.bin/del-cli ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
-            path.resolve(folder + '/dist/node_modules');
+            path.resolve(folder + '/dist/node_modules') + ' --force';
         if (!fsExtra.existsSync(folder)) {
             this.log('linkNpmClear').debug(commandString);
-            this.log('linkNpmClear').debug(`Folder does not exists: ${folder}`);
+            this.log('linkNpmClear').error(`Folder does not exists: ${folder}`);
             this.log('linkNpmClear').debug('end');
             return await false;
         }
@@ -230,7 +232,7 @@ export class Base {
             '--format=pot --marker translate --clean';
         if (!fsExtra.existsSync(folder)) {
             this.log('extractTranslate').debug(commandString);
-            this.log('extractTranslate').debug(`Folder does not exists: ${folder}`);
+            this.log('extractTranslate').error(`Folder does not exists: ${folder}`);
             this.log('extractTranslate').debug('end');
             return await false;
         }
@@ -269,18 +271,18 @@ export class Base {
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-convert.po.to.ts.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
-            this.log('po2ts').debug(`File does not exists: ${optionsFile}`);
+            this.log('po2ts').error(`File does not exists: ${optionsFile}`);
         }
         const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
         if (!fsExtra.existsSync(folder)) {
             this.log('po2ts').debug(commandString);
-            this.log('po2ts').debug(`Folder does not exists: ${path.resolve(folder)}`);
+            this.log('po2ts').error(`Folder does not exists: ${path.resolve(folder)}`);
             this.log('po2ts').debug('end');
             return await false;
         }
         let result = await this.commandRunner(commandString);
         if (fsExtra.existsSync(optionsFile)) {
-            del.sync([optionsFile]);
+            del.sync([optionsFile], { force: true });
         }
         return result;
     }
@@ -334,18 +336,18 @@ export class Base {
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-make.list.ts.files.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
-            this.log('makeTsList').debug(`File does not exists: ${optionsFile}`);
+            this.log('makeTsList').error(`File does not exists: ${optionsFile}`);
         }
         const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
         if (!fsExtra.existsSync(folder)) {
             this.log('makeTsList').debug(commandString);
-            this.log('makeTsList').debug(`Folder does not exists: ${folder}`);
+            this.log('makeTsList').error(`Folder does not exists: ${folder}`);
             this.log('makeTsList').debug('end');
             return await false;
         }
         let result = await this.commandRunner(commandString);
         if (fsExtra.existsSync(optionsFile)) {
-            del.sync([optionsFile]);
+            del.sync([optionsFile], { force: true });
         }
         this.log('makeTsList').debug('end');
         return result;

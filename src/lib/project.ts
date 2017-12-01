@@ -19,14 +19,22 @@ export class Project extends Base {
     }
     init() {
         this.agularCliJson = this.getAgularCliJson();
-        this.libsConfigs = (this.agularCliJson.apps ? this.agularCliJson.apps : []).filter((app: any) => app.appRoot === '');
-        this.libsPaths = this.libsConfigs.map((lib: any) =>
-            path.resolve(this.rootFolder + '/' + _.trimStart(lib.root, './') + '/../')
-        );
-        this.appsConfigs = (this.agularCliJson.apps ? this.agularCliJson.apps : []).filter((app: any) => app.appRoot === undefined);
-        this.appsPaths = this.appsConfigs.map((app: any) =>
-            path.resolve(this.rootFolder + '/' + _.trimStart(app.root, './') + '/../')
-        );
+        this.libsConfigs =
+            (this.agularCliJson.apps ? this.agularCliJson.apps : []).
+                filter((app: any) => app.appRoot === '').
+                map((lib: any) => {
+                    lib.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(lib.root, './') + '/../');
+                    return lib;
+                });
+        this.libsPaths = this.libsConfigs.map((lib: any) => lib.rootPath);
+        this.appsConfigs =
+            (this.agularCliJson.apps ? this.agularCliJson.apps : []).
+                filter((app: any) => app.appRoot === undefined).
+                map((app: any) => {
+                    app.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(app.root, './') + '/../');
+                    return app;
+                });
+        this.appsPaths = this.appsConfigs.map((app: any) => app.rootPath);
     }
     getLibPathByName(name: string) {
         const libs = this.libsConfigs.filter((item: any) => item.name && item.name === name);
