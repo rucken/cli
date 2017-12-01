@@ -45,7 +45,7 @@ testem.log
 .DS_Store
 Thumbs.db
 temp_*.json
-/test/fixture/*/package-lock.json
-/test/fixture/*/src/index.ts
-/test/fixture/*/i18n/ru.i18n.ts
-/test/fixture/*/src/i18n/template.pot
+/test/fixture/**/package-lock.json
+/test/fixture/**/src/index.ts
+/test/fixture/**/i18n/ru.i18n.ts
+/test/fixture/**/i18n/template.pot
