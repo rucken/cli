@@ -1,3 +1,13 @@
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/rucken/cli/compare/1.2.2...1.2.3) (2017-12-01)
+
+
+### Bug Fixes
+
+* Add detect bin path of rucken for run with commands ([e1c4a2f](https://github.com/rucken/cli/commit/e1c4a2f))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/rucken/cli/compare/1.2.1...1.2.2) (2017-12-01)
 
