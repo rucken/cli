@@ -67,6 +67,17 @@ export class App {
             .action((listOfCommands: string[]) => {
                 const binNames = Object.keys(this.package.bin);
                 const cwdPackage = fsExtra.readJSONSync(path.resolve(process.cwd() + '/package.json'));
+                let binPath: string;
+                if (cwdPackage.name === this.package.name) {
+                    binPath = 'node .';
+                }
+                if (fsExtra.existsSync(path.resolve(process.cwd() + '/node_modules/.bin/' + binNames[0]))) {
+                    binPath = './node_modules/.bin/' + binNames[0];
+                }
+                if (!binPath) {
+                    binPath = 'node ' + binNames[0];
+                }
+                const runner = new BaseCommand(this.program);
                 const commandsNames = this.program.commands.map((command: any) => command.name());
                 const commands = listOfCommands.map(
                     (item: string) =>
@@ -76,10 +87,12 @@ export class App {
                     .split('#COMMAND#')
                     .filter((item: string) => item !== '')
                     .map((item: string) => item.trim())
-                    .map((item: string) => 'node ' + ((cwdPackage.name === this.package.name) ? '.' : binNames[0]) + ' ' + item);
-                commands.forEach(async (command: string) =>
-                    await (new BaseCommand(this.program)).commandRunner(command)
-                );
+                    .map((item: string) => binPath + ' ' + item);
+                commands.forEach(async (command: string) => {
+                    await Promise.resolve(runner.log('commands').info('Run: ' + command));
+                    await runner.commandRunner(command);
+                    await Promise.resolve(runner.log('commands').info('Done!'));
+                });
             });
         this.program
             .command('make-ts-list')
