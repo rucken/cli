@@ -4,10 +4,12 @@ import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 
+import { Base } from '../src/lib/base';
+
 const npmRun = require('npm-run');
 const assert = chai.assert;
 
-describe('Apps:run from console', () => {
+describe('Apps: run from console', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
@@ -16,14 +18,14 @@ describe('Apps:run from console', () => {
         let _dir = path.resolve(`${__dirname}/fixture/apps/app1`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         _dir = path.resolve(`${__dirname}/fixture/apps/subFolder/app2`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         beforeEach(() => {
             items.forEach(({ dir: dir,
@@ -51,57 +53,39 @@ describe('Apps:run from console', () => {
                 assert.equal(fsExtra.existsSync(indexTsFile), false);
             });
         });
-        it('tsc --pretty', () => {
+        it('tsc --pretty', (done: any) => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
             const commandString = './node_modules/.bin/tsc --pretty';
-            const commandBin = commandString.split(' ')[0];
-            const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
-            if (debug) {
-                console.log('commandRunner#start');
-                console.log('commandRunner#', commandString);
-                console.log('commandRunner#', file);
-            }
-            const child = npmRun.spawnSync(
-                commandBin,
-                commandArgs,
-                { cwd: dirRoot }
-            );
-            if (debug) {
-                console.log('commandRunner#status', child.status);
-                console.log('commandRunner#stderr', child.stderr.toString());
-                console.log('commandRunner#stdout', child.stdout.toString());
-                console.log('commandRunner#end');
-            }
-            assert.equal(fsExtra.existsSync(file), true);
+
+            const base = new Base('', dirRoot);
+            base.debug = debug;
+            base.commandRunner(commandString).then((data: boolean) => {
+                assert.equal(fsExtra.existsSync(file), true);
+                done();
+            }).catch((e: any) => {
+                done(e);
+            });
         });
-        it('rucken prepare --app --root ./test/fixture', () => {
+        it('rucken prepare --app --root ./test/fixture', (done) => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'node ' + file + ' prepare --app --root ./test/fixture' + (debug ? ' --verbose' : '');
-            const commandBin = commandString.split(' ')[0];
-            const commandArgs = commandString.split(' ').filter((arg: string, index: number) => index > 0);
-            if (debug) {
-                console.log('commandRunner#start');
-                console.log('commandRunner#', commandString);
-            }
+            const commandString = 'node . prepare --app --root ./test/fixture' + (debug ? ' --verbose' : '');
+
             assert.equal(fsExtra.existsSync(file), true);
-            const child = npmRun.spawnSync(
-                commandBin,
-                commandArgs,
-                { cwd: dirRoot }
-            );
-            if (debug) {
-                console.log('commandRunner#status', child.status);
-                console.log('commandRunner#stderr', child.stderr.toString());
-                console.log('commandRunner#stdout', child.stdout.toString());
-                console.log('commandRunner#end');
-            }
-            items.forEach(({
-                dir: dir,
-                translateTsFile: translateTsFile,
-                indexTsFile: indexTsFile
-            }) => {
-                assert.equal(fsExtra.existsSync(translateTsFile), true);
-                assert.equal(fsExtra.existsSync(indexTsFile), true);
+
+            const base = new Base('', dirRoot);
+            base.debug = debug;
+            base.commandRunner(commandString).then((data: boolean) => {
+                items.forEach(({
+                    dir: dir,
+                    translateTsFile: translateTsFile,
+                    indexTsFile: indexTsFile
+                }) => {
+                    assert.equal(fsExtra.existsSync(translateTsFile), true);
+                    assert.equal(fsExtra.existsSync(indexTsFile), true);
+                });
+                done();
+            }).catch((e: any) => {
+                done(e);
             });
         });
     });

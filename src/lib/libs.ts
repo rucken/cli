@@ -8,84 +8,122 @@ export class Libs extends Base {
     constructor(public folders: string[], public rootFolder: string) {
         super('', rootFolder);
     }
-    async clear() {
+    async clear(customOptions?: { package?: any, packages?: any[], folder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.clear())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.clear(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async build() {
+    async build(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.build())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.build(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async link() {
+    async link(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.link())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.link(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkNpm() {
+    async linkNpm(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.linkNpm())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.linkNpm(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async changeVersion() {
+    async changeVersion(customOptions?: { package?: any, packages?: any[], rootPackagePath?: string, srcPackagePath?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.changeVersion())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.changeVersion(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async extractTranslate() {
+    async extractTranslate(customOptions?: { package?: any, packages?: any[], srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.extractTranslate())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.extractTranslate(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async po2ts(customOptions?: any) {
+    async po2ts(customOptions?: { package?: any, packages?: any[], srcFolder?: string, i18nFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
             results.push(await lib.po2ts(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async prepare() {
+    async prepare(customOptions?: {
+        package?: any,
+        packages?: any[],
+        i18nFolder?: string,
+        srcFolder?: string,
+        listComponentsPostfix?: string,
+        rootPackagePath?: string,
+        srcPackagePath?: string
+    }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.prepare())
+            if (!customOptions) {
+                customOptions = {};
+            }
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.prepare(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async makeTsList(customOptions?: any) {
+    async makeTsList(customOptions?: { package?: any, packages?: any[], srcFolder?: string, listComponentsPostfix?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const lib = new Lib(this.folders[i], this.rootFolder);
             lib.debug = this.debug;
-            results.push(await lib.makeTsList())
+            if (customOptions) {
+                customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            }
+            results.push(await lib.makeTsList(customOptions))
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }

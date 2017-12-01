@@ -3,27 +3,25 @@ import * as del from 'del';
 import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
+
 import { Base } from '../src/lib/base';
 
 const npmRun = require('npm-run');
 const assert = chai.assert;
-describe('Libs: run from console', () => {
+
+describe('App-command: run from console without ".angular-cli.json"', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
         const items: any[] = [];
         const dirRoot = path.resolve(__dirname + '/../');
-        let _dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
+        let _dirLocal = 'fixture/apps/app3'
+        let _dir = path.resolve(`${__dirname}/${_dirLocal}`);
         items.push({
             dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
-        });
-        _dir = path.resolve(`${__dirname}/fixture/libs/subFolder/lib2`);
-        items.push({
-            dir: _dir,
-            translateTsFile: path.resolve(`${_dir}/src/i18n/ru.i18n.ts`),
-            indexTsFile: path.resolve(`${_dir}/src/index.ts`)
+            dirLocal: `test/${_dirLocal}`,
+            translateTsFile: path.resolve(`${_dir}/src/app/i18n/ru.i18n.ts`),
+            indexTsFile: path.resolve(`${_dir}/src/app/index.ts`)
         });
         beforeEach(() => {
             items.forEach(({ dir: dir,
@@ -64,26 +62,28 @@ describe('Libs: run from console', () => {
                 done(e);
             });
         });
-        it('rucken prepare --lib --root ./test/fixture', (done) => {
-            const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
-            const commandString = 'node . prepare --lib --root ./test/fixture' + (debug ? ' --verbose' : '');
 
-            assert.equal(fsExtra.existsSync(file), true);
+        items.forEach(({
+            dir: dir,
+            dirLocal: dirLocal,
+            translateTsFile: translateTsFile,
+            indexTsFile: indexTsFile
+        }) => {
+            it(`rucken prepare --app ${dirLocal}`, (done) => {
+                const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
+                const commandString = 'node . prepare --app ' + dirLocal + ' ' + (debug ? ' --verbose' : '');
 
-            const base = new Base('', dirRoot);
-            base.debug = debug;
-            base.commandRunner(commandString).then((data: boolean) => {
-                items.forEach(({
-                    dir: dir,
-                    translateTsFile: translateTsFile,
-                    indexTsFile: indexTsFile
-                }) => {
+                assert.equal(fsExtra.existsSync(file), true);
+
+                const base = new Base('', dirRoot);
+                base.debug = debug;
+                base.commandRunner(commandString).then((data: boolean) => {
                     assert.equal(fsExtra.existsSync(translateTsFile), true);
                     assert.equal(fsExtra.existsSync(indexTsFile), true);
+                    done();
+                }).catch((e: any) => {
+                    done(e);
                 });
-                done();
-            }).catch((e: any) => {
-                done(e);
             });
         });
     });

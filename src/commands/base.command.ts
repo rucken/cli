@@ -7,52 +7,72 @@ export class BaseCommand extends Base {
 
     project: Project;
 
-    constructor(public action: any) {
-        super('', path.resolve(action.parent.root ? action.parent.root : process.cwd()));
+    constructor(public options: any) {
+        super('', path.resolve(options && options.root ? options.root : process.cwd()));
         this.project = new Project(this.rootFolder);
-        this.debug = action.parent.verbose;
-        this.process();
+        this.debug = options && options.verbose;
     }
-    process() {
-        if (!this.action.parent.lib && !this.action.parent.app) {
+    async process() {
+        if (!this.options.lib && !this.options.app) {
             this.log('process').info('Detect: target=apps (' + this.project.appsConfigs.map((item: any) => item.name).join(', ') + ')');
             this.log('process').info('Detect: target=libs (' + this.project.libsConfigs.map((item: any) => item.name).join(', ') + ')');
-            this.processApps(this.project.appsPaths, this.rootFolder);
-            this.processLibs(this.project.libsPaths, this.rootFolder);
+            await this.processApps({ folders: this.project.appsPaths, rootFolder: this.rootFolder });
+            await this.processLibs({ folders: this.project.libsPaths, rootFolder: this.rootFolder });
         }
-        if (this.action.parent.lib) {
-            if (this.action.parent.lib === true) {
+        if (this.options.lib) {
+            if (this.options.lib === true) {
                 this.log('process').info('Detect: target=libs (' + this.project.libsConfigs.map((item: any) => item.name).join(', ') + ')');
                 if (this.project.libsConfigs.length === 0) {
                     this.log('process').error('Libs not found');
                 } else {
-                    this.processLibs(this.project.libsPaths, this.rootFolder);
+                    return await this.processLibs({
+                        folders: this.project.libsPaths,
+                        rootFolder: this.rootFolder,
+                        packages: this.project.libsConfigs
+                    });
                 }
             } else {
                 this.log('process').info('Detect: target=lib');
-                this.processLib(this.project.getLibPathByName(this.action.parent.lib), this.rootFolder);
+                return await this.processLib({
+                    folder: this.project.getLibPathByName(this.options.lib),
+                    rootFolder: this.rootFolder,
+                    package: this.project.getLibConfigByName(this.options.lib)
+                });
             }
         }
-        if (this.action.parent.app) {
-            if (this.action.parent.app === true) {
+        if (this.options.app) {
+            if (this.options.app === true) {
                 this.log('process').info('Detect: target=apps (' + this.project.appsConfigs.map((item: any) => item.name).join(', ') + ')');
                 if (this.project.appsConfigs.length === 0) {
                     this.log('process').error('Apps not found');
                 } else {
-                    this.processApps(this.project.appsPaths, this.rootFolder);
+                    return await this.processApps({
+                        folders: this.project.appsPaths,
+                        rootFolder: this.rootFolder,
+                        packages: this.project.appsConfigs
+                    });
                 }
             } else {
                 this.log('process').info('Detect: target=app');
-                this.processApp(this.project.getAppPathByName(this.action.parent.app), this.rootFolder);
+                return await this.processApp({
+                    folder: this.project.getAppPathByName(this.options.app),
+                    rootFolder: this.rootFolder,
+                    package: this.project.getAppConfigByName(this.options.app)
+                });
             }
         }
+        return await true;
     }
-    processLibs(folders: string[], rootFolder: string) {
+    async processLibs(options?: any) {
+        return await true;
     }
-    processLib(folder: string, rootFolder: string) {
+    async processLib(options?: any) {
+        return await true;
     }
-    processApps(folders: string[], rootFolder: string) {
+    async processApps(options?: any) {
+        return await true;
     }
-    processApp(folder: string, rootFolder: string) {
+    async processApp(options?: any) {
+        return await true;
     }
 }

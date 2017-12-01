@@ -1,9 +1,0 @@
-{
-    "name": "@test/app1",
-    "version": "1.0.0",
-    "peerDependencies": {
-        "@angular/common": "*",
-        "@angular/compiler": "*",
-        "@angular/core": "*"
-    }
-}

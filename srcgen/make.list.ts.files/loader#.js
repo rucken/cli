@@ -5,9 +5,12 @@ var fs = require('fs'),
   recursive = require('recursive-readdir'),
   replaceExt = require('replace-ext');
 var scanPath = path.resolve(__srcdir, '..', '..', scan.path);
-var package = require(path.resolve(__srcdir, '..', '..', scan.path, 'package.json'));
+var packageName = package.name;
+if (!packageName && fs.existsSync(path.resolve(__srcdir, '..', '..', scan.path, 'package.json'))) {
+  packageName = require(path.resolve(__srcdir, '..', '..', scan.path, 'package.json')).name;
+}
 console.log('Scan dir:' + scanPath);
-console.log('Module name: ' + package.name);
+console.log('Module name: ' + packageName);
 recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
   var exportArray = [];
   var exportEntities = {};
@@ -26,7 +29,7 @@ recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
     'service',
     'pipe'
   ];
-  var moduleName = _.upperFirst(_.camelCase(package.name));
+  var moduleName = _.upperFirst(_.camelCase(packageName));
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     var content = srcgen.utils.load(file);

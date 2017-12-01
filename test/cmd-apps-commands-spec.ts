@@ -4,10 +4,12 @@ import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
 import * as path from 'path';
 
-import { Apps } from '../src/lib/apps';
+import { Base } from '../src/lib/base';
 
+const npmRun = require('npm-run');
 const assert = chai.assert;
-describe('Apps', () => {
+
+describe('Apps-commands: run from console', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
@@ -51,13 +53,30 @@ describe('Apps', () => {
                 assert.equal(fsExtra.existsSync(indexTsFile), false);
             });
         });
-        it('npm-run-all apps:tools-extract_translate apps:tools-po2ts apps:tools-make_ts_list', (done) => {
-            const dirs = items.map((item: any) => item.dir);
-            const app = new Apps(dirs, dirRoot);
-            app.debug = debug;
-            app.prepare().then((data: boolean) => {
+        it('tsc --pretty', (done: any) => {
+            const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
+            const commandString = './node_modules/.bin/tsc --pretty';
+
+            const base = new Base('', dirRoot);
+            base.debug = debug;
+            base.commandRunner(commandString).then((data: boolean) => {
+                assert.equal(fsExtra.existsSync(file), true);
+                done();
+            }).catch((e: any) => {
+                done(e);
+            });
+        });
+        it('rucken commands clear ~~root ./test/fixture prepare ~~root ./test/fixture', (done) => {
+            const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
+            const commandString = 'node . commands clear ~~root ./test/fixture prepare ~~root ./test/fixture' + (debug ? ' --verbose' : '');
+
+            assert.equal(fsExtra.existsSync(file), true);
+
+            const base = new Base('', dirRoot);
+            base.debug = debug;
+            base.commandRunner(commandString).then((data: boolean) => {
                 items.forEach(({
-                        dir: dir,
+                    dir: dir,
                     translateTsFile: translateTsFile,
                     indexTsFile: indexTsFile
                 }) => {

@@ -1,1 +1,0 @@
-{"version":3,"file":"service2.service.js","sourceRoot":"","sources":["../../../.tmp/shared/services/service2.service.ts"],"names":[],"mappings":";;AAAA,IAAA;;;0BAAA;IACC,CAAA;AADY,0CAAe","sourcesContent":["export class Service2Service {\n}\n"]}

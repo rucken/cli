@@ -6,7 +6,7 @@ import { Base } from './base';
 
 export class Project extends Base {
 
-    name='project';
+    name = 'project';
     agularCliJson: any;
     libsConfigs: any[];
     libsPaths: string[];
@@ -41,6 +41,20 @@ export class Project extends Base {
             return apps[0].root;
         }
         return name;
+    }
+    getLibConfigByName(name: string) {
+        const libs = this.libsConfigs.filter((item: any) => item.name && item.name === name);
+        if (libs.length > 0) {
+            return libs[0];
+        }
+        return { name: '' };
+    }
+    getAppConfigByName(name: string) {
+        const apps = this.appsConfigs.filter((item: any) => item.name && item.name === name);
+        if (apps.length > 0) {
+            return apps[0];
+        }
+        return { name: '' };
     }
     getAgularCliJson(angularCliJsonPath?: string) {
         const libs = [];

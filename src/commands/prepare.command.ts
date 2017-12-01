@@ -5,51 +5,67 @@ import { Libs } from '../lib/libs';
 import { BaseCommand } from './base.command';
 
 export class PrepareCommand extends BaseCommand {
-    constructor(public action: any) {
-        super(action);
+    constructor(public options: any) {
+        super(options);
     }
-    processLibs(folders: string[], rootFolder: string) {
+    async processLibs(options: any) {
         this.log('prepare').info('Prepare all libs on ' + this.rootFolder);
-        const libs = new Libs(folders, rootFolder);
+        const libs = new Libs(options.folders, options.rootFolder);
         libs.debug = this.debug;
-        libs.prepare().then((result: boolean) => {
-            this.log('prepare').info('Done!');
-        }).catch((e:any) => {
-            this.log('prepare').error(e);
-            this.log('prepare').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            libs.prepare(this.options).then((result: boolean) => {
+                this.log('prepare').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('prepare').error(e);
+                this.log('prepare').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
-    processLib(folder: string, rootFolder: string) {
-        this.log('prepare').info('Prepare lib ' + folder + ' on ' + rootFolder);
-        const lib = new Lib(folder, rootFolder);
+    async processLib(options?: any) {
+        this.log('prepare').info('Prepare lib ' + options.folder + ' on ' + options.rootFolder);
+        const lib = new Lib(options.folder, options.rootFolder);
         lib.debug = this.debug;
-        lib.prepare().then((result: boolean) => {
-            this.log('prepare').info('Done!');
-        }).catch((e:any) => {
-            this.log('prepare').error(e);
-            this.log('prepare').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            lib.prepare(this.options).then((result: boolean) => {
+                this.log('prepare').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('prepare').error(e);
+                this.log('prepare').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
-    processApps(folders: string[], rootFolder: string) {
-        this.log('prepare').info('Prepare all apps on ' + rootFolder);
-        const apps = new Apps(folders, rootFolder);
+    async processApps(options: any) {
+        this.log('prepare').info('Prepare all apps on ' + options.rootFolder);
+        const apps = new Apps(options.folders, options.rootFolder);
         apps.debug = this.debug;
-        apps.prepare().then((result: boolean) => {
-            this.log('prepare').info('Done!');
-        }).catch((e:any) => {
-            this.log('prepare').error(e);
-            this.log('prepare').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            apps.prepare(this.options).then((result: boolean) => {
+                this.log('prepare').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('prepare').error(e);
+                this.log('prepare').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
-    processApp(folder: string, rootFolder: string) {
-        this.log('prepare').info('Prepare app ' + this.action.parent.app + ' on ' + rootFolder);
-        const app = new App(folder, rootFolder);
+    async processApp(options?: any) {
+        this.log('prepare').info('Prepare app ' + this.options.app + ' on ' + options.rootFolder);
+        const app = new App(options.folder, options.rootFolder);
         app.debug = this.debug;
-        app.prepare().then((result: boolean) => {
-            this.log('prepare').info('Done!');
-        }).catch((e:any) => {
-            this.log('prepare').error(e);
-            this.log('prepare').info('Done with errors!');
-        });
+        return await new Promise<boolean>((resolve: any) =>
+            app.prepare(this.options).then((result: boolean) => {
+                this.log('prepare').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('prepare').error(e);
+                this.log('prepare').info('Done with errors!');
+                resolve(false);
+            })
+        );
     }
 }
