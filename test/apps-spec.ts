@@ -55,15 +55,7 @@ describe('Apps', () => {
             const dirs = items.map((item: any) => item.dir);
             const app = new Apps(dirs, dirRoot);
             app.debug = debug;
-            app.prepare({
-                i18nFolder: '',
-                srcFolder: '',
-                package: { name: '' },
-                packages: [],
-                listComponentsPostfix: '',
-                rootPackagePath: '',
-                srcPackagePath: ''
-            }).then((data: boolean) => {
+            app.prepare().then((data: boolean) => {
                 items.forEach(({
                         dir: dir,
                     translateTsFile: translateTsFile,
@@ -73,7 +65,7 @@ describe('Apps', () => {
                     assert.equal(fsExtra.existsSync(indexTsFile), true);
                 });
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });

@@ -8,99 +8,126 @@ export class Apps extends Base {
     constructor(public folders: string[], public rootFolder: string) {
         super('', rootFolder);
     }
-    async clear(customOptions: { package: any, packages?: any[], folder: string }) {
+    async clear(customOptions?: { package?: any, packages?: any[], folder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.clear(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async build(customOptions: { package: any, packages?: any[], folder: string, srcFolder: string }) {
+    async build(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.build(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async link(customOptions: { package: any, packages?: any[], folder: string, srcFolder: string }) {
+    async link(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.link(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkNpm(customOptions: { package: any, packages?: any[], folder: string, srcFolder: string }) {
+    async linkNpm(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.linkNpm(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async changeVersion(customOptions: { package: any, packages?: any[], rootPackagePath: string, srcPackagePath: string }) {
+    async changeVersion(customOptions?: { package?: any, packages?: any[], rootPackagePath?: string, srcPackagePath?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.changeVersion(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async extractTranslate(customOptions: { package: any, packages?: any[], srcFolder: string }) {
+    async extractTranslate(customOptions?: { package?: any, packages?: any[], srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.extractTranslate(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async po2ts(customOptions: { package: any, packages?: any[], i18nFolder: string }) {
+    async po2ts(customOptions?: { package?: any, packages?: any[], i18nFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.po2ts(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async prepare(customOptions: {
-        package: any,
+    async prepare(customOptions?: {
+        package?: any,
         packages?: any[],
-        i18nFolder: string,
-        srcFolder: string,
-        listComponentsPostfix: string
-        rootPackagePath: string,
-        srcPackagePath: string
+        i18nFolder?: string,
+        srcFolder?: string,
+        listComponentsPostfix?: string
+        rootPackagePath?: string,
+        srcPackagePath?: string
     }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.prepare(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async makeTsList(customOptions: { package: any, packages?: any[], listComponentsPostfix: string, srcFolder: string }) {
+    async makeTsList(customOptions?: { package?: any, packages?: any[], listComponentsPostfix?: string, srcFolder?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
             app.debug = this.debug;
+            if (!customOptions) {
+                customOptions = {};
+            }
             customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
             results.push(await app.makeTsList(customOptions));
         }

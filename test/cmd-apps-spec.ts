@@ -62,7 +62,7 @@ describe('Apps: run from console', () => {
             base.commandRunner(commandString).then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(file), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -84,7 +84,7 @@ describe('Apps: run from console', () => {
                     assert.equal(fsExtra.existsSync(indexTsFile), true);
                 });
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });

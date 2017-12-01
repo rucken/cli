@@ -24,10 +24,10 @@ describe('Lib', () => {
         it('del-cli ./test/fixture/libs/lib1/src/node_modules ./test/fixture/libs/lib1/dist ./test/fixture/libs/lib1/.tmp', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.clear({ folder: '' }).then((data: any) => {
+            lib.clear().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -47,10 +47,10 @@ describe('Lib', () => {
         it('srcgen -x -t make.list.ts.files -f ./srcgen/lib1-make.list.ts.files.json', (done) => {
             const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
-            lib.makeTsList({ srcFolder: '', package: { name: '' }, listComponentsPostfix: '' }).then((data: any) => {
+            lib.makeTsList().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -73,11 +73,11 @@ describe('Lib', () => {
         it('ngm build -p ./test/fixture/libs/lib1/src --clean', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.build({ folder: '', srcFolder: '' }).then((data: any) => {
+            lib.build().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -100,11 +100,11 @@ describe('Lib', () => {
         it('ngm link -p ./test/fixture/libs/lib1/src --here', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
-            lib.link({ folder: '', srcFolder: '' }).then((data: boolean) => {
+            lib.link().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -132,7 +132,7 @@ describe('Lib', () => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
                 assert.equal(fsExtra.existsSync(dirDistIndex), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -154,7 +154,7 @@ describe('Lib', () => {
             lib.linkNpmClear().then((data: any) => {
                 assert.equal(fsExtra.existsSync(dirDist), false);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -194,7 +194,7 @@ describe('Lib', () => {
                 }
                 assert.equal(srcPackage.version, rootPackage.version);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -216,7 +216,7 @@ describe('Lib', () => {
             lib.extractTranslate().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -239,7 +239,7 @@ describe('Lib', () => {
             lib.po2ts().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -270,7 +270,7 @@ describe('Lib', () => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });

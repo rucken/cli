@@ -65,7 +65,7 @@ describe('Libs', () => {
                     assert.equal(fsExtra.existsSync(indexTsFile), true);
                 });
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });

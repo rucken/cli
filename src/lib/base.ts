@@ -32,7 +32,11 @@ export class Base {
             this.log().setLevel('info');
         }
     }
-    timeout(customOptions: { ms: number }) {
+    timeout(customOptions?: { ms?: number }) {
+        if (!customOptions) {
+            customOptions = {};
+        }
+        customOptions.ms = customOptions && customOptions.ms ? customOptions.ms : 1000;
         this.log('timeout').debug('start');
         this.log('timeout').debug(customOptions.ms);
         return new Promise(resolve =>

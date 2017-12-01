@@ -25,13 +25,10 @@ describe('App', () => {
         it('srcgen -x -t make.list.ts.files -f ./srcgen/app1-make.list.ts.files.json', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.makeTsList({
-                package: '',
-                listComponentsPostfix: ''
-            }).then((data: any) => {
+            app.makeTsList().then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -53,7 +50,7 @@ describe('App', () => {
             app.extractTranslate({}).then((data: any) => {
                 assert.equal(fsExtra.existsSync(indexFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -73,10 +70,10 @@ describe('App', () => {
         it('srcgen -x -t convert.po.to.ts -f ./srcgen/convert.po.to.ts.json', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.po2ts({ package: { name: '' } }).then((data: any) => {
+            app.po2ts().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
@@ -103,18 +100,11 @@ describe('App', () => {
         it('npm-run-all app1:tools-extract_translate app1:tools-po2ts app1:tools-make_ts_list', (done) => {
             const app = new App(dir, dirRoot);
             app.debug = debug;
-            app.prepare({
-                i18nFolder: '',
-                srcFolder: '',
-                package: { name: '' },
-                listComponentsPostfix: '',
-                rootPackagePath: '',
-                srcPackagePath: ''
-            }).then((data: any) => {
+            app.prepare().then((data: any) => {
                 assert.equal(fsExtra.existsSync(translateTsFile), true);
                 assert.equal(fsExtra.existsSync(indexTsFile), true);
                 done();
-            }).catch(function (e) {
+            }).catch((e: any) => {
                 done(e);
             });
         });
