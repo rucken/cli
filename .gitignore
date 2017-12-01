@@ -3,7 +3,6 @@
 # compiled output
 .env
 .tmp
-bin
 dist
 tmp
 out-tsc
