@@ -1,3 +1,13 @@
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/rucken/cli/compare/1.2.1...1.2.2) (2017-12-01)
+
+
+### Bug Fixes
+
+* **deps:** Update dependencies ([16284a5](https://github.com/rucken/cli/commit/16284a5))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/rucken/cli/compare/1.2.0...1.2.1) (2017-12-01)
 
