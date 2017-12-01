@@ -47,7 +47,6 @@
 	],
 	"devDependencies": {
 		"@types/chai": "^4.0.6",
-		"@types/commander": "^2.11.0",
 		"@types/mocha": "^2.2.44",
 		"@types/node": "^8.0.53",
 		"@types/sinon": "^4.0.0",
@@ -58,10 +57,11 @@
 		"typescript": "^2.6.2"
 	},
 	"dependencies": {
-		"@angular/common": "^5.0.3",
-		"@angular/compiler": "^5.0.3",
-		"@angular/core": "^5.0.3",
+		"@angular/common": "^5.0.4",
+		"@angular/compiler": "^5.0.4",
+		"@angular/core": "^5.0.4",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
+		"@types/commander": "^2.11.0",
 		"@types/del": "^3.0.0",
 		"@types/dotenv": "^4.0.2",
 		"@types/fs-extra": "^4.0.5",
