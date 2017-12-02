@@ -65,9 +65,7 @@ export class Base {
         );
         if (child.status === 0 || child.status === '0') {
             this.log('commandRunner').debug('status', child.status);
-            if (child.stderr.toString()) {
-                this.log('commandRunner').error('stderr', child.stderr.toString());
-            }
+            this.log('commandRunner').debug('stderr', child.stderr.toString());
             this.log('commandRunner').debug('stdout', child.stdout.toString());
             this.log('commandRunner').debug('end');
         } else {

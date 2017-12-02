@@ -39,14 +39,14 @@ export class Project extends Base {
     getLibPathByName(name: string) {
         const libs = this.libsConfigs.filter((item: any) => item.name && item.name === name);
         if (libs.length > 0) {
-            return libs[0].root;
+            return libs[0].rootPath;
         }
         return name;
     }
     getAppPathByName(name: string) {
         const apps = this.appsConfigs.filter((item: any) => item.name && item.name === name);
         if (apps.length > 0) {
-            return apps[0].root;
+            return apps[0].rootPath;
         }
         return name;
     }
