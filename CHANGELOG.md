@@ -1,3 +1,13 @@
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/rucken/cli/compare/1.2.3...1.2.4) (2017-12-02)
+
+
+### Bug Fixes
+
+* **commands:** Add --verbose attribute if set on main ([42ce1aa](https://github.com/rucken/cli/commit/42ce1aa))
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/rucken/cli/compare/1.2.2...1.2.3) (2017-12-01)
 
