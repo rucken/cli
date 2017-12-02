@@ -89,6 +89,9 @@ export class App {
                     .map((item: string) => item.trim())
                     .map((item: string) => binPath + ' ' + item);
                 commands.forEach(async (command: string) => {
+                    if (runner.debug) {
+                        command += ' --verbose';
+                    }
                     await Promise.resolve(runner.log('commands').info('Run: ' + command));
                     await runner.commandRunner(command);
                     await Promise.resolve(runner.log('commands').info('Done!'));
