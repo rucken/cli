@@ -15,15 +15,21 @@ Console tools for create and build Angular5+ application based on rucken
 - **DI** - With dependency injection you can change base service.
 - **Extends** - Write components with extends from core `rucken` components.
 
+## Installation
+
+```bash
+npm install -g @rucken/cli
+```
+
 ## Usage
 
-- Clone or fork repository https://github.com/rucken/todo-web.git
-- Read [README.md](https://github.com/rucken/todo-web/blob/master/README.md) for run application
-- Modify app for your business logic
+```bash
+rucken --help
+```
 
 ## Quick links
 
-[Source](https://github.com/rucken/core) - Source code.
+[Core source](https://github.com/rucken/core) - Source code of core.
 
 [Demo](https://rucken.github.io/core) - Demo application with mock data worked.
 

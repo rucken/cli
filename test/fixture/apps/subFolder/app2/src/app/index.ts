@@ -1,9 +1,9 @@
 import { RuI18n } from './i18n/ru.i18n';
 export { RuI18n } from './i18n/ru.i18n';
-import { Service4Service } from './shared/services/service4.service';
-export { Service4Service } from './shared/services/service4.service';
 import { Model4 } from './shared/models/model4.model';
 export { Model4 } from './shared/models/model4.model';
+import { Service4Service } from './shared/services/service4.service';
+export { Service4Service } from './shared/services/service4.service';
 export const Modules: any[] = [];
 export const Components: any[] = [];
 export const Shareds: any[] = [RuI18n, Model4];
