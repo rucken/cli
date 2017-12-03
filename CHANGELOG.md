@@ -1,3 +1,13 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/rucken/cli/compare/1.3.0...1.3.1) (2017-12-03)
+
+
+### Bug Fixes
+
+* **deps:** Downgrade angular and typescript version to stable ([fffc93a](https://github.com/rucken/cli/commit/fffc93a))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/rucken/cli/compare/1.2.4...1.3.0) (2017-12-03)
 
