@@ -1,6 +1,6 @@
 {
 	"name": "@rucken/cli",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"description": "Console tools for create and build Angular5+ application based on rucken",
 	"bugs": {
 		"url": "https://github.com/rucken/cli/issues"
