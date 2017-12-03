@@ -1,3 +1,18 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/rucken/cli/compare/1.2.4...1.3.0) (2017-12-03)
+
+
+### Bug Fixes
+
+* **base:** Add to --link command run linkNpmClear after run ([e49ced0](https://github.com/rucken/cli/commit/e49ced0))
+
+
+### Features
+
+* **app:** Add changeMetaInIndex for prepare app, to write version of package in index.html ([05b4c01](https://github.com/rucken/cli/commit/05b4c01))
+
+
+
 <a name="1.2.4"></a>
 ## [1.2.4](https://github.com/rucken/cli/compare/1.2.3...1.2.4) (2017-12-02)
 
