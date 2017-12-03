@@ -119,7 +119,8 @@ export class Base {
         this.log('link').debug('start');
         const items = [
             await this.linkNpmClear(customOptions),
-            await this.linkDist(customOptions)
+            await this.linkDist(customOptions),
+            await this.linkNpmClear(customOptions)
         ];
         this.log('link').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
@@ -128,7 +129,8 @@ export class Base {
         this.log('linkNpm').debug('start');
         const items = [
             await this.linkNpmClear(customOptions),
-            await this.linkSrc(customOptions)
+            await this.linkSrc(customOptions),
+            await this.linkNpmClear(customOptions)
         ];
         this.log('linkNpm').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
