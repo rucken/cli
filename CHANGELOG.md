@@ -1,3 +1,13 @@
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/rucken/cli/compare/1.3.2...1.3.3) (2017-12-04)
+
+
+### Bug Fixes
+
+* **app:** Change binPath for run cli from another application ([c9ec0cb](https://github.com/rucken/cli/commit/c9ec0cb))
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/rucken/cli/compare/1.3.1...1.3.2) (2017-12-04)
 
