@@ -3,7 +3,8 @@ var fs = require('fs'),
   _ = require('lodash'),
   srcgen = require('srcgen'),
   recursive = require('recursive-readdir'),
-  replaceExt = require('replace-ext');
+  replaceExt = require('replace-ext'),
+  sortPaths = require('sort-paths');
 var scanPath = path.resolve(__srcdir, '..', '..', scan.path);
 var packageName = package.name;
 if (!packageName && fs.existsSync(path.resolve(__srcdir, '..', '..', scan.path, 'package.json'))) {
@@ -12,6 +13,7 @@ if (!packageName && fs.existsSync(path.resolve(__srcdir, '..', '..', scan.path, 
 console.log('Scan dir:' + scanPath);
 console.log('Module name: ' + packageName);
 recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
+  files = sortPaths(files, path.sep);
   var exportArray = [];
   var exportEntities = {};
   var list = [];

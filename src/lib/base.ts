@@ -52,7 +52,7 @@ export class Base {
         }
         return getLogger({ prefix: this.name + (subName ? (this.name ? '#' : '') + subName : ''), level: 'info' });
     }
-    async commandRunner(commandString: string) {
+    async commandRunner(commandString: string, cwdDir?: string) {
         this.log('commandRunner').debug('start');
         this.log('commandRunner').debug('rootFolder', this.rootFolder);
         this.log('commandRunner').debug(commandString);
@@ -61,7 +61,7 @@ export class Base {
         const child = npmRun.spawnSync(
             commandBin,
             commandArgs,
-            { cwd: process.cwd() }
+            { cwd: cwdDir ? cwdDir : process.cwd() }
         );
         if (child.status === 0 || child.status === '0') {
             this.log('commandRunner').debug('status', child.status);
@@ -267,7 +267,7 @@ export class Base {
             }
         );
         this.log('po2ts').debug(options);
-        const srcgenTemplate = 'convert.po.to.ts';
+        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/convert.po.to.ts');
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-convert.po.to.ts.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
@@ -332,7 +332,7 @@ export class Base {
             }
         );
         this.log('makeTsList').debug(options);
-        const srcgenTemplate = 'make.list.ts.files';
+        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/make.list.ts.files');
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-make.list.ts.files.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
