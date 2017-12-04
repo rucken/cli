@@ -52,7 +52,7 @@ export class Base {
         }
         return getLogger({ prefix: this.name + (subName ? (this.name ? '#' : '') + subName : ''), level: 'info' });
     }
-    async commandRunner(commandString: string) {
+    async commandRunner(commandString: string, cwdDir?: string) {
         this.log('commandRunner').debug('start');
         this.log('commandRunner').debug('rootFolder', this.rootFolder);
         this.log('commandRunner').debug(commandString);
@@ -61,7 +61,7 @@ export class Base {
         const child = npmRun.spawnSync(
             commandBin,
             commandArgs,
-            { cwd: process.cwd() }
+            { cwd: cwdDir ? cwdDir : process.cwd() }
         );
         if (child.status === 0 || child.status === '0') {
             this.log('commandRunner').debug('status', child.status);
@@ -280,7 +280,7 @@ export class Base {
             this.log('po2ts').debug('end');
             return await false;
         }
-        let result = await this.commandRunner(commandString);
+        let result = await this.commandRunner(commandString, path.resolve(__dirname + '/../../'));
         if (fsExtra.existsSync(optionsFile)) {
             del.sync([optionsFile], { force: true });
         }
@@ -345,7 +345,7 @@ export class Base {
             this.log('makeTsList').debug('end');
             return await false;
         }
-        let result = await this.commandRunner(commandString);
+        let result = await this.commandRunner(commandString, path.resolve(__dirname + '/../../'));
         if (fsExtra.existsSync(optionsFile)) {
             del.sync([optionsFile], { force: true });
         }
