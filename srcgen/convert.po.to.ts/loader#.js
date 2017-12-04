@@ -2,7 +2,8 @@ var po2json = require('po2json'),
   fs = require('fs'),
   path = require('path'),
   _ = require('lodash'),
-  recursive = require('recursive-readdir');
+  recursive = require('recursive-readdir'),
+  sortPaths = require('sort-paths');
 var folder = path.resolve(__srcdir, '../../', po.input.dir);
 var packageName = package.name;
 if (!packageName && fs.existsSync(path.resolve(__srcdir, '../../', po.input.dir, '../', 'package.json'))) {
@@ -11,6 +12,7 @@ if (!packageName && fs.existsSync(path.resolve(__srcdir, '../../', po.input.dir,
 console.log('Scan folder: ' + folder);
 console.log('Module name: ' + packageName);
 recursive(folder, ['!*.po'], function (err, files) {
+  files = sortPaths(files, path.sep);
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     var fileName = _.kebabCase(path.basename(file, '.po'));

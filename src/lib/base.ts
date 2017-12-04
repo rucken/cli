@@ -267,7 +267,7 @@ export class Base {
             }
         );
         this.log('po2ts').debug(options);
-        const srcgenTemplate = 'convert.po.to.ts';
+        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/convert.po.to.ts');
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-convert.po.to.ts.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
@@ -280,7 +280,7 @@ export class Base {
             this.log('po2ts').debug('end');
             return await false;
         }
-        let result = await this.commandRunner(commandString, path.resolve(__dirname + '/../../'));
+        let result = await this.commandRunner(commandString);
         if (fsExtra.existsSync(optionsFile)) {
             del.sync([optionsFile], { force: true });
         }
@@ -332,7 +332,7 @@ export class Base {
             }
         );
         this.log('makeTsList').debug(options);
-        const srcgenTemplate = 'make.list.ts.files';
+        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/make.list.ts.files');
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-make.list.ts.files.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
@@ -345,7 +345,7 @@ export class Base {
             this.log('makeTsList').debug('end');
             return await false;
         }
-        let result = await this.commandRunner(commandString, path.resolve(__dirname + '/../../'));
+        let result = await this.commandRunner(commandString);
         if (fsExtra.existsSync(optionsFile)) {
             del.sync([optionsFile], { force: true });
         }
