@@ -88,7 +88,7 @@ export class App extends Base {
             this.log('changeMetaInIndex').debug('end');
             return await true;
         } else {
-            this.log('changeMetaInIndex').error(`File does not exists: ${srcIndexHtmlPath}`);
+            this.log('changeMetaInIndex').debug(`File does not exists: ${srcIndexHtmlPath}`);
         }
         this.log('changeMetaInIndex').debug('end');
         return await false;
