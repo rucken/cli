@@ -66,14 +66,13 @@ export class App {
             .description('run synchronously many different commands with many different options')
             .action((listOfCommands: string[]) => {
                 const binNames = Object.keys(this.package.bin);
-                const names = Object.keys(this.package.name);
                 const cwdPackage = fsExtra.readJSONSync(path.resolve(process.cwd() + '/package.json'));
                 let binPath: string;
                 if (cwdPackage.name === this.package.name) {
                     binPath = 'node .';
                 }
-                if (fsExtra.existsSync(path.resolve(process.cwd() + '/node_modules/' + names[0] + '/bin/' + binNames[0]))) {
-                    binPath = 'node ./node_modules/' + names[0] + '/bin/' + binNames[0];
+                if (fsExtra.existsSync(path.resolve(process.cwd() + '/node_modules/' + this.package.name + '/bin/' + binNames[0]))) {
+                    binPath = 'node ./node_modules/' + this.package.name + '/bin/' + binNames[0];
                 }
                 if (!binPath) {
                     binPath = 'node ' + binNames[0];

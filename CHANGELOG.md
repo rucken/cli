@@ -1,3 +1,13 @@
+<a name="1.3.4"></a>
+## [1.3.4](https://github.com/rucken/cli/compare/1.3.3...1.3.4) (2017-12-04)
+
+
+### Bug Fixes
+
+* **app:** Change path for run installed [@rucke](https://github.com/rucke)/cli from another application ([8235d36](https://github.com/rucken/cli/commit/8235d36))
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/rucken/cli/compare/1.3.2...1.3.3) (2017-12-04)
 
