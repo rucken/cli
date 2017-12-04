@@ -1,3 +1,14 @@
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/rucken/cli/compare/1.3.1...1.3.2) (2017-12-04)
+
+
+### Bug Fixes
+
+* **base:** Add run srcgen with [@rucken](https://github.com/rucken)/cli folder for cwd ([2feadd0](https://github.com/rucken/cli/commit/2feadd0))
+* **deps:** Update dependencies and refactor for it ([fb38039](https://github.com/rucken/cli/commit/fb38039))
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/rucken/cli/compare/1.3.0...1.3.1) (2017-12-03)
 
