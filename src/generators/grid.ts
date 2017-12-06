@@ -132,7 +132,8 @@ export class GridGenerator extends Base {
             rootFolder,
             'generatorGrid',
             'grid.select.input.modal',
-            options
+            options,
+            rootFolder
         );
     }
 }

@@ -325,18 +325,21 @@ export class Base {
         folder: string,
         name: string,
         templateName: string,
-        options: any
+        options: any,
+        destPath?: string
     ) {
         this.log(name).debug('start');
         this.log(name).debug(folder);
         this.log(name).debug(options);
+        this.log(name).debug(destPath);
+        const destPathArgs = destPath ? ' -d ' + destPath : '';
         const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/' + templateName);
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + templateName + '.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
             this.log(name).error(`File does not exists: ${optionsFile}`);
         }
-        const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
+        const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
         if (!fsExtra.existsSync(folder)) {
             this.log(name).debug(commandString);
             this.log(name).error(`Folder does not exists: ${folder}`);
