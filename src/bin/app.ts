@@ -6,10 +6,12 @@ import * as path from 'path';
 import { BaseCommand } from '../commands/base.command';
 import { BuildCommand } from '../commands/build.command';
 import { ClearCommand } from '../commands/clear.command';
+import { GeneratorCommand } from '../commands/generator.command';
 import { LinkNpmCommand } from '../commands/link-npm.command';
 import { LinkCommand } from '../commands/link.command';
 import { MakeTsListCommand } from '../commands/make-ts-list.command';
 import { PrepareCommand } from '../commands/prepare.command';
+import * as _ from 'lodash';
 
 export class App {
 
@@ -27,8 +29,6 @@ export class App {
             .option('-r, --root [path]', 'root folder')
             .option('-a, --app [path]', 'application folder')
             .option('-l, --lib [path]', 'library folder')
-            .option('-lcp, --list-components-postfix [name]',
-            'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .option('-v, --verbose', 'show log of work all tasks')
             .version(this.package.version);
         this.program
@@ -58,8 +58,10 @@ export class App {
         this.program
             .command('prepare')
             .description('extract-translate + po2ts + make-ts-list')
-            .action(async (done) => {
-                await (new PrepareCommand(this.program)).process();
+            .option('-lcp, --list-components-postfix [name]',
+            'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
+            .action(async (command) => {
+                await (new PrepareCommand(_.merge(this.program, command))).process();
             });
         this.program
             .command('commands [listOfCommands...]')
@@ -99,9 +101,18 @@ export class App {
             });
         this.program
             .command('make-ts-list')
+            .option('-lcp, --list-components-postfix [name]',
+            'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .description('make index.ts with import all ts files in application/library')
-            .action(async () => {
-                await (new MakeTsListCommand(this.program)).process();
+            .action(async (command) => {
+                await (new MakeTsListCommand(_.merge(this.program, command))).process();
+            });
+        this.program
+            .command('grid')
+            .option('-en, --entity-name [name]', 'generator name')
+            .description('scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items')
+            .action(async (command) => {
+                await (new GeneratorCommand(_.merge(this.program, command))).processGrid();
             });
         this.program.parse(process.argv);
     }

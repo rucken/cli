@@ -266,7 +266,6 @@ export class Base {
         );
         return await this.srcgen(
             folder,
-            packageData,
             'po2ts',
             'convert.po.to.ts',
             options
@@ -317,7 +316,6 @@ export class Base {
         );
         return await this.srcgen(
             folder,
-            packageData,
             'makeTsList',
             'make.list.ts.files',
             options
@@ -325,7 +323,6 @@ export class Base {
     }
     async srcgen(
         folder: string,
-        packageData: any,
         name: string,
         templateName: string,
         options: any
