@@ -39,14 +39,22 @@ export class GridGenerator extends Base {
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
                 customOptions.project.libsConfigs[1].shortName) ?
                 customOptions && customOptions.project.libsConfigs[1].shortName : 'web';
-        let coreFolder =
+                let coreFolder =
+                    (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
+                        customOptions.project.libsConfigs[0].rootPath) ?
+                        customOptions && customOptions.project.libsConfigs[0].rootPath : 'core';
+                let platformFolder =
+                    (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
+                        customOptions.project.libsConfigs[1].rootPath) ?
+                        customOptions && customOptions.project.libsConfigs[1].rootPath : 'web';
+        let coreLocalFolder =
             (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
-                customOptions.project.libsConfigs[0].rootPath) ?
-                customOptions && customOptions.project.libsConfigs[0].rootPath : 'core';
-        let platformFolder =
+                customOptions.project.libsConfigs[0].localPath) ?
+                customOptions && customOptions.project.libsConfigs[0].localPath : 'core';
+        let platformLocalFolder =
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
-                customOptions.project.libsConfigs[1].rootPath) ?
-                customOptions && customOptions.project.libsConfigs[1].rootPath : 'web';
+                customOptions.project.libsConfigs[1].localPath) ?
+                customOptions && customOptions.project.libsConfigs[1].localPath : 'web';
         let pkField: string = 'id';
         let fields: string[] = [
             'name',
@@ -88,7 +96,9 @@ export class GridGenerator extends Base {
                     'core': coreLib,
                     'platform': platformLib,
                     'coreFolder': coreFolder,
-                    'platformFolder': platformFolder
+                    'platformFolder': platformFolder,
+                    'coreLocalFolder': coreLocalFolder,
+                    'platformLocalFolder': platformLocalFolder
                 },
                 'grid': {
                     'list': {
@@ -132,8 +142,7 @@ export class GridGenerator extends Base {
             rootFolder,
             'generatorGrid',
             'grid.select.input.modal',
-            options,
-            rootFolder
+            options
         );
     }
 }
