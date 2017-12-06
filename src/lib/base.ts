@@ -241,7 +241,6 @@ export class Base {
         return result;
     }
     async po2ts(customOptions?: { i18nFolder?: string, package?: any }) {
-        this.log('po2ts').debug('start');
         let folder = path.resolve(this.folder + '/src/i18n');
         let packageData: any = { name: '' };
         if (customOptions && customOptions.i18nFolder) {
@@ -250,7 +249,6 @@ export class Base {
         if (customOptions && customOptions.package) {
             packageData = customOptions.package;
         }
-        this.log('po2ts').debug(folder);
         const options = _.merge(
             {
                 'po': {
@@ -266,25 +264,12 @@ export class Base {
                 'package': packageData
             }
         );
-        this.log('po2ts').debug(options);
-        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/convert.po.to.ts');
-        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-convert.po.to.ts.json');
-        fsExtra.writeJSONSync(optionsFile, options);
-        if (!fsExtra.existsSync(optionsFile)) {
-            this.log('po2ts').error(`File does not exists: ${optionsFile}`);
-        }
-        const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
-        if (!fsExtra.existsSync(folder)) {
-            this.log('po2ts').debug(commandString);
-            this.log('po2ts').error(`Folder does not exists: ${path.resolve(folder)}`);
-            this.log('po2ts').debug('end');
-            return await false;
-        }
-        let result = await this.commandRunner(commandString);
-        if (fsExtra.existsSync(optionsFile)) {
-            del.sync([optionsFile], { force: true });
-        }
-        return result;
+        return await this.srcgen(
+            folder,
+            'po2ts',
+            'convert.po.to.ts',
+            options
+        );
     }
     async prepare(customOptions?: {
         i18nFolder?: string,
@@ -306,7 +291,6 @@ export class Base {
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
     async makeTsList(customOptions?: { srcFolder?: string, package?: any, listComponentsPostfix?: string }) {
-        this.log('makeTsList').debug('start');
         let folder = path.resolve(this.folder + '/src');
         let packageData: any = { name: '' };
         let listComponentsPostfix = '';
@@ -319,7 +303,6 @@ export class Base {
         if (customOptions && customOptions.listComponentsPostfix) {
             listComponentsPostfix = customOptions.listComponentsPostfix;
         }
-        this.log('makeTsList').debug(folder);
         const options = _.merge(
             {
                 'scan': {
@@ -331,25 +314,43 @@ export class Base {
                 'package': packageData
             }
         );
-        this.log('makeTsList').debug(options);
-        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/make.list.ts.files');
-        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-make.list.ts.files.json');
+        return await this.srcgen(
+            folder,
+            'makeTsList',
+            'make.list.ts.files',
+            options
+        );
+    }
+    async srcgen(
+        folder: string,
+        name: string,
+        templateName: string,
+        options: any,
+        destPath?: string
+    ) {
+        this.log(name).debug('start');
+        this.log(name).debug(folder);
+        this.log(name).debug(options);
+        this.log(name).debug(destPath);
+        const destPathArgs = destPath ? ' -d ' + destPath : '';
+        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/' + templateName);
+        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + templateName + '.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
-            this.log('makeTsList').error(`File does not exists: ${optionsFile}`);
+            this.log(name).error(`File does not exists: ${optionsFile}`);
         }
-        const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile;
+        const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
         if (!fsExtra.existsSync(folder)) {
-            this.log('makeTsList').debug(commandString);
-            this.log('makeTsList').error(`Folder does not exists: ${folder}`);
-            this.log('makeTsList').debug('end');
+            this.log(name).debug(commandString);
+            this.log(name).error(`Folder does not exists: ${folder}`);
+            this.log(name).debug('end');
             return await false;
         }
         let result = await this.commandRunner(commandString);
         if (fsExtra.existsSync(optionsFile)) {
             del.sync([optionsFile], { force: true });
         }
-        this.log('makeTsList').debug('end');
+        this.log(name).debug('end');
         return result;
     }
 }

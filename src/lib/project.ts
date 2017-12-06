@@ -4,6 +4,7 @@ import * as path from 'path';
 
 import { Base } from './base';
 
+const inflection = require('inflection');
 export class Project extends Base {
 
     name = 'project';
@@ -14,7 +15,7 @@ export class Project extends Base {
     appsPaths: string[];
 
     constructor(public rootFolder?: string) {
-        super(rootFolder, rootFolder);
+        super(null, rootFolder);
         this.init();
     }
     init() {
@@ -23,7 +24,9 @@ export class Project extends Base {
             (this.agularCliJson.apps ? this.agularCliJson.apps : []).
                 filter((app: any) => app.appRoot === '').
                 map((lib: any) => {
+                    lib.shortName = path.basename(path.dirname(lib.root));
                     lib.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(lib.root, './') + '/../');
+                    lib.localPath = _.trimStart(lib.root, './') + '/../';
                     return lib;
                 });
         this.libsPaths = this.libsConfigs.map((lib: any) => lib.rootPath);
@@ -32,6 +35,7 @@ export class Project extends Base {
                 filter((app: any) => app.appRoot === undefined).
                 map((app: any) => {
                     app.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(app.root, './') + '/../');
+                    app.localPath = _.trimStart(app.root, './') + '/../';
                     return app;
                 });
         this.appsPaths = this.appsConfigs.map((app: any) => app.rootPath);

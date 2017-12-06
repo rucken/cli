@@ -1,3 +1,23 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/rucken/cli/compare/1.3.4...1.4.0) (2017-12-06)
+
+
+### Bug Fixes
+
+* **base:** Add dest folder attribute to run srcgen ([5061d89](https://github.com/rucken/cli/commit/5061d89))
+* **grid-generator:** Change paths to libs ([3d6039d](https://github.com/rucken/cli/commit/3d6039d))
+* **grid-generator:** Change rootPath ([d121e25](https://github.com/rucken/cli/commit/d121e25))
+* **grid-generator:** Fix errors on templates and in method for generate ([9f4282f](https://github.com/rucken/cli/commit/9f4282f))
+* **tests:** Add remove generated files to test grid-generator ([a6d5d6a](https://github.com/rucken/cli/commit/a6d5d6a))
+* **tests:** Add test for grid generator ([852dd81](https://github.com/rucken/cli/commit/852dd81))
+
+
+### Features
+
+* **generator:** Add generator for model, service, grid, lookup input and modals ([6e5ca68](https://github.com/rucken/cli/commit/6e5ca68))
+
+
+
 <a name="1.3.4"></a>
 ## [1.3.4](https://github.com/rucken/cli/compare/1.3.3...1.3.4) (2017-12-04)
 

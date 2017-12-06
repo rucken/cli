@@ -28,7 +28,8 @@ export class BaseCommand extends Base {
                     return await this.processLibs({
                         folders: this.project.libsPaths,
                         rootFolder: this.rootFolder,
-                        packages: this.project.libsConfigs
+                        packages: this.project.libsConfigs,
+                        project: this.project
                     });
                 }
             } else {
@@ -36,7 +37,8 @@ export class BaseCommand extends Base {
                 return await this.processLib({
                     folder: this.project.getLibPathByName(this.options.lib),
                     rootFolder: this.rootFolder,
-                    package: this.project.getLibConfigByName(this.options.lib)
+                    package: this.project.getLibConfigByName(this.options.lib),
+                    project: this.project
                 });
             }
         }
@@ -49,7 +51,8 @@ export class BaseCommand extends Base {
                     return await this.processApps({
                         folders: this.project.appsPaths,
                         rootFolder: this.rootFolder,
-                        packages: this.project.appsConfigs
+                        packages: this.project.appsConfigs,
+                        project: this.project
                     });
                 }
             } else {
@@ -57,7 +60,8 @@ export class BaseCommand extends Base {
                 return await this.processApp({
                     folder: this.project.getAppPathByName(this.options.app),
                     rootFolder: this.rootFolder,
-                    package: this.project.getAppConfigByName(this.options.app)
+                    package: this.project.getAppConfigByName(this.options.app),
+                    project: this.project
                 });
             }
         }
@@ -73,6 +77,9 @@ export class BaseCommand extends Base {
         return await true;
     }
     async processApp(options?: any) {
+        return await true;
+    }
+    async processGenerators(options?: any) {
         return await true;
     }
 }
