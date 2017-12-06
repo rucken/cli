@@ -24,7 +24,7 @@ export class Project extends Base {
             (this.agularCliJson.apps ? this.agularCliJson.apps : []).
                 filter((app: any) => app.appRoot === '').
                 map((lib: any) => {
-                    lib.shortName = lib.root.split('/').reverse()[2];
+                    lib.shortName = path.basename(path.dirname(lib.root));
                     lib.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(lib.root, './') + '/../');
                     return lib;
                 });

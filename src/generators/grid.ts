@@ -41,12 +41,12 @@ export class GridGenerator extends Base {
                 customOptions && customOptions.project.libsConfigs[1].shortName : 'web';
         let coreFolder =
             (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
-                customOptions.project.libsConfigs[0].name) ?
-                customOptions && customOptions.project.libsConfigs[0].name : 'core';
+                customOptions.project.libsConfigs[0].rootPath) ?
+                customOptions && customOptions.project.libsConfigs[0].rootPath : 'core';
         let platformFolder =
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
-                customOptions.project.libsConfigs[1].name) ?
-                customOptions && customOptions.project.libsConfigs[1].name : 'web';
+                customOptions.project.libsConfigs[1].rootPath) ?
+                customOptions && customOptions.project.libsConfigs[1].rootPath : 'web';
         let pkField: string = 'id';
         let fields: string[] = [
             'name',
