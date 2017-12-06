@@ -9,7 +9,7 @@ import { Base } from '../src/lib/base';
 const npmRun = require('npm-run');
 const assert = chai.assert;
 
-describe('Grid-generator: create base model, service and components for entity "apple"', () => {
+describe('Generator-rid-command: create base model, service and components for entity "apple"', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
@@ -50,6 +50,19 @@ describe('Grid-generator: create base model, service and components for entity "
             ]
         });
         beforeEach(() => {
+            items.forEach(({
+                dir: dir,
+                dirLocal: dirLocal,
+                files: files
+            }) => {
+                files.forEach((file: string) => {
+                    if (fsExtra.existsSync(file)) {
+                        del.sync([file]);
+                    }
+                });
+            });
+        });
+        afterEach(() => {
             items.forEach(({
                 dir: dir,
                 dirLocal: dirLocal,
