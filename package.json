@@ -57,7 +57,7 @@
 		"typescript": "2.4.2"
 	},
 	"dependencies": {
-		"@angular/common": "5.0.5",
+		"@angular/common": "5.1.0",
 		"@angular/compiler": "5.0.5",
 		"@angular/core": "5.0.5",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
