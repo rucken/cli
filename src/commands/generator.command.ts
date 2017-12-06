@@ -4,6 +4,7 @@ import { BaseCommand } from './base.command';
 export class GeneratorCommand extends BaseCommand {
     constructor(public options: any) {
         super(options);
+        this.log('generator=>').info(options);
     }
     async processGrid() {
         this.log('generator').info('Run generator for ' + this.rootFolder);

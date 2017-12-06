@@ -60,7 +60,7 @@ export class App {
             .description('extract-translate + po2ts + make-ts-list')
             .option('-lcp, --list-components-postfix [name]',
             'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
-            .action(async (command) => {
+            .action(async (dummy, command) => {
                 await (new PrepareCommand(_.merge(this.program, command))).process();
             });
         this.program
@@ -104,14 +104,14 @@ export class App {
             .option('-lcp, --list-components-postfix [name]',
             'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .description('make index.ts with import all ts files in application/library')
-            .action(async (command) => {
+            .action(async (dummy, command) => {
                 await (new MakeTsListCommand(_.merge(this.program, command))).process();
             });
         this.program
             .command('grid')
             .option('-en, --entity-name [name]', 'generator name')
             .description('scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items')
-            .action(async (command) => {
+            .action(async (dummy, command) => {
                 await (new GeneratorCommand(_.merge(this.program, command))).processGrid();
             });
         this.program.parse(process.argv);
