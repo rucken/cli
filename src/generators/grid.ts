@@ -22,6 +22,7 @@ export class GridGenerator extends Base {
         dateFields: string,
         coreLib: string,
         platformLib: string,
+        appFolder: string,
         coreFolder: string,
         platformFolder: string
     }) {
@@ -31,6 +32,10 @@ export class GridGenerator extends Base {
             (customOptions && customOptions.project.appsConfigs[0] && customOptions &&
                 customOptions.project.appsConfigs[0].name) ?
                 customOptions && customOptions.project.appsConfigs[0].name : 'app';
+        let appFolder =
+            (customOptions && customOptions.project.appsConfigs[0] && customOptions &&
+                customOptions.project.appsConfigs[0].localPath) ?
+                customOptions && customOptions.project.appsConfigs[0].localPath : 'app';
         let coreLib =
             (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
                 customOptions.project.libsConfigs[0].shortName) ?
@@ -41,17 +46,9 @@ export class GridGenerator extends Base {
                 customOptions && customOptions.project.libsConfigs[1].shortName : 'web';
         let coreFolder =
             (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
-                customOptions.project.libsConfigs[0].rootPath) ?
-                customOptions && customOptions.project.libsConfigs[0].rootPath : 'core';
-        let platformFolder =
-            (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
-                customOptions.project.libsConfigs[1].rootPath) ?
-                customOptions && customOptions.project.libsConfigs[1].rootPath : 'web';
-        let coreLocalFolder =
-            (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
                 customOptions.project.libsConfigs[0].localPath) ?
                 customOptions && customOptions.project.libsConfigs[0].localPath : 'core';
-        let platformLocalFolder =
+        let platformFolder =
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
                 customOptions.project.libsConfigs[1].localPath) ?
                 customOptions && customOptions.project.libsConfigs[1].localPath : 'web';
@@ -72,11 +69,20 @@ export class GridGenerator extends Base {
         if (customOptions && customOptions.appName) {
             appName = customOptions.appName;
         }
+        if (customOptions && customOptions.appFolder) {
+            appFolder = customOptions.appFolder;
+        }
         if (customOptions && customOptions.coreLib) {
             coreLib = customOptions.coreLib;
         }
         if (customOptions && customOptions.platformLib) {
             platformLib = customOptions.platformLib;
+        }
+        if (customOptions && customOptions.coreFolder) {
+            coreFolder = customOptions.coreFolder;
+        }
+        if (customOptions && customOptions.platformFolder) {
+            platformFolder = customOptions.platformFolder;
         }
         if (customOptions && customOptions.pkField) {
             pkField = customOptions.pkField;
@@ -96,9 +102,7 @@ export class GridGenerator extends Base {
                     'core': coreLib,
                     'platform': platformLib,
                     'coreFolder': coreFolder,
-                    'platformFolder': platformFolder,
-                    'coreLocalFolder': coreLocalFolder,
-                    'platformLocalFolder': platformLocalFolder
+                    'platformFolder': platformFolder
                 },
                 'grid': {
                     'list': {

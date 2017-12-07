@@ -26,10 +26,12 @@ export class App {
 
     public initialize() {
         this.program
-            .option('-r, --root [path]', 'root folder')
-            .option('-a, --app [path]', 'application folder')
-            .option('-l, --lib [path]', 'library folder')
-            .option('-v, --verbose', 'show log of work all tasks')
+            .option('-r, --root [path]', 'root folder (default: current directory)')
+            .option('-a, --app [path]',
+            'application folder (list of apps taken from ".angular-cli.json" with condition "appRoot===\'\'")')
+            .option('-l, --lib [path]',
+            'library folder (list of libs taken from ".angular-cli.json" with condition "appRoot===undefined")')
+            .option('--verbose', 'show log of work all tasks')
             .version(this.package.version);
         this.program
             .command('clear')
@@ -65,7 +67,7 @@ export class App {
             });
         this.program
             .command('commands [listOfCommands...]')
-            .description('run synchronously many different commands with many different options')
+            .description('run synchronously many different commands with many different options, for run with options use "~~" instead "--"')
             .action((listOfCommands: string[]) => {
                 const binNames = Object.keys(this.package.bin);
                 const cwdPackage = fsExtra.readJSONSync(path.resolve(process.cwd() + '/package.json'));
@@ -109,7 +111,14 @@ export class App {
             });
         this.program
             .command('grid')
-            .option('-en, --entity-name [name]', 'generator name')
+            .option('-en, --entity-name [name]', 'entity name')
+            .option('-pf, --pk-field [name]', 'primary key name', 'id')
+            .option('-fi, --fields [names]', 'fields of entity', '"\'name\',\'title\',\'createdAt\',\'updatedAt\'"')
+            .option('-dfi, --date-fields [names]', 'fields of entity', '"\'name\',\'title\',\'createdAt\',\'updatedAt\'"')
+            .option('-cl, --core-lib [name]', 'core library name, by default it is first app from ".angular-cli.json" with empty "appRoot"')
+            .option('-cf, --core-folder [path]', 'core library path')
+            .option('-pl, --platform-lib [name]', 'platform library name, by default it is next app from ".angular-cli.json" with empty "appRoot"')
+            .option('-pf, --platform-folder [path]', 'platform library path')
             .description('scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items')
             .action(async (dummy, command) => {
                 await (new GeneratorCommand(_.merge(this.program, command))).processGrid();
