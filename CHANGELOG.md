@@ -1,3 +1,18 @@
+<a name="1.4.1"></a>
+# [1.4.1](https://github.com/rucken/cli/compare/1.4.0...1.4.1) (2017-12-07)
+
+
+### Bug Fixes
+
+* **deps:** Update dependencies ([4282bb6](https://github.com/rucken/cli/commit/4282bb6))
+
+
+### Features
+
+* **grid-generator:** Add options for run grid generator ([a11b9a1](https://github.com/rucken/cli/commit/a11b9a1))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/rucken/cli/compare/1.3.4...1.4.0) (2017-12-06)
 

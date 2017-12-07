@@ -27,6 +27,43 @@ npm install -g @rucken/cli
 rucken --help
 ```
 
+### Commands
+
+options "app" - see list of apps taken from ".angular-cli.json" with condition appRoot===''
+
+options "lib" - see list of apps taken from ".angular-cli.json" with condition appRoot===undefined
+
+```bash
+rucken --help
+
+# clear all temp and dist folders on application/library
+rucken clear --app app1  
+
+# build application/library
+rucken build --lib  
+      
+# npm link dist folder of library to all packages                 
+rucken link --lib lib1 
+
+# npm link src folder of application/library to all packages
+rucken link-npm --lib lib1  
+
+# extract-translate + po2ts + make-ts-list to application/library                    
+rucken prepare --app
+rucken prepare --help  
+
+# make index.ts with import all ts files in application/library                 
+rucken make-ts-list  
+rucken prepare --help    
+
+# run synchronously many different commands with many different options, for run with options use "~~" instead "--"
+rucken commands clear prepare link ~~lib lib1          
+
+# scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
+rucken grid --entity-name apple  
+rucken grid --help  
+```
+
 ## Quick links
 
 [Core source](https://github.com/rucken/core) - Source code of core.

@@ -21,6 +21,7 @@ export class GeneratorCommand extends BaseCommand {
                 dateFields: this.options.dateFields,
                 coreLib: this.options.coreLib,
                 platformLib: this.options.platformLib,
+                appFolder: this.options.appFolder,
                 coreFolder: this.options.coreFolder,
                 platformFolder: this.options.platformFolder
             }).then((result: boolean) => {

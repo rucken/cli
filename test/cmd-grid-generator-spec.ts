@@ -9,7 +9,7 @@ import { Base } from '../src/lib/base';
 const npmRun = require('npm-run');
 const assert = chai.assert;
 
-describe('Generator-rid-command: create base model, service and components for entity "apple"', () => {
+describe('Generator-grid-command: create base model, service and components for work with entity "apple"', () => {
     config();
     const debug = process.env.TEST_DEBUG === 'true';
     describe('#prepare()', () => {
