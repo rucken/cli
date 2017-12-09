@@ -285,6 +285,7 @@ export class Base {
             await this.po2ts(customOptions),
             await this.extractTranslate(customOptions),
             await this.makeTsList(customOptions),
+            await this.makeTsList(customOptions),
             await this.changeVersion(customOptions)
         ];
         this.log('prepare').debug('end');
