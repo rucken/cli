@@ -63,6 +63,18 @@ rucken commands clear prepare link ~~lib lib1
 rucken grid --entity-name apple  
 rucken grid --help  
 ```
+### Scaffold
+
+
+```bash
+# generate model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
+rucken grid --entity-name apple  
+rucken grid --help
+
+# generate page
+rucken page --page-name apple  
+rucken page --help  
+```
 
 ## Quick links
 

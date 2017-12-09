@@ -1,10 +1,10 @@
 import { GridGenerator } from '../generators/grid';
 import { BaseCommand } from './base.command';
+import { PageGenerator } from '../generators/page';
 
 export class GeneratorCommand extends BaseCommand {
     constructor(public options: any) {
         super(options);
-        this.log('generator=>').info(options);
     }
     async processGrid() {
         this.log('generator').info('Run generator for ' + this.rootFolder);
@@ -24,6 +24,27 @@ export class GeneratorCommand extends BaseCommand {
                 appFolder: this.options.appFolder,
                 coreFolder: this.options.coreFolder,
                 platformFolder: this.options.platformFolder
+            }).then((result: boolean) => {
+                this.log('generator').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('generator').error(e);
+                this.log('generator').info('Done with errors!');
+                resolve(false);
+            })
+        );
+    }
+    async processPage() {
+        this.log('generator').info('Run generator for ' + this.rootFolder);
+        const gen = new PageGenerator(this.rootFolder);
+        gen.debug = this.debug;
+        const result = false;
+        return await new Promise<boolean>((resolve: any) =>
+            gen.proccess({
+                pageName: this.options.pageName,
+                project: this.project,
+                appName: this.options.appName,
+                appFolder: this.options.appFolder
             }).then((result: boolean) => {
                 this.log('generator').info('Done!');
                 resolve(true);
