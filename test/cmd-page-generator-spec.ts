@@ -21,11 +21,11 @@ describe('Generator-page-command: create page with name "apple"', () => {
             dir: _dir,
             dirLocal: `test/${_dirLocal}`,
             files: [
-                path.resolve(`${_dir}/src/pages/apple/apple-page.component.html`),
-                path.resolve(`${_dir}/src/pages/apple/apple-page.component.scss`),
-                path.resolve(`${_dir}/src/pages/apple/apple-page.component.ts`),
-                path.resolve(`${_dir}/src/pages/apple/apple-page.module.ts`),
-                path.resolve(`${_dir}/src/pages/apple/apple-page.routes.ts`)
+                path.resolve(`${_dir}/src/pages/apple-page/apple-page.component.html`),
+                path.resolve(`${_dir}/src/pages/apple-page/apple-page.component.scss`),
+                path.resolve(`${_dir}/src/pages/apple-page/apple-page.component.ts`),
+                path.resolve(`${_dir}/src/pages/apple-page/apple-page.module.ts`),
+                path.resolve(`${_dir}/src/pages/apple-page/apple-page.routes.ts`)
             ]
         });
         beforeEach(() => {

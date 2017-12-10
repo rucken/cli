@@ -1,6 +1,7 @@
 import { GridGenerator } from '../generators/grid';
 import { BaseCommand } from './base.command';
 import { PageGenerator } from '../generators/page';
+import { FrameGenerator } from '../generators/frame';
 
 export class GeneratorCommand extends BaseCommand {
     constructor(public options: any) {
@@ -23,7 +24,8 @@ export class GeneratorCommand extends BaseCommand {
                 platformLib: this.options.platformLib,
                 appFolder: this.options.appFolder,
                 coreFolder: this.options.coreFolder,
-                platformFolder: this.options.platformFolder
+                platformFolder: this.options.platformFolder,
+                template: this.options.template
             }).then((result: boolean) => {
                 this.log('generator').info('Done!');
                 resolve(true);
@@ -44,7 +46,31 @@ export class GeneratorCommand extends BaseCommand {
                 pageName: this.options.pageName,
                 project: this.project,
                 appName: this.options.appName,
-                appFolder: this.options.appFolder
+                appFolder: this.options.appFolder,
+                template: this.options.template
+            }).then((result: boolean) => {
+                this.log('generator').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('generator').error(e);
+                this.log('generator').info('Done with errors!');
+                resolve(false);
+            })
+        );
+    }
+    async processFrame() {
+        this.log('generator').info('Run generator for ' + this.rootFolder);
+        const gen = new FrameGenerator(this.rootFolder);
+        gen.debug = this.debug;
+        const result = false;
+        return await new Promise<boolean>((resolve: any) =>
+            gen.proccess({
+                pageName: this.options.pageName,
+                frameName: this.options.frameName,
+                project: this.project,
+                appName: this.options.appName,
+                appFolder: this.options.appFolder,
+                template: this.options.template
             }).then((result: boolean) => {
                 this.log('generator').info('Done!');
                 resolve(true);

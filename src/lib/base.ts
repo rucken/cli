@@ -334,8 +334,11 @@ export class Base {
         this.log(name).debug(options);
         this.log(name).debug(destPath);
         const destPathArgs = destPath ? ' -d ' + destPath : '';
-        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/' + templateName);
-        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + templateName + '.json');
+        let srcgenTemplate = path.resolve(__dirname + '/../../srcgen/' + templateName);
+        if (!fsExtra.pathExistsSync(srcgenTemplate)) {
+            srcgenTemplate = templateName;
+        }
+        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + path.basename(srcgenTemplate) + '.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
             this.log(name).error(`File does not exists: ${optionsFile}`);

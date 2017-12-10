@@ -5,9 +5,9 @@ import { Base } from '../lib/base';
 import { Project } from '../lib/project';
 
 
-export class PageGenerator extends Base {
+export class FrameGenerator extends Base {
 
-    name = 'page';
+    name = 'frame';
 
     constructor(public rootFolder?: string) {
         super(null, rootFolder);
@@ -15,13 +15,15 @@ export class PageGenerator extends Base {
     async proccess(customOptions?: {
         project: Project,
         pageName: string,
+        frameName: string,
         appName: string,
         appFolder: string,
         template: string
     }) {
         let rootFolder = path.resolve(this.rootFolder);
         let pageName = '';
-        let template: string = 'web-page';
+        let frameName = '';
+        let template: string = 'web-frame';
         let appName =
             (customOptions && customOptions.project.appsConfigs[0] && customOptions &&
                 customOptions.project.appsConfigs[0].name) ?
@@ -35,6 +37,9 @@ export class PageGenerator extends Base {
         }
         if (customOptions && customOptions.pageName) {
             pageName = customOptions.pageName;
+        }
+        if (customOptions && customOptions.frameName) {
+            frameName = customOptions.frameName;
         }
         if (customOptions && customOptions.appName) {
             appName = customOptions.appName;
@@ -52,12 +57,17 @@ export class PageGenerator extends Base {
                     'name': _.kebabCase(pageName),
                     'classPrefix': _.upperFirst(_.camelCase(pageName)),
                     'title': _.upperFirst(_.words(pageName).join(' '))
+                },
+                'frame': {
+                    'name': _.kebabCase(frameName),
+                    'classPrefix': _.upperFirst(_.camelCase(frameName)),
+                    'title': _.upperFirst(_.words(frameName).join(' '))
                 }
             }
         );
         return await this.srcgen(
             rootFolder,
-            'generatorPage',
+            'generatorFrame',
             template,
             options,
             rootFolder

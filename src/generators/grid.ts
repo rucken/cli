@@ -24,7 +24,8 @@ export class GridGenerator extends Base {
         platformLib: string,
         appFolder: string,
         coreFolder: string,
-        platformFolder: string
+        platformFolder: string,
+        template: string
     }) {
         let rootFolder = path.resolve(this.rootFolder);
         let entityName = '';
@@ -52,6 +53,7 @@ export class GridGenerator extends Base {
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
                 customOptions.project.libsConfigs[1].localPath) ?
                 customOptions && customOptions.project.libsConfigs[1].localPath : 'web';
+        let template: string = 'web-grid';
         let pkField: string = 'id';
         let fields: string[] = [
             'name',
@@ -63,6 +65,9 @@ export class GridGenerator extends Base {
             'createdAt',
             'updatedAt'
         ];
+        if (customOptions && customOptions.template) {
+            template = customOptions.template;
+        }
         if (customOptions && customOptions.entityName) {
             entityName = customOptions.entityName;
         }
@@ -145,7 +150,7 @@ export class GridGenerator extends Base {
         return await this.srcgen(
             rootFolder,
             'generatorGrid',
-            'grid.select.input.modal',
+            template,
             options,
             rootFolder
         );
