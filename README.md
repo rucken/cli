@@ -74,6 +74,14 @@ rucken grid --help
 # generate page
 rucken page --page-name apple  
 rucken page --help  
+
+# generate frame on page
+rucken frame --page-name apple --frame-name banana
+rucken frame --help
+
+# generate frame with page
+rucken page+frame --page-name apple --frame-name banana
+rucken page+frame --help  
 ```
 
 ## Quick links

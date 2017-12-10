@@ -111,7 +111,7 @@ export class App {
             });
         this.program
             .command('grid')
-            .option('-t, --template [name]', 'template folder name or path', 'web-grid')
+            .option('-t, --template [name]', 'template folder name or path', 'grid')
             .option('-en, --entity-name [name]', 'entity name')
             .option('-pf, --pk-field [name]', 'primary key name', 'id')
             .option('-fi, --fields [names]', 'fields of entity', '"\'name\',\'title\',\'createdAt\',\'updatedAt\'"')
@@ -126,7 +126,7 @@ export class App {
             });
         this.program
             .command('page')
-            .option('-t, --template [name]', 'template folder name or path', 'web-page')
+            .option('-t, --template [name]', 'template folder name or path', 'page')
             .option('-pn, --page-name [name]', 'page name')
             .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
             .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
@@ -134,15 +134,25 @@ export class App {
             .action(async (dummy, command) => {
                 await (new GeneratorCommand(_.merge(this.program, command, dummy))).processPage();
             });
-        this.program.parse(process.argv);
         this.program
-            .command('frame')
-            .option('-t, --template [name]', 'template folder name or path', 'web-frame')
+            .command('page+frame')
+            .option('-t, --template [name]', 'template folder name or path', 'page+frame')
             .option('-pn, --page-name [name]', 'page name')
             .option('-fn, --frame-name [name]', 'frame name')
             .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
             .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
-            .description('scaffold empty page')
+            .description('scaffold empty frame on page')
+            .action(async (dummy, command) => {
+                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processPageAndFrame();
+            });
+        this.program
+            .command('frame')
+            .option('-t, --template [name]', 'template folder name or path', 'frame')
+            .option('-pn, --page-name [name]', 'page name')
+            .option('-fn, --frame-name [name]', 'frame name')
+            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
+            .description('scaffold empty frame')
             .action(async (dummy, command) => {
                 await (new GeneratorCommand(_.merge(this.program, command, dummy))).processFrame();
             });

@@ -21,7 +21,7 @@ export class PageGenerator extends Base {
     }) {
         let rootFolder = path.resolve(this.rootFolder);
         let pageName = '';
-        let template: string = 'web-page';
+        let template: string = 'page';
         let appName =
             (customOptions && customOptions.project.appsConfigs[0] && customOptions &&
                 customOptions.project.appsConfigs[0].name) ?

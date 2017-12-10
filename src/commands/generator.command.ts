@@ -1,7 +1,8 @@
-import { GridGenerator } from '../generators/grid';
-import { BaseCommand } from './base.command';
-import { PageGenerator } from '../generators/page';
 import { FrameGenerator } from '../generators/frame';
+import { GridGenerator } from '../generators/grid';
+import { PageGenerator } from '../generators/page';
+import { PageAndFrameGenerator } from '../generators/page-and-frame';
+import { BaseCommand } from './base.command';
 
 export class GeneratorCommand extends BaseCommand {
     constructor(public options: any) {
@@ -44,6 +45,29 @@ export class GeneratorCommand extends BaseCommand {
         return await new Promise<boolean>((resolve: any) =>
             gen.proccess({
                 pageName: this.options.pageName,
+                project: this.project,
+                appName: this.options.appName,
+                appFolder: this.options.appFolder,
+                template: this.options.template
+            }).then((result: boolean) => {
+                this.log('generator').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('generator').error(e);
+                this.log('generator').info('Done with errors!');
+                resolve(false);
+            })
+        );
+    }
+    async processPageAndFrame() {
+        this.log('generator').info('Run generator for ' + this.rootFolder);
+        const gen = new PageAndFrameGenerator(this.rootFolder);
+        gen.debug = this.debug;
+        const result = false;
+        return await new Promise<boolean>((resolve: any) =>
+            gen.proccess({
+                pageName: this.options.pageName,
+                frameName: this.options.frameName,
                 project: this.project,
                 appName: this.options.appName,
                 appFolder: this.options.appFolder,

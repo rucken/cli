@@ -338,6 +338,7 @@ export class Base {
         if (!fsExtra.pathExistsSync(srcgenTemplate)) {
             srcgenTemplate = templateName;
         }
+        this.log(name).debug(srcgenTemplate);
         const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + path.basename(srcgenTemplate) + '.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {

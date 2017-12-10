@@ -5,9 +5,9 @@ import { Base } from '../lib/base';
 import { Project } from '../lib/project';
 
 
-export class FrameGenerator extends Base {
+export class PageAndFrameGenerator extends Base {
 
-    name = 'frame';
+    name = 'page+frame';
 
     constructor(public rootFolder?: string) {
         super(null, rootFolder);
@@ -23,7 +23,7 @@ export class FrameGenerator extends Base {
         let rootFolder = path.resolve(this.rootFolder);
         let pageName = '';
         let frameName = '';
-        let template: string = 'frame';
+        let template: string = 'page+frame';
         let appName =
             (customOptions && customOptions.project.appsConfigs[0] && customOptions &&
                 customOptions.project.appsConfigs[0].name) ?
@@ -67,7 +67,7 @@ export class FrameGenerator extends Base {
         );
         return await this.srcgen(
             rootFolder,
-            'generatorFrame',
+            'generatorPageAndFrame',
             template,
             options,
             rootFolder
