@@ -67,8 +67,8 @@ rucken grid --help
 
 
 ```bash
-# generate new application on rucken template
-rucken new --app-name apple
+# generate new application based on rucken template
+rucken new ananas
 rucken new --help  
 
 # generate model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
