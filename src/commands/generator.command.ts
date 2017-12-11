@@ -3,6 +3,7 @@ import { GridGenerator } from '../generators/grid';
 import { PageGenerator } from '../generators/page';
 import { PageAndFrameGenerator } from '../generators/page-and-frame';
 import { BaseCommand } from './base.command';
+import { AppEmptyGenerator } from '../generators/app-empty';
 
 export class GeneratorCommand extends BaseCommand {
     constructor(public options: any) {
@@ -94,6 +95,26 @@ export class GeneratorCommand extends BaseCommand {
                 project: this.project,
                 appName: this.options.appName,
                 appFolder: this.options.appFolder,
+                template: this.options.template
+            }).then((result: boolean) => {
+                this.log('generator').info('Done!');
+                resolve(true);
+            }).catch((e: any) => {
+                this.log('generator').error(e);
+                this.log('generator').info('Done with errors!');
+                resolve(false);
+            })
+        );
+    }
+    async processAppEmpty() {
+        this.log('generator').info('Run generator for ' + this.rootFolder);
+        const gen = new AppEmptyGenerator(this.rootFolder);
+        gen.debug = this.debug;
+        const result = false;
+        return await new Promise<boolean>((resolve: any) =>
+            gen.proccess({
+                project: this.project,
+                appName: this.options.appName,
                 template: this.options.template
             }).then((result: boolean) => {
                 this.log('generator').info('Done!');

@@ -1,0 +1,17 @@
+{
+    "name": "@<%=app.name%>/core",
+    "main": "index.js",
+    "version": "0.0.0",
+    "peerDependencies": {
+        "@angular/common": "*",
+        "@angular/compiler": "*",
+        "@angular/core": "*"
+    },
+    "dependencies": {
+        "@rucken/core": "*",
+        "@types/lodash": "*",
+        "angular2-jwt": "*",
+        "lodash": "*",
+        "moment": "*"
+    }
+}
