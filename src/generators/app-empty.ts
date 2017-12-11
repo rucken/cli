@@ -43,7 +43,7 @@ export class AppEmptyGenerator extends Base {
             'generatorAppEmpty',
             template,
             options,
-            rootFolder
+            path.resolve(rootFolder, _.kebabCase(appName))
         );
     }
 }

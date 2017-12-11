@@ -157,12 +157,11 @@ export class App {
                 await (new GeneratorCommand(_.merge(this.program, command, dummy))).processFrame();
             });
         this.program
-            .command('app')
+            .command('new [name]')
             .option('-t, --template [name]', 'template folder name or path', 'web-app-empty')
-            .option('-al, --app-name [name]', 'appplication name')
-            .description('scaffold empty application')
-            .action(async (dummy, command) => {
-                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processAppEmpty();
+            .description('scaffold empty application based on rucken template')
+            .action(async (appName, command) => {
+                await (new GeneratorCommand(_.merge(this.program, command, { appName: appName }))).processAppEmpty();
             });
         this.program.parse(process.argv);
     }
