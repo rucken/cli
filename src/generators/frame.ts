@@ -23,7 +23,7 @@ export class FrameGenerator extends Base {
         let rootFolder = path.resolve(this.rootFolder);
         let pageName = '';
         let frameName = '';
-        let template: string = 'frame';
+        let template: string = 'web-frame';
         let appName =
             (customOptions && customOptions.project.appsConfigs[0] && customOptions &&
                 customOptions.project.appsConfigs[0].name) ?

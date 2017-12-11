@@ -267,7 +267,7 @@ export class Base {
         return await this.srcgen(
             folder,
             'po2ts',
-            'convert.po.to.ts',
+            'utils-convert.po.to.ts',
             options
         );
     }
@@ -318,7 +318,7 @@ export class Base {
         return await this.srcgen(
             folder,
             'makeTsList',
-            'make.list.ts.files',
+            'utils-make.list.ts.files',
             options
         );
     }

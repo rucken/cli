@@ -53,7 +53,7 @@ export class GridGenerator extends Base {
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
                 customOptions.project.libsConfigs[1].localPath) ?
                 customOptions && customOptions.project.libsConfigs[1].localPath : 'web';
-        let template: string = 'grid';
+        let template: string = 'web-grid';
         let pkField: string = 'id';
         let fields: string[] = [
             'name',
