@@ -21,16 +21,16 @@ describe('Generator-page+frame-command: create frame with name "banana" on page 
             dir: _dir,
             dirLocal: `test/${_dirLocal}`,
             files: [
-                path.resolve(`${_dir}/src/pages/apple-page/apple-page.component.html`),
-                path.resolve(`${_dir}/src/pages/apple-page/apple-page.component.scss`),
-                path.resolve(`${_dir}/src/pages/apple-page/apple-page.component.ts`),
-                path.resolve(`${_dir}/src/pages/apple-page/apple-page.module.ts`),
-                path.resolve(`${_dir}/src/pages/apple-page/apple-page.routes.ts`),
-                path.resolve(`${_dir}/src/pages/apple-page/banana-frame/banana-frame.component.html`),
-                path.resolve(`${_dir}/src/pages/apple-page/banana-frame/banana-frame.component.scss`),
-                path.resolve(`${_dir}/src/pages/apple-page/banana-frame/banana-frame.component.ts`),
-                path.resolve(`${_dir}/src/pages/apple-page/banana-frame/banana-frame.module.ts`),
-                path.resolve(`${_dir}/src/pages/apple-page/banana-frame/banana-frame.routes.ts`)
+                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.html`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.scss`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.ts`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.module.ts`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.routes.ts`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.component.html`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.component.scss`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.component.ts`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.module.ts`),
+                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.routes.ts`)
             ]
         });
         beforeEach(() => {
