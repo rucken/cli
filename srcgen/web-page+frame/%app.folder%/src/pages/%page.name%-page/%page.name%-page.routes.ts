@@ -1,5 +1,5 @@
 import { translate } from '@rucken/core';
-import { AuthGuardService } from '@rucken/web';
+import { <%=app.classPrefix%>AuthGuardService } from '../../shared/guards/auth-guard.service';
 
 import { <%=page.classPrefix%>PageComponent } from './<%=page.name%>-page.component';
 import { <%=frame.classPrefix%>FrameRoutes } from './<%=frame.name%>-frame/<%=frame.name%>-frame.routes';
@@ -10,7 +10,7 @@ const children = [
     path: '<%=frame.name%>',
     loadChildren: './<%=frame.name%>-frame/<%=frame.name%>-frame.module#<%=frame.classPrefix%>FrameModule',
     data: <%=frame.classPrefix%>FrameRoutes[0].data,
-    canActivate: [AuthGuardService]
+    canActivate: [<%=app.classPrefix%>AuthGuardService]
   }
 ];
 export const <%=page.classPrefix%>PageRoutes = [{
@@ -22,5 +22,5 @@ export const <%=page.classPrefix%>PageRoutes = [{
     children: children
   },
   children: children,
-  canActivate: [AuthGuardService]
+  canActivate: [<%=app.classPrefix%>AuthGuardService]
 }];

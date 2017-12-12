@@ -97,7 +97,7 @@ recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
               founded = true;
             }
           }
-          if (!founded && '/index' !== classFile) {
+          if (!founded && '/index' !== classFile && className.indexOf('AppModule') === -1) {
             var importLine = 'import { ' + className + ' } from \'.' + classFile + '\';';
             exportArray.push(importLine);
             var exportLine = 'export { ' + className + ' } from \'.' + classFile + '\';';

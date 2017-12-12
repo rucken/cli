@@ -1,5 +1,5 @@
 import { translate } from '@rucken/core';
-import { HomeGuardService } from '@rucken/web';
+import { <%=app.classPrefix%>AuthGuardService } from '../../shared/guards/auth-guard.service';
 
 import { <%=page.classPrefix%>PageComponent } from './<%=page.name%>-page.component';
 
@@ -11,5 +11,6 @@ export const <%=page.classPrefix%>PageRoutes = [{
     name: '<%=page.name%>',
     title: translate('<%=page.title%>'),
     visible: true
-  }
+  },
+  canActivate: [<%=app.classPrefix%>AuthGuardService]
 }];

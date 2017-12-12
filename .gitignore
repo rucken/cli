@@ -49,3 +49,4 @@ temp_*.json
 /test/fixture/**/src/app/index.ts
 /test/fixture/**/i18n/ru.i18n.ts
 /test/fixture/**/i18n/template.pot
+/test/fixture/ananas

@@ -1,5 +1,5 @@
 import { translate } from '@rucken/core';
-import { HomeGuardService } from '@rucken/web';
+import { <%=app.classPrefix%>HomeGuardService } from '../../shared/guards/home-guard.service';
 
 import { <%=app.classPrefix%>HomePageComponent } from './home-page.component';
 
@@ -12,5 +12,5 @@ export const <%=app.classPrefix%>HomePageRoutes = [{
     title: translate('Home'),
     visible: true
   },
-  canActivate: [HomeGuardService]
+  canActivate: [<%=app.classPrefix%>HomeGuardService]
 }];

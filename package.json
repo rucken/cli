@@ -14,7 +14,7 @@
 	"scripts": {
 		"clean": "del-cli dist",
 		"build": "npm run clean && tsc --pretty",
-		"test": "npm run build && mocha --timeout 300000 --require ts-node/register --recursive test/**/*-spec.ts",
+		"test": "npm run build && mocha --timeout 300000 --require ts-node/register --recursive test/**/*.spec.ts",
 		"watch": "npm run build -- --watch",
 		"watch:test": "npm run test -- --watch"
 	},

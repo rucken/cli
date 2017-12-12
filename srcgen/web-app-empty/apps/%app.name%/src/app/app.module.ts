@@ -14,6 +14,7 @@ import {
   TokenService,
 } from '@rucken/core';
 import { <%=app.classPrefix%>CoreServices } from '@<%=app.name%>/core';
+import { <%=app.classPrefix%>WebServices } from '@<%=app.name%>/web';
 import {
   AlertModalModule,
   AuthModalModule,
@@ -37,12 +38,15 @@ import {
   TooltipConfig,
 } from 'ngx-bootstrap';
 
-import { <%=app.classPrefix%>AppComponent } from './app.component';
-import { <%=app.classPrefix%>Routes } from './app.routes';
-import { <%=app.classPrefix%>NavbarModule } from './controls/navbar/navbar.module';
-import { <%=app.classPrefix%>HomeGuardService } from './shared/guards/home-guard.service';
-import { <%=app.classPrefix%>EndpointHelper } from './shared/helpers/endpoint.helper';
-import { <%=app.classPrefix%>HttpHelper } from './shared/helpers/http.helper';
+import { 
+  <%=app.classPrefix%>AppComponent,
+  <%=app.classPrefix%>Routes,
+  <%=app.classPrefix%>NavbarModule,
+  <%=app.classPrefix%>HomeGuardService,
+  <%=app.classPrefix%>EndpointHelper,
+  <%=app.classPrefix%>HttpHelper,
+  <%=app.classPrefix%>Services
+} from './index';
 
 @NgModule({
   declarations: [
@@ -75,6 +79,8 @@ import { <%=app.classPrefix%>HttpHelper } from './shared/helpers/http.helper';
     RuckenCoreServices,
     RuckenWebServices,
     <%=app.classPrefix%>CoreServices,
+    <%=app.classPrefix%>WebServices,
+    <%=app.classPrefix%>Services,
     BaseResourceSelectInputConfig,
     TextInputConfig,
     SelectInputConfig,

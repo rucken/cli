@@ -40,7 +40,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-msgid "<%=app.title%>"
+msgid "App title"
 msgstr ""
 
 msgid "Logout"

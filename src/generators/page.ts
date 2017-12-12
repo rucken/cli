@@ -45,7 +45,9 @@ export class PageGenerator extends Base {
         const options = _.merge(
             {
                 'app': {
-                    'name': appName,
+                    'name': _.kebabCase(appName),
+                    'classPrefix': _.upperFirst(_.camelCase(appName)),
+                    'title': _.upperFirst(_.words(appName).join(' ')),
                     'folder': appFolder
                 },
                 'page': {
