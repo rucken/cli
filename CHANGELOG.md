@@ -1,3 +1,26 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/rucken/cli/compare/1.4.1...1.5.0) (2017-12-13)
+
+
+### Bug Fixes
+
+* **base:** Add run makeTsList twice ([23f45ff](https://github.com/rucken/cli/commit/23f45ff))
+* **generators:** Fix errors in templates web page and frame generators ([f66c7b4](https://github.com/rucken/cli/commit/f66c7b4))
+* **generators:** Fix paths ([eb40832](https://github.com/rucken/cli/commit/eb40832))
+* **generators:** Fix small errors on application generator ([bc572a2](https://github.com/rucken/cli/commit/bc572a2))
+* **generators:** Rename app template folder ([facdda6](https://github.com/rucken/cli/commit/facdda6))
+* **refactor:** Update and rename files and folder ([33c6e1b](https://github.com/rucken/cli/commit/33c6e1b))
+
+
+### Features
+
+* **generator:** Add frame generator ([7f37b05](https://github.com/rucken/cli/commit/7f37b05))
+* **generators:** Add base empty application based on rucken template ([07d1e56](https://github.com/rucken/cli/commit/07d1e56))
+* **generators:** Add page generator ([06f6fe9](https://github.com/rucken/cli/commit/06f6fe9))
+* **generators:** Add page+frame generator ([2541bcf](https://github.com/rucken/cli/commit/2541bcf))
+
+
+
 <a name="1.4.1"></a>
 # [1.4.1](https://github.com/rucken/cli/compare/1.4.0...1.4.1) (2017-12-07)
 

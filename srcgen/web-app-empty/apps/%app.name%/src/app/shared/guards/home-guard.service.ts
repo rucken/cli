@@ -30,7 +30,7 @@ export class <%=app.classPrefix%>HomeGuardService extends AuthGuardService {
     }
     if (this.accountService.account && route.data.name && route.data.name === 'home' && this.firstHomeActivated) {
       let founded = false;
-      /*
+      /* todo: uncomment this, if you want redirect from home page to specific user page, detected with permission
       if (!founded && this.accessToReadAdminPage) {
         founded = true;
         this.router.navigate(['/admin']);

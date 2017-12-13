@@ -34,7 +34,6 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                 path.resolve(`${_dir}/apps/ananas/src/app/controls/navbar/navbar.component.scss`),
                 path.resolve(`${_dir}/apps/ananas/src/app/controls/navbar/navbar.component.ts`),
                 path.resolve(`${_dir}/apps/ananas/src/app/controls/navbar/navbar.module.ts`),
-                path.resolve(`${_dir}/apps/ananas/src/app/i18n/ru.mo`),
                 path.resolve(`${_dir}/apps/ananas/src/app/i18n/ru.po`),
                 path.resolve(`${_dir}/apps/ananas/src/app/package.json`),
                 path.resolve(`${_dir}/apps/ananas/src/app/pages/account-page/account-page.module.ts`),
@@ -75,11 +74,9 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                 path.resolve(`${_dir}/e2e/app.po.ts`),
                 path.resolve(`${_dir}/e2e/tsconfig.e2e.json`),
                 path.resolve(`${_dir}/karma.conf.js`),
-                path.resolve(`${_dir}/libs/core/src/i18n/ru.mo`),
                 path.resolve(`${_dir}/libs/core/src/i18n/ru.po`),
                 path.resolve(`${_dir}/libs/core/src/package.json`),
                 path.resolve(`${_dir}/libs/core/src/tsconfig.json`),
-                path.resolve(`${_dir}/libs/web/src/i18n/ru.mo`),
                 path.resolve(`${_dir}/libs/web/src/i18n/ru.po`),
                 path.resolve(`${_dir}/libs/web/src/package.json`),
                 path.resolve(`${_dir}/libs/web/src/tsconfig.json`),
@@ -102,7 +99,7 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                 });
             });
         });
-        afterEach(() => {
+        afterEach(() => {/*
             items.forEach(({
                 dir: dir,
                 dirLocal: dirLocal,
@@ -113,7 +110,7 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                         del.sync([file]);
                     }
                 });
-            });
+            });*/
         });
         items.forEach(({
             dir: dir,
@@ -154,6 +151,7 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                     files: files
                  }) => {
                     files.forEach((file: string) => {
+                        console.log(file, fsExtra.existsSync(file))
                         assert.equal(fsExtra.existsSync(file), true);
                     });
                 });
