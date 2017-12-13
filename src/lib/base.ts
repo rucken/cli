@@ -267,7 +267,7 @@ export class Base {
         return await this.srcgen(
             folder,
             'po2ts',
-            'convert.po.to.ts',
+            'utils-convert.po.to.ts',
             options
         );
     }
@@ -284,6 +284,7 @@ export class Base {
             await this.extractTranslate(customOptions),
             await this.po2ts(customOptions),
             await this.extractTranslate(customOptions),
+            await this.makeTsList(customOptions),
             await this.makeTsList(customOptions),
             await this.changeVersion(customOptions)
         ];
@@ -317,7 +318,7 @@ export class Base {
         return await this.srcgen(
             folder,
             'makeTsList',
-            'make.list.ts.files',
+            'utils-make.list.ts.files',
             options
         );
     }
@@ -333,8 +334,12 @@ export class Base {
         this.log(name).debug(options);
         this.log(name).debug(destPath);
         const destPathArgs = destPath ? ' -d ' + destPath : '';
-        const srcgenTemplate = path.resolve(__dirname + '/../../srcgen/' + templateName);
-        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + templateName + '.json');
+        let srcgenTemplate = path.resolve(__dirname + '/../../srcgen/' + templateName);
+        if (!fsExtra.pathExistsSync(srcgenTemplate)) {
+            srcgenTemplate = templateName;
+        }
+        this.log(name).debug(srcgenTemplate);
+        const optionsFile = path.resolve(__dirname + '/../../srcgen/temp_' + process.hrtime() + '-' + path.basename(srcgenTemplate) + '.json');
         fsExtra.writeJSONSync(optionsFile, options);
         if (!fsExtra.existsSync(optionsFile)) {
             this.log(name).error(`File does not exists: ${optionsFile}`);

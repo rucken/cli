@@ -63,6 +63,37 @@ rucken commands clear prepare link ~~lib lib1
 rucken grid --entity-name apple  
 rucken grid --help  
 ```
+### Scaffold
+
+```bash
+# generate new application based on rucken template
+rucken new ananas
+rucken new --help  
+
+# generate model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
+rucken grid --entity-name apple  
+rucken grid --help
+
+# generate page
+rucken page --page-name apple  
+rucken page --help  
+
+# generate frame on page
+rucken frame --page-name apple --frame-name banana
+rucken frame --help
+
+# generate frame with page
+rucken page+frame --page-name apple --frame-name banana
+rucken page+frame --help  
+```
+### Create and run application
+
+```bash
+rucken new my-app
+cd my-app
+npm install
+npm start
+```
 
 ## Quick links
 

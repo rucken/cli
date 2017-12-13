@@ -63,7 +63,7 @@ export class App {
             .option('-lcp, --list-components-postfix [name]',
             'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .action(async (dummy, command) => {
-                await (new PrepareCommand(_.merge(this.program, command))).process();
+                await (new PrepareCommand(_.merge(this.program, command, dummy))).process();
             });
         this.program
             .command('commands [listOfCommands...]')
@@ -107,10 +107,11 @@ export class App {
             'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .description('make index.ts with import all ts files in application/library')
             .action(async (dummy, command) => {
-                await (new MakeTsListCommand(_.merge(this.program, command))).process();
+                await (new MakeTsListCommand(_.merge(this.program, command, dummy))).process();
             });
         this.program
             .command('grid')
+            .option('-t, --template [name]', 'template folder name or path', 'web-grid')
             .option('-en, --entity-name [name]', 'entity name')
             .option('-pf, --pk-field [name]', 'primary key name', 'id')
             .option('-fi, --fields [names]', 'fields of entity', '"\'name\',\'title\',\'createdAt\',\'updatedAt\'"')
@@ -121,7 +122,46 @@ export class App {
             .option('-pf, --platform-folder [path]', 'platform library path')
             .description('scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items')
             .action(async (dummy, command) => {
-                await (new GeneratorCommand(_.merge(this.program, command))).processGrid();
+                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processGrid();
+            });
+        this.program
+            .command('page')
+            .option('-t, --template [name]', 'template folder name or path', 'web-page')
+            .option('-pn, --page-name [name]', 'page name')
+            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
+            .description('scaffold empty page')
+            .action(async (dummy, command) => {
+                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processPage();
+            });
+        this.program
+            .command('page+frame')
+            .option('-t, --template [name]', 'template folder name or path', 'web-page+frame')
+            .option('-pn, --page-name [name]', 'page name')
+            .option('-fn, --frame-name [name]', 'frame name')
+            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
+            .description('scaffold empty frame on page')
+            .action(async (dummy, command) => {
+                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processPageAndFrame();
+            });
+        this.program
+            .command('frame')
+            .option('-t, --template [name]', 'template folder name or path', 'web-frame')
+            .option('-pn, --page-name [name]', 'page name')
+            .option('-fn, --frame-name [name]', 'frame name')
+            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
+            .description('scaffold empty frame')
+            .action(async (dummy, command) => {
+                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processFrame();
+            });
+        this.program
+            .command('new [name]')
+            .option('-t, --template [name]', 'template folder name or path', 'web-app-empty')
+            .description('scaffold empty application based on rucken template')
+            .action(async (appName, command) => {
+                await (new GeneratorCommand(_.merge(this.program, command, { appName: appName }))).processAppEmpty();
             });
         this.program.parse(process.argv);
     }
