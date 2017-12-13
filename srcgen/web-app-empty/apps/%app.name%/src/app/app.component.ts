@@ -11,6 +11,7 @@ import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import { enGb, ru } from 'ngx-bootstrap/locale';
 
 import { <%=app.classPrefix%>RuI18n } from './i18n/ru.i18n';
+import { environment } from '../environments/environment';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -33,6 +34,9 @@ export class <%=app.classPrefix%>AppComponent extends BaseAppComponent {
     title: translate('English'),
     dic: null
   }];
+
+  // todo: remove this if permission or role is worked
+  fullAccess = !environment.production;
 
   constructor(
     public injector: Injector,
