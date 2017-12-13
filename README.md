@@ -65,7 +65,6 @@ rucken grid --help
 ```
 ### Scaffold
 
-
 ```bash
 # generate new application based on rucken template
 rucken new ananas
@@ -86,6 +85,14 @@ rucken frame --help
 # generate frame with page
 rucken page+frame --page-name apple --frame-name banana
 rucken page+frame --help  
+```
+### Create and run application
+
+```bash
+rucken new my-app
+cd my-app
+npm install
+npm start
 ```
 
 ## Quick links
