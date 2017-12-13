@@ -1,5 +1,5 @@
 import { translate } from '@rucken/core';
-import { <%=app.classPrefix%>AuthGuardService } from '../../../shared/guards/auth-guard.service';
+import { AuthGuardService } from '@rucken/web';
 
 import { <%=frame.classPrefix%>FrameComponent } from './<%=frame.name%>-frame.component';
 
@@ -11,5 +11,5 @@ export const <%=frame.classPrefix%>FrameRoutes = [{
     title: translate('<%=frame.title%>'),
     visible: true
   },
-  canActivate: [<%=app.classPrefix%>AuthGuardService]
+  canActivate: [AuthGuardService]
 }];
