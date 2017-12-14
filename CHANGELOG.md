@@ -1,3 +1,13 @@
+<a name="1.5.3"></a>
+## [1.5.3](https://github.com/rucken/cli/compare/1.5.2...1.5.3) (2017-12-14)
+
+
+### Bug Fixes
+
+* **srcgen:** Add "BaseAppModule" to generated index.ts ([6897545](https://github.com/rucken/cli/commit/6897545))
+
+
+
 <a name="1.5.2"></a>
 ## [1.5.2](https://github.com/rucken/cli/compare/1.5.1...1.5.2) (2017-12-14)
 
