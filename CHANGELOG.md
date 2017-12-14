@@ -1,3 +1,13 @@
+<a name="1.5.2"></a>
+## [1.5.2](https://github.com/rucken/cli/compare/1.5.1...1.5.2) (2017-12-14)
+
+
+### Bug Fixes
+
+* **command:** Add extends options to run multi commands ([c646389](https://github.com/rucken/cli/commit/c646389))
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/rucken/cli/compare/1.5.0...1.5.1) (2017-12-14)
 
