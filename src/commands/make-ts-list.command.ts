@@ -13,7 +13,7 @@ export class MakeTsListCommand extends BaseCommand {
         const libs = new Libs(options.folders, options.rootFolder);
         libs.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            libs.makeTsList(this.options).then((result: boolean) => {
+            libs.makeTsList(options).then((result: boolean) => {
                 this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -28,7 +28,7 @@ export class MakeTsListCommand extends BaseCommand {
         const lib = new Lib(options.folder, options.rootFolder);
         lib.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            lib.makeTsList(this.options).then((result: boolean) => {
+            lib.makeTsList(options).then((result: boolean) => {
                 this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -43,7 +43,7 @@ export class MakeTsListCommand extends BaseCommand {
         const apps = new Apps(options.folders, options.rootFolder);
         apps.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            apps.makeTsList(this.options).then((result: boolean) => {
+            apps.makeTsList(options).then((result: boolean) => {
                 this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -58,7 +58,7 @@ export class MakeTsListCommand extends BaseCommand {
         const app = new App(options.folder, options.rootFolder);
         app.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            app.makeTsList(this.options).then((result: boolean) => {
+            app.makeTsList(options).then((result: boolean) => {
                 this.log('make-ts-list').info('Done!');
                 resolve(true);
             }).catch((e: any) => {

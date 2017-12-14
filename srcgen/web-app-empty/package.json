@@ -56,7 +56,7 @@
     "@angular/cli": "1.6.0",
     "@angular/compiler-cli": "^5.1.0",
     "@angular/language-service": "^5.1.0",
-    "@rucken/cli": "^1.4.1",
+    "@rucken/cli": "^1.5.1",
     "@types/jasmine": "~2.8.2",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.0.58",
