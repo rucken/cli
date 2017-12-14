@@ -48,7 +48,7 @@
 	"devDependencies": {
 		"@types/chai": "^4.0.10",
 		"@types/mocha": "^2.2.44",
-		"@types/node": "^8.0.58",
+		"@types/node": "^8.5.1",
 		"@types/sinon": "^4.1.2",
 		"chai": "^4.1.2",
 		"mocha": "^4.0.1",
@@ -57,9 +57,9 @@
 		"typescript": "2.5.3"
 	},
 	"dependencies": {
-		"@angular/common": "5.1.0",
-		"@angular/compiler": "5.1.0",
-		"@angular/core": "5.1.0",
+		"@angular/common": "5.1.1",
+		"@angular/compiler": "5.1.1",
+		"@angular/core": "5.1.1",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
 		"@types/cheerio": "^0.22.6",
 		"@types/commander": "^2.12.2",
@@ -67,7 +67,7 @@
 		"@types/dotenv": "^4.0.2",
 		"@types/fs-extra": "^5.0.0",
 		"@types/inflection": "^1.5.28",
-		"@types/lodash": "^4.14.88",
+		"@types/lodash": "^4.14.89",
 		"@types/loglevel": "^1.5.3",
 		"cheerio": "^1.0.0-rc.2",
 		"commander": "^2.12.2",

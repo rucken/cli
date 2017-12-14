@@ -20,6 +20,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "",
       "styles": [
+        "../../../node_modules/ladda/css/ladda.scss",
         "styles.scss"
       ],
       "scripts": [],
