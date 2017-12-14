@@ -1,3 +1,13 @@
+<a name="1.5.5"></a>
+## [1.5.5](https://github.com/rucken/cli/compare/1.5.4...1.5.5) (2017-12-14)
+
+
+### Bug Fixes
+
+* **srcgen:** Update scripts for web-app template ([8cc2449](https://github.com/rucken/cli/commit/8cc2449))
+
+
+
 <a name="1.5.4"></a>
 ## [1.5.4](https://github.com/rucken/cli/compare/1.5.3...1.5.4) (2017-12-14)
 
