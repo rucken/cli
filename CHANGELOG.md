@@ -1,3 +1,13 @@
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/rucken/cli/compare/1.5.0...1.5.1) (2017-12-14)
+
+
+### Bug Fixes
+
+* **commands:** Fix error with pass options to object from command ([60183c6](https://github.com/rucken/cli/commit/60183c6))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/rucken/cli/compare/1.4.1...1.5.0) (2017-12-13)
 
