@@ -74,7 +74,7 @@
     "tslint": "~5.8.0",
     "typescript": "~2.5.3",
     "typescript-formatter": "^7.0.0",
-    "@rucken/cli": "1.5.0",
+    "@rucken/cli": "1.5.2",
     "npm-run-all": "^4.1.2"
   }
 }
