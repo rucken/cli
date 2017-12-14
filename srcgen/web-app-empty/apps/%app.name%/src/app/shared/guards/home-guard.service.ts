@@ -29,8 +29,8 @@ export class <%=app.classPrefix%>HomeGuardService extends AuthGuardService {
       this.initAccesses();
     }
     if (this.accountService.account && route.data.name && route.data.name === 'home' && this.firstHomeActivated) {
-      let founded = false;
       /* todo: uncomment this, if you want redirect from home page to specific user page, detected with permission
+      let founded = false;
       if (!founded && this.accessToReadAdminPage) {
         founded = true;
         this.router.navigate(['/admin']);
@@ -38,7 +38,7 @@ export class <%=app.classPrefix%>HomeGuardService extends AuthGuardService {
       if (!founded && this.accessToReadAccountPage) {
         founded = true;
         this.router.navigate(['/account']);
-      }*/
+      }
       if (!founded) {
         this.app.component.showErrorModal(
           this.translateService.instant('Not access')
@@ -46,7 +46,7 @@ export class <%=app.classPrefix%>HomeGuardService extends AuthGuardService {
         return false;
       } else {
         this.firstHomeActivated = false;
-      }
+      }*/
     }
     return true;
   }

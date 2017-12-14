@@ -1,3 +1,13 @@
+<a name="1.5.4"></a>
+## [1.5.4](https://github.com/rucken/cli/compare/1.5.3...1.5.4) (2017-12-14)
+
+
+### Bug Fixes
+
+* **base:** Fix add BaseAppModule to index.ts on makeTsList method ([bc2b206](https://github.com/rucken/cli/commit/bc2b206))
+
+
+
 <a name="1.5.3"></a>
 ## [1.5.3](https://github.com/rucken/cli/compare/1.5.2...1.5.3) (2017-12-14)
 

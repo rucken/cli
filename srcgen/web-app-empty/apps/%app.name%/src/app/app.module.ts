@@ -36,6 +36,7 @@ import {
   PositioningService,
   TabsetConfig,
   TooltipConfig,
+  BsLocaleService
 } from 'ngx-bootstrap';
 
 import { 
@@ -76,6 +77,7 @@ import {
     PaginationConfig,
     TabsetConfig,
     PopoverConfig,
+    BsLocaleService,
     RuckenCoreServices,
     RuckenWebServices,
     <%=app.classPrefix%>CoreServices,
