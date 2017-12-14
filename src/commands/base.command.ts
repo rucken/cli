@@ -16,8 +16,18 @@ export class BaseCommand extends Base {
         if (!this.options.lib && !this.options.app) {
             this.log('process').info('Detect: target=apps (' + this.project.appsConfigs.map((item: any) => item.name).join(', ') + ')');
             this.log('process').info('Detect: target=libs (' + this.project.libsConfigs.map((item: any) => item.name).join(', ') + ')');
-            await this.processApps({ folders: this.project.appsPaths, rootFolder: this.rootFolder });
-            await this.processLibs({ folders: this.project.libsPaths, rootFolder: this.rootFolder });
+            await this.processApps({ 
+                folders: this.project.appsPaths,
+                rootFolder: this.rootFolder,
+                packages: this.project.appsConfigs,
+                project: this.project
+            });
+            await this.processLibs({ 
+                folders: this.project.libsPaths,
+                rootFolder: this.rootFolder,
+                packages: this.project.libsConfigs,
+                project: this.project
+            });
         }
         if (this.options.lib) {
             if (this.options.lib === true) {
