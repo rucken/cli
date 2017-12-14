@@ -13,7 +13,7 @@ export class ClearCommand extends BaseCommand {
         const libs = new Libs(options.folders, options.rootFolder);
         libs.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            libs.clear(this.options).then((result: boolean) => {
+            libs.clear(options).then((result: boolean) => {
                 this.log('clear').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -28,7 +28,7 @@ export class ClearCommand extends BaseCommand {
         const lib = new Lib(options.folder, options.rootFolder);
         lib.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            lib.clear(this.options).then((result: boolean) => {
+            lib.clear(options).then((result: boolean) => {
                 this.log('clear').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -43,7 +43,7 @@ export class ClearCommand extends BaseCommand {
         const apps = new Apps(options.folders, options.rootFolder);
         apps.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            apps.clear(this.options).then((result: boolean) => {
+            apps.clear(options).then((result: boolean) => {
                 this.log('clear').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -58,7 +58,7 @@ export class ClearCommand extends BaseCommand {
         const app = new App(options.folder, options.rootFolder);
         app.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            app.clear(this.options).then((result: boolean) => {
+            app.clear(options).then((result: boolean) => {
                 this.log('clear').info('Done!');
                 resolve(true);
             }).catch((e: any) => {

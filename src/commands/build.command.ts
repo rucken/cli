@@ -14,7 +14,7 @@ export class BuildCommand extends BaseCommand {
         libs.debug = this.debug;
         const result = false;
         return await new Promise<boolean>((resolve: any) =>
-            libs.build(this.options).then((result: boolean) => {
+            libs.build(options).then((result: boolean) => {
                 this.log('build').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -29,7 +29,7 @@ export class BuildCommand extends BaseCommand {
         const lib = new Lib(options.folder, options.rootFolder);
         lib.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            lib.build(this.options).then((result: boolean) => {
+            lib.build(options).then((result: boolean) => {
                 this.log('build').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -44,7 +44,7 @@ export class BuildCommand extends BaseCommand {
         const apps = new Apps(options.folders, options.rootFolder);
         apps.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            apps.build(this.options).then((result: boolean) => {
+            apps.build(options).then((result: boolean) => {
                 this.log('build').info('Done!');
                 resolve(true);
             }).catch((e: any) => {
@@ -59,7 +59,7 @@ export class BuildCommand extends BaseCommand {
         const app = new App(options.folder, options.rootFolder);
         app.debug = this.debug;
         return await new Promise<boolean>((resolve: any) =>
-            app.build(this.options).then((result: boolean) => {
+            app.build(options).then((result: boolean) => {
                 this.log('build').info('Done!');
                 resolve(true);
             }).catch((e: any) => {

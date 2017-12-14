@@ -115,7 +115,7 @@ export class Apps extends Base {
             if (!customOptions) {
                 customOptions = {};
             }
-            customOptions.package = customOptions.packages ? customOptions.packages[i] : null;
+            customOptions.package = customOptions.packages ? customOptions.packages[i] : customOptions.package;
             results.push(await app.prepare(customOptions));
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);

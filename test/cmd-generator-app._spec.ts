@@ -151,7 +151,6 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                     files: files
                  }) => {
                     files.forEach((file: string) => {
-                        console.log(file, fsExtra.existsSync(file))
                         assert.equal(fsExtra.existsSync(file), true);
                     });
                 });

@@ -63,7 +63,7 @@ rucken commands clear prepare link ~~lib lib1
 rucken grid --entity-name apple  
 rucken grid --help  
 ```
-### Scaffold
+### Scaffold commands
 
 ```bash
 # generate new application based on rucken template
