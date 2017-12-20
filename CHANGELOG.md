@@ -1,3 +1,13 @@
+<a name="1.5.6"></a>
+## [1.5.6](https://github.com/rucken/cli/compare/1.5.5...1.5.6) (2017-12-20)
+
+
+### Bug Fixes
+
+* **commandRunner:** Add check stderr for output for detect status ([d159580](https://github.com/rucken/cli/commit/d159580))
+
+
+
 <a name="1.5.5"></a>
 ## [1.5.5](https://github.com/rucken/cli/compare/1.5.4...1.5.5) (2017-12-14)
 
