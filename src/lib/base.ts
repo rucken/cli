@@ -63,14 +63,16 @@ export class Base {
             commandArgs,
             { cwd: cwdDir ? cwdDir : process.cwd() }
         );
-        if (child.status === 0 || child.status === '0') {
-            this.log('commandRunner').debug('status', child.status);
-            this.log('commandRunner').debug('stderr', child.stderr.toString());
-            this.log('commandRunner').debug('stdout', child.stdout.toString());
-            this.log('commandRunner').debug('end');
-        } else {
+        const stderrWords=child.stderr ? _.words(child.stderr.toString()).filter((word:string)=>word):[];
+        if (child.status === 1 || child.status === '1' || stderrWords.length > 0) {
             this.log('commandRunner').error('status', child.status);
             this.log('commandRunner').error('stderr', child.stderr.toString());
+            this.log('commandRunner').debug('stdout', child.stdout.toString());
+            this.log('commandRunner').debug('end');
+        }
+        else {
+            this.log('commandRunner').debug('status', child.status);
+            this.log('commandRunner').debug('stderr', child.stderr.toString());
             this.log('commandRunner').debug('stdout', child.stdout.toString());
             this.log('commandRunner').debug('end');
         }
