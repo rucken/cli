@@ -59,7 +59,7 @@
 	"dependencies": {
 		"@angular/common": "5.1.1",
 		"@angular/compiler": "5.1.1",
-		"@angular/core": "5.1.1",
+		"@angular/core": "5.1.2",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
 		"@types/cheerio": "^0.22.6",
 		"@types/commander": "^2.12.2",
