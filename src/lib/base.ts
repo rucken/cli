@@ -106,7 +106,8 @@ export class Base {
             folder = customOptions.srcFolder;
         }
         this.log('build').debug(folder);
-        const commandString = 'ngm build -p ' + folder + ' --clean';
+        
+        const commandString = 'ng-packagr -p ' + folder + '/ng-package.json';
         if (!fsExtra.existsSync(folder)) {
             this.log('build').debug(commandString);
             this.log('build').error(`Folder does not exists: ${folder}`);
@@ -139,12 +140,12 @@ export class Base {
     }
     async linkDist(customOptions?: { folder?: string, srcFolder?: string }) {
         this.log('linkDist').debug('start');
-        let folder = path.resolve(this.folder + '/src');
+        let folder = path.resolve(this.folder + '/dist');
         if (customOptions && customOptions.srcFolder) {
             folder = customOptions.srcFolder;
         }
         this.log('linkDist').debug(folder);
-        const commandString = 'ngm link -p ' + folder + ' --here';
+        const commandString = 'npm link ' + folder;
         if (!fsExtra.existsSync(folder)) {
             this.log('linkDist').debug(commandString);
             this.log('linkDist').error(`Folder does not exists: ${folder}`);

@@ -1,6 +1,5 @@
 {
     "name": "@<%=app.name%>/core",
-    "main": "index.js",
     "version": "0.0.0",
     "peerDependencies": {
         "@angular/common": "*",
