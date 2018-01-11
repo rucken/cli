@@ -246,7 +246,7 @@ export class Base {
         if (fsExtra.existsSync(distPackagePath)) {
             distPackage = fsExtra.readJSONSync(distPackagePath);
         }
-        if (rootPackage && distPackage) {            
+        if (rootPackage && distPackage) {
             for (let key in rootPackage) {
                 if (key.toLowerCase().indexOf('dependencies') !== -1) {
                     let dependencies = rootPackage[key];
@@ -254,6 +254,11 @@ export class Base {
                         for (let devKey in dependencies) {
                             if (distPackage[key][devKey] === '*') {
                                 distPackage[key][devKey] = dependencies[devKey];
+                                if (key === 'dependencies' &&
+                                    distPackage['peerDependencies'] &&
+                                    distPackage['peerDependencies'][devKey] === '*') {
+                                    distPackage['peerDependencies'][devKey] = dependencies[devKey];
+                                }
                             }
                         }
                     }
