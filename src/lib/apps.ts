@@ -34,7 +34,7 @@ export class Apps extends Base {
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async link(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
+    async link(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string, rootPackagePath?: string, distPackagePath?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);
@@ -47,7 +47,7 @@ export class Apps extends Base {
         }
         return results.reduce((all: boolean, current: boolean) => { return all && current; }, true);
     }
-    async linkNpm(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string }) {
+    async linkNpm(customOptions?: { package?: any, packages?: any[], folder?: string, srcFolder?: string, rootPackagePath?: string, srcPackagePath?: string }) {
         const results = [];
         for (let i = 0; i < this.folders.length; i++) {
             const app = new App(this.folders[i], this.rootFolder);

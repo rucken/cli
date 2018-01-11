@@ -84,6 +84,7 @@ describe('Lib', () => {
     });
     describe('#link()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
+        const dirRoot = path.resolve(__dirname, '..');
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/lib1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.d.ts`);
         beforeEach(() => {
@@ -98,7 +99,7 @@ describe('Lib', () => {
             assert.equal(fsExtra.existsSync(dirDistIndex), false);
         });
         it('npm link ./test/fixture/libs/lib1/dist', (done) => {
-            const lib = new Lib(dir);
+            const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
             lib.link().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
@@ -111,7 +112,7 @@ describe('Lib', () => {
     });
     describe('#linkNpm()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
-        const dirRoot = path.resolve(__dirname);
+        const dirRoot = path.resolve(__dirname, '..');
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/lib1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.ts`);
         beforeEach(() => {

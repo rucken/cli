@@ -63,7 +63,7 @@ export class Base {
             commandArgs,
             { cwd: cwdDir ? cwdDir : process.cwd() }
         );
-        const stderrWords=child.stderr ? _.words(child.stderr.toString()).filter((word:string)=>word):[];
+        const stderrWords = child.stderr ? _.words(child.stderr.toString()).filter((word: string) => word) : [];
         if (child.status === 1 || child.status === '1' || stderrWords.length > 0) {
             this.log('commandRunner').error('status', child.status);
             this.log('commandRunner').error('stderr', child.stderr.toString());
@@ -86,6 +86,7 @@ export class Base {
         }
         this.log('clear').debug(folder);
         const commandString = './node_modules/.bin/del-cli ' +
+            path.resolve(folder + '/src/package-lock.json') + ' ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
             path.resolve(folder + '/dist') + ' ' +
             path.resolve(folder + '/.tmp') + ' --force';
@@ -106,7 +107,7 @@ export class Base {
             folder = customOptions.srcFolder;
         }
         this.log('build').debug(folder);
-        
+
         const commandString = 'ng-packagr -p ' + folder + '/ng-package.json';
         if (!fsExtra.existsSync(folder)) {
             this.log('build').debug(commandString);
@@ -118,12 +119,13 @@ export class Base {
         this.log('build').debug('end');
         return result;
     }
-    async link(customOptions?: { folder?: string, srcFolder?: string }) {
+    async link(customOptions?: { folder?: string, srcFolder?: string, rootPackagePath?: string, distPackagePath?: string }) {
         this.log('link').debug('start');
         const items = [
             await this.linkNpmClear(customOptions),
             await this.linkDist(customOptions),
-            await this.linkNpmClear(customOptions)
+            await this.linkNpmClear(customOptions),
+            await this.updateDependencies(customOptions),
         ];
         this.log('link').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
@@ -182,6 +184,8 @@ export class Base {
         }
         this.log('linkNpmClear').debug(folder);
         const commandString = './node_modules/.bin/del-cli ' +
+            path.resolve(folder + '/src/package-lock.json') + ' ' +
+            path.resolve(folder + '/dist/package-lock.json') + ' ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
             path.resolve(folder + '/dist/node_modules') + ' --force';
         if (!fsExtra.existsSync(folder)) {
@@ -220,6 +224,45 @@ export class Base {
             this.log('changeVersion').debug('writeJSONSync');
         }
         this.log('changeVersion').debug('end');
+        return await true;
+    }
+    async updateDependencies(customOptions?: { rootPackagePath?: string, distPackagePath?: string }) {
+        this.log('updateDependencies').debug('start');
+        let rootPackagePath = path.resolve(this.rootFolder + '/package.json');
+        let distPackagePath = path.resolve(this.folder + '/dist/package.json');
+        if (customOptions && customOptions.rootPackagePath) {
+            rootPackagePath = customOptions.rootPackagePath;
+        }
+        if (customOptions && customOptions.distPackagePath) {
+            distPackagePath = customOptions.distPackagePath;
+        }
+
+        let rootPackage: any = null;
+        let distPackage: any = null;
+
+        if (fsExtra.existsSync(rootPackagePath)) {
+            rootPackage = fsExtra.readJSONSync(rootPackagePath);
+        }
+        if (fsExtra.existsSync(distPackagePath)) {
+            distPackage = fsExtra.readJSONSync(distPackagePath);
+        }
+        if (rootPackage && distPackage) {            
+            for (let key in rootPackage) {
+                if (key.toLowerCase().indexOf('dependencies') !== -1) {
+                    let dependencies = rootPackage[key];
+                    if (distPackage[key]) {
+                        for (let devKey in dependencies) {
+                            if (distPackage[key][devKey] === '*') {
+                                distPackage[key][devKey] = dependencies[devKey];
+                            }
+                        }
+                    }
+                }
+            }
+            fsExtra.writeJSONSync(distPackagePath, distPackage, { spaces: 4 });
+            this.log('updateDependencies').debug('writeJSONSync');
+        }
+        this.log('updateDependencies').debug('end');
         return await true;
     }
     async extractTranslate(customOptions?: { srcFolder?: string }) {
