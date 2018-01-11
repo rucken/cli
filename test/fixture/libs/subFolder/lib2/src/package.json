@@ -1,9 +1,9 @@
 {
     "name": "@test/lib2",
-    "version": "1.5.6",
+    "version": "1.6.0",
     "dependencies": {
-        "@angular/common": "5.1.3",
-        "@angular/compiler": "5.1.3",
-        "@angular/core": "5.1.3"
+        "@angular/common": "*",
+        "@angular/compiler": "*",
+        "@angular/core": "*"
     }
 }
