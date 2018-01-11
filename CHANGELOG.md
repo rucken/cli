@@ -1,3 +1,19 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/rucken/cli/compare/1.5.6...1.7.0) (2018-01-11)
+
+
+### Bug Fixes
+
+* **styles:** Remove custom styles like "app-grid-...." and others ([ab37f17](https://github.com/rucken/cli/commit/ab37f17))
+
+
+### Features
+
+* **base:** Add updateDependencies method and run it after dist npm link ([b1271be](https://github.com/rucken/cli/commit/b1271be))
+* **ng-package:** Replace ngm-cli to ng-packagr ([9b5aa1f](https://github.com/rucken/cli/commit/9b5aa1f))
+
+
+
 <a name="1.5.6"></a>
 ## [1.5.6](https://github.com/rucken/cli/compare/1.5.5...1.5.6) (2017-12-20)
 
