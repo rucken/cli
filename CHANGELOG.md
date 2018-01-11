@@ -1,3 +1,13 @@
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/rucken/cli/compare/1.7.0...1.7.1) (2018-01-11)
+
+
+### Bug Fixes
+
+* **base:** Add set peerDependencies from dependencies ([647d3c9](https://github.com/rucken/cli/commit/647d3c9))
+
+
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/rucken/cli/compare/1.5.6...1.7.0) (2018-01-11)
 
