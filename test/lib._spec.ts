@@ -58,7 +58,7 @@ describe('Lib', () => {
     describe('#build()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
         const dirDist = path.resolve(`${dir}/dist`);
-        const dirDistIndex = path.resolve(`${dirDist}/index.js`);
+        const dirDistIndex = path.resolve(`${dirDist}/index.d.ts`);
         beforeEach(() => {
             if (fsExtra.existsSync(dirDist)) {
                 del.sync([dirDist]);
@@ -70,7 +70,7 @@ describe('Lib', () => {
         it(`not exists ${dirDistIndex}`, () => {
             assert.equal(fsExtra.existsSync(dirDistIndex), false);
         });
-        it('ngm build -p ./test/fixture/libs/lib1/src --clean', (done) => {
+        it('ng-packagr -p ./test/fixture/libs/lib1/src/ng-package.json', (done) => {
             const lib = new Lib(dir);
             lib.debug = debug;
             lib.build().then((data: any) => {
@@ -84,8 +84,9 @@ describe('Lib', () => {
     });
     describe('#link()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
+        const dirRoot = path.resolve(__dirname, '..');
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/lib1`);
-        const dirDistIndex = path.resolve(`${dirDist}/index.js`);
+        const dirDistIndex = path.resolve(`${dirDist}/index.d.ts`);
         beforeEach(() => {
             if (fsExtra.existsSync(dirDist)) {
                 del.sync([dirDist]);
@@ -97,8 +98,8 @@ describe('Lib', () => {
         it(`not exists ${dirDistIndex}`, () => {
             assert.equal(fsExtra.existsSync(dirDistIndex), false);
         });
-        it('ngm link -p ./test/fixture/libs/lib1/src --here', (done) => {
-            const lib = new Lib(dir);
+        it('npm link ./test/fixture/libs/lib1/dist', (done) => {
+            const lib = new Lib(dir, dirRoot);
             lib.debug = debug;
             lib.link().then((data: boolean) => {
                 assert.equal(fsExtra.existsSync(dirDist), true);
@@ -111,7 +112,7 @@ describe('Lib', () => {
     });
     describe('#linkNpm()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
-        const dirRoot = path.resolve(__dirname);
+        const dirRoot = path.resolve(__dirname, '..');
         const dirDist = path.resolve(`${dir}/../../../../node_modules/@test/lib1`);
         const dirDistIndex = path.resolve(`${dirDist}/index.ts`);
         beforeEach(() => {
