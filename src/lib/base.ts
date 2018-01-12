@@ -125,7 +125,6 @@ export class Base {
             await this.linkNpmClear(customOptions),
             await this.linkDist(customOptions),
             await this.linkNpmClear(customOptions),
-            await this.updateDependencies(customOptions),
         ];
         this.log('link').debug('end');
         return items.reduce((all: boolean, current: boolean) => { return all && current; }, true);
@@ -226,45 +225,49 @@ export class Base {
         this.log('changeVersion').debug('end');
         return await true;
     }
-    async updateDependencies(customOptions?: { rootPackagePath?: string, distPackagePath?: string }) {
+    async updateDependencies(customOptions?: { rootPackagePath?: string, srcPackagePath?: string }) {
         this.log('updateDependencies').debug('start');
         let rootPackagePath = path.resolve(this.rootFolder + '/package.json');
-        let distPackagePath = path.resolve(this.folder + '/dist/package.json');
+        let srcPackagePath = path.resolve(this.folder + '/src/package.json');
         if (customOptions && customOptions.rootPackagePath) {
             rootPackagePath = customOptions.rootPackagePath;
         }
-        if (customOptions && customOptions.distPackagePath) {
-            distPackagePath = customOptions.distPackagePath;
+        if (customOptions && customOptions.srcPackagePath) {
+            srcPackagePath = customOptions.srcPackagePath;
         }
 
+        this.log('updateDependencies').debug('rootPackagePath', rootPackagePath);
+        this.log('updateDependencies').debug('srcPackagePath', srcPackagePath);
+
         let rootPackage: any = null;
-        let distPackage: any = null;
+        let srcPackage: any = null;
 
         if (fsExtra.existsSync(rootPackagePath)) {
             rootPackage = fsExtra.readJSONSync(rootPackagePath);
         }
-        if (fsExtra.existsSync(distPackagePath)) {
-            distPackage = fsExtra.readJSONSync(distPackagePath);
+        if (fsExtra.existsSync(srcPackagePath)) {
+            srcPackage = fsExtra.readJSONSync(srcPackagePath);
         }
-        if (rootPackage && distPackage) {
+        if (rootPackage && srcPackage) {
             for (let key in rootPackage) {
                 if (key.toLowerCase().indexOf('dependencies') !== -1) {
                     let dependencies = rootPackage[key];
-                    if (distPackage[key]) {
+                    if (srcPackage[key]) {
                         for (let devKey in dependencies) {
-                            if (distPackage[key][devKey] === '*') {
-                                distPackage[key][devKey] = dependencies[devKey];
-                                if (key === 'dependencies' &&
-                                    distPackage['peerDependencies'] &&
-                                    distPackage['peerDependencies'][devKey] === '*') {
-                                    distPackage['peerDependencies'][devKey] = dependencies[devKey];
-                                }
+                            if (srcPackage[key][devKey] !== undefined) {
+                                srcPackage[key][devKey] = dependencies[devKey];
+                            }
+                            if (key === 'dependencies' &&
+                                srcPackage['peerDependencies'] &&
+                                srcPackage['peerDependencies'][devKey] !== undefined) {
+                                srcPackage['peerDependencies'][devKey] = dependencies[devKey];
                             }
                         }
                     }
                 }
             }
-            fsExtra.writeJSONSync(distPackagePath, distPackage, { spaces: 4 });
+            this.log('updateDependencies').debug('srcPackage', srcPackage);
+            fsExtra.writeJSONSync(srcPackagePath, srcPackage, { spaces: 4 });
             this.log('updateDependencies').debug('writeJSONSync');
         }
         this.log('updateDependencies').debug('end');
@@ -337,6 +340,7 @@ export class Base {
             await this.extractTranslate(customOptions),
             await this.makeTsList(customOptions),
             await this.makeTsList(customOptions),
+            await this.updateDependencies(customOptions),
             await this.changeVersion(customOptions)
         ];
         this.log('prepare').debug('end');
