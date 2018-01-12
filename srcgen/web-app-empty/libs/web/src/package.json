@@ -7,8 +7,6 @@
         "@angular/core": "*",
         "@angular/forms": "*",
         "@angular/router": "*",
-        "@ngui/auto-complete": "*",
-        "angular2-ladda": "*",
         "angular2-text-mask": "*"
     },
     "dependencies": {
