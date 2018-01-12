@@ -140,7 +140,7 @@ describe('Lib', () => {
     });
     describe('#linkNpmClear()', () => {
         const dir = path.resolve(`${__dirname}/fixture/libs/lib1`);
-        const dirDist = path.resolve(`${dir}/dist/node_modules`);
+        const dirDist = path.resolve(`${dir}/src/node_modules`);
         beforeEach(() => {
             if (!fsExtra.existsSync(dirDist)) {
                 fsExtra.mkdirSync(dirDist);

@@ -57,6 +57,8 @@
 		"typescript": "2.5.3"
 	},
 	"dependencies": {
+		"@angular/cli": "1.6.4",
+		"@angular/compiler-cli": "5.2.0",
 		"@angular/common": "5.2.0",
 		"@angular/compiler": "5.2.0",
 		"@angular/core": "5.2.0",
@@ -83,7 +85,7 @@
 		"lodash": "^4.17.4",
 		"loglevel": "^1.6.1",
 		"loglevel-colored-level-prefix": "^1.0.0",
-		"ng-packagr": "^1.6.0",
+		"ng-packagr": "^2.0.0-rc.10",
 		"npm-run": "^4.1.2",
 		"po2json": "^0.4.5",
 		"recursive-readdir": "^2.2.1",
