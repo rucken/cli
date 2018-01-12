@@ -1,3 +1,14 @@
+<a name="1.7.2"></a>
+## [1.7.2](https://github.com/rucken/cli/compare/1.7.1...1.7.2) (2018-01-12)
+
+
+### Bug Fixes
+
+* **base:** Move updateDependencies to prepare command and fix it ([79ee0cc](https://github.com/rucken/cli/commit/79ee0cc))
+* **srcgen:** Update html for "web-grid" scaffold script ([d07adf5](https://github.com/rucken/cli/commit/d07adf5))
+
+
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://github.com/rucken/cli/compare/1.7.0...1.7.1) (2018-01-11)
 

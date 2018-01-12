@@ -1,6 +1,6 @@
 {
     "name": "@test/lib2",
-    "version": "1.7.1",
+    "version": "1.7.2",
     "peerDependencies": {
         "@angular/common": "5.2.0",
         "@angular/compiler": "5.2.0",
