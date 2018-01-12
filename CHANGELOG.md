@@ -1,3 +1,13 @@
+<a name="1.7.3"></a>
+## [1.7.3](https://github.com/rucken/cli/compare/1.7.2...1.7.3) (2018-01-12)
+
+
+### Bug Fixes
+
+* **srcgen:** Update "web-app-empty" templates ([6347089](https://github.com/rucken/cli/commit/6347089))
+
+
+
 <a name="1.7.2"></a>
 ## [1.7.2](https://github.com/rucken/cli/compare/1.7.1...1.7.2) (2018-01-12)
 
