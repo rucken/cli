@@ -28,7 +28,6 @@ import {
   WebTokenService,
 } from '@rucken/web';
 import { HomeGuardService, SharedModule } from '@rucken/web';
-import { LaddaModule } from 'angular2-ladda';
 import {
   ComponentLoaderFactory,
   PaginationConfig,
@@ -57,11 +56,6 @@ import {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    LaddaModule.forRoot({
-      style: 'expand-left',
-      spinnerColor: 'white',
-      spinnerLines: 12
-    }),
     TranslateModule.forRoot({
       loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
     }),
