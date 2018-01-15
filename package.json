@@ -64,7 +64,6 @@
 		"@angular/core": "5.2.0",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
 		"@types/cheerio": "^0.22.7",
-		"@types/commander": "^2.12.2",
 		"@types/del": "^3.0.0",
 		"@types/dotenv": "^4.0.2",
 		"@types/fs-extra": "^5.0.0",
