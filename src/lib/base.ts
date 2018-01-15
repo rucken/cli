@@ -85,7 +85,7 @@ export class Base {
             folder = customOptions.folder;
         }
         this.log('clear').debug(folder);
-        const commandString = './node_modules/.bin/del-cli ' +
+        const commandString = 'del-cli ' +
             path.resolve(folder + '/src/package-lock.json') + ' ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
             path.resolve(folder + '/dist') + ' ' +
@@ -182,7 +182,7 @@ export class Base {
             folder = customOptions.folder;
         }
         this.log('linkNpmClear').debug(folder);
-        const commandString = './node_modules/.bin/del-cli ' +
+        const commandString = 'del-cli ' +
             path.resolve(folder + '/src/package-lock.json') + ' ' +
             path.resolve(folder + '/dist/package-lock.json') + ' ' +
             path.resolve(folder + '/src/node_modules') + ' ' +
@@ -399,7 +399,7 @@ export class Base {
         if (!fsExtra.existsSync(optionsFile)) {
             this.log(name).error(`File does not exists: ${optionsFile}`);
         }
-        const commandString = 'node ./node_modules/srcgen/bin/srcgen.js -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
+        const commandString = 'node ' + path.resolve(__dirname + '/../../node_modules/srcgen/bin/srcgen.js') + ' -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
         if (!fsExtra.existsSync(folder)) {
             this.log(name).debug(commandString);
             this.log(name).error(`Folder does not exists: ${folder}`);
