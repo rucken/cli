@@ -59,7 +59,7 @@
 	"dependencies": {
 		"@angular/cli": "1.6.4",
 		"@angular/compiler-cli": "5.2.0",
-		"@angular/common": "5.2.0",
+		"@angular/common": "5.2.1",
 		"@angular/compiler": "5.2.0",
 		"@angular/core": "5.2.0",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
