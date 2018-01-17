@@ -61,7 +61,7 @@
 		"@angular/compiler-cli": "5.2.0",
 		"@angular/common": "5.2.0",
 		"@angular/compiler": "5.2.0",
-		"@angular/core": "5.2.0",
+		"@angular/core": "5.2.1",
 		"@biesbjerg/ngx-translate-extract": "^2.3.4",
 		"@types/cheerio": "^0.22.7",
 		"@types/del": "^3.0.0",
