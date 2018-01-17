@@ -399,7 +399,16 @@ export class Base {
         if (!fsExtra.existsSync(optionsFile)) {
             this.log(name).error(`File does not exists: ${optionsFile}`);
         }
-        const commandString = 'node ' + path.resolve(__dirname + '/../../node_modules/srcgen/bin/srcgen.js') + ' -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
+        let commandString = null;
+        if (!commandString && fsExtra.existsSync(path.resolve(__dirname + '/../../node_modules/srcgen/bin/srcgen.js'))) {
+            commandString = 'node ' + path.resolve(__dirname + '/../../node_modules/srcgen/bin/srcgen.js') + ' -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
+        }
+        if (!commandString && fsExtra.existsSync(path.resolve(__dirname + '/../../../../srcgen/bin/srcgen.js'))) {
+            commandString = 'node ' + path.resolve(__dirname + '/../../../../srcgen/bin/srcgen.js') + ' -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
+        }
+        if (!commandString) {
+            commandString = 'node srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
+        }
         if (!fsExtra.existsSync(folder)) {
             this.log(name).debug(commandString);
             this.log(name).error(`Folder does not exists: ${folder}`);
