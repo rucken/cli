@@ -1,3 +1,13 @@
+<a name="1.7.5"></a>
+## [1.7.5](https://github.com/rucken/cli/compare/1.7.4...1.7.5) (2018-01-17)
+
+
+### Bug Fixes
+
+* **srcgen:** Add search srcgen in other folders ([4313d93](https://github.com/rucken/cli/commit/4313d93))
+
+
+
 <a name="1.7.4"></a>
 ## [1.7.4](https://github.com/rucken/cli/compare/1.7.3...1.7.4) (2018-01-15)
 
