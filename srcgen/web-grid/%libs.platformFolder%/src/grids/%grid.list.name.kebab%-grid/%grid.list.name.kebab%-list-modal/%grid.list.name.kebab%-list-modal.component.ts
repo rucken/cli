@@ -28,7 +28,7 @@ export class <%=grid.list.name.camel%>ListModalComponent extends BaseResourceMod
   modelMeta: any = <%=grid.name.camel%>.meta();
 
   select<%=grid.name.camel%>(items: any[] | <%=grid.name.camel%>[]) {
-    this.item = items[0];
+    this.item = items ? items[0] : null;
     this.items = items;
   }
 }
