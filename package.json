@@ -57,7 +57,7 @@
 		"typescript": "2.6.2"
 	},
 	"dependencies": {
-		"@angular/cli": "1.6.4",
+		"@angular/cli": "1.6.5",
 		"@angular/compiler-cli": "5.2.0",
 		"@angular/common": "5.2.0",
 		"@angular/compiler": "5.2.0",
