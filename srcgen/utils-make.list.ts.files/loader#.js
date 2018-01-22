@@ -12,7 +12,7 @@ if (!packageName && fs.existsSync(path.resolve(__srcdir, '..', '..', scan.path, 
 }
 console.log('Scan dir:' + scanPath);
 console.log('Module name: ' + packageName);
-recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
+recursive(scanPath, ['*server*', '!*.ts', '*node_modules*'], function (err, files) {
   files = sortPaths(files, path.sep);
   var exportArray = [];
   var exportEntities = {};
@@ -65,7 +65,7 @@ recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
                     } else {
                       if ((
                         className.indexOf('AppModule') === -1 || className.indexOf('BaseAppModule') !== -1
-                       ) && className.indexOf('PageModule') === -1 && className.indexOf('FrameModule') === -1) {
+                      ) && className.indexOf('PageModule') === -1 && className.indexOf('FrameModule') === -1) {
                         exportEntities[entities[e]].push(className + '.forRoot()');
                       }
                     }
@@ -101,7 +101,7 @@ recursive(scanPath, ['!*.ts', '*node_modules*'], function (err, files) {
           }
           if (!founded && '/index' !== classFile && (
             className.indexOf('AppModule') === -1 || className.indexOf('BaseAppModule') !== -1
-           )) {
+          )) {
             var importLine = 'import { ' + className + ' } from \'.' + classFile + '\';';
             exportArray.push(importLine);
             var exportLine = 'export { ' + className + ' } from \'.' + classFile + '\';';
