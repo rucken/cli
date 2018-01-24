@@ -1,3 +1,16 @@
+<a name="1.7.6"></a>
+## [1.7.6](https://github.com/rucken/cli/compare/1.7.5...1.7.6) (2018-01-24)
+
+
+### Bug Fixes
+
+* **deps:** Remove no used dependencies ([828f201](https://github.com/rucken/cli/commit/828f201))
+* **modals:** Fix errors on get item from null array ([06a1ed4](https://github.com/rucken/cli/commit/06a1ed4))
+* **srcgen:** Exclude all files from index.ts contains *server* ([925ce45](https://github.com/rucken/cli/commit/925ce45))
+* **ssr:** Exclude detect app is app on scan ".angular-cli.json" if platform=server ([48f3a2d](https://github.com/rucken/cli/commit/48f3a2d))
+
+
+
 <a name="1.7.5"></a>
 ## [1.7.5](https://github.com/rucken/cli/compare/1.7.4...1.7.5) (2018-01-17)
 
