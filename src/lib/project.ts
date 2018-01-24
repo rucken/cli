@@ -32,7 +32,7 @@ export class Project extends Base {
         this.libsPaths = this.libsConfigs.map((lib: any) => lib.rootPath);
         this.appsConfigs =
             (this.agularCliJson.apps ? this.agularCliJson.apps : []).
-                filter((app: any) => app.appRoot === undefined).
+                filter((app: any) => app.appRoot === undefined && app.platform !== 'server').
                 map((app: any) => {
                     app.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(app.root, './') + '/../');
                     app.localPath = _.trimStart(app.root, './') + '/../';

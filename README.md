@@ -6,7 +6,7 @@
 [![Gitter][gitter-image]][gitter-url]
 [![Join the chat at telegram][telegram-image]][telegram-url]
 
-Console tools for create and build Angular5+ application based on rucken
+Console tools for create and build Angular5+ application based on [rucken](https://github.com/rucken)
 
 ## What is Rucken?
 
@@ -106,6 +106,8 @@ npm start
 ## Sample projects
 
 [Rucken: Todo](https://github.com/rucken/todo-web) - Simple todo application with: projects, tasks, statuses (backend: http://mockapi.io).
+
+[Rucken: Demo (NestJS)](https://github.com/rucken/core-nestjs) - Simple application demonstrating the basic usage of permissions with NestJS (JWT, PasswordHash, User, Group, Permission, ContentType) (backend: NestJS).
 
 [Rucken: Todo (Django)](https://github.com/rucken/todo-django) - Simple todo application with: auth, groups, permissions, projects, tasks, statuses (backend: Django + plugins).
 

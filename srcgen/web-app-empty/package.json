@@ -45,7 +45,6 @@
     "@rucken/core": "^1.30.2",
     "@rucken/web": "^1.30.2",
     "@ngx-translate/core": "^9.1.1",
-    "ladda": "^1.0.5",
     "lodash": "^4.17.4",
     "ngx-bootstrap": "^2.0.0-rc.0",
     "text-mask-addons": "^3.7.1",
