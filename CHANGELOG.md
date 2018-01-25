@@ -1,3 +1,13 @@
+<a name="1.7.7"></a>
+## [1.7.7](https://github.com/rucken/cli/compare/1.7.6...1.7.7) (2018-01-25)
+
+
+### Bug Fixes
+
+* **srcgen:** Fix write wrong field names on grid generator ([afc1faa](https://github.com/rucken/cli/commit/afc1faa))
+
+
+
 <a name="1.7.6"></a>
 ## [1.7.6](https://github.com/rucken/cli/compare/1.7.5...1.7.6) (2018-01-24)
 
