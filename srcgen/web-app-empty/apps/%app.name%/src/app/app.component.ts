@@ -7,14 +7,14 @@ import { <%=app.classPrefix%>CoreRuI18n } from '@<%=app.name%>/core';
 import { <%=app.classPrefix%>WebRuI18n } from '@<%=app.name%>/web';
 import { AlertModalComponent, BaseAppComponent, RuckenWebRuI18n } from '@rucken/web';
 import * as _ from 'lodash';
-import { defineLocale } from 'ngx-bootstrap/bs-moment';
-import { enGb, ru } from 'ngx-bootstrap/locale';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { enGbLocale, ruLocale } from 'ngx-bootstrap/locale';
 
 import { <%=app.classPrefix%>RuI18n } from './i18n/ru.i18n';
 import { environment } from '../environments/environment';
 
-defineLocale('ru', ru);
-defineLocale('en', enGb);
+defineLocale('ru', ruLocale);
+defineLocale('en', enGbLocale);
 
 @Component({
   selector: '<%=app.name%>-root',
@@ -37,6 +37,8 @@ export class <%=app.classPrefix%>AppComponent extends BaseAppComponent {
 
   // todo: remove this if permission or role is worked
   fullAccess = !environment.production;
+  
+  currentLang = 'en';
 
   constructor(
     public injector: Injector,
