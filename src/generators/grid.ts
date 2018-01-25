@@ -93,10 +93,10 @@ export class GridGenerator extends Base {
             pkField = customOptions.pkField;
         }
         if (customOptions && customOptions.fields) {
-            fields = customOptions.fields.split(',').map(word => word.trim());
+            fields = customOptions.fields.split(',').map(word => _.trim(word,'\'\"').trim());
         }
         if (customOptions && customOptions.dateFields) {
-            dateFields = customOptions.dateFields.split(',').map(word => word.trim());
+            dateFields = customOptions.dateFields.split(',').map(word => _.trim(word,'\'\"').trim());
         }
         const options = _.merge(
             {

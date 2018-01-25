@@ -60,7 +60,7 @@ export class App {
         this.program
             .command('prepare')
             .description('extract-translate + po2ts + make-ts-list')
-            .option('-lcp, --list-components-postfix [name]',
+            .option('-p, --list-components-postfix [name]',
             'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .action(async (dummy, command) => {
                 await (new PrepareCommand(_.merge(this.program, command, dummy))).process();
@@ -103,7 +103,7 @@ export class App {
             });
         this.program
             .command('make-ts-list')
-            .option('-lcp, --list-components-postfix [name]',
+            .option('-p, --list-components-postfix [name]',
             'components postfix for collect to name-value object, example {\'users\': UsersGridComponent} it for list-components-postfix="grid" with component class file name="users-grid.component.ts"')
             .description('make index.ts with import all ts files in application/library')
             .action(async (dummy, command) => {
@@ -112,10 +112,10 @@ export class App {
         this.program
             .command('grid')
             .option('-t, --template [name]', 'template folder name or path', 'web-grid')
-            .option('-en, --entity-name [name]', 'entity name')
-            .option('-pf, --pk-field [name]', 'primary key name', 'id')
-            .option('-fi, --fields [names]', 'fields of entity', '"\'name\',\'title\',\'createdAt\',\'updatedAt\'"')
-            .option('-dfi, --date-fields [names]', 'fields of entity', '"\'name\',\'title\',\'createdAt\',\'updatedAt\'"')
+            .option('-n, --entity-name [name]', 'entity name')
+            .option('-p, --pk-field [name]', 'primary key name', 'id')
+            .option('-f, --fields [names]', 'fields of entity', '\'name\',\'title\',\'createdAt\',\'updatedAt\'')
+            .option('-d, --date-fields [names]', 'fields of entity', '\'createdAt\',\'updatedAt\'')
             .option('-cl, --core-lib [name]', 'core library name, by default it is first app from ".angular-cli.json" with empty "appRoot"')
             .option('-cf, --core-folder [path]', 'core library path')
             .option('-pl, --platform-lib [name]', 'platform library name, by default it is next app from ".angular-cli.json" with empty "appRoot"')
@@ -127,8 +127,8 @@ export class App {
         this.program
             .command('page')
             .option('-t, --template [name]', 'template folder name or path', 'web-page')
-            .option('-pn, --page-name [name]', 'page name')
-            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-n, --page-name [name]', 'page name')
+            .option('-an, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
             .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
             .description('scaffold empty page')
             .action(async (dummy, command) => {
@@ -137,9 +137,9 @@ export class App {
         this.program
             .command('page+frame')
             .option('-t, --template [name]', 'template folder name or path', 'web-page+frame')
-            .option('-pn, --page-name [name]', 'page name')
-            .option('-fn, --frame-name [name]', 'frame name')
-            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-p, --page-name [name]', 'page name')
+            .option('-f, --frame-name [name]', 'frame name')
+            .option('-an, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
             .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
             .description('scaffold empty frame on page')
             .action(async (dummy, command) => {
@@ -148,9 +148,9 @@ export class App {
         this.program
             .command('frame')
             .option('-t, --template [name]', 'template folder name or path', 'web-frame')
-            .option('-pn, --page-name [name]', 'page name')
-            .option('-fn, --frame-name [name]', 'frame name')
-            .option('-al, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
+            .option('-p, --page-name [name]', 'page name')
+            .option('-f, --frame-name [name]', 'frame name')
+            .option('-an, --app-name [name]', 'app name, by default it is first app from ".angular-cli.json"')
             .option('-af, --app-folder [path]', 'app path, by default it is first app from ".angular-cli.json"')
             .description('scaffold empty frame')
             .action(async (dummy, command) => {
