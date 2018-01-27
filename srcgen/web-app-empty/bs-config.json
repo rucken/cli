@@ -1,5 +1,5 @@
 {
     "port": 4201,
-    "server": { "baseDir": "./apps/<%=app.name%>/dist" }
+    "server": { "baseDir": "./apps/<%=app.name%>/dist/browser" }
   }
   

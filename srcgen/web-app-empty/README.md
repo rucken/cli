@@ -1,27 +1,27 @@
-# TemplateStart
+## Usage
+- Make sure you have [node.js](https://nodejs.org/) installed version 6+
+- Make sure you have NPM installed version 3+
+- run `npm install` to install project dependencies
+- run `npm run app:start-dev` to fire up dev server (backend on environment.apiUrl)
+- run `npm run app:start-prod` to fire up prod server (backend on environment.prod.apiUrl)
+- run `npm run app:start-mockapi` to fire up dev server (backend on environment.mockapi.apiUrl)
+- Open browser to [`http://localhost:4200`](http://localhost:4200)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
+## Run with server side rendering (prod)
+- run `npm run ssr:build-prod` to build application
+- run `npm run ssr:start` run with ssr (backend on environment.prod.apiUrl)
+- Open browser to [`http://localhost:4200`](http://localhost:4200)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Run with server side rendering
+- run `npm run ssr:build-mockapi` to build application
+- run `npm run ssr:start` run with ssr (backend on environment.mockapi.apiUrl)
+- Open browser to [`http://localhost:4200`](http://localhost:4200)
 
 ## Build
+- run `npm run build` to build libs and application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Quick links
 
-## Running unit tests
+[Rucken](https://github.com/rucken/core) - Rucken core and web libs.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[Rucken Todo](https://rucken.github.io/todo-web) - Demo application with mock data worked.

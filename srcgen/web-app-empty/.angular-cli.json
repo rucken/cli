@@ -7,7 +7,7 @@
     {
       "name": "<%=app.name%>",
       "root": "./apps/<%=app.name%>/src",
-      "outDir": "./apps/<%=app.name%>/dist",
+      "outDir": "./apps/<%=app.name%>/dist/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -16,7 +16,34 @@
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
+      "tsconfig": "tsconfig.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "",
+      "styles": [
+        "styles.scss"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts",
+        "mockapi": "environments/environment.mockapi.ts"
+      }
+    },
+    {
+      "name": "<%=app.name%>-server",
+      "platform": "server",
+      "root": "./apps/<%=app.name%>/src",
+      "outDir": "./apps/<%=app.name%>/dist/server",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.server.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "",
       "styles": [
@@ -50,7 +77,7 @@
   },
   "lint": [
     {
-      "project": "./apps/<%=app.name%>/src/tsconfig.app.json",
+      "project": "./apps/<%=app.name%>/src/tsconfig.json",
       "exclude": "**/node_modules/**"
     },
     {

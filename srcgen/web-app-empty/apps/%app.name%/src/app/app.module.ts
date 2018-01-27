@@ -53,7 +53,7 @@ import {
     <%=app.classPrefix%>AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: '<%=app.name%>' }),
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -62,7 +62,7 @@ import {
     SharedModule.forRoot(),
     AlertModalModule.forRoot(),
     <%=app.classPrefix%>NavbarModule.forRoot(),
-    RouterModule.forRoot(<%=app.classPrefix%>Routes, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(<%=app.classPrefix%>Routes, { preloadingStrategy: PreloadAllModules, initialNavigation: 'enabled' })
   ],
   providers: [
     ComponentLoaderFactory,

@@ -8,7 +8,7 @@ export class <%=app.classPrefix%>EndpointHelper extends EndpointHelper {
   get apiUrl() {
     return environment.apiUrl;
   }
-  actionUrl(endpointService: any, action: any, data: any, customUrl?: string) {
+  actionUrl(endpointService: any, action: any, data: any, customUrl: string) {
     let url: string = endpointService.apiUrl;
     if (environment.type === 'mockapi' && endpointService.name === 'account') {
       url += '/1';

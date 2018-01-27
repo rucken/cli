@@ -4,11 +4,11 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
         aria-controls="navbar" (click)="isCollapsed = !isCollapsed">
-				<span class="sr-only" translate>Menu</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+        <span class="sr-only" translate>Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="javascript:void(0)">
         <span (click)="go(['/'])" translate><%=app.title%></span>
         <span class="badge" (click)="showChangeLog()">{{version}}</span>
@@ -20,17 +20,21 @@
           <a [routerLink]="[item.name]">{{item.title | translate}}</a>
         </li>
         <li class="dropdown">
-          <a (click)="languagesIsCollapsed = !languagesIsCollapsed" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false">{{'Language' | translate}} <span class="caret"></span></a>
+          <a (click)="languagesIsCollapsed = !languagesIsCollapsed" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
+            role="button" aria-haspopup="true" aria-expanded="false">{{'Language' | translate}}
+            <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu" [collapse]="languagesIsCollapsed">
-            <li *ngFor="let lang of languages" [class.active]="currentLanguage==lang.code"><a (click)="currentLanguage=lang.code">{{lang.title | translate}}</a></li>
+            <li *ngFor="let lang of languages" [class.active]="currentLanguage==lang.code">
+              <a (click)="currentLanguage=lang.code" href="javascript:void(0)">{{lang.title | translate}}</a>
+            </li>
           </ul>
         </li>
         <li *ngIf="account">
-          <a (click)="showLogoutModal()" translate>Logout</a>
+          <a (click)="showLogoutModal()" href="javascript:void(0)" translate>Logout</a>
         </li>
         <li *ngIf="!account">
-          <a (click)="showLoginModal()" translate>Login</a>
+          <a (click)="showLoginModal()" href="javascript:void(0)" translate>Login</a>
         </li>
       </ul>
     </div>
