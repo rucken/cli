@@ -16,6 +16,9 @@ import { environment } from '../environments/environment';
 defineLocale('ru', ruLocale);
 defineLocale('en', enGbLocale);
 
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
 @Component({
   selector: '<%=app.name%>-root',
   templateUrl: './app.component.html',
@@ -25,7 +28,7 @@ defineLocale('en', enGbLocale);
 })
 export class <%=app.classPrefix%>AppComponent extends BaseAppComponent {
 
-  languages = [{
+  languages: any = [{
     code: 'ru',
     title: translate('Russian'),
     dic: _.merge(RuckenCoreRuI18n, RuckenWebRuI18n, <%=app.classPrefix%>CoreRuI18n, <%=app.classPrefix%>WebRuI18n, <%=app.classPrefix%>RuI18n)
@@ -41,6 +44,7 @@ export class <%=app.classPrefix%>AppComponent extends BaseAppComponent {
   currentLang = 'en';
 
   constructor(
+    @Inject(PLATFORM_ID) public platformId: Object,
     public injector: Injector,
     public viewContainerRef: ViewContainerRef,
     public resolver: ComponentFactoryResolver,
