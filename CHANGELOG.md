@@ -1,3 +1,13 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/rucken/cli/compare/1.7.7...1.8.0) (2018-01-27)
+
+
+### Features
+
+* **srcgen:** Add SSR to "web-app-empty" ([f77b6b8](https://github.com/rucken/cli/commit/f77b6b8))
+
+
+
 <a name="1.7.7"></a>
 ## [1.7.7](https://github.com/rucken/cli/compare/1.7.6...1.7.7) (2018-01-25)
 
