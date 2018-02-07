@@ -22,7 +22,7 @@ recursive(scanPath, ['*server*', '!*.ts', '*node_modules*'], function (err, file
     { prefix: 'const ', postfix: ' ' },
     { prefix: 'enum ', postfix: ' ' },
     { prefix: 'interface ', postfix: ' ' },
-    { prefix: 'export function ', postfix: '(', var: true }
+    { prefix: 'export function ', postfix: ' ', var: true }
   ];
   var entities = [
     'module',
@@ -35,7 +35,11 @@ recursive(scanPath, ['*server*', '!*.ts', '*node_modules*'], function (err, file
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     var content = srcgen.utils.load(file);
-    content = content.replace(/  +/g, ' ').replace(new RegExp(':', 'g'), ' ');
+    content = content
+      .replace(/  +/g, ' ')
+      .replace(new RegExp(':', 'g'), ' ')
+      .replace(new RegExp('<', 'g'), ' ')
+      .split('(').join(' ');
     for (var d = 0; d < delmitters.length; d++) {
       var delmitter = delmitters[d];
       var items = srcgen.between.get(content, delmitter.prefix, delmitter.postfix);
@@ -112,7 +116,7 @@ recursive(scanPath, ['*server*', '!*.ts', '*node_modules*'], function (err, file
     }
   }
   for (var e = 0; e < entities.length; e++) {
-    if (exportEntities[entities[e]]) {
+    if (exportEntities[entities[e]] && exportEntities[entities[e]].length) {
       exportArray.push('export const ' + moduleName + _.upperFirst(entities[e] + 's') + ': any[] = [' + exportEntities[entities[e]].join(', ') + '];');
     }
   }
