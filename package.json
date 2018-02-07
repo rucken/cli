@@ -1,6 +1,6 @@
 {
 	"name": "@rucken/cli",
-	"version": "1.8.1",
+	"version": "1.8.2",
 	"description": "Console tools for create and build Angular5+ application based on rucken",
 	"bugs": {
 		"url": "https://github.com/rucken/cli/issues"
@@ -54,7 +54,7 @@
 		"mocha": "^5.0.0",
 		"sinon": "^4.2.2",
 		"ts-node": "^4.1.0",
-		"typescript": "2.7.1"
+		"typescript": "2.5.3"
 	},
 	"dependencies": {
 		"@angular/cli": "1.6.7",
