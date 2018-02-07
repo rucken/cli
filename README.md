@@ -111,10 +111,6 @@ npm start
 
 [Rucken: Todo (Django)](https://github.com/rucken/todo-django) - Simple todo application with: auth, groups, permissions, projects, tasks, statuses (backend: Django + plugins).
 
-[Rucken: Todo (NativeScript)](https://github.com/rucken/todo-nativescript) - Simple todo nativescript application with: projects, tasks, statuses (backend: Django + plugins).
-
-[Rucken: Todo (Electron)](https://github.com/rucken/todo-electron) - Simple todo electron application with: projects, tasks, statuses (backend: Django + plugins).
-
 ## License
 
 MIT
