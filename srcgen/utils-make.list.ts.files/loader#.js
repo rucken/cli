@@ -35,7 +35,11 @@ recursive(scanPath, ['*server*', '!*.ts', '*node_modules*'], function (err, file
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     var content = srcgen.utils.load(file);
-    content = content.replace(/  +/g, ' ').replace(new RegExp(':', 'g'), ' ').replace(new RegExp('<', 'g'), ' ').replace(new RegExp('(', 'g'), ' ');
+    content = content
+      .replace(/  +/g, ' ')
+      .replace(new RegExp(':', 'g'), ' ')
+      .replace(new RegExp('<', 'g'), ' ')
+      .split('(').join(' ');
     for (var d = 0; d < delmitters.length; d++) {
       var delmitter = delmitters[d];
       var items = srcgen.between.get(content, delmitter.prefix, delmitter.postfix);

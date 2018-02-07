@@ -1,3 +1,13 @@
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/rucken/cli/compare/1.8.0...1.8.1) (2018-02-07)
+
+
+### Bug Fixes
+
+* **srcgen:** Add support generics on generate index.ts list of used files ([aca940b](https://github.com/rucken/cli/commit/aca940b))
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/rucken/cli/compare/1.7.7...1.8.0) (2018-01-27)
 
