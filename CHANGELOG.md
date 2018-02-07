@@ -1,3 +1,13 @@
+<a name="1.8.2"></a>
+## [1.8.2](https://github.com/rucken/cli/compare/1.8.1...1.8.2) (2018-02-07)
+
+
+### Bug Fixes
+
+* **deps:** Downgrade typescript version to 2.5.3 ([f5ff10b](https://github.com/rucken/cli/commit/f5ff10b))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/rucken/cli/compare/1.8.0...1.8.1) (2018-02-07)
 
