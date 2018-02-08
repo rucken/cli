@@ -37,7 +37,7 @@
 	"main": "dist/bin/app.js",
 	"typings": "dist/bin/app.d.ts",
 	"bin": {
-		"rucken": "bin/rucken"
+		"rucken": "dist/bin/app.js"
 	},
 	"files": [
 		"bin",
@@ -91,5 +91,10 @@
 		"sort-paths": "^1.1.0",
 		"srcgen": "^0.3.3",
 		"tmp": "0.0.33"
+	},
+	"greenkeeper": {
+	  "ignore": [
+		"typescript"
+	  ]
 	}
 }
