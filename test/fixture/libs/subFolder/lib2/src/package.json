@@ -2,13 +2,13 @@
     "name": "@test/lib2",
     "version": "1.8.2",
     "peerDependencies": {
-        "@angular/common": "5.2.3",
-        "@angular/compiler": "5.2.3",
-        "@angular/core": "5.2.3"
+        "@angular/common": "5.2.4",
+        "@angular/compiler": "5.2.4",
+        "@angular/core": "5.2.4"
     },
     "dependencies": {
-        "@angular/common": "5.2.3",
-        "@angular/compiler": "5.2.3",
-        "@angular/core": "5.2.3"
+        "@angular/common": "5.2.4",
+        "@angular/compiler": "5.2.4",
+        "@angular/core": "5.2.4"
     }
 }

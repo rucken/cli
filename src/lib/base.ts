@@ -400,14 +400,15 @@ export class Base {
             this.log(name).error(`File does not exists: ${optionsFile}`);
         }
         let commandString = null;
+        /*
         if (!commandString && fsExtra.existsSync(path.resolve(__dirname + '/../../node_modules/srcgen/bin/srcgen.js'))) {
             commandString = 'node ' + path.resolve(__dirname + '/../../node_modules/srcgen/bin/srcgen.js') + ' -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
         }
         if (!commandString && fsExtra.existsSync(path.resolve(__dirname + '/../../../../srcgen/bin/srcgen.js'))) {
             commandString = 'node ' + path.resolve(__dirname + '/../../../../srcgen/bin/srcgen.js') + ' -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
-        }
+        }*/
         if (!commandString) {
-            commandString = 'node srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
+            commandString = 'srcgen -x -t ' + srcgenTemplate + ' -f ' + optionsFile + destPathArgs;
         }
         if (!fsExtra.existsSync(folder)) {
             this.log(name).debug(commandString);
