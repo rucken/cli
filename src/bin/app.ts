@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as commander from 'commander';
 import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
