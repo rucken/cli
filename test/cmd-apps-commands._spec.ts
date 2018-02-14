@@ -45,12 +45,12 @@ describe('Apps-commands: run from console', () => {
             dir: dir,
             translateTsFile: translateTsFile,
             indexTsFile: indexTsFile
-         }) => {
+        }) => {
             it(`not exists ${translateTsFile}`, () => {
-                assert.equal(fsExtra.existsSync(translateTsFile), false);
+                assert.equal(fsExtra.existsSync(translateTsFile), false, 'FIle: ' + translateTsFile);
             });
             it(`not exists ${indexTsFile}`, () => {
-                assert.equal(fsExtra.existsSync(indexTsFile), false);
+                assert.equal(fsExtra.existsSync(indexTsFile), false, 'FIle: ' + indexTsFile);
             });
         });
         it('tsc --pretty', (done: any) => {
@@ -60,7 +60,7 @@ describe('Apps-commands: run from console', () => {
             const base = new Base('', dirRoot);
             base.debug = debug;
             base.commandRunner(commandString).then((data: boolean) => {
-                assert.equal(fsExtra.existsSync(file), true);
+                assert.equal(fsExtra.existsSync(file), true, 'FIle: ' + file);
                 done();
             }).catch((e: any) => {
                 done(e);
@@ -70,20 +70,23 @@ describe('Apps-commands: run from console', () => {
             const file = path.resolve(`${dirRoot}/dist/bin/app.js`);
             const commandString = 'node . commands clear ~~root ./test/fixture prepare ~~root ./test/fixture' + (debug ? ' --verbose' : '');
 
-            assert.equal(fsExtra.existsSync(file), true);
+            assert.equal(fsExtra.existsSync(file), true, 'FIle: ' + file);
 
             const base = new Base('', dirRoot);
             base.debug = debug;
             base.commandRunner(commandString).then((data: boolean) => {
-                items.forEach(({
-                    dir: dir,
-                    translateTsFile: translateTsFile,
-                    indexTsFile: indexTsFile
-                }) => {
-                    assert.equal(fsExtra.existsSync(translateTsFile), true);
-                    assert.equal(fsExtra.existsSync(indexTsFile), true);
-                });
-                done();
+                setTimeout(() => {
+                    items.forEach(({
+                        dir: dir,
+                        translateTsFile: translateTsFile,
+                        indexTsFile: indexTsFile
+                    }) => {
+                        assert.equal(fsExtra.existsSync(translateTsFile), true, 'FIle: ' + translateTsFile);
+                        assert.equal(fsExtra.existsSync(indexTsFile), true, 'FIle: ' + indexTsFile);
+                    });
+                    done();
+                },
+                    1000);
             }).catch((e: any) => {
                 done(e);
             });
