@@ -1,3 +1,15 @@
+<a name="1.8.4"></a>
+## [1.8.4](https://github.com/rucken/cli/compare/1.8.3...1.8.4) (2018-02-14)
+
+
+### Bug Fixes
+
+* **commands:** Fix detect folder of rucken ([bc293c2](https://github.com/rucken/cli/commit/bc293c2))
+* **deps:** Update package-lock.json ([1c4a90f](https://github.com/rucken/cli/commit/1c4a90f))
+* **srcgen:** Change path to srcgen ([523067a](https://github.com/rucken/cli/commit/523067a))
+
+
+
 <a name="1.8.3"></a>
 ## [1.8.3](https://github.com/rucken/cli/compare/1.8.2...1.8.3) (2018-02-13)
 
