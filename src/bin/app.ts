@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as commander from 'commander';
 import { config } from 'dotenv';
 import * as fsExtra from 'fs-extra';
@@ -74,10 +76,10 @@ export class App {
                 let binPath: string;
                 if (cwdPackage.name === this.package.name) {
                     binPath = 'node .';
-                }/*
+                }
                 if (fsExtra.existsSync(path.resolve(process.cwd() + '/node_modules/' + this.package.name + '/bin/' + binNames[0]))) {
                     binPath = 'node ./node_modules/' + this.package.name + '/bin/' + binNames[0];
-                }*/
+                }
                 if (!binPath) {
                     binPath = 'node ' + binNames[0];
                 }
