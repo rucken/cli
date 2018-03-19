@@ -29,7 +29,8 @@ recursive(scanPath, ['*server*', '!*.ts', '*node_modules*'], function (err, file
     'component',
     'shared',
     'service',
-    'pipe'
+    'pipe',
+    'config'
   ];
   var moduleName = _.upperFirst(_.camelCase(packageName));
   for (var i = 0; i < files.length; i++) {
