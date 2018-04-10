@@ -85,7 +85,7 @@
 		"loglevel": "^1.6.1",
 		"loglevel-colored-level-prefix": "^1.0.0",
 		"ng-packagr": "^2.2.0",
-		"npm-run": "^4.1.2",
+		"npm-run": "^5.0.0",
 		"po2json": "^0.4.5",
 		"recursive-readdir": "^2.2.2",
 		"sort-paths": "^1.1.0",
