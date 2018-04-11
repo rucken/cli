@@ -1,3 +1,13 @@
+<a name="1.8.6"></a>
+## [1.8.6](https://github.com/rucken/cli/compare/1.8.5...1.8.6) (2018-04-11)
+
+
+### Bug Fixes
+
+* **deps:** Update dependencies ([5c650bc](https://github.com/rucken/cli/commit/5c650bc))
+
+
+
 <a name="1.8.5"></a>
 ## [1.8.5](https://github.com/rucken/cli/compare/1.8.4...1.8.5) (2018-03-19)
 
