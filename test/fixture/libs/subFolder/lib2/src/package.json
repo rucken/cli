@@ -1,12 +1,7 @@
 {
     "name": "@test/lib2",
-    "version": "1.8.5",
+    "version": "1.8.6",
     "peerDependencies": {
-        "@angular/common": "5.2.9",
-        "@angular/compiler": "5.2.9",
-        "@angular/core": "5.2.9"
-    },
-    "dependencies": {
         "@angular/common": "5.2.9",
         "@angular/compiler": "5.2.9",
         "@angular/core": "5.2.9"
