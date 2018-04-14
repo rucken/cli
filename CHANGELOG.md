@@ -1,3 +1,13 @@
+<a name="1.8.7"></a>
+## [1.8.7](https://github.com/rucken/cli/compare/1.8.6...1.8.7) (2018-04-14)
+
+
+### Bug Fixes
+
+* **base:** Add check for null stout and stderr on output to console ([39a5296](https://github.com/rucken/cli/commit/39a5296))
+
+
+
 <a name="1.8.6"></a>
 ## [1.8.6](https://github.com/rucken/cli/compare/1.8.5...1.8.6) (2018-04-11)
 
