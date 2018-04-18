@@ -1,5 +1,5 @@
 import { FrameGenerator } from '../generators/frame';
-import { GridGenerator } from '../generators/grid';
+import { EntityGenerator } from '../generators/entity';
 import { PageGenerator } from '../generators/page';
 import { PageAndFrameGenerator } from '../generators/page-and-frame';
 import { BaseCommand } from './base.command';
@@ -9,9 +9,9 @@ export class GeneratorCommand extends BaseCommand {
     constructor(public options: any) {
         super(options);
     }
-    async processGrid() {
+    async processEntity() {
         this.log('generator').info('Run generator for ' + this.rootFolder);
-        const gen = new GridGenerator(this.rootFolder);
+        const gen = new EntityGenerator(this.rootFolder);
         gen.debug = this.debug;
         const result = false;
         return await new Promise<boolean>((resolve: any) =>

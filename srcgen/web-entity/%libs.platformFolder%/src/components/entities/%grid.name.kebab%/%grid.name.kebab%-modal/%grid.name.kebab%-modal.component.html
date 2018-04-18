@@ -1,0 +1,10 @@
+<form [formGroup]="form" novalidate>
+  <prompt-form-modal [title]="title" [message]="message" [noTitle]="noTitle" [yesTitle]="yesTitle" [readonly]="readonly" (no)="onNoClick()"
+    (yes)="onYesClick()" [data]="data" [processing]="processing">
+    <%for (var i=0; i<entity.table.fields.names.length; i++) {%>
+      <form-group [form]="form" name="<%=entity.table.fields.names[i]%>" [title]="strings.<%=entity.table.fields.names[i]%>">
+        <input formControlName="<%=entity.table.fields.names[i]%>" [readonly]="readonly" focused/>
+      </form-group>
+    <%}%>
+  </prompt-form-modal>
+</form>

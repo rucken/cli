@@ -112,8 +112,8 @@ export class App {
                 await (new MakeTsListCommand(_.merge(this.program, command, dummy))).process();
             });
         this.program
-            .command('grid')
-            .option('-t, --template [name]', 'template folder name or path', 'web-grid')
+            .command('entity')
+            .option('-t, --template [name]', 'template folder name or path', 'web-entity')
             .option('-n, --entity-name [name]', 'entity name')
             .option('-p, --pk-field [name]', 'primary key name', 'id')
             .option('-f, --fields [names]', 'fields of entity', '\'name\',\'title\',\'createdAt\',\'updatedAt\'')
@@ -124,7 +124,7 @@ export class App {
             .option('-pf, --platform-folder [path]', 'platform library path')
             .description('scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items')
             .action(async (dummy, command) => {
-                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processGrid();
+                await (new GeneratorCommand(_.merge(this.program, command, dummy))).processEntity();
             });
         this.program
             .command('page')
