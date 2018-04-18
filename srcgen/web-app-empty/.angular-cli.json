@@ -6,8 +6,8 @@
   "apps": [
     {
       "name": "<%=app.name%>",
-      "root": "./apps/<%=app.name%>/src",
-      "outDir": "./apps/<%=app.name%>/dist/browser",
+      "root": "apps/<%=app.name%>/src",
+      "outDir": "apps/<%=app.name%>/dist/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -27,7 +27,10 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
-        "mockapi": "environments/environment.mockapi.ts"
+        "mockapi": "environments/environment.mockapi.ts",
+        "server-dev": "environments/environment-server.ts",
+        "server-prod": "environments/environment-server.prod.ts",
+        "server-mockapi": "environments/environment-server.mockapi.ts"
       }
     },
     {
@@ -44,7 +47,6 @@
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.server.json",
-      "testTsconfig": "tsconfig.spec.json",
       "prefix": "",
       "styles": [
         "styles.scss"
@@ -54,19 +56,22 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
-        "mockapi": "environments/environment.mockapi.ts"
+        "mockapi": "environments/environment.mockapi.ts",
+        "server-dev": "environments/environment-server.ts",
+        "server-prod": "environments/environment-server.prod.ts",
+        "server-mockapi": "environments/environment-server.mockapi.ts"
       }
     },
     {
       "name": "@<%=app.name%>/core",
-      "root": "./libs/core/src",
-      "outDir": "./libs/core/dist",
+      "root": "./libs/@<%=app.name%>/core/src",
+      "outDir": "./libs/@<%=app.name%>/core/dist",
       "appRoot": ""
     },
     {
       "name": "@<%=app.name%>/web",
-      "root": "./libs/web/src",
-      "outDir": "./libs/web/dist",
+      "root": "./libs/@<%=app.name%>/web/src",
+      "outDir": "./libs/@<%=app.name%>/web/dist",
       "appRoot": ""
     }
   ],
@@ -77,11 +82,11 @@
   },
   "lint": [
     {
-      "project": "./apps/<%=app.name%>/src/tsconfig.json",
+      "project": "apps/<%=app.name%>/src/tsconfig.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "./apps/<%=app.name%>/src/tsconfig.spec.json",
+      "project": "apps/<%=app.name%>/src/tsconfig.spec.json",
       "exclude": "**/node_modules/**"
     },
     {
@@ -95,6 +100,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss"
+    "styleExt": "scss",
+    "component": {}
   }
 }

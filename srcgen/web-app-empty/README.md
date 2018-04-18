@@ -19,9 +19,3 @@
 
 ## Build
 - run `npm run build` to build libs and application
-
-## Quick links
-
-[Rucken](https://github.com/rucken/core) - Rucken core and web libs.
-
-[Rucken Todo](https://rucken.github.io/todo-web) - Demo application with mock data worked.
