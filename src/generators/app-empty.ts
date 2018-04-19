@@ -36,7 +36,8 @@ export class AppEmptyGenerator extends Base {
                     'classPrefix': _.upperFirst(_.camelCase(appName)),
                     'title': _.upperFirst(_.words(appName).join(' '))
                 },
-                'spec': 'spec'
+                'spec': 'spec',
+                'gitignore': ''
             }
         );
         return await this.srcgen(

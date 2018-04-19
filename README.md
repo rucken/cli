@@ -27,9 +27,9 @@ rucken --help
 
 ### Commands
 
-options "app" - see list of apps taken from ".angular-cli.json" with condition appRoot===''
+options "app" - see list of apps taken from ".angular-cli.json" with condition index!==undefined
 
-options "lib" - see list of apps taken from ".angular-cli.json" with condition appRoot===undefined
+options "lib" - see list of apps taken from ".angular-cli.json" with condition index===undefined
 
 ```bash
 rucken --help
@@ -86,18 +86,18 @@ rucken page+frame --help
 rucken new my-app
 cd my-app
 npm install
-npm start
+npm run app:start-mockapi
 ```
 
 ## Quick links
 
-[Source](https://github.com/rucken/core) - Source code.
+[Source](https://github.com/rucken/cli) - Source code.
 
-[Live demo](https://rucken.github.io/core) - Demo application (backend: http://www.mockapi.io).
+[Live demo](https://rucken.github.io/core) [[source]](https://github.com/rucken/core) - Demo application (backend: http://www.mockapi.io).
 
-[Live demo (SSR)](https://rucken.herokuapp.com) - Demo application with server side rendering (backend: http://www.mockapi.io).
+[Live demo (SSR)](https://rucken.herokuapp.com) [[source]](https://github.com/rucken/core) - Demo application with server side rendering (backend: http://www.mockapi.io).
 
-[Live demo (NestJS)](https://rucken-core-nestjs.herokuapp.com) - Demo application with live backend (backend: https://nestjs.com).
+[Live demo (NestJS)](https://rucken-core-nestjs.herokuapp.com) [[source]](https://github.com/rucken/core-nestjs) - Demo application with live backend (backend: https://nestjs.com).
 
 ## License
 

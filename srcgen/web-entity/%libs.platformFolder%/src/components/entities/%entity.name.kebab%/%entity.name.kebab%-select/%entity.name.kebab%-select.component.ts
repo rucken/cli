@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorsExtractor } from '@rucken/core';
-import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.core%>';
+import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.coreData.name%>';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DynamicRepository } from 'ngx-repository';
 import { <%=entity.list.name.camel%>GridComponent } from '../<%=entity.list.name.kebab%>-grid/<%=entity.list.name.kebab%>-grid.component';

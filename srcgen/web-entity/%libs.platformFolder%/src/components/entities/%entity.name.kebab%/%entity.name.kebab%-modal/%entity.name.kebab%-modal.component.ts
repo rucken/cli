@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { <%=entity.name.camel%> } from '<%=libs.core%>';
+import { <%=entity.name.camel%> } from '<%=libs.coreData.name%>';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { BasePromptFormModalComponent } from '@rucken/core';
+import { BasePromptFormModalComponent } from '@rucken/web';
 
 @Component({
   selector: '<%=entity.name.kebab%>-modal',

@@ -4,7 +4,7 @@ import { IRestProviderOptions, PaginationMeta, ProviderActionEnum } from 'ngx-re
 import { <%=entity.name.camel%> } from '../models/<%=entity.name.kebab%>';
 
 @Injectable()
-export class <%=entity.list.name.camel%>Config implements IRestProviderOptions<Permission> {
+export class <%=entity.list.name.camel%>Config implements IRestProviderOptions<<%=entity.name.camel%>> {
   name = '<%=entity.name.snake%>';
   pluralName = '<%=entity.list.name.snake%>';
   autoload = true;

@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { <%=entity.name.camel%> } from '<%=libs.core%>';
+import { <%=entity.name.camel%> } from '<%=libs.coreData.name%>';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { BaseEntityListModalComponent } from '@rucken/core';
+import { BaseEntityListModalComponent } from '@rucken/web';
 import { <%=entity.list.name.camel%>GridComponent } from '../<%=entity.list.name.kebab%>-grid/<%=entity.list.name.kebab%>-grid.component';
 
 @Component({

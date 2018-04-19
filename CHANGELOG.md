@@ -1,3 +1,16 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/rucken/cli/compare/2.0.0...2.0.1) (2018-04-19)
+
+
+### Bug Fixes
+
+* **srcgen:** Update all template files and fix project init from agular-cli.json ([f0706df](https://github.com/rucken/cli/commit/f0706df))
+* **srcgen:** Add ".gitignore" file to template "web-app-empty" ([fd2f57a](https://github.com/rucken/cli/commit/fd2f57a))
+* **srcgen:** Add usage permissions for "web-page" template ([5a1a87f](https://github.com/rucken/cli/commit/5a1a87f))
+* **srcgen:** Change "extends" to "implements" for entity model ([d328155](https://github.com/rucken/cli/commit/d328155))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/rucken/cli/compare/1.8.7...2.0.0) (2018-04-19)
 

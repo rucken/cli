@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { DirectivesModule } from '@rucken/core';
-import { FormGroupModule } from '@rucken/core';
-import { PromptFormModalModule } from '@rucken/core';
+import { DirectivesModule } from '@rucken/web';
+import { FormGroupModule } from '@rucken/web';
+import { PromptFormModalModule } from '@rucken/web';
 import { <%=entity.name.camel%>ModalComponent } from './<%=entity.name.kebab%>-modal.component';
 
 @NgModule({

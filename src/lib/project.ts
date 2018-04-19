@@ -22,7 +22,7 @@ export class Project extends Base {
         this.agularCliJson = this.getAgularCliJson();
         this.libsConfigs =
             (this.agularCliJson.apps ? this.agularCliJson.apps : []).
-                filter((app: any) => app.appRoot === '').
+                filter((app: any) => !app.index && app.platform !== 'server').
                 map((lib: any) => {
                     lib.shortName = path.basename(path.dirname(lib.root));
                     lib.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(lib.root, './') + '/../');
@@ -32,7 +32,7 @@ export class Project extends Base {
         this.libsPaths = this.libsConfigs.map((lib: any) => lib.rootPath);
         this.appsConfigs =
             (this.agularCliJson.apps ? this.agularCliJson.apps : []).
-                filter((app: any) => app.appRoot === undefined && app.platform !== 'server').
+                filter((app: any) => app.index && app.platform !== 'server').
                 map((app: any) => {
                     app.rootPath = path.resolve(this.rootFolder + '/' + _.trimStart(app.root, './') + '/../');
                     app.localPath = _.trimStart(app.root, './') + '/../';
