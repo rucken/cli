@@ -4,4 +4,5 @@
 <prompt name="app.classPrefix" message="Application class prefix">AppName</prompt>
 <prompt name="app.title" message="Application title">Frame title</prompt>
 <prompt name="spec" message="No change">spec</prompt>
+<prompt name="gitignore" message="No change"></prompt>
 ```
