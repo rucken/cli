@@ -21,16 +21,15 @@ describe('Generator-page+frame-command: create frame with name "banana" on page 
             dir: _dir,
             dirLocal: `test/${_dirLocal}`,
             files: [
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.html`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.scss`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.module.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.routes.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.component.html`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.component.scss`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.component.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.module.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/banana-frame/banana-frame.routes.ts`)
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.children-routes.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.component.html`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.component.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.module.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.routes.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/banana-frame/banana-frame.component.html`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/banana-frame/banana-frame.component.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/banana-frame/banana-frame.module.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/banana-frame/banana-frame.routes.ts`)
             ]
         });
         beforeEach(() => {
@@ -63,7 +62,7 @@ describe('Generator-page+frame-command: create frame with name "banana" on page 
             dir: dir,
             dirLocal: dirLocal,
             files: files
-         }) => {
+        }) => {
             it(`not exists files generated for "${dirLocal}"`, () => {
                 files.forEach((file: string) => {
                     assert.equal(fsExtra.existsSync(file), false);
@@ -96,7 +95,7 @@ describe('Generator-page+frame-command: create frame with name "banana" on page 
                     dir: dir,
                     dirLocal: dirLocal,
                     files: files
-                 }) => {
+                }) => {
                     files.forEach((file: string) => {
                         assert.equal(fsExtra.existsSync(file), true);
                     });

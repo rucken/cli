@@ -1,7 +1,7 @@
 import { translate } from '@rucken/core';
-import { AuthGuardService } from '@rucken/web';
-
+import { NgxPermissionsGuard } from 'ngx-permissions';
 import { <%=frame.classPrefix%>FrameComponent } from './<%=frame.name%>-frame.component';
+import { environment } from '../../../../../environments/environment';
 
 export const <%=frame.classPrefix%>FrameRoutes = [{
   path: '',
@@ -9,7 +9,9 @@ export const <%=frame.classPrefix%>FrameRoutes = [{
   data: {
     name: '<%=frame.name%>',
     title: translate('<%=frame.title%>'),
-    visible: true
+    permissions: {
+      only: 'read_<%=frame.name%>-frame'
+    }
   },
-  canActivate: [AuthGuardService]
+  ...(environment.server ? {} : { canActivate: [NgxPermissionsGuard] })
 }];

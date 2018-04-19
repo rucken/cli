@@ -1,21 +1,21 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { RuckenWebPipes, SharedModule, PipesModule } from '@rucken/web';
-import { PageHeaderModule } from '@rucken/web';
-
+import { SharedModule } from '../../../../shared/shared.module';
 import { <%=frame.classPrefix%>FrameComponent } from './<%=frame.name%>-frame.component';
 import { <%=frame.classPrefix%>FrameRoutes } from './<%=frame.name%>-frame.routes';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   imports: [
-    SharedModule.forRoot(),
-    PageHeaderModule.forRoot(),
-    PipesModule.forRoot(),
-    RouterModule.forChild(<%=frame.classPrefix%>FrameRoutes)
+    SharedModule,
+    NgxPermissionsModule.forChild(),
+    RouterModule.forChild(<%=frame.classPrefix%>FrameRoutes),
+    FormsModule
   ],
-  declarations: [<%=frame.classPrefix%>FrameComponent],
-  exports: [<%=frame.classPrefix%>FrameComponent],
-  entryComponents: [<%=frame.classPrefix%>FrameComponent]
+  declarations: [
+    <%=frame.classPrefix%>FrameComponent
+  ]
 })
 export class <%=frame.classPrefix%>FrameModule {
   static forRoot(): ModuleWithProviders {
