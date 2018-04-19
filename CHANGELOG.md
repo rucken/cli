@@ -1,3 +1,22 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/rucken/cli/compare/1.8.7...2.0.0) (2018-04-19)
+
+
+### Bug Fixes
+
+* **srcgen:** Fix file names for "web-entity" script ([524a15b](https://github.com/rucken/cli/commit/524a15b))
+
+
+### Features
+
+* **srcgen:** Change "web-grid" to "web-entity"  and update template for rucken@2.0.0 ([43f8eea](https://github.com/rucken/cli/commit/43f8eea))
+* **srcgen:** Update "web-app-empty" template for rucken@2.0.0 ([4792340](https://github.com/rucken/cli/commit/4792340))
+* **srcgen:** Update "web-frame" template for rucken@2.0.0 ([553ce59](https://github.com/rucken/cli/commit/553ce59))
+* **srcgen:** Update "web-page" template for rucken@2.0.0 ([1cc96ba](https://github.com/rucken/cli/commit/1cc96ba))
+* **srcgen:** Update "web-page+frame" template for rucken@2.0.0 ([11aa28f](https://github.com/rucken/cli/commit/11aa28f))
+
+
+
 <a name="1.8.7"></a>
 ## [1.8.7](https://github.com/rucken/cli/compare/1.8.6...1.8.7) (2018-04-14)
 
