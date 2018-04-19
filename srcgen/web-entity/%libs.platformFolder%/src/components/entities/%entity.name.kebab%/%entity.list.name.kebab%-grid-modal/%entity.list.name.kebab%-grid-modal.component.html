@@ -1,0 +1,5 @@
+<entity-grid-modal [title]="title" [yesTitle]="yesTitle" [readonly]="readonly" [disabled]="!(grid?.selected?.length>0)" [noTitle]="noTitle"
+  (yes)="onYesClick()" (no)="onNoClick()" [processing]="processing">
+  <<%=entity.list.name.kebab%>-grid [apiUrl]="apiUrl" #grid>
+  </<%=entity.list.name.kebab%>-grid>
+</entity-grid-modal>

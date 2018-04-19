@@ -21,11 +21,10 @@ describe('Generator-page-command: create page with name "apple"', () => {
             dir: _dir,
             dirLocal: `test/${_dirLocal}`,
             files: [
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.html`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.scss`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.component.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.module.ts`),
-                path.resolve(`${_dir}/src/app/pages/apple-page/apple-page.routes.ts`)
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.component.html`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.component.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.module.ts`),
+                path.resolve(`${_dir}/src/app/components/pages/apple-page/apple-page.routes.ts`)
             ]
         });
         beforeEach(() => {
@@ -58,7 +57,7 @@ describe('Generator-page-command: create page with name "apple"', () => {
             dir: dir,
             dirLocal: dirLocal,
             files: files
-         }) => {
+        }) => {
             it(`not exists files generated for "${dirLocal}"`, () => {
                 files.forEach((file: string) => {
                     assert.equal(fsExtra.existsSync(file), false);
@@ -91,7 +90,7 @@ describe('Generator-page-command: create page with name "apple"', () => {
                     dir: dir,
                     dirLocal: dirLocal,
                     files: files
-                 }) => {
+                }) => {
                     files.forEach((file: string) => {
                         assert.equal(fsExtra.existsSync(file), true);
                     });
