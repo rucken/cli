@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorsExtractor, translate } from '@rucken/core';
-import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.core%>';
+import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.coreData.name%>';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DynamicRepository, PaginationMeta } from 'ngx-repository';
-import { BaseEntityListComponent } from '@rucken/core';
+import { BaseEntityListComponent } from '@rucken/web';
 import { <%=entity.name.camel%>ModalComponent } from '../<%=entity.name.kebab%>-modal/<%=entity.name.kebab%>-modal.component';
 
 
@@ -12,7 +12,7 @@ import { <%=entity.name.camel%>ModalComponent } from '../<%=entity.name.kebab%>-
   selector: '<%=entity.list.name.kebab%>-grid',
   templateUrl: './<%=entity.list.name.kebab%>-grid.component.html'
 })
-export class <%=entity.list.name.camel%>GridComponent extends BaseEntityListComponent<<%=entity.name.camel%>> implements OnInit {
+export class <%=entity.list.name.camel%>GridComponent extends BaseEntityListComponent <<%=entity.name.camel%>> implements OnInit {
 
   public paginationMeta: PaginationMeta;
   constructor(
@@ -23,7 +23,7 @@ export class <%=entity.list.name.camel%>GridComponent extends BaseEntityListComp
     protected <%=entity.list.name.lower.camel%>Config: <%=entity.list.name.camel%>Config
   ) {
     super(
-      dynamicRepository.fork<<%=entity.name.camel%>>(<%=entity.name.camel%>),
+      dynamicRepository.fork <<%=entity.name.camel%>> (<%=entity.name.camel%>),
       modalService,
       <%=entity.name.camel%>
     );
@@ -66,7 +66,7 @@ export class <%=entity.list.name.camel%>GridComponent extends BaseEntityListComp
       }
     });
   }
-  createUpdateModal(item?: <%=entity.name.camel%>): BsModalRef {
+  createUpdateModal(item ?: <%=entity.name.camel%>): BsModalRef {
     return this.modalService.show(<%=entity.name.camel%>ModalComponent, {
       class: 'modal-md',
       initialState: {
@@ -77,7 +77,7 @@ export class <%=entity.list.name.camel%>GridComponent extends BaseEntityListComp
       }
     });
   }
-  createViewModal(item?: <%=entity.name.camel%>): BsModalRef {
+  createViewModal(item ?: <%=entity.name.camel%>): BsModalRef {
     return this.modalService.show(<%=entity.name.camel%>ModalComponent, {
       class: 'modal-md',
       initialState: {

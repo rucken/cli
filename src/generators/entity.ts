@@ -45,6 +45,12 @@ export class EntityGenerator extends Base {
             (customOptions && customOptions.project.libsConfigs[1] && customOptions &&
                 customOptions.project.libsConfigs[1].shortName) ?
                 customOptions && customOptions.project.libsConfigs[1].shortName : 'web';
+        let coreData =
+            (customOptions && customOptions.project.libsConfigs[0]) ?
+                customOptions && customOptions.project.libsConfigs[0] : {};
+        let platformData =
+            (customOptions && customOptions.project.libsConfigs[1]) ?
+                customOptions && customOptions.project.libsConfigs[1] : {};
         let coreFolder =
             (customOptions && customOptions.project.libsConfigs[0] && customOptions &&
                 customOptions.project.libsConfigs[0].localPath) ?
@@ -82,7 +88,13 @@ export class EntityGenerator extends Base {
         }
         if (customOptions && customOptions.platformLib) {
             platformLib = customOptions.platformLib;
+        }/*
+        if (customOptions && customOptions.coreData) {
+            coreData = customOptions.coreData;
         }
+        if (customOptions && customOptions.platformData) {
+            platformData = customOptions.platformData;
+        }*/
         if (customOptions && customOptions.coreFolder) {
             coreFolder = customOptions.coreFolder;
         }
@@ -93,10 +105,10 @@ export class EntityGenerator extends Base {
             pkField = customOptions.pkField;
         }
         if (customOptions && customOptions.fields) {
-            fields = customOptions.fields.split(',').map(word => _.trim(word,'\'\"').trim());
+            fields = customOptions.fields.split(',').map(word => _.trim(word, '\'\"').trim());
         }
         if (customOptions && customOptions.dateFields) {
-            dateFields = customOptions.dateFields.split(',').map(word => _.trim(word,'\'\"').trim());
+            dateFields = customOptions.dateFields.split(',').map(word => _.trim(word, '\'\"').trim());
         }
         const options = _.merge(
             {
@@ -108,6 +120,8 @@ export class EntityGenerator extends Base {
                 'libs': {
                     'core': coreLib,
                     'platform': platformLib,
+                    'coreData': coreData,
+                    'platformData': platformData,
                     'coreFolder': coreFolder,
                     'platformFolder': platformFolder
                 },

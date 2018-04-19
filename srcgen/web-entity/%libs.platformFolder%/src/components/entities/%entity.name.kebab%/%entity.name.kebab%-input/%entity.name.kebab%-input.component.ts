@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config, ErrorsExtractor, translate } from '@rucken/core';
+import { ErrorsExtractor, translate } from '@rucken/core';
+import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.coreData.name%>';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DynamicRepository } from 'ngx-repository';
 import { <%=entity.list.name.camel%>GridModalComponent } from '../<%=entity.list.name.kebab%>-grid-modal/<%=entity.list.name.kebab%>-grid-modal.component';

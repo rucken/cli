@@ -127,7 +127,7 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                 });
             });
         });
-        afterEach(() => {/*
+        afterEach(() => {
             items.forEach(({
                 dir: dir,
                 dirLocal: dirLocal,
@@ -138,7 +138,7 @@ describe('Generator-app-command: create application with name "ananas"', () => {
                         del.sync([file]);
                     }
                 });
-            });*/
+            });
         });
         items.forEach(({
             dir: dir,

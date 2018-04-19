@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { PipesModule } from '@rucken/core';
-import { EntityGridModule } from '@rucken/core';
-import { EntityModalModule } from '@rucken/core';
+import { PipesModule } from '@rucken/web';
+import { EntityGridModule } from '@rucken/web';
+import { EntityModalModule } from '@rucken/web';
 import { <%=entity.name.camel%>ModalModule } from '../<%=entity.name.kebab%>-modal/<%=entity.name.kebab%>-modal.module';
 import { <%=entity.list.name.camel%>GridComponent } from './<%=entity.list.name.kebab%>-grid.component';
 
