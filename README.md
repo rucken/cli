@@ -6,14 +6,12 @@
 [![Gitter][gitter-image]][gitter-url]
 [![Join the chat at telegram][telegram-image]][telegram-url]
 
-Console tools for create and build Angular5+ application based on [rucken](https://github.com/rucken)
+Console tools for create and build Angular5+ application based on [rucken](https://github.com/rucken) template
 
 ## What is Rucken?
 
-- **Core** - Base core for create applications on `Angular5+`.
-- **Admin** - Include work with admin, user groups and permissions.
-- **DI** - With dependency injection you can change base service.
-- **Extends** - Write components with extends from core `rucken` components.
+- **Core** - Base entities and services for create applications on `Angular5+`, include work with users, groups and permissions.
+- **Web** - Base ui grids and inputs and etc. for manage users, groups and permissions.
 
 ## Installation
 
@@ -58,10 +56,6 @@ rucken prepare --help
 
 # run synchronously many different commands with many different options, for run with options use "~~" instead "--"
 rucken commands clear prepare link ~~lib lib1          
-
-# scaffold model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
-rucken grid --entity-name apple  
-rucken grid --help  
 ```
 ### Scaffold commands
 
@@ -71,8 +65,8 @@ rucken new ananas
 rucken new --help  
 
 # generate model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
-rucken grid --entity-name apple  
-rucken grid --help
+rucken entity --entity-name apple  
+rucken entity --help
 
 # generate page
 rucken page --page-name apple  
@@ -97,19 +91,13 @@ npm start
 
 ## Quick links
 
-[Core source](https://github.com/rucken/core) - Source code of core.
+[Source](https://github.com/rucken/core) - Source code.
 
-[Demo](https://rucken.github.io/core) - Demo application with mock data worked.
+[Live demo](https://rucken.github.io/core) - Demo application (backend: http://www.mockapi.io).
 
-[Demo source](https://github.com/rucken/core/tree/master/apps/demo) - Source code of demo application.
+[Live demo (SSR)](https://rucken.herokuapp.com) - Demo application with server side rendering (backend: http://www.mockapi.io).
 
-## Sample projects
-
-[Rucken: Todo](https://github.com/rucken/todo-web) - Simple todo application with: projects, tasks, statuses (backend: http://mockapi.io).
-
-[Rucken: Demo (NestJS)](https://github.com/rucken/core-nestjs) - Simple application demonstrating the basic usage of permissions with NestJS (JWT, PasswordHash, User, Group, Permission, ContentType) (backend: NestJS).
-
-[Rucken: Todo (Django)](https://github.com/rucken/todo-django) - Simple todo application with: auth, groups, permissions, projects, tasks, statuses (backend: Django + plugins).
+[Live demo (NestJS)](https://rucken-core-nestjs.herokuapp.com) - Demo application with live backend (backend: https://nestjs.com).
 
 ## License
 
