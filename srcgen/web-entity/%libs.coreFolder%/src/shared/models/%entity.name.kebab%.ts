@@ -1,7 +1,7 @@
 import { IModel } from 'ngx-repository';
 import { translate } from '@rucken/core';
 
-export class <%=entity.name.camel%> extends IModel {
+export class <%=entity.name.camel%> implements IModel {
   static strings: any = {
     <%=entity.table.pk.name %>: translate('<%=_.upperFirst(entity.table.pk.name)%>'),
     <%for (var i = 0; i < entity.table.fields.names.length; i++) {%>    <%=entity.table.fields.names[i] + ': translate(\'' + _.upperFirst(entity.table.fields.names[i]) + '\'),\n' %><%}%>
