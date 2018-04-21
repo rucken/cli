@@ -1,3 +1,13 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/rucken/cli/compare/2.0.1...2.0.2) (2018-04-21)
+
+
+### Bug Fixes
+
+* **web-entity:** Add MessageService to all grid components ([11184b8](https://github.com/rucken/cli/commit/11184b8))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/rucken/cli/compare/2.0.0...2.0.1) (2018-04-19)
 
