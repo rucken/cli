@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { EntityInputModule } from '@rucken/web';
+import { EntityInputModule, MessageModalModule } from '@rucken/web';
 import { <%=entity.list.name.camel%>GridModalModule } from '../<%=entity.list.name.kebab%>-grid-modal/<%=entity.list.name.kebab%>-grid-modal.module';
 import { <%=entity.name.camel%>InputComponent } from './<%=entity.name.kebab%>-input.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    MessageModalModule,
     TranslateModule.forChild(),
     EntityInputModule,
     <%=entity.list.name.camel%>GridModalModule,
