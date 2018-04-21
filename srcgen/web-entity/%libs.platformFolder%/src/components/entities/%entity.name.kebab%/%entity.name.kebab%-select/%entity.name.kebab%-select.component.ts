@@ -5,6 +5,7 @@ import { ErrorsExtractor } from '@rucken/core';
 import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.coreData.name%>';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DynamicRepository } from 'ngx-repository';
+import { MessageModalService } from '@rucken/web';
 import { <%=entity.list.name.camel%>GridComponent } from '../<%=entity.list.name.kebab%>-grid/<%=entity.list.name.kebab%>-grid.component';
 
 
@@ -24,14 +25,16 @@ export class <%=entity.name.camel%>SelectComponent extends <%=entity.list.name.c
     protected errorsExtractor: ErrorsExtractor,
     protected translateService: TranslateService,
     protected dynamicRepository: DynamicRepository,
-    protected <%=entity.list.name.lower.camel%>Config: <%=entity.list.name.camel%>Config
+    protected <%=entity.list.name.lower.camel%>Config: <%=entity.list.name.camel%>Config,
+    protected messageModalService: MessageModalService
   ) {
     super(
       modalService,
       errorsExtractor,
       translateService,
       dynamicRepository,
-      <%=entity.list.name.lower.camel%>Config
+      <%=entity.list.name.lower.camel%>Config,
+      messageModalService
     );
   }
   ngOnInit() {

@@ -4,7 +4,7 @@ import { ErrorsExtractor, translate } from '@rucken/core';
 import { <%=entity.name.camel%>, <%=entity.list.name.camel%>Config } from '<%=libs.coreData.name%>';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DynamicRepository, PaginationMeta } from 'ngx-repository';
-import { BaseEntityListComponent } from '@rucken/web';
+import { BaseEntityListComponent, MessageModalService } from '@rucken/web';
 import { <%=entity.name.camel%>ModalComponent } from '../<%=entity.name.kebab%>-modal/<%=entity.name.kebab%>-modal.component';
 
 
@@ -20,7 +20,8 @@ export class <%=entity.list.name.camel%>GridComponent extends BaseEntityListComp
     protected errorsExtractor: ErrorsExtractor,
     protected translateService: TranslateService,
     protected dynamicRepository: DynamicRepository,
-    protected <%=entity.list.name.lower.camel%>Config: <%=entity.list.name.camel%>Config
+    protected <%=entity.list.name.lower.camel%>Config: <%=entity.list.name.camel%>Config,
+    protected messageModalService: MessageModalService
   ) {
     super(
       dynamicRepository.fork <<%=entity.name.camel%>> (<%=entity.name.camel%>),

@@ -1,6 +1,6 @@
 {
 	"name": "@rucken/cli",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Console tools for create and build Angular5+ application based on rucken",
 	"bugs": {
 		"url": "https://github.com/rucken/cli/issues"
@@ -58,10 +58,10 @@
 	},
 	"dependencies": {
 		"@angular/cli": "1.7.4",
-		"@angular/compiler-cli": "5.2.9",
-		"@angular/common": "5.2.9",
-		"@angular/compiler": "5.2.9",
-		"@angular/core": "5.2.9",
+		"@angular/compiler-cli": "5.2.10",
+		"@angular/common": "5.2.10",
+		"@angular/compiler": "5.2.10",
+		"@angular/core": "5.2.10",
 		"@biesbjerg/ngx-translate-extract": "2.3.4",
 		"@types/cheerio": "0.22.7",
 		"@types/del": "3.0.1",
