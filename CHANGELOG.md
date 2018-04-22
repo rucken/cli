@@ -1,3 +1,13 @@
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/rucken/cli/compare/2.0.2...2.0.3) (2018-04-22)
+
+
+### Bug Fixes
+
+* **srcgen:** Remove duplicated imports from modules for "web-entity" template ([6a58cdd](https://github.com/rucken/cli/commit/6a58cdd))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/rucken/cli/compare/2.0.1...2.0.2) (2018-04-21)
 

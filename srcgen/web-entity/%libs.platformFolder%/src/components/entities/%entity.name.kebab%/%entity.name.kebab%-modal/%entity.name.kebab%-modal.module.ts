@@ -1,21 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { DirectivesModule } from '@rucken/web';
-import { FormGroupModule } from '@rucken/web';
 import { PromptFormModalModule } from '@rucken/web';
 import { <%=entity.name.camel%>ModalComponent } from './<%=entity.name.kebab%>-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TranslateModule.forChild(),
-    FormGroupModule,
-    PromptFormModalModule,
-    DirectivesModule
+    PromptFormModalModule
   ],
   declarations: [
     <%=entity.name.camel%>ModalComponent
@@ -24,7 +15,8 @@ import { <%=entity.name.camel%>ModalComponent } from './<%=entity.name.kebab%>-m
     <%=entity.name.camel%>ModalComponent
   ],
   exports: [
-    <%=entity.name.camel%>ModalComponent
+    <%=entity.name.camel%>ModalComponent,
+    PromptFormModalModule
   ]
 })
 export class <%=entity.name.camel%>ModalModule {

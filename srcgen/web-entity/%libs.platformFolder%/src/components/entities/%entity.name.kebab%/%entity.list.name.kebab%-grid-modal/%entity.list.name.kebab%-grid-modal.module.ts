@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
 import { EntityGridModalModule } from '@rucken/web';
 import { <%=entity.list.name.camel%>GridModule } from '../<%=entity.list.name.kebab%>-grid/<%=entity.list.name.kebab%>-grid.module';
 import { <%=entity.list.name.camel%>GridModalComponent } from './<%=entity.list.name.kebab%>-grid-modal.component';
@@ -9,9 +7,6 @@ import { <%=entity.list.name.camel%>GridModalComponent } from './<%=entity.list.
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TranslateModule.forChild(),
     EntityGridModalModule,
     <%=entity.list.name.camel%>GridModule
   ],
@@ -22,7 +17,9 @@ import { <%=entity.list.name.camel%>GridModalComponent } from './<%=entity.list.
     <%=entity.list.name.camel%>GridModalComponent
   ],
   exports: [
-    <%=entity.list.name.camel%>GridModalComponent
+    <%=entity.list.name.camel%>GridModalComponent,
+    EntityGridModalModule,
+    <%=entity.list.name.camel%>GridModule
   ]
 })
 export class <%=entity.list.name.camel%>GridModalModule {
