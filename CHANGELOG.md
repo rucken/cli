@@ -1,3 +1,13 @@
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/rucken/cli/compare/2.0.3...2.0.4) (2018-04-25)
+
+
+### Bug Fixes
+
+* **srcgen:** Update for new version of rucken ([ecd727c](https://github.com/rucken/cli/commit/ecd727c))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/rucken/cli/compare/2.0.2...2.0.3) (2018-04-22)
 
