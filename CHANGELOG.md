@@ -1,3 +1,13 @@
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/rucken/cli/compare/2.0.4...2.0.5) (2018-04-26)
+
+
+### Bug Fixes
+
+* **web-app-empty:** Update rucken dependencies ([9aabdf1](https://github.com/rucken/cli/commit/9aabdf1))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/rucken/cli/compare/2.0.3...2.0.4) (2018-04-25)
 
