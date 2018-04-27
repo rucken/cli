@@ -1,3 +1,14 @@
+<a name="2.0.6"></a>
+## [2.0.6](https://github.com/rucken/cli/compare/2.0.5...2.0.6) (2018-04-27)
+
+
+### Bug Fixes
+
+* **web-app-empty:** Update rucken dependencies ([05cbb91](https://github.com/rucken/cli/commit/05cbb91))
+* **web-empty:** Remove disabled modal with grid ([a186e48](https://github.com/rucken/cli/commit/a186e48))
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://github.com/rucken/cli/compare/2.0.4...2.0.5) (2018-04-26)
 
