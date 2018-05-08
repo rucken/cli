@@ -84,7 +84,7 @@
 		"lodash": "4.17.5",
 		"loglevel": "1.6.1",
 		"loglevel-colored-level-prefix": "1.0.0",
-		"ng-packagr": "2.4.2",
+		"ng-packagr": "2.4.3",
 		"npm-run": "5.0.0",
 		"po2json": "0.4.5",
 		"recursive-readdir": "2.2.2",
