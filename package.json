@@ -63,7 +63,7 @@
 		"@angular/compiler": "5.2.10",
 		"@angular/core": "5.2.10",
 		"@biesbjerg/ngx-translate-extract": "2.3.4",
-		"@types/cheerio": "0.22.7",
+		"@types/cheerio": "0.22.8",
 		"@types/del": "3.0.1",
 		"@types/dotenv": "4.0.3",
 		"@types/fs-extra": "5.0.1",
