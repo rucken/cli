@@ -31,7 +31,7 @@ $ npm install -g @rucken/cli
 $ rucken COMMAND
 running command...
 $ rucken (-v|--version|version)
-@rucken/cli/2.0.6 win32-x64 node-v8.11.3
+@rucken/cli/3.0.0-rc.0 win32-x64 node-v8.11.3
 $ rucken --help [COMMAND]
 USAGE
   $ rucken COMMAND
@@ -40,6 +40,98 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`rucken config [FOLDER]`](#rucken-config-folder)
+* [`rucken help [COMMAND]`](#rucken-help-command)
+* [`rucken make-ts-list [FOLDER]`](#rucken-make-ts-list-folder)
+* [`rucken prepare [FOLDER]`](#rucken-prepare-folder)
+* [`rucken translate [FOLDER]`](#rucken-translate-folder)
+* [`rucken version-updater [FOLDER]`](#rucken-version-updater-folder)
+
+## `rucken config [FOLDER]`
+
+change angular.json properties and tsconfig.json properties for switch between dev - for speedup mono serve mode and prod - build optimization and standalone build all lib and application
+
+```
+USAGE
+  $ rucken config [FOLDER]
+
+OPTIONS
+  -h, --help             show CLI help
+  -m, --mode=(dev|prod)  [default: prod]
+```
+
+## `rucken help [COMMAND]`
+
+display help for rucken
+
+```
+USAGE
+  $ rucken help [COMMAND]
+
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
+```
+
+## `rucken make-ts-list [FOLDER]`
+
+make index.ts with list of ts files recursive from source folder
+
+```
+USAGE
+  $ rucken make-ts-list [FOLDER]
+
+OPTIONS
+  -e, --excludes=excludes            [default: ["*server*","*node_modules*"]] exclude directories/files masks
+  -h, --help                         show CLI help
+  -i, --indexFileName=indexFileName  [default: index.ts] output file
+```
+
+## `rucken prepare [FOLDER]`
+
+translate + make-ts-list + version-update + config
+
+```
+USAGE
+  $ rucken prepare [FOLDER]
+
+OPTIONS
+  -h, --help             show CLI help
+  -m, --mode=(dev|prod)  [default: prod]
+```
+
+## `rucken translate [FOLDER]`
+
+extract translate from source and make ts class from it
+
+```
+USAGE
+  $ rucken translate [FOLDER]
+
+OPTIONS
+  -c, --clean                      remove obsolete strings when merging
+  -e, --excludes=excludes          [default: ["node_modules"]] exclude directories/files masks
+  -f, --format=(po|json)           [default: po] file prefix and build mode
+  -h, --help                       show CLI help
+  -p, --prefix=prefix              name of class prefix
+  -t, --templateName=templateName  [default: template] name of template
+```
+
+## `rucken version-updater [FOLDER]`
+
+libraries dependencies and package.json versions updater from root package.json
+
+```
+USAGE
+  $ rucken version-updater [FOLDER]
+
+OPTIONS
+  -h, --help       show CLI help
+  -r, --root=root  [default: .] root project with package.json for get inforamtion about dependencies and it versions
+```
+<!-- commandsstop -->
 * [`rucken config [FOLDER]`](#rucken-config-folder)
 * [`rucken help [COMMAND]`](#rucken-help-command)
 * [`rucken make-ts-list [FOLDER]`](#rucken-make-ts-list-folder)
