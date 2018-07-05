@@ -118,7 +118,7 @@ export class Prepare extends Command {
       const errors: any[] = [];
       apps.filter(app => app.sourceRoot).forEach(async (app: { sourceRoot: string }) => {
         try {
-          await MakeTsList.run([resolvePath(folder, app.sourceRoot)]);
+          await MakeTsList.run([resolvePath(folder, app.sourceRoot, 'app')]);
         } catch (error) {
           errors.push(error);
         }
