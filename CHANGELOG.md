@@ -1,3 +1,13 @@
+<a name="3.0.0-rc.0"></a>
+## 3.0.0-rc.0](https://github.com/rucken/cli/compare/2.0.6...3.0.0-rc.0) (2018-07-05)
+
+
+### Performance Improvements
+
+* Rewrite all project ([eebdf3c](https://github.com/rucken/cli/commit/eebdf3c))
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/rucken/cli/compare/2.0.5...2.0.6) (2018-04-27)
 

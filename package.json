@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular5+ application based on rucken",
-  "version": "2.0.6",
+  "version": "3.0.0-rc.0",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -84,11 +84,11 @@
   "scripts": {
     "postpack": "rimraf oclif.manifest.json npm-shrinkwrap.json",
     "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
-    "prepack": "rimraf lib && tsc && oclif-dev manifest && oclif-dev readme && npm shrinkwrap",
+    "prepack": "rimraf lib && tsc && oclif-dev manifest && npm shrinkwrap",
     "prepare": "rimraf lib && tsc",
     "watch": "rimraf lib && tsc --watch",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\" --timeout 1000000",
-    "version": "oclif-dev readme && git add README.md",
+    "readme": "oclif-dev readme && git add README.md",
     "run-translate": "node ./bin/run translate test/fixtures/translate/folder1 -f po -c -p Core",
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
