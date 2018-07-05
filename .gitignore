@@ -1,17 +1,11 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# compiled output
-.ng_pkg_build
-.env
-.tmp
-dist
-tmp
-out-tsc
-*.tgz
-
-# dependencies
+*-debug.log
+*-error.log
+/.nyc_output
+/dist
+/lib
+/package-lock.json
+/tmp
 node_modules
-
 # IDEs and editors
 /.idea
 .project
@@ -27,27 +21,5 @@ node_modules
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
-/typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
-
-#System Files
-.DS_Store
-Thumbs.db
-temp_*.json
-/test/fixture/**/package-lock.json
-/test/fixture/**/src/index.ts
-/test/fixture/**/src/app/index.ts
-/test/fixture/**/i18n/ru.i18n.ts
-/test/fixture/**/i18n/template.pot
-/test/fixture/ananas
+/*.tgz
+/.travis.yml
