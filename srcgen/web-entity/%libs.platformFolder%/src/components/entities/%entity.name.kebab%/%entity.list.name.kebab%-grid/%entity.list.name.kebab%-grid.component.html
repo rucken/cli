@@ -1,6 +1,0 @@
-<entity-grid title="<%=entity.list.name.caption%>" [items]="repository.items$ | async" (selected)="selected=$event"
-  [columns]="['<%=entity.table.fields.names.join('\',\'')%>', 'action']" [readonly]="readonly" [strings]="strings" (create)="onCreateClick()" (update)="onUpdateClick($event)"
-  (delete)="onDeleteClick($event)" (view)="onViewClick($event)" (search)="onChangeFilter({searchText:$event})" (changeOrder)="onChangeFilter({sort:$event})"
-  [paginationMeta]="repository.paginationMeta$ | async" [enableCreate]="'add_<%=entity.name.kebab%>' | perm | async" [enableUpdate]="'change_<%=entity.name.kebab%>' | perm | async"
-  [enableDelete]="'delete_<%=entity.name.kebab%>' | perm | async" (changePage)="onChangePage($event)" [processing]="processing">
-</entity-grid>

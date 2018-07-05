@@ -1,0 +1,221 @@
+import { flags, Command } from '@oclif/command';
+import { readFileSync, writeFileSync } from 'fs';
+import { basename, resolve as resolvePath, sep } from 'path';
+import * as recursive from 'recursive-readdir';
+const npmRun = require('npm-run');
+const replaceExt = require('replace-ext');
+const sortPaths = require('sort-paths');
+const po2json = require('po2json');
+const stringifyObject = require('stringify-object');
+
+export class Translate extends Command {
+  static description = 'extract translate from source and make ts class from it';
+
+  static flags = {
+    help: flags.help({ char: 'h' }),
+    excludes: flags.string({ char: 'e', description: 'exclude directories/files masks', default: '["node_modules"]' }),
+    prefix: flags.string({ char: 'p', description: 'name of class prefix', default: '' }),
+    templateName: flags.string({ char: 't', description: 'name of template', default: 'template' }),
+    format: flags.enum({ char: 'f', description: 'file prefix and build mode', options: ['po', 'json'], default: 'po' }),
+    clean: flags.boolean({ char: 'c', description: 'remove obsolete strings when merging' })
+  };
+
+  static args = [{ name: 'folder' }];
+
+  async run() {
+    const { args, flags } = this.parse(Translate);
+    let jsonFiles: string[] = [];
+    const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
+    const format = flags.format;
+    const excludes = flags.excludes ? JSON.parse(flags.excludes) : [];
+    const prefix = flags.prefix ? flags.prefix : '';
+    const templateName = flags.templateName ? flags.templateName : 'template';
+    const clean = flags.clean ? flags.clean : false;
+    if (format === 'json') {
+      jsonFiles = await this.listOfJsonFiles(
+        folder,
+        excludes
+      );
+      try {
+        await this.ngxTranslateExtract(
+          folder,
+          format,
+          jsonFiles,
+          false
+        );
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        await this.json2ts(
+          folder,
+          excludes,
+          prefix
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        await this.ngxTranslateExtract(
+          folder,
+          format,
+          templateName,
+          clean
+        );
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        await this.po2ts(
+          folder,
+          excludes,
+          prefix
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+  private listOfJsonFiles(folder: string, excludes: string[]) {
+    const newExcludes = ['!*.json', ...excludes];
+    return new Promise<string[]>((resolve, _reject) => {
+      recursive(folder, newExcludes, (_err, files) => {
+        resolve(files);
+      });
+    });
+  }
+  json2ts(folder: string, excludes: string[], prefix: string) {
+    const newExcludes = ['!*.json', ...excludes];
+    this.debug('Start', {
+      folder: folder,
+      excludes: newExcludes,
+      prefix: prefix
+    });
+    return new Promise((resolve, reject) => {
+      recursive(folder, newExcludes, (err, files) => {
+        if (err || !Array.isArray(files)) {
+          this.debug('Error', err);
+          reject(err);
+        } else {
+          files = sortPaths(files, sep);
+          this.debug('Founded files', files);
+          files.forEach(file => {
+            const content = readFileSync(file).toString();
+            const fileName = basename(file, '.json');
+            const classFile = replaceExt(file, '.i18n.ts');
+            const jsonData = JSON.parse(content);
+            const keys = Object.keys(jsonData);
+            keys.forEach(key => {
+              if (!key) {
+                delete jsonData[key];
+              }
+            });
+            const className = prefix + fileName[0].toUpperCase() + fileName.substr(1) + 'I18n';
+            const classBody = this.jsonToStringWithTypescriptClass(className, jsonData);
+            this.debug(classFile, classBody);
+            writeFileSync(
+              classFile, classBody
+            );
+          });
+          this.debug('End', true);
+          resolve();
+        }
+      });
+    });
+  }
+  po2ts(folder: string, excludes: string[], prefix: string) {
+    const newExcludes = ['!*.po', ...excludes];
+    this.debug('Start', {
+      folder: folder,
+      excludes: newExcludes,
+      prefix: prefix
+    });
+    return new Promise((resolve, reject) => {
+      recursive(folder, newExcludes, (err, files) => {
+        if (err || !Array.isArray(files)) {
+          this.debug('Error', err);
+          reject(err);
+        } else {
+          files = sortPaths(files, sep);
+          this.debug('Founded files', files);
+          files.forEach(file => {
+            const content = readFileSync(file).toString().split('\n').filter(line => line.includes('msgid') || line.includes('msgstr')).join('\n');
+            const fileName = basename(file, '.po');
+            const classFile = replaceExt(file, '.i18n.ts');
+            const jsonData = po2json.parse(content);
+            const keys = Object.keys(jsonData);
+            keys.forEach(key => {
+              if (!key) {
+                delete jsonData[key];
+              }
+            });
+            this.debug('jsonData', jsonData);
+            const className = prefix + fileName[0].toUpperCase() + fileName.substr(1) + 'I18n';
+            const classBody = this.jsonToStringWithTypescriptClass(className, jsonData);
+            this.debug(classFile, classBody);
+            writeFileSync(
+              classFile, classBody
+            );
+          });
+          this.debug('End', true);
+          resolve();
+        }
+      });
+    });
+  }
+  private jsonToStringWithTypescriptClass(className: string, data: any) {
+    return 'export const ' + className + ' = ' +
+      stringifyObject(data, {
+        indent: '  '
+      })
+      + ';\n';
+  }
+  ngxTranslateExtract(folder: string, format: string, templateName: string | string[], clean: boolean) {
+    const newExcludes = ['/**/*.html', '/**/*.ts'];
+    this.debug('Start', {
+      folder: folder,
+      format: format,
+      templateName: templateName,
+      excludes: newExcludes
+    });
+    return new Promise((resolve, reject) => {
+      const inputFolder = folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/');
+      const outputFormat = format === 'po' ? 'pot' : format;
+      let outputFolder;
+      if (Array.isArray(templateName)) {
+        const outputFolders: string[] = [];
+        templateName.forEach(oneTemplateName =>
+          outputFolders.push(
+            resolvePath(folder, 'i18n', oneTemplateName).replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/')
+          )
+        );
+        outputFolder = outputFolders.join(' ');
+      } else {
+        outputFolder = resolvePath(folder, 'i18n', templateName + '.' + outputFormat).replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/');
+      }
+      const command = 'ngx-translate-extract ' +
+        '--patterns ' + newExcludes.join(' ') + ' ' +
+        '--input ' + inputFolder + ' ' +
+        '--output ' + outputFolder + ' ' +
+        '--format=' + outputFormat + ' --marker translate' + (clean ? ' --clean' : '');
+      this.debug('command', command);
+      npmRun.exec(
+        command,
+        {},
+        (err: any, stdout: any, stderr: any) => {
+          this.debug('err', err);
+          this.debug('stdout', stdout);
+          this.debug('stderr', stderr);
+          if (err) {
+            this.debug('End', err);
+            reject(err);
+          } else {
+            this.debug('End', true);
+            resolve();
+          }
+        }
+      );
+    });
+  }
+}

@@ -1,5 +1,0 @@
-msgid "Yes"
-msgstr "Да"
-
-msgid "No"
-msgstr "Нет"

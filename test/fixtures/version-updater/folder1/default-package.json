@@ -1,0 +1,50 @@
+{
+  "name": "@project/core",
+  "version": "2.0.0",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6.1.0"
+  },
+  "description": "Core with base class and admin entities for application maked on Angular6+",
+  "keywords": [
+    "ngx",
+    "angular",
+    "angular6",
+    "i18n",
+    "shared",
+    "services",
+    "models",
+    "project",
+    "core"
+  ],
+  "license": "MIT",
+  "author": "EndyKaufman <admin@site15.ru>",
+  "bugs": {
+    "url": "https://github.com/project/core/issues"
+  },
+  "homepage": "https://github.com/project/core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project/core.git"
+  },
+  "maintainers": [
+    {
+      "name": "EndyKaufman",
+      "email": "admin@site15.ru"
+    }
+  ],
+  "peerDependencies": {
+    "rxjs": "^5.0.0",
+    "@angular/forms": "^5.0.5",
+    "@angular/common": "^5.0.5",
+    "@angular/compiler": "^5.0.5",
+    "@angular/core": "^5.0.5"
+  },
+  "dependencies": {
+    "@ngx-translate/core": "^9.0.2",
+    "@types/jsonwebtoken": "^6.2.7",
+    "jsonwebtoken": "^7.3.0",
+    "ngx-permissions": "^4.0.0",
+    "ngx-repository": "^0.3.1"
+  }
+}
