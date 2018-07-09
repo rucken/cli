@@ -8,7 +8,7 @@ Console tools for create and build Angular6+ application based on [rucken](https
 [![Version](https://img.shields.io/npm/v/@rucken/cli.svg)](https://npmjs.org/package/@rucken/cli)
 [![Build Status][travis-image]][travis-url]
 [![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/rucken/cli?branch=master&svg=true)](https://ci.appveyor.com/project/rucken/cli/branch/master)
-[![Codecov](https://codecov.io/gh/rucken/cli/branch/master/graph/badge.svg)](https://codecov.io/gh/rucken/cli)
+[![Codecov](https://codecov.io/gh/rucken/cli/branch/develop/graph/badge.svg)](https://codecov.io/gh/rucken/cli)
 [![Downloads/week](https://img.shields.io/npm/dw/@rucken/cli.svg)](https://npmjs.org/package/@rucken/cli)
 [![License](https://img.shields.io/npm/l/@rucken/cli.svg)](https://github.com/rucken/cli/blob/master/package.json)
 [![Gitter][gitter-image]][gitter-url]
