@@ -1,3 +1,8 @@
+<a name="3.0.0-rc.3"></a>
+# [3.0.0-rc.3](https://github.com/rucken/cli/compare/3.0.0-rc.2...3.0.0-rc.3) (2018-07-09)
+
+* **deps:** Move used deps to "dependencies" place
+
 <a name="3.0.0-rc.2"></a>
 # [3.0.0-rc.2](https://github.com/rucken/cli/compare/3.0.0-rc.1...3.0.0-rc.2) (2018-07-09)
 
