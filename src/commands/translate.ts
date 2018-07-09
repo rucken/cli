@@ -223,7 +223,7 @@ export class Translate extends Command {
         if (err) {
           reject(new Error('The path you supplied was not found'));
         } else {
-          const command = 'ngx-translate-extract ' +
+          const command = 'node ' + resolvePath(__dirname, '..', '..', 'node_modules/@biesbjerg/ngx-translate-extract/bin/cli.js') + ' ' +
             '--patterns ' + newExcludes.join(' ') + ' ' +
             '--input ' + inputFolder + ' ' +
             '--output ' + outputFolder + ' ' +
