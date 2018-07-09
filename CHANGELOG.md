@@ -1,3 +1,13 @@
+<a name="3.0.0-rc.2"></a>
+# [3.0.0-rc.2](https://github.com/rucken/cli/compare/3.0.0-rc.1...3.0.0-rc.2) (2018-07-09)
+
+
+### Bug Fixes
+
+* **deps:** Downgrade typescript version ([4d5ea5f](https://github.com/rucken/cli/commit/4d5ea5f))
+
+
+
 <a name="3.0.0-rc.1"></a>
 # [3.0.0-rc.1](https://github.com/rucken/cli/compare/3.0.0-rc.0...3.0.0-rc.1) (2018-07-09)
 

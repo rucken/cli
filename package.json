@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular5+ application based on rucken",
-  "version": "3.0.0-rc.1",
+  "version": "3.0.0-rc.2",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
