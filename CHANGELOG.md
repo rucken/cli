@@ -1,3 +1,16 @@
+<a name="3.0.0-rc.1"></a>
+# [3.0.0-rc.1](https://github.com/rucken/cli/compare/3.0.0-rc.0...3.0.0-rc.1) (2018-07-09)
+
+
+### Bug Fixes
+
+* **make-ts-list:** Add public_api.ts and test.ts to default exclude mask ([266e18c](https://github.com/rucken/cli/commit/266e18c))
+* **preapre:** Correct work with async await array ([5739167](https://github.com/rucken/cli/commit/5739167))
+* **prepare:** Add app subfolder for make index.ts ([679b546](https://github.com/rucken/cli/commit/679b546))
+* **translate:** Validate and update incorrect json data from translate ([9753c30](https://github.com/rucken/cli/commit/9753c30))
+
+
+
 <a name="3.0.0-rc.0"></a>
 ## 3.0.0-rc.0](https://github.com/rucken/cli/compare/2.0.6...3.0.0-rc.0) (2018-07-05)
 

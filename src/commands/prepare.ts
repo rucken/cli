@@ -97,13 +97,14 @@ export class Prepare extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       const errors: any[] = [];
-      libs.filter(lib => lib.root).forEach(async (lib: { root: string }) => {
+      const eachLibs: { root: string }[] = libs.filter(lib => lib.root);
+      for (const lib of eachLibs) {
         try {
           await VersionUpdater.run([resolvePath(folder, lib.root), '--root', resolvePath(folder)]);
         } catch (error) {
           errors.push(error);
         }
-      });
+      }
       if (errors.length) {
         reject(errors);
       } else {
@@ -116,20 +117,22 @@ export class Prepare extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       const errors: any[] = [];
-      apps.filter(app => app.sourceRoot).forEach(async (app: { sourceRoot: string }) => {
+      const eachApps: { sourceRoot: string }[] = apps.filter(app => app.sourceRoot);
+      for (const app of eachApps) {
         try {
           await MakeTsList.run([resolvePath(folder, app.sourceRoot, 'app')]);
         } catch (error) {
           errors.push(error);
         }
-      });
-      libs.filter(lib => lib.sourceRoot).forEach(async (lib: { sourceRoot: string }) => {
+      }
+      const eachLibs: { sourceRoot: string }[] = libs.filter(lib => lib.sourceRoot);
+      for (const lib of eachLibs) {
         try {
           await MakeTsList.run([resolvePath(folder, lib.sourceRoot)]);
         } catch (error) {
           errors.push(error);
         }
-      });
+      }
       if (errors.length) {
         reject(errors);
       } else {
@@ -142,27 +145,27 @@ export class Prepare extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       const errors: any[] = [];
-      apps.filter(app => app.sourceRoot).forEach(async (app: { sourceRoot: string }) => {
+      const eachApps: { sourceRoot: string }[] = apps.filter(app => app.sourceRoot);
+      for (const app of eachApps) {
         try {
           await Translate.run([resolvePath(folder, app.sourceRoot, 'app')]);
         } catch (error) {
           errors.push(error);
         }
-      });
-      libs.filter(lib => lib.sourceRoot).forEach(async (lib: { sourceRoot: string }) => {
+      }
+      const eachLibs: { sourceRoot: string }[] = libs.filter(lib => lib.sourceRoot);
+      for (const lib of eachLibs) {
         try {
           await Translate.run([resolvePath(folder, lib.sourceRoot)]);
         } catch (error) {
           errors.push(error);
         }
-      });
-      setTimeout(() => {
-        if (errors.length) {
-          reject(errors);
-        } else {
-          resolve();
-        }
-      }, 1000);
+      }
+      if (errors.length) {
+        reject(errors);
+      } else {
+        resolve();
+      }
     });
   }
 }

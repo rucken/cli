@@ -1,5 +1,5 @@
 import { flags, Command } from '@oclif/command';
-import { readFileSync, writeFileSync } from 'fs';
+import { access, constants, readFileSync, writeFileSync } from 'fs';
 import { basename, resolve as resolvePath, sep } from 'path';
 import * as recursive from 'recursive-readdir';
 const npmRun = require('npm-run');
@@ -80,9 +80,14 @@ export class Translate extends Command {
   private listOfJsonFiles(folder: string, excludes: string[]) {
     const newExcludes = ['!*.json', ...excludes];
     return new Promise<string[]>((resolve, _reject) => {
-      recursive(folder, newExcludes, (_err, files) => {
-        resolve(files);
-      });
+      try {
+        recursive(folder, newExcludes, (_err, files) => {
+          resolve(files);
+        });
+        // tslint:disable-next-line:no-unused
+      } catch (error) {
+        resolve([]);
+      }
     });
   }
   json2ts(folder: string, excludes: string[], prefix: string) {
@@ -111,8 +116,15 @@ export class Translate extends Command {
                 delete jsonData[key];
               }
             });
+            // tslint:disable-next-line:no-unused
             const className = prefix + fileName[0].toUpperCase() + fileName.substr(1) + 'I18n';
-            const classBody = this.jsonToStringWithTypescriptClass(className, jsonData);
+            let classBody = '';
+            try {
+              classBody = this.jsonToStringWithTypescriptClass(className, jsonData);
+              // tslint:disable-next-line:no-unused
+            } catch (error) {
+              classBody = '';
+            }
             this.debug(classFile, classBody);
             writeFileSync(
               classFile, classBody
@@ -165,8 +177,21 @@ export class Translate extends Command {
     });
   }
   private jsonToStringWithTypescriptClass(className: string, data: any) {
+    const newObject: any = {};
+    if (data && typeof data === 'object') {
+      const keys = Object.keys(data);
+      keys.forEach(key => {
+        if (key && data[key] && Array.isArray(data[key]) && data[key].length === 2) {
+          newObject[key] = data[key][1];
+        } else {
+          if (key) {
+            newObject[key] = data[key];
+          }
+        }
+      });
+    }
     return 'export const ' + className + ' = ' +
-      stringifyObject(data, {
+      stringifyObject(newObject, {
         indent: '  '
       })
       + ';\n';
@@ -182,7 +207,7 @@ export class Translate extends Command {
     return new Promise((resolve, reject) => {
       const inputFolder = folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/');
       const outputFormat = format === 'po' ? 'pot' : format;
-      let outputFolder;
+      let outputFolder: string;
       if (Array.isArray(templateName)) {
         const outputFolders: string[] = [];
         templateName.forEach(oneTemplateName =>
@@ -194,28 +219,34 @@ export class Translate extends Command {
       } else {
         outputFolder = resolvePath(folder, 'i18n', templateName + '.' + outputFormat).replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/');
       }
-      const command = 'ngx-translate-extract ' +
-        '--patterns ' + newExcludes.join(' ') + ' ' +
-        '--input ' + inputFolder + ' ' +
-        '--output ' + outputFolder + ' ' +
-        '--format=' + outputFormat + ' --marker translate' + (clean ? ' --clean' : '');
-      this.debug('command', command);
-      npmRun.exec(
-        command,
-        {},
-        (err: any, stdout: any, stderr: any) => {
-          this.debug('err', err);
-          this.debug('stdout', stdout);
-          this.debug('stderr', stderr);
-          if (err) {
-            this.debug('End', err);
-            reject(err);
-          } else {
-            this.debug('End', true);
-            resolve();
-          }
+      access(inputFolder, constants.F_OK, err => {
+        if (err) {
+          reject(new Error('The path you supplied was not found'));
+        } else {
+          const command = 'ngx-translate-extract ' +
+            '--patterns ' + newExcludes.join(' ') + ' ' +
+            '--input ' + inputFolder + ' ' +
+            '--output ' + outputFolder + ' ' +
+            '--format=' + outputFormat + ' --marker translate' + (clean ? ' --clean' : '');
+          this.debug('command', command);
+          npmRun.exec(
+            command,
+            {},
+            (err: any, stdout: any, stderr: any) => {
+              this.debug('err', err);
+              this.debug('stdout', stdout);
+              this.debug('stderr', stderr);
+              if (err) {
+                this.debug('End', err);
+                reject(err);
+              } else {
+                this.debug('End', true);
+                resolve();
+              }
+            }
+          );
         }
-      );
+      });
     });
   }
 }

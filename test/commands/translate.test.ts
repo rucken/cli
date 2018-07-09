@@ -103,17 +103,14 @@ describe('translate', () => {
     .it('runs translate with set folder and format po, clean, prefix', _ctx =>
       readFile(resolvePath('test/fixtures/translate/folder1/i18n/ru.i18n.ts'), 'utf8', (_err, body) =>
         expect(body).to.contain(`export const CoreRuI18n = {
-  Id: [
-    null,
-    'Ид'
-  ]
+  Id: 'Ид'
 };
 `)
       )
     );
   test
     .command(['translate', 'test/fixtures/translate/folder1', '-f', 'json', '-c'])
-    .it('runs translate with set folder and format json + clean', _ctx =>
+    .it('runs translate with set folder and format json + clean', _ctx => {
       access(resolvePath('test/fixtures/translate/folder1/i18n/ru.i18n.ts'), constants.F_OK, _err =>
         access(resolvePath('test/fixtures/translate/folder1/i18n/en.i18n.ts'), constants.F_OK, __err => {
           if (_err || __err) {
@@ -122,8 +119,8 @@ describe('translate', () => {
             expect(true).to.equal(true);
           }
         })
-      )
-    );
+      );
+    });
   test
     .command(['translate', 'test/fixtures/translate', '-f', 'po', '-e', '["folder1"]'])
     .it('runs translate with set folder and format po and excludes', _ctx =>
