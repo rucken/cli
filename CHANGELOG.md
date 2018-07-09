@@ -1,3 +1,13 @@
+<a name="3.0.0-rc.4"></a>
+# [3.0.0-rc.4](https://github.com/rucken/cli/compare/3.0.0-rc.3...3.0.0-rc.4) (2018-07-09)
+
+
+### Bug Fixes
+
+* **translate:** Update path to run ngx-translate-extract ([cd180d4](https://github.com/rucken/cli/commit/cd180d4))
+
+
+
 <a name="3.0.0-rc.3"></a>
 # [3.0.0-rc.3](https://github.com/rucken/cli/compare/3.0.0-rc.2...3.0.0-rc.3) (2018-07-09)
 
