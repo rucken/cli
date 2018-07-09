@@ -7,7 +7,6 @@ Console tools for create and build Angular6+ application based on [rucken](https
 [![Greenkeeper badge](https://badges.greenkeeper.io/rucken/cli.svg)](https://greenkeeper.io/)
 [![Version](https://img.shields.io/npm/v/@rucken/cli.svg)](https://npmjs.org/package/@rucken/cli)
 [![Build Status][travis-image]][travis-url]
-[![CircleCI](https://circleci.com/gh/rucken/cli/tree/master.svg?style=shield)](https://circleci.com/gh/rucken/cli/tree/master)
 [![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/rucken/cli?branch=master&svg=true)](https://ci.appveyor.com/project/rucken/cli/branch/master)
 [![Codecov](https://codecov.io/gh/rucken/cli/branch/master/graph/badge.svg)](https://codecov.io/gh/rucken/cli)
 [![Downloads/week](https://img.shields.io/npm/dw/@rucken/cli.svg)](https://npmjs.org/package/@rucken/cli)

@@ -10,7 +10,7 @@ export class MakeTsList extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    excludes: flags.string({ char: 'e', description: 'exclude directories/files masks', default: '["*server*","*node_modules*"]' }),
+    excludes: flags.string({ char: 'e', description: 'exclude directories/files masks', default: '["*server*","*node_modules*", "*public_api.ts*","*test.ts*"]' }),
     indexFileName: flags.string({ char: 'i', description: 'output file', default: 'index.ts' })
   };
   static args = [{ name: 'folder' }];
