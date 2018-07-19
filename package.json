@@ -14,7 +14,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^3.0.3",
+    "@rucken/schematics": "^3.0.4",
     "@types/recursive-readdir": "^2.2.0",
     "@types/replace-ext": "0.0.27",
     "npm-run": "^5.0.1",
@@ -94,7 +94,8 @@
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
     "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev",
-    "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo"
+    "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo",
+    "run-entity": "node ./bin/run entity test/fixtures/entity -n demo -u demo -e demo@demo.demo -f [name,title]"
   },
   "greenkeeper": {
     "ignore": [
