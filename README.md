@@ -55,7 +55,7 @@ OPTIONS
   -w, --web=web            web library name in angular.json
 ```
 
-_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\entity.ts)_
+_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/entity.ts)_
 
 ## `rucken new [FOLDER]`
 
@@ -72,7 +72,7 @@ OPTIONS
   -u, --username=username  username
 ```
 
-_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\new.ts)_
+_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/new.ts)_
 <!-- generatorsstop -->
 
 # Commands
@@ -97,7 +97,7 @@ OPTIONS
   -m, --mode=(dev|prod)  [default: prod]
 ```
 
-_See code: [src\commands\config.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\config.ts)_
+_See code: [src\commands\config.ts](https://github.com/rucken/cli/blob/develop/src/commands/config.ts)_
 
 ## `rucken help [COMMAND]`
 
@@ -133,7 +133,7 @@ OPTIONS
   -i, --indexFileName=indexFileName  [default: index.ts] output file
 ```
 
-_See code: [src\commands\make-ts-list.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\make-ts-list.ts)_
+_See code: [src\commands\make-ts-list.ts](https://github.com/rucken/cli/blob/develop/src/commands/make-ts-list.ts)_
 
 ## `rucken prepare [FOLDER]`
 
@@ -148,7 +148,7 @@ OPTIONS
   -m, --mode=(dev|prod)  [default: prod]
 ```
 
-_See code: [src\commands\prepare.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\prepare.ts)_
+_See code: [src\commands\prepare.ts](https://github.com/rucken/cli/blob/develop/src/commands/prepare.ts)_
 
 ## `rucken translate [FOLDER]`
 
@@ -167,7 +167,7 @@ OPTIONS
   -t, --templateName=templateName  [default: template] name of template
 ```
 
-_See code: [src\commands\translate.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\translate.ts)_
+_See code: [src\commands\translate.ts](https://github.com/rucken/cli/blob/develop/src/commands/translate.ts)_
 
 ## `rucken version-updater [FOLDER]`
 
@@ -182,7 +182,7 @@ OPTIONS
   -r, --root=root  [default: .] root project with package.json for get inforamtion about dependencies and it versions
 ```
 
-_See code: [src\commands\version-updater.ts](https://github.com/rucken/cli/blob/v3.0.0-rc.4/src\commands\version-updater.ts)_
+_See code: [src\commands\version-updater.ts](https://github.com/rucken/cli/blob/develop/src/commands/version-updater.ts)_
 <!-- commandsstop -->
 
 [travis-image]: https://travis-ci.org/rucken/cli.svg?branch=master
