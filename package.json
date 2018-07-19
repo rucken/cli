@@ -11,18 +11,19 @@
   },
   "dependencies": {
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
-    "@types/recursive-readdir": "^2.2.0",
-    "@types/replace-ext": "0.0.27",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
+    "@rucken/schematics": "^3.0.3",
+    "@types/recursive-readdir": "^2.2.0",
+    "@types/replace-ext": "0.0.27",
     "npm-run": "^5.0.1",
-    "stringify-object": "^3.2.2",
-    "tslib": "^1",
     "po2json": "^0.4.5",
     "recursive-readdir": "^2.2.2",
     "replace-ext": "^1.0.0",
-    "sort-paths": "^1.1.0"
+    "sort-paths": "^1.1.0",
+    "stringify-object": "^3.2.2",
+    "tslib": "^1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
@@ -92,7 +93,8 @@
     "run-translate": "node ./bin/run translate test/fixtures/translate/folder1 -f po -c -p Core",
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
-    "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev"
+    "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev",
+    "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo"
   },
   "greenkeeper": {
     "ignore": [
