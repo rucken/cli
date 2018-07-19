@@ -31,7 +31,7 @@ Console tools for create and build Angular6+ application based on [rucken](https
 $ npm install -g @rucken/cli
 ```
 <!-- installstop -->
-# Commands
+# Generators
 <!-- generators -->
 * [`rucken entity [FOLDER]`](#rucken-entity-folder)
 * [`rucken new [FOLDER]`](#rucken-new-folder)
