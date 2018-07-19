@@ -42,17 +42,6 @@ describe('translate', () => {
     )
   );
   test
-    .command(['translate', '-e', '["prepare"]'])
-    .it('runs translate without set folder and format', _ctx =>
-      access(resolvePath('i18n/template.pot'), constants.F_OK, err => {
-        if (err) {
-          expect(false).to.equal(true);
-        } else {
-          expect(true).to.equal(true);
-        }
-      })
-    );
-  test
     .command(['translate', 'test/fixtures/translate', '-f', 'po'])
     .it('runs translate with set folder and format po', _ctx =>
       access(resolvePath('test/fixtures/translate/i18n/template.pot'), constants.F_OK, err => {

@@ -14,29 +14,67 @@ Console tools for create and build Angular6+ application based on [rucken](https
 [![Gitter][gitter-image]][gitter-url]
 [![Join the chat at telegram][telegram-image]][telegram-url]
 
-<!-- toc -->
 * [What is Rucken?](#what-is-rucken)
-* [Usage](#usage)
+* [Install](#install)
+* [Generators](#generators)
 * [Commands](#commands)
-<!-- tocstop -->
+
 # What is Rucken?
+<!-- what-is-rucken -->
 - **Core** - Base entities and services for create applications on `Angular6+`, include work with users, groups and permissions.
 - **Web** - Base ui grids and inputs and etc. for manage users, groups and permissions.
+<!-- what-is-ruckenstop -->
 
-# Usage
-<!-- usage -->
+# Install
+<!-- install -->
 ```sh-session
 $ npm install -g @rucken/cli
-$ rucken COMMAND
-running command...
-$ rucken (-v|--version|version)
-@rucken/cli/3.0.0-rc.0 win32-x64 node-v8.11.3
-$ rucken --help [COMMAND]
-USAGE
-  $ rucken COMMAND
-...
 ```
-<!-- usagestop -->
+<!-- installstop -->
+# Commands
+<!-- generators -->
+* [`rucken entity [FOLDER]`](#rucken-entity-folder)
+* [`rucken new [FOLDER]`](#rucken-new-folder)
+
+## `rucken entity [FOLDER]`
+
+generate model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
+
+```
+USAGE
+  $ rucken entity [FOLDER]
+
+OPTIONS
+  -a, --app=app            application name in angular.json
+  -c, --core=core          core library name in angular.json
+  -e, --email=email        email
+  -f, --fields=fields      [default: [name]] entity fields
+  -h, --help               show CLI help
+  -n, --name=name          (required) entity singular name on ke-bab case
+  -u, --username=username  username
+  -w, --web=web            web library name in angular.json
+```
+
+_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/entity.ts)_
+
+## `rucken new [FOLDER]`
+
+generate empty application based on rucken template
+
+```
+USAGE
+  $ rucken new [FOLDER]
+
+OPTIONS
+  -e, --email=email        email
+  -h, --help               show CLI help
+  -n, --name=name          (required) application name on ke-bab case
+  -u, --username=username  username
+```
+
+_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/new.ts)_
+<!-- generatorsstop -->
+
 # Commands
 <!-- commands -->
 * [`rucken config [FOLDER]`](#rucken-config-folder)
@@ -59,6 +97,8 @@ OPTIONS
   -m, --mode=(dev|prod)  [default: prod]
 ```
 
+_See code: [src\commands\config.ts](https://github.com/rucken/cli/blob/develop/src/commands/config.ts)_
+
 ## `rucken help [COMMAND]`
 
 display help for rucken
@@ -74,6 +114,8 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.0.5/src\commands\help.ts)_
+
 ## `rucken make-ts-list [FOLDER]`
 
 make index.ts with list of ts files recursive from source folder
@@ -83,10 +125,15 @@ USAGE
   $ rucken make-ts-list [FOLDER]
 
 OPTIONS
-  -e, --excludes=excludes            [default: ["*server*","*node_modules*"]] exclude directories/files masks
+  -e, --excludes=excludes            [default: ["*server*","*node_modules*", "*public_api.ts*","*test.ts*"]] exclude
+                                     directories/files masks
+
   -h, --help                         show CLI help
+
   -i, --indexFileName=indexFileName  [default: index.ts] output file
 ```
+
+_See code: [src\commands\make-ts-list.ts](https://github.com/rucken/cli/blob/develop/src/commands/make-ts-list.ts)_
 
 ## `rucken prepare [FOLDER]`
 
@@ -100,6 +147,8 @@ OPTIONS
   -h, --help             show CLI help
   -m, --mode=(dev|prod)  [default: prod]
 ```
+
+_See code: [src\commands\prepare.ts](https://github.com/rucken/cli/blob/develop/src/commands/prepare.ts)_
 
 ## `rucken translate [FOLDER]`
 
@@ -118,97 +167,7 @@ OPTIONS
   -t, --templateName=templateName  [default: template] name of template
 ```
 
-## `rucken version-updater [FOLDER]`
-
-libraries dependencies and package.json versions updater from root package.json
-
-```
-USAGE
-  $ rucken version-updater [FOLDER]
-
-OPTIONS
-  -h, --help       show CLI help
-  -r, --root=root  [default: .] root project with package.json for get inforamtion about dependencies and it versions
-```
-<!-- commandsstop -->
-* [`rucken config [FOLDER]`](#rucken-config-folder)
-* [`rucken help [COMMAND]`](#rucken-help-command)
-* [`rucken make-ts-list [FOLDER]`](#rucken-make-ts-list-folder)
-* [`rucken prepare [FOLDER]`](#rucken-prepare-folder)
-* [`rucken translate [FOLDER]`](#rucken-translate-folder)
-* [`rucken version-updater [FOLDER]`](#rucken-version-updater-folder)
-
-## `rucken config [FOLDER]`
-
-change angular.json properties and tsconfig.json properties for switch between dev - for speedup mono serve mode and prod - build optimization and standalone build all lib and application
-
-```
-USAGE
-  $ rucken config [FOLDER]
-
-OPTIONS
-  -h, --help             show CLI help
-  -m, --mode=(dev|prod)  [default: prod]
-```
-
-## `rucken help [COMMAND]`
-
-display help for rucken
-
-```
-USAGE
-  $ rucken help [COMMAND]
-
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
-```
-
-## `rucken make-ts-list [FOLDER]`
-
-make index.ts with list of ts files recursive from source folder
-
-```
-USAGE
-  $ rucken make-ts-list [FOLDER]
-
-OPTIONS
-  -e, --excludes=excludes            [default: ["*server*","*node_modules*"]] exclude directories/files masks
-  -h, --help                         show CLI help
-  -i, --indexFileName=indexFileName  [default: index.ts] output file
-```
-
-## `rucken prepare [FOLDER]`
-
-translate + make-ts-list + version-update + config
-
-```
-USAGE
-  $ rucken prepare [FOLDER]
-
-OPTIONS
-  -h, --help             show CLI help
-  -m, --mode=(dev|prod)  [default: prod]
-```
-
-## `rucken translate [FOLDER]`
-
-extract translate from source and make ts class from it
-
-```
-USAGE
-  $ rucken translate [FOLDER]
-
-OPTIONS
-  -c, --clean                      remove obsolete strings when merging
-  -e, --excludes=excludes          [default: ["node_modules"]] exclude directories/files masks
-  -f, --format=(po|json)           [default: po] file prefix and build mode
-  -h, --help                       show CLI help
-  -p, --prefix=prefix              name of class prefix
-  -t, --templateName=templateName  [default: template] name of template
-```
+_See code: [src\commands\translate.ts](https://github.com/rucken/cli/blob/develop/src/commands/translate.ts)_
 
 ## `rucken version-updater [FOLDER]`
 
@@ -222,6 +181,8 @@ OPTIONS
   -h, --help       show CLI help
   -r, --root=root  [default: .] root project with package.json for get inforamtion about dependencies and it versions
 ```
+
+_See code: [src\commands\version-updater.ts](https://github.com/rucken/cli/blob/develop/src/commands/version-updater.ts)_
 <!-- commandsstop -->
 
 [travis-image]: https://travis-ci.org/rucken/cli.svg?branch=master

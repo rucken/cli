@@ -227,6 +227,7 @@ export class Translate extends Command {
             '--patterns ' + newExcludes.join(' ') + ' ' +
             '--input ' + inputFolder + ' ' +
             '--output ' + outputFolder + ' ' +
+            '--verbose=false ' +
             '--format=' + outputFormat + ' --marker translate' + (clean ? ' --clean' : '');
           this.debug('command', command);
           npmRun.exec(

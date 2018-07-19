@@ -171,10 +171,4 @@ describe('prepare', () => {
     .it('error in runs prepare with set not exists folder', ctx =>
       expect(ctx.stderr).to.contain('no such file or directory')
     );
-  test
-    .stderr()
-    .command(['prepare'])
-    .it('error in runs prepare without set folder', ctx =>
-      expect(ctx.stderr).to.contain('no such file or directory')
-    );
 });

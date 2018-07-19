@@ -135,10 +135,4 @@ describe('config', () => {
     .it('error in runs config without tsconfig.json', ctx =>
       expect(ctx.stderr).to.contain('Cannot read property \'compilerOptions\'')
     );
-  test
-    .stderr()
-    .command(['config'])
-    .it('error in runs config without set folder', ctx =>
-      expect(ctx.stderr).to.contain('Cannot read property \'projects\'')
-    );
 });

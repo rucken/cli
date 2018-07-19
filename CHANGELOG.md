@@ -1,3 +1,14 @@
+<a name="3.0.1"></a>
+# [3.0.1](https://github.com/rucken/cli/compare/3.0.0-rc.4...3.0.1) (2018-07-19)
+
+
+### Features
+
+* **generators:** Add generator "Entity" for create entity and all ui components for work in application on rucken template ([5ba529c](https://github.com/rucken/cli/commit/5ba529c))
+* **generators:** Add generator "New" for create new application on rucken template ([ffa90ee](https://github.com/rucken/cli/commit/ffa90ee))
+
+
+
 <a name="3.0.0-rc.4"></a>
 # [3.0.0-rc.4](https://github.com/rucken/cli/compare/3.0.0-rc.3...3.0.0-rc.4) (2018-07-09)
 
