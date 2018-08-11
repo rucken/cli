@@ -44,7 +44,7 @@
     "mocha": "^5",
     "nyc": "^12",
     "rimraf": "^2.6.2",
-    "ts-node": "^6",
+    "ts-node": "^7.0.1",
     "tslint": "^5",
     "typescript": "^2.7"
   },
