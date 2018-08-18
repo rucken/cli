@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular5+ application based on rucken",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -10,32 +10,32 @@
     "rucken": "./bin/run"
   },
   "dependencies": {
-    "@angular-devkit/schematics-cli": "^0.6.8",
+    "@angular-devkit/schematics-cli": "^0.7.4",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^3.0.4",
+    "@rucken/schematics": "^3.0.8",
     "@types/recursive-readdir": "^2.2.0",
     "@types/replace-ext": "0.0.27",
     "npm-run": "^5.0.1",
     "po2json": "^0.4.5",
     "recursive-readdir": "^2.2.2",
     "replace-ext": "^1.0.0",
-    "sort-paths": "^1.1.0",
+    "sort-paths": "^1.1.1",
     "stringify-object": "^3.2.2",
     "tslib": "^1"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "^0.6.8",
+    "@angular-devkit/schematics": "^0.7.4",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
-    "@oclif/tslint": "^1",
+    "@oclif/tslint": "^2",
     "@types/chai": "^4",
     "@types/glob": "^5.0.35",
     "@types/mocha": "^5",
-    "@types/node": "^10.3.4",
-    "@types/yargs": "^11.0.0",
+    "@types/node": "~8.9.4",
+    "@types/yargs": "^11.1.1",
     "chai": "^4",
     "conventional-changelog-cli": "^2.0.1",
     "conventional-commits-detector": "^0.1.1",
@@ -44,9 +44,9 @@
     "mocha": "^5",
     "nyc": "^12",
     "rimraf": "^2.6.2",
-    "ts-node": "^6",
+    "ts-node": "~7.0.1",
     "tslint": "^5",
-    "typescript": "^2.7"
+    "typescript": "^2.8.4"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -89,6 +89,7 @@
     "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
     "prepack": "rimraf lib && tsc && oclif-dev manifest && npm shrinkwrap",
     "prepare": "rimraf lib && tsc",
+    "postinstall": "node ./scripts/patch.js",
     "watch": "rimraf lib && tsc --watch",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\" --timeout 1000000",
     "readme": "oclif-dev readme && git add README.md",
