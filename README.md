@@ -26,10 +26,10 @@ $ npm install -g @rucken/cli
 <!-- installstop -->
 # Generators
 <!-- generators -->
-* [`rucken new:angular [FOLDER]`](#rucken-new-angular-folder)
-* [`rucken new:nestjs [FOLDER]`](#rucken-new-nestjs-folder)
-* [`rucken entity:angular [FOLDER]`](#rucken-entity-angular-folder)
-* [`rucken entity:nestjs [FOLDER]`](#rucken-entity-nestjs-folder)
+* [`rucken new:angular [FOLDER]`](#rucken-newangular-folder)
+* [`rucken new:nestjs [FOLDER]`](#rucken-newnestjs-folder)
+* [`rucken entity:angular [FOLDER]`](#rucken-entityangular-folder)
+* [`rucken entity:nestjs [FOLDER]`](#rucken-entitynestjs-folder)
 
 ## `rucken new:angular [FOLDER]`
 
