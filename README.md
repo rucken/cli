@@ -1,7 +1,7 @@
 @rucken/cli
 ===========
 
-Console tools for create and build Angular6+ application based on [rucken](https://github.com/rucken) template
+Console tools for create and build [Angular6+](https://angular.io/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://github.com/rucken) template
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Greenkeeper badge](https://badges.greenkeeper.io/rucken/cli.svg)](https://greenkeeper.io/)
@@ -14,16 +14,9 @@ Console tools for create and build Angular6+ application based on [rucken](https
 [![Gitter][gitter-image]][gitter-url]
 [![Join the chat at telegram][telegram-image]][telegram-url]
 
-* [What is Rucken?](#what-is-rucken)
 * [Install](#install)
 * [Generators](#generators)
 * [Commands](#commands)
-
-# What is Rucken?
-<!-- what-is-rucken -->
-- **Core** - Base entities and services for create applications on `Angular6+`, include work with users, groups and permissions.
-- **Web** - Base ui grids and inputs and etc. for manage users, groups and permissions.
-<!-- what-is-ruckenstop -->
 
 # Install
 <!-- install -->
@@ -34,6 +27,7 @@ $ npm install -g @rucken/cli
 # Generators
 <!-- generators -->
 * [`rucken new:angular [FOLDER]`](#rucken-new-angular-folder)
+* [`rucken new:nestjs [FOLDER]`](#rucken-new-nestjs-folder)
 * [`rucken entity:angular [FOLDER]`](#rucken-entity-angular-folder)
 * [`rucken entity:nestjs [FOLDER]`](#rucken-entity-nestjs-folder)
 
@@ -52,7 +46,24 @@ OPTIONS
   -u, --username=username  username
 ```
 
-_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
+_See code: [src\commands\angular-new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
+
+## `rucken new:nestjs [FOLDER]`
+
+generate dto, entity, service and controller for NestJS backend
+
+```
+USAGE
+  $ rucken new:nestjs [FOLDER]
+
+OPTIONS
+  -e, --email=email        email
+  -h, --help               show CLI help
+  -n, --name=name          (required) application name on ke-bab case
+  -u, --username=username  username
+```
+
+_See code: [src\commands\nestjs-new.ts](https://github.com/rucken/cli/blob/develop/src/commands/nestjs-new.ts)_
 
 ## `rucken entity:angular [FOLDER]`
 
@@ -73,7 +84,7 @@ OPTIONS
   -w, --web=web            web library name in angular.json
 ```
 
-_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
+_See code: [src\commands\angular-entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
 
 ## `rucken entity:nestjs [FOLDER]`
 
@@ -93,7 +104,7 @@ OPTIONS
   -u, --username=username  username
 ```
 
-_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
+_See code: [src\commands\nestjs-entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/nestjs-entity.ts)_
 
 <!-- generatorsstop -->
 

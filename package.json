@@ -98,7 +98,9 @@
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
     "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev",
     "run-new:angular": "node ./bin/run new test/fixtures/angular-new -n demo -u demo -e demo@demo.demo",
-    "run-entity:angular": "node ./bin/run entity test/fixtures/angular-entity -n demo -u demo -e demo@demo.demo -f [name,title]"
+    "run-entity:angular": "node ./bin/run entity test/fixtures/angular-entity -n demo -u demo -e demo@demo.demo -f [name,title]",
+    "run-new:nestjs": "node ./bin/run new test/fixtures/nestjs-new -n demo -u demo -e demo@demo.demo",
+    "run-entity:nestjs": "node ./bin/run entity test/fixtures/nestjs-entity -n demo -u demo -e demo@demo.demo -f [name,title]"
   },
   "greenkeeper": {
     "ignore": [
