@@ -33,8 +33,26 @@ $ npm install -g @rucken/cli
 <!-- installstop -->
 # Generators
 <!-- generators -->
-* [`rucken entity:angular [FOLDER]`](#rucken-entity-angular-folder)
 * [`rucken new:angular [FOLDER]`](#rucken-new-angular-folder)
+* [`rucken entity:angular [FOLDER]`](#rucken-entity-angular-folder)
+* [`rucken entity:nestjs [FOLDER]`](#rucken-entity-nestjs-folder)
+
+## `rucken new:angular [FOLDER]`
+
+generate frontend web empty Angular 6+ application based on Rucken template
+
+```
+USAGE
+  $ rucken new:angular [FOLDER]
+
+OPTIONS
+  -e, --email=email        email
+  -h, --help               show CLI help
+  -n, --name=name          (required) application name on ke-bab case
+  -u, --username=username  username
+```
+
+_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
 
 ## `rucken entity:angular [FOLDER]`
 
@@ -57,22 +75,26 @@ OPTIONS
 
 _See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
 
-## `rucken new:angular [FOLDER]`
+## `rucken entity:nestjs [FOLDER]`
 
-generate frontend web empty Angular 6+ application based on Rucken template
+generate dto, entity, service and controller for NestJS backend
 
 ```
 USAGE
-  $ rucken new:angular [FOLDER]
+  $ rucken entity:nestjs [FOLDER]
 
 OPTIONS
+  -a, --app=app            application name in .nestcli.json
+  -c, --core=core          core library name in .nestcli.json
   -e, --email=email        email
+  -f, --fields=fields      [default: [name]] entity fields
   -h, --help               show CLI help
-  -n, --name=name          (required) application name on ke-bab case
+  -n, --name=name          (required) entity singular name on ke-bab case
   -u, --username=username  username
 ```
 
-_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
+_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
+
 <!-- generatorsstop -->
 
 # Commands
