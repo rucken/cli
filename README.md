@@ -33,16 +33,16 @@ $ npm install -g @rucken/cli
 <!-- installstop -->
 # Generators
 <!-- generators -->
-* [`rucken entity [FOLDER]`](#rucken-entity-folder)
-* [`rucken new [FOLDER]`](#rucken-new-folder)
+* [`rucken entity:angular [FOLDER]`](#rucken-entity-angular-folder)
+* [`rucken new:angular [FOLDER]`](#rucken-new-angular-folder)
 
-## `rucken entity [FOLDER]`
+## `rucken entity:angular [FOLDER]`
 
-generate model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items
+generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template
 
 ```
 USAGE
-  $ rucken entity [FOLDER]
+  $ rucken entity:angular [FOLDER]
 
 OPTIONS
   -a, --app=app            application name in angular.json
@@ -55,15 +55,15 @@ OPTIONS
   -w, --web=web            web library name in angular.json
 ```
 
-_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/entity.ts)_
+_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
 
-## `rucken new [FOLDER]`
+## `rucken new:angular [FOLDER]`
 
-generate empty application based on rucken template
+generate frontend web empty Angular 6+ application based on Rucken template
 
 ```
 USAGE
-  $ rucken new [FOLDER]
+  $ rucken new:angular [FOLDER]
 
 OPTIONS
   -e, --email=email        email
@@ -72,7 +72,7 @@ OPTIONS
   -u, --username=username  username
 ```
 
-_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/new.ts)_
+_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
 <!-- generatorsstop -->
 
 # Commands

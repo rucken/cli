@@ -1,6 +1,6 @@
 {
   "name": "@rucken/cli",
-  "description": "Console tools for create and build Angular5+ application based on rucken",
+  "description": "Console tools for create and build Angular6+ and NestJS application based on Rucken template",
   "version": "3.0.2",
   "author": {
     "name": "endy",
@@ -15,7 +15,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^3.0.8",
+    "@rucken/schematics": "^3.1.0",
     "@types/recursive-readdir": "^2.2.0",
     "@types/replace-ext": "0.0.27",
     "npm-run": "^5.0.1",
@@ -37,9 +37,9 @@
     "@types/node": "~8.9.4",
     "@types/yargs": "^11.1.1",
     "chai": "^4",
-    "conventional-changelog-cli": "^2.0.1",
+    "conventional-changelog-cli": "^2.0.5",
     "conventional-commits-detector": "^0.1.1",
-    "conventional-recommended-bump": "^4.0.0",
+    "conventional-recommended-bump": "^4.0.1",
     "globby": "^8",
     "mocha": "^5",
     "nyc": "^12",
@@ -97,8 +97,8 @@
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
     "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev",
-    "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo",
-    "run-entity": "node ./bin/run entity test/fixtures/entity -n demo -u demo -e demo@demo.demo -f [name,title]"
+    "run-new:angular": "node ./bin/run new test/fixtures/angular-new -n demo -u demo -e demo@demo.demo",
+    "run-entity:angular": "node ./bin/run entity test/fixtures/angular-entity -n demo -u demo -e demo@demo.demo -f [name,title]"
   },
   "greenkeeper": {
     "ignore": [
