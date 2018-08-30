@@ -1,3 +1,16 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/rucken/cli/compare/3.0.2...3.1.0) (2018-08-30)
+
+
+### Features
+
+* **generators:** Add generator for create dto, entity, service and controller for NestJS backend ([fda37ba](https://github.com/rucken/cli/commit/fda37ba))
+* **generators:** Add generator for create empty NestJS backend application ([f783954](https://github.com/rucken/cli/commit/f783954))
+* **generators:** Add generator for create full fullstack  project Angular6+ and NestJS ([bcce815](https://github.com/rucken/cli/commit/bcce815))
+* **generators:** Change name: new->new:angular and  entity->entity:angular ([210dde0](https://github.com/rucken/cli/commit/210dde0))
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/rucken/cli/compare/3.0.1...3.0.2) (2018-08-18)
 

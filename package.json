@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
-  "description": "Console tools for create and build Angular5+ application based on rucken",
-  "version": "3.0.2",
+  "description": "Console tools for create and build Angular6+ and NestJS application based on Rucken template",
+  "version": "3.1.0",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -15,7 +15,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^3.0.8",
+    "@rucken/schematics": "^3.2.2",
     "@types/recursive-readdir": "^2.2.0",
     "@types/replace-ext": "0.0.27",
     "npm-run": "^5.0.1",
@@ -37,11 +37,12 @@
     "@types/node": "~8.9.4",
     "@types/yargs": "^11.1.1",
     "chai": "^4",
-    "conventional-changelog-cli": "^2.0.1",
+    "conventional-changelog-cli": "^2.0.5",
     "conventional-commits-detector": "^0.1.1",
-    "conventional-recommended-bump": "^4.0.0",
+    "conventional-recommended-bump": "^4.0.1",
     "globby": "^8",
     "mocha": "^5",
+    "npm-run-all": "^4.1.3",
     "nyc": "^12",
     "rimraf": "^2.6.2",
     "ts-node": "~7.0.1",
@@ -97,8 +98,14 @@
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
     "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev",
+    "run-new:angular": "node ./bin/run new:angular test/fixtures/angular-new -n demo -u demo -e demo@demo.demo",
+    "run-entity:angular": "node ./bin/run entity:angular test/fixtures/angular-entity -n demo -u demo -e demo@demo.demo -f [name,title]",
+    "run-new:nestjs": "node ./bin/run new:nestjs test/fixtures/nestjs-new -n demo -u demo -e demo@demo.demo",
+    "run-entity:nestjs": "node ./bin/run entity:nestjs test/fixtures/nestjs-entity -n demo -u demo -e demo@demo.demo -f [name,title]",
     "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo",
-    "run-entity": "node ./bin/run entity test/fixtures/entity -n demo -u demo -e demo@demo.demo -f [name,title]"
+    "run-entity:create-app": "node ./bin/run new test/fixtures/entity -n demo -u demo -e demo@demo.demo",
+    "run-entity:create-entity": "node ./bin/run entity test/fixtures/entity -n demo -u demo -e demo@demo.demo -f [name,title]",
+    "run-entity": "run-s run-entity:create-app run-entity:create-entity"
   },
   "greenkeeper": {
     "ignore": [

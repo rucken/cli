@@ -3,9 +3,9 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 const rimraf = require('rimraf');
 
-describe('new', () => {
+describe('new:nestjs', () => {
   beforeEach(done =>
-    rimraf(resolve('test/fixtures/new'), {}, () =>
+    rimraf(resolve('test/fixtures/nestjs-new'), {}, () =>
       setTimeout(
         () =>
           done(), 1000
@@ -13,7 +13,7 @@ describe('new', () => {
     )
   );
   afterEach(done =>
-    rimraf(resolve('test/fixtures/new'), {}, () =>
+    rimraf(resolve('test/fixtures/nestjs-new'), {}, () =>
       setTimeout(
         () =>
           done(), 1000
@@ -21,29 +21,17 @@ describe('new', () => {
     )
   );
   test
-    .command(['new', 'test/fixtures/new', '-n', 'demo', '-u', 'demo', '-e', 'demo@demo.demo'])
+    .command(['new:nestjs', 'test/fixtures/nestjs-new', '-n', 'demo', '-u', 'demo', '-e', 'demo@demo.demo'])
     .it('run new generator', _ctx => {
       let nestjsConfig;
-      let angularConfig;
-
       try {
         nestjsConfig = JSON.parse(readFileSync(
-          'test/fixtures/new/.nestcli.json'
+          'test/fixtures/nestjs-new/.nestcli.json'
         ).toString());
       } catch (error) {
         nestjsConfig = {};
         console.error(error);
       }
       expect(nestjsConfig.projects.demo.root).to.equals('src/apps/demo/');
-
-      try {
-        angularConfig = JSON.parse(readFileSync(
-          'test/fixtures/new/frontend/angular.json'
-        ).toString());
-      } catch (error) {
-        angularConfig = {};
-        console.error(error);
-      }
-      expect(angularConfig.projects.demo.architect.build.builder).to.equals('@angular-devkit/build-angular:browser');
     });
 });

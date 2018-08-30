@@ -22,3 +22,6 @@ node_modules
 !.vscode/extensions.json
 /*.tgz
 /.travis.yml
+
+/test/fixtures/new
+/test/fixtures/entity
