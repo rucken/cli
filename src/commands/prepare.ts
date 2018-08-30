@@ -18,15 +18,24 @@ export class Prepare extends Command {
   async run() {
     const { args, flags } = this.parse(Prepare);
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
-    const angularConfigPath = resolvePath(folder, 'angular.json');
     const mode = flags.mode;
+    const angularConfigPath = resolvePath(folder, 'angular.json');
+    const nestJsConfigPath = resolvePath(folder, '.nestcli.json');
 
     let angularConfig: any;
+    let nestJsConfig: any;
     try {
       const content = readFileSync(angularConfigPath).toString();
       angularConfig = JSON.parse(content);
+      // tslint:disable-next-line:no-unused
     } catch (error) {
-      console.error(error);
+          try {
+            const content = readFileSync(nestJsConfigPath).toString();
+            nestJsConfig = JSON.parse(content);
+            angularConfig = nestJsConfig;
+          } catch (__error) {
+            console.error(__error);
+          }
     }
     const apps: any[] = [];
     const libs: any[] = [];
@@ -70,13 +79,15 @@ export class Prepare extends Command {
     } catch (error) {
       console.error(error);
     }
-    try {
-      await this.runConfig(
-        folder,
-        mode
-      );
-    } catch (error) {
-      console.error(error);
+    if (!nestJsConfig) {
+      try {
+        await this.runConfig(
+          folder,
+          mode
+        );
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
   runConfig(

@@ -15,6 +15,7 @@ Console tools for create and build [Angular6+](https://angular.io/) and [NestJS]
 [![Join the chat at telegram][telegram-image]][telegram-url]
 
 * [Install](#install)
+* [Usage](#usage)
 * [Generators](#generators)
 * [Commands](#commands)
 
@@ -24,12 +25,62 @@ Console tools for create and build [Angular6+](https://angular.io/) and [NestJS]
 $ npm install -g @rucken/cli
 ```
 <!-- installstop -->
+# Usage
+<!-- ussage -->
+```sh-session
+$ rucken new app-name
+$ cd app-name
+$ npm install
+$ npm build
+$ npm run start:dev
+```
+<!-- ussagestop -->
 # Generators
 <!-- generators -->
+* [`rucken new [FOLDER]`](#rucken-new-folder)
+* [`rucken entity [FOLDER]`](#rucken-entity-folder)
 * [`rucken new:angular [FOLDER]`](#rucken-newangular-folder)
 * [`rucken new:nestjs [FOLDER]`](#rucken-newnestjs-folder)
 * [`rucken entity:angular [FOLDER]`](#rucken-entityangular-folder)
 * [`rucken entity:nestjs [FOLDER]`](#rucken-entitynestjs-folder)
+
+## `rucken new [FOLDER]`
+
+generate empty backend on NestJS and frontend on Angular 6+ application based on Rucken template
+
+```
+USAGE
+  $ rucken new [FOLDER]
+
+OPTIONS
+  -n, --name=name          (required) application name on ke-bab case
+  -e, --email=email        email
+  -u, --username=username  username
+  -h, --help               show CLI help
+```
+
+_See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/commands/new.ts)_
+
+## `rucken entity [FOLDER]`
+
+generate backend dto, entity, service and controller for NestJS backend and generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template
+
+```
+USAGE
+  $ rucken entity [FOLDER]
+
+OPTIONS
+  -n, --name=name          (required) entity singular name on ke-bab case
+  -f, --fields=fields      [default: [name]] entity fields
+  -e, --email=email        email
+  -u, --username=username  username
+  -a, --app=app            application name in angular.json and .nestcli.json
+  -c, --core=core          core library name in angular.json and .nestcli.json
+  -w, --web=web            web library name in angular.json
+  -h, --help               show CLI help
+```
+
+_See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/entity.ts)_
 
 ## `rucken new:angular [FOLDER]`
 
@@ -40,10 +91,10 @@ USAGE
   $ rucken new:angular [FOLDER]
 
 OPTIONS
-  -e, --email=email        email
-  -h, --help               show CLI help
   -n, --name=name          (required) application name on ke-bab case
+  -e, --email=email        email
   -u, --username=username  username
+  -h, --help               show CLI help
 ```
 
 _See code: [src\commands\angular-new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
@@ -57,10 +108,10 @@ USAGE
   $ rucken new:nestjs [FOLDER]
 
 OPTIONS
-  -e, --email=email        email
-  -h, --help               show CLI help
   -n, --name=name          (required) application name on ke-bab case
+  -e, --email=email        email
   -u, --username=username  username
+  -h, --help               show CLI help
 ```
 
 _See code: [src\commands\nestjs-new.ts](https://github.com/rucken/cli/blob/develop/src/commands/nestjs-new.ts)_
@@ -74,14 +125,14 @@ USAGE
   $ rucken entity:angular [FOLDER]
 
 OPTIONS
+  -n, --name=name          (required) entity singular name on ke-bab case
+  -f, --fields=fields      [default: [name]] entity fields
+  -e, --email=email        email
+  -u, --username=username  username
   -a, --app=app            application name in angular.json
   -c, --core=core          core library name in angular.json
-  -e, --email=email        email
-  -f, --fields=fields      [default: [name]] entity fields
-  -h, --help               show CLI help
-  -n, --name=name          (required) entity singular name on ke-bab case
-  -u, --username=username  username
   -w, --web=web            web library name in angular.json
+  -h, --help               show CLI help
 ```
 
 _See code: [src\commands\angular-entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
@@ -95,13 +146,13 @@ USAGE
   $ rucken entity:nestjs [FOLDER]
 
 OPTIONS
+  -n, --name=name          (required) entity singular name on ke-bab case
+  -f, --fields=fields      [default: [name]] entity fields
+  -e, --email=email        email
+  -u, --username=username  username
   -a, --app=app            application name in .nestcli.json
   -c, --core=core          core library name in .nestcli.json
-  -e, --email=email        email
-  -f, --fields=fields      [default: [name]] entity fields
   -h, --help               show CLI help
-  -n, --name=name          (required) entity singular name on ke-bab case
-  -u, --username=username  username
 ```
 
 _See code: [src\commands\nestjs-entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/nestjs-entity.ts)_
