@@ -1,3 +1,13 @@
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/rucken/cli/compare/3.1.0...3.1.1) (2018-08-31)
+
+
+### Bug Fixes
+
+* Add postinstal script to npm build ([f4d6dac](https://github.com/rucken/cli/commit/f4d6dac))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/rucken/cli/compare/3.0.2...3.1.0) (2018-08-30)
 
