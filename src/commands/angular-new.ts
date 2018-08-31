@@ -32,7 +32,7 @@ export class AngularNew extends Command {
   }
   private runNew(
     folder: string,
-    name: string,
+    name?: string,
     username?: string,
     email?: string
   ) {

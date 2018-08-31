@@ -1,3 +1,13 @@
+<a name="3.1.3"></a>
+## [3.1.3](https://github.com/rucken/cli/compare/3.1.2...3.1.3) (2018-08-31)
+
+
+### Bug Fixes
+
+* **generators:** Update resolve path for correct run schematics.js ([1de3944](https://github.com/rucken/cli/commit/1de3944))
+
+
+
 <a name="3.1.2"></a>
 ## [3.1.2](https://github.com/rucken/cli/compare/3.1.1...3.1.2) (2018-08-31)
 

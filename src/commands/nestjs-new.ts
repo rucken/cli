@@ -32,7 +32,7 @@ export class NestJSNew extends Command {
   }
   private runNew(
     folder: string,
-    name: string,
+    name?: string,
     username?: string,
     email?: string
   ) {
