@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular6+ and NestJS application based on Rucken template",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -15,7 +15,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^3.2.2",
+    "@rucken/schematics": "^3.2.3",
     "@types/recursive-readdir": "^2.2.0",
     "@types/replace-ext": "0.0.27",
     "npm-run": "^5.0.1",

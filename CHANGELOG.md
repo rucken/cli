@@ -1,3 +1,13 @@
+<a name="3.1.2"></a>
+## [3.1.2](https://github.com/rucken/cli/compare/3.1.1...3.1.2) (2018-08-31)
+
+
+### Bug Fixes
+
+* Update @rucken/schematics ([a972dcd](https://github.com/rucken/cli/commit/a972dcd))
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/rucken/cli/compare/3.1.0...3.1.1) (2018-08-31)
 
