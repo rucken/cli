@@ -1,6 +1,6 @@
 import { flags, Command } from '@oclif/command';
 import { readFileSync, writeFileSync } from 'fs';
-import { resolve as resolvePath } from 'path';
+import { resolve as resolvePath, sep } from 'path';
 import { AngularNew } from './angular-new';
 import { NestJSNew } from './nestjs-new';
 
@@ -8,7 +8,7 @@ export class New extends Command {
   static description = 'generate empty backend on NestJS and frontend on Angular 6+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
-    name: flags.string({ char: 'n', description: 'application name on ke-bab case', required: true }),
+    name: flags.string({ char: 'n', description: 'application name on ke-bab case' }),
     username: flags.string({ char: 'u', description: 'username' }),
     email: flags.string({ char: 'e', description: 'email' })
   };
@@ -17,10 +17,13 @@ export class New extends Command {
     const { args, flags } = this.parse(New);
     const folder = args.folder;
     const frontendFolder = args.folder + '/frontend';
-    const name = flags.name;
     const username = flags.username;
     const email = flags.email;
-
+    const inputFolder = folder ? folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/') : undefined;
+    let name = flags.name || '';
+    if (inputFolder && inputFolder.indexOf('/') === -1 && !name) {
+      name = inputFolder;
+    }
     try {
       await this.runNestJsNew(
         folder,
