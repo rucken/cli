@@ -53,6 +53,7 @@
     "node": ">=8.0.0"
   },
   "files": [
+    "/scripts/patch.js",
     "/bin",
     "/lib",
     "/npm-shrinkwrap.json",
