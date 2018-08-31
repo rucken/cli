@@ -1,5 +1,5 @@
 import { flags, Command } from '@oclif/command';
-import { sep } from 'path';
+import { resolve as resolvePath, sep } from 'path';
 const npmRun = require('npm-run');
 
 export class AngularEntity extends Command {
@@ -64,8 +64,9 @@ export class AngularEntity extends Command {
     });
     return new Promise((resolve, reject) => {
       const inputFolder = folder ? folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/') : undefined;
-      const command =
-        'schematics @rucken/schematics:angular-entity ' +
+      const command = 'node ' +
+        resolvePath(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js') +
+        ' @rucken/schematics:angular-entity ' +
         (inputFolder ? ('--root=' + inputFolder + ' ') : ' ') +
         (name ? ('--name=' + name + ' ') : ' ') +
         (fields ? ('--fields=' + fields + ' ') : ' ') +

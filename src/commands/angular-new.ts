@@ -1,5 +1,5 @@
 import { flags, Command } from '@oclif/command';
-import { sep } from 'path';
+import { resolve as resolvePath, sep } from 'path';
 const npmRun = require('npm-run');
 
 export class AngularNew extends Command {
@@ -7,7 +7,7 @@ export class AngularNew extends Command {
   static description = 'generate frontend web empty Angular 6+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
-    name: flags.string({ char: 'n', description: 'application name on ke-bab case', required: true }),
+    name: flags.string({ char: 'n', description: 'application name on ke-bab case' }),
     username: flags.string({ char: 'u', description: 'username' }),
     email: flags.string({ char: 'e', description: 'email' })
   };
@@ -32,7 +32,7 @@ export class AngularNew extends Command {
   }
   private runNew(
     folder: string,
-    name: string,
+    name?: string,
     username?: string,
     email?: string
   ) {
@@ -44,8 +44,12 @@ export class AngularNew extends Command {
     });
     return new Promise((resolve, reject) => {
       const inputFolder = folder ? folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/') : undefined;
-      const command =
-        'schematics @rucken/schematics:angular-new ' +
+      if (inputFolder && inputFolder.indexOf('/') === -1 && !name) {
+        name = inputFolder;
+      }
+      const command = 'node ' +
+        resolvePath(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js') +
+        ' @rucken/schematics:angular-new ' +
         (inputFolder ? ('--root=' + inputFolder + ' ') : ' ') +
         (name ? ('--name=' + name + ' ') : ' ') +
         (username ? ('--username=' + username + ' ') : ' ') +

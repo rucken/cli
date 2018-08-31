@@ -31,7 +31,7 @@ $ npm install -g @rucken/cli
 $ rucken new app-name
 $ cd app-name
 $ npm install
-$ npm build
+$ npm run build
 $ npm run start:dev
 ```
 <!-- ussagestop -->
