@@ -6,7 +6,7 @@ cache:
 
 install:
   - ps: Install-Product node $env:nodejs_version x64
-  - yarn
+  - npm install
 test_script:
   - .\bin\run --version
   - .\bin\run --help
