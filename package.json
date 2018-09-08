@@ -30,7 +30,7 @@
     "@angular-devkit/schematics": "^0.7.4",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
-    "@oclif/tslint": "^2",
+    "@oclif/tslint": "^3.0.0",
     "@types/chai": "^4",
     "@types/glob": "^5.0.35",
     "@types/mocha": "^5",
