@@ -1,5 +1,14 @@
 {
   "extends": "@oclif/tslint",
+  "indent": [
+    true,
+    "spaces"
+  ],
+  "cliOptions": {
+    "exclude": [
+      "fixtures"
+    ]
+  },
   "rules": {
     "ordered-imports": [
       true,

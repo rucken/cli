@@ -86,7 +86,7 @@ describe('entity', () => {
       }
       try {
         modelContent = readFileSync(
-          'test/fixtures/new-with-entity/frontend/libs/demo/core/src/lib/shared/models/demo.ts'
+          'test/fixtures/new-with-entity/frontend/libs/demo/core/src/lib/entities/models/demo.ts'
         ).toString();
       } catch (error) {
         modelContent = '';

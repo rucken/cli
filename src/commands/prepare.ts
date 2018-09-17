@@ -29,13 +29,13 @@ export class Prepare extends Command {
       angularConfig = JSON.parse(content);
       // tslint:disable-next-line:no-unused
     } catch (error) {
-          try {
-            const content = readFileSync(nestJsConfigPath).toString();
-            nestJsConfig = JSON.parse(content);
-            angularConfig = nestJsConfig;
-          } catch (__error) {
-            console.error(__error);
-          }
+      try {
+        const content = readFileSync(nestJsConfigPath).toString();
+        nestJsConfig = JSON.parse(content);
+        angularConfig = nestJsConfig;
+      } catch (__error) {
+        console.error(__error);
+      }
     }
     const apps: any[] = [];
     const libs: any[] = [];
