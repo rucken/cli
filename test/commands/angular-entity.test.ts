@@ -35,7 +35,7 @@ describe('entity:angular', () => {
       }
       try {
         modelContent = readFileSync(
-          'test/fixtures/angular-entity/libs/demo/core/src/lib/shared/models/demo.ts'
+          'test/fixtures/angular-entity/libs/demo/core/src/lib/entities/models/demo.ts'
         ).toString();
       } catch (error) {
         modelContent = '';
