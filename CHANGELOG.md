@@ -1,3 +1,13 @@
+<a name="3.1.5"></a>
+## [3.1.5](https://github.com/rucken/cli/compare/3.1.4...3.1.5) (2018-09-20)
+
+
+### Bug Fixes
+
+* **deps:** Update dependencies ([ef06274](https://github.com/rucken/cli/commit/ef06274))
+
+
+
 <a name="3.1.4"></a>
 ## [3.1.4](https://github.com/rucken/cli/compare/3.1.3...3.1.4) (2018-09-17)
 
