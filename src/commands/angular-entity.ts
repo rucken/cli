@@ -1,5 +1,6 @@
-import { flags, Command } from '@oclif/command';
-import { resolve as resolvePath, sep } from 'path';
+import { Command, flags } from '@oclif/command';
+import { sep } from 'path';
+import { schematicsCommandBuilder } from '../utils/schematics-command-builder';
 const npmRun = require('npm-run');
 
 export class AngularEntity extends Command {
@@ -7,6 +8,7 @@ export class AngularEntity extends Command {
   static description = 'generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
+    template: flags.string({ char: 't', description: 'template', default: '@rucken/schematics:angular-entity' }),
     name: flags.string({ char: 'n', description: 'entity singular name on ke-bab case', required: true }),
     fields: flags.string({ char: 'f', description: 'entity fields', default: '[name]' }),
     username: flags.string({ char: 'u', description: 'username' }),
@@ -19,6 +21,7 @@ export class AngularEntity extends Command {
   async run() {
     const { args, flags } = this.parse(AngularEntity);
     const folder = args.folder;
+    const template = flags.template || '';
     const name = flags.name;
     const fields = flags.fields;
     const username = flags.username;
@@ -29,6 +32,7 @@ export class AngularEntity extends Command {
 
     try {
       await this.runEntity(
+        template,
         folder,
         name,
         fields,
@@ -43,6 +47,7 @@ export class AngularEntity extends Command {
     }
   }
   private runEntity(
+    template: string,
     folder: string,
     name: string,
     fields?: string,
@@ -53,6 +58,7 @@ export class AngularEntity extends Command {
     web?: string
   ) {
     this.debug('Start', {
+      template: template,
       folder: folder,
       name: name,
       fields: fields,
@@ -64,18 +70,20 @@ export class AngularEntity extends Command {
     });
     return new Promise((resolve, reject) => {
       const inputFolder = folder ? folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/') : undefined;
-      const command = 'node ' +
-        resolvePath(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js') +
-        ' @rucken/schematics:angular-entity ' +
-        (inputFolder ? ('--root=' + inputFolder + ' ') : ' ') +
-        (name ? ('--name=' + name + ' ') : ' ') +
-        (fields ? ('--fields=' + fields + ' ') : ' ') +
-        (username ? ('--username=' + username + ' ') : ' ') +
-        (email ? ('--email=' + email + ' ') : ' ') +
-        (app ? ('--app=' + app + ' ') : ' ') +
-        (core ? ('--core=' + core + ' ') : ' ') +
-        (web ? ('--web=' + web + ' ') : ' ') +
-        '--dry-run=false --force';
+      const command = schematicsCommandBuilder(
+        inputFolder as string,
+        template,
+        {
+          root: inputFolder,
+          name: name,
+          fields: fields,
+          username: username,
+          email: email,
+          app: app,
+          core: core,
+          web: web
+        }
+      );
       this.debug('command', command);
       npmRun.exec(
         command,

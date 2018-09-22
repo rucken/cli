@@ -1,4 +1,4 @@
-import { flags, Command } from '@oclif/command';
+import { Command, flags } from '@oclif/command';
 import { readFileSync } from 'fs';
 import { resolve as resolvePath } from 'path';
 import { AngularEntity } from './angular-entity';
@@ -29,14 +29,27 @@ export class Entity extends Command {
     const core = flags.core;
     const web = flags.web;
     const errorMessage = 'Before create entity, you must create project: rucken new -n demo -u demo -e demo@demo.demo';
+    let templateBackend = '';
+    let templateFrontend = '';
 
     try {
       const ruckenJsonFile = resolvePath(folder, 'rucken.json');
       const ruckenJson: any = JSON.parse(readFileSync(ruckenJsonFile, 'utf8').toString());
-      if (ruckenJson.backend !== 'nestjs' && ruckenJson.frontend !== 'angular') {
+      if (
+        !ruckenJson.backend ||
+        !ruckenJson.frontend
+      ) {
         console.error(errorMessage);
         return Promise.resolve();
       }
+      if (ruckenJson.backend === 'nestjs') {
+        ruckenJson.backend = '@rucken/schematics:nestjs';
+      }
+      if (ruckenJson.frontend === 'angular') {
+        ruckenJson.frontend = '@rucken/schematics:angular';
+      }
+      templateBackend = ruckenJson.backend + '-entity';
+      templateFrontend = ruckenJson.frontend + '-entity';
       // tslint:disable-next-line:no-unused
     } catch (error) {
       console.error(errorMessage);
@@ -45,6 +58,7 @@ export class Entity extends Command {
 
     try {
       await this.runNestJSEntity(
+        templateBackend,
         folder,
         name,
         fields,
@@ -58,6 +72,7 @@ export class Entity extends Command {
     }
     try {
       await this.runAngularEntity(
+        templateFrontend,
         frontendFolder,
         name,
         fields,
@@ -72,6 +87,7 @@ export class Entity extends Command {
     }
   }
   private runNestJSEntity(
+    templateBackend: string,
     folder: string,
     name: string,
     fields?: string,
@@ -82,7 +98,7 @@ export class Entity extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       try {
-        const args = [folder, '--name', name];
+        const args = [folder, '--name', name, '--template', templateBackend];
         if (fields) {
           args.push('--fields');
           args.push(fields);
@@ -111,6 +127,7 @@ export class Entity extends Command {
     });
   }
   private runAngularEntity(
+    templateFrontend: string,
     folder: string,
     name: string,
     fields?: string,
@@ -122,7 +139,7 @@ export class Entity extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       try {
-        const args = [folder, '--name', name];
+        const args = [folder, '--name', name, '--template', templateFrontend];
         if (fields) {
           args.push('--fields');
           args.push(fields);

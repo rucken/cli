@@ -25,3 +25,6 @@ node_modules
 
 /test/fixtures/new
 /test/fixtures/entity
+/test/fixtures/new-with-entity
+/test/fixtures/angular-new
+/test/fixtures/nestjs-entity
