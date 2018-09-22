@@ -1,3 +1,13 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/rucken/cli/compare/3.1.5...3.2.0) (2018-09-22)
+
+
+### Features
+
+* **schematics:** Add support use external and project schematics collections ([ef1c21d](https://github.com/rucken/cli/commit/ef1c21d))
+
+
+
 <a name="3.1.5"></a>
 ## [3.1.5](https://github.com/rucken/cli/compare/3.1.4...3.1.5) (2018-09-20)
 
