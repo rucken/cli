@@ -1,10 +1,10 @@
-import { flags, Command } from '@oclif/command';
+import { Command, flags } from '@oclif/command';
 import { sep } from 'path';
 import { schematicsCommandBuilder } from '../utils/schematics-command-builder';
 const npmRun = require('npm-run');
 
 export class AngularNew extends Command {
-  static aliases = ['new:angular', 'angular-new'];
+  static aliases = ['new:angular', 'angular-new', 'frontend:new'];
   static description = 'generate frontend web empty Angular 6+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),

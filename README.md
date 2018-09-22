@@ -56,6 +56,8 @@ OPTIONS
   -n, --name=name          (required) application name on ke-bab case
   -e, --email=email        email
   -u, --username=username  username
+  --frontend=template  [default: @rucken/schematics:angular-new] template
+  --backend=template  [default: @rucken/schematics:nestjs-new] template
   -h, --help               show CLI help
 ```
 
@@ -77,6 +79,8 @@ OPTIONS
   -a, --app=app            application name in angular.json and .nestcli.json
   -c, --core=core          core library name in angular.json and .nestcli.json
   -w, --web=web            web library name in angular.json
+  --frontend=template  [default: @rucken/schematics:angular-entity] template
+  --backend=template  [default: @rucken/schematics:nestjs-entity] template
   -h, --help               show CLI help
 ```
 
@@ -94,7 +98,13 @@ OPTIONS
   -n, --name=name          (required) application name on ke-bab case
   -e, --email=email        email
   -u, --username=username  username
+  -t, --template=template  [default: @rucken/schematics:angular-new] template
   -h, --help               show CLI help
+
+ALIASES
+  $ rucken new:angular
+  $ rucken angular-new
+  $ rucken frontend:new
 ```
 
 _See code: [src\commands\angular-new.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-new.ts)_
@@ -111,7 +121,13 @@ OPTIONS
   -n, --name=name          (required) application name on ke-bab case
   -e, --email=email        email
   -u, --username=username  username
+  -t, --template=template  [default: @rucken/schematics:nestjs-new] template
   -h, --help               show CLI help
+
+ALIASES
+  $ rucken new:nestjs
+  $ rucken nestjs-new
+  $ rucken backend:new
 ```
 
 _See code: [src\commands\nestjs-new.ts](https://github.com/rucken/cli/blob/develop/src/commands/nestjs-new.ts)_
@@ -132,7 +148,13 @@ OPTIONS
   -a, --app=app            application name in angular.json
   -c, --core=core          core library name in angular.json
   -w, --web=web            web library name in angular.json
+  -t, --template=template  [default: @rucken/schematics:angular-new] template
   -h, --help               show CLI help
+
+ALIASES
+  $ rucken new:angular
+  $ rucken angular-new
+  $ rucken frontend:new
 ```
 
 _See code: [src\commands\angular-entity.ts](https://github.com/rucken/cli/blob/develop/src/commands/angular-entity.ts)_
@@ -152,6 +174,7 @@ OPTIONS
   -u, --username=username  username
   -a, --app=app            application name in .nestcli.json
   -c, --core=core          core library name in .nestcli.json
+  -t, --template=template  [default: @rucken/schematics:nestjs-new] template
   -h, --help               show CLI help
 ```
 

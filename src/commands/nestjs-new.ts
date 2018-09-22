@@ -4,7 +4,7 @@ import { schematicsCommandBuilder } from '../utils/schematics-command-builder';
 const npmRun = require('npm-run');
 
 export class NestJSNew extends Command {
-  static aliases = ['new:nestjs', 'nestjs-new'];
+  static aliases = ['new:nestjs', 'nestjs-new', 'backend:new'];
   static description = 'generate empty NestJS backend application';
   static flags = {
     help: flags.help({ char: 'h' }),
