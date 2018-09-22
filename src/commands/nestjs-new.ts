@@ -1,12 +1,14 @@
 import { flags, Command } from '@oclif/command';
-import { resolve as resolvePath, sep } from 'path';
+import { sep } from 'path';
+import { schematicsCommandBuilder } from '../utils/schematics-command-builder';
 const npmRun = require('npm-run');
 
 export class NestJSNew extends Command {
-  static aliases = ['new:nestjs', 'nestjs-new'];
+  static aliases = ['new:nestjs', 'nestjs-new', 'backend:new'];
   static description = 'generate empty NestJS backend application';
   static flags = {
     help: flags.help({ char: 'h' }),
+    template: flags.string({ char: 't', description: 'template', default: '@rucken/schematics:nestjs-new' }),
     name: flags.string({ char: 'n', description: 'application name on ke-bab case' }),
     username: flags.string({ char: 'u', description: 'username' }),
     email: flags.string({ char: 'e', description: 'email' })
@@ -15,12 +17,14 @@ export class NestJSNew extends Command {
   async run() {
     const { args, flags } = this.parse(NestJSNew);
     const folder = args.folder;
+    const template = flags.template || '';
     const name = flags.name;
     const username = flags.username;
     const email = flags.email;
 
     try {
       await this.runNew(
+        template,
         folder,
         name,
         username,
@@ -31,12 +35,14 @@ export class NestJSNew extends Command {
     }
   }
   private runNew(
+    template: string,
     folder: string,
     name?: string,
     username?: string,
     email?: string
   ) {
     this.debug('Start', {
+      template: template,
       folder: folder,
       name: name,
       username: username,
@@ -47,14 +53,16 @@ export class NestJSNew extends Command {
       if (inputFolder && inputFolder.indexOf('/') === -1 && !name) {
         name = inputFolder;
       }
-      const command = 'node ' +
-        resolvePath(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js') +
-        ' @rucken/schematics:nestjs-new ' +
-        (inputFolder ? ('--root=' + inputFolder + ' ') : ' ') +
-        (name ? ('--name=' + name + ' ') : ' ') +
-        (username ? ('--username=' + username + ' ') : ' ') +
-        (email ? ('--email=' + email + ' ') : ' ') +
-        '--dry-run=false --force';
+      const command = schematicsCommandBuilder(
+        inputFolder as string,
+        template,
+        {
+          root: inputFolder,
+          name: name,
+          username: username,
+          email: email
+        }
+      );
       this.debug('command', command);
       npmRun.exec(
         command,

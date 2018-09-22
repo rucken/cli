@@ -53,8 +53,8 @@ describe('entity', () => {
         ruckenConfig = {};
         console.error(error);
       }
-      expect(ruckenConfig.backend).to.equals('nestjs');
-      expect(ruckenConfig.frontend).to.equals('angular');
+      expect(ruckenConfig.backend).to.equals('@rucken/schematics:nestjs');
+      expect(ruckenConfig.frontend).to.equals('@rucken/schematics:angular');
 
       try {
         nestjsConfig = JSON.parse(readFileSync(

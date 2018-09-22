@@ -1,4 +1,4 @@
-import { flags, Command } from '@oclif/command';
+import { Command, flags } from '@oclif/command';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve as resolvePath, sep } from 'path';
 import { AngularNew } from './angular-new';
@@ -8,6 +8,8 @@ export class New extends Command {
   static description = 'generate empty backend on NestJS and frontend on Angular 6+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
+    backend: flags.string({ description: 'backend template', default: '@rucken/schematics:nestjs-new' }),
+    frontend: flags.string({ description: 'frontend template', default: '@rucken/schematics:angular-new' }),
     name: flags.string({ char: 'n', description: 'application name on ke-bab case' }),
     username: flags.string({ char: 'u', description: 'username' }),
     email: flags.string({ char: 'e', description: 'email' })
@@ -17,6 +19,8 @@ export class New extends Command {
     const { args, flags } = this.parse(New);
     const folder = args.folder;
     const frontendFolder = args.folder + '/frontend';
+    const templateBackend = flags.backend || '';
+    const templateFrontend = flags.frontend || '';
     const username = flags.username;
     const email = flags.email;
     const inputFolder = folder ? folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/') : undefined;
@@ -26,6 +30,7 @@ export class New extends Command {
     }
     try {
       await this.runNestJsNew(
+        templateBackend,
         folder,
         name,
         username,
@@ -36,6 +41,7 @@ export class New extends Command {
     }
     try {
       await this.runAngularNew(
+        templateFrontend,
         frontendFolder,
         name,
         username,
@@ -54,7 +60,8 @@ export class New extends Command {
     }
     try {
       await this.updateNestJsSources(
-        'angular',
+        templateBackend,
+        templateFrontend,
         folder,
         name
       );
@@ -63,6 +70,7 @@ export class New extends Command {
     }
   }
   private runNestJsNew(
+    template: string,
     folder: string,
     name: string,
     username?: string,
@@ -70,7 +78,7 @@ export class New extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       try {
-        const args = [folder, '--name', name];
+        const args = [folder, '--template', template, '--name', name];
         if (username) {
           args.push('--username');
           args.push(username);
@@ -87,6 +95,7 @@ export class New extends Command {
     });
   }
   private runAngularNew(
+    template: string,
     folder: string,
     name: string,
     username?: string,
@@ -94,7 +103,7 @@ export class New extends Command {
   ) {
     return new Promise(async (resolve, reject) => {
       try {
-        const args = [folder, '--name', name];
+        const args = [folder, '--template', template, '--name', name];
         if (username) {
           args.push('--username');
           args.push(username);
@@ -135,6 +144,7 @@ export class New extends Command {
     });
   }
   private updateNestJsSources(
+    backendTemplate: string,
     frontendTemplate: string,
     folder: string,
     name: string
@@ -174,8 +184,8 @@ export class New extends Command {
         const ruckenJsonFile = resolvePath(folder, 'rucken.json');
         const ruckenJson = {
           name,
-          backend: 'nestjs',
-          frontend: frontendTemplate
+          backend: backendTemplate.replace('-new', ''),
+          frontend: frontendTemplate.replace('-new', '')
         };
         writeFileSync(ruckenJsonFile, JSON.stringify(ruckenJson, null, 2), 'utf8');
         resolve();
