@@ -16,6 +16,7 @@ Console tools for create and build [Angular6+](https://angular.io/) and [NestJS]
 
 * [Install](#install)
 * [Usage](#usage)
+* [Changelogs](#changelogs)
 * [Generators](#generators)
 * [Commands](#commands)
 
@@ -27,6 +28,7 @@ $ npm install -g @rucken/cli
 <!-- installstop -->
 # Usage
 <!-- ussage -->
+Create new project
 ```sh-session
 $ rucken new app-name
 $ cd app-name
@@ -34,7 +36,20 @@ $ npm install
 $ npm run build
 $ npm run start:dev
 ```
+Create new entity and all files for work (backend and frontend)
+```sh-session
+$ rucken . -n table-name -f [name,title]
+```
 <!-- ussagestop -->
+# Changelogs
+<!-- changelogs -->
+| Version  | Changelog |
+| ------------- | ------------- |
+| [![GitHub tag](https://img.shields.io/github/tag/rucken/schematics.svg)](https://github.com/rucken/schematics)  | [@rucken/schematics - Schematics collections for cli](https://github.com/rucken/schematics/blob/master/CHANGELOG.md)  | 
+[![GitHub tag](https://img.shields.io/github/tag/rucken/core.svg)](https://github.com/rucken/core)  | [@rucken/core - Frontend on Angular6+](https://github.com/rucken/core/blob/master/CHANGELOG.md)  |
+[![GitHub tag](https://img.shields.io/github/tag/rucken/core-nestjs.svg)](https://github.com/rucken/core-nestjs)  | [@rucken/core-nestjs - Backend on NestJS](https://github.com/rucken/core-nestjs/blob/master/CHANGELOG.md)  |
+
+<!-- changelogsstop -->
 # Generators
 <!-- generators -->
 * [`rucken new [FOLDER]`](#rucken-new-folder)
