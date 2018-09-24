@@ -9,6 +9,11 @@
       "fixtures"
     ]
   },
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
   "rules": {
     "ordered-imports": [
       false,
