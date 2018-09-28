@@ -158,7 +158,7 @@ export class New extends Command {
         packageJson['scripts']['frontend:install'] = 'cd frontend && npm install';
         packageJson['scripts']['frontend:build'] = 'cd frontend && npm run build';
         packageJson['scripts']['frontend:copy-readme-from-backend'] = `./node_modules/.bin/cp-cli ./README.md ./frontend`;
-        packageJson['scripts']['frontend:copy-to-backend'] = `./node_modules/.bin/cp-cli ./frontend/dist/${name} ./www`;
+        packageJson['scripts']['frontend:copy-to-backend'] = `./node_modules/.bin/cp-cli ./frontend/dist/${name}-client ./www`;
         packageJson['scripts']['frontend'] = 'run-s frontend:copy-readme-from-backend frontend:build frontend:copy-to-backend';
         writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 2), 'utf8');
 

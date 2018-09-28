@@ -1,3 +1,13 @@
+<a name="3.2.3"></a>
+## [3.2.3](https://github.com/rucken/cli/compare/3.2.2...3.2.3) (2018-09-28)
+
+
+### Bug Fixes
+
+* **deps:** Update dependencies ([1deeafd](https://github.com/rucken/cli/commit/1deeafd))
+
+
+
 <a name="3.2.2"></a>
 ## [3.2.2](https://github.com/rucken/cli/compare/3.2.1...3.2.2) (2018-09-24)
 
