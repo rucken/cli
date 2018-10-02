@@ -2,9 +2,10 @@ language: node_js
 node_js:
 - '10'
 after_success:
-- npm run run-generators
 - rimraf ./test/fixtures
 - mkdir ./test/fixtures
+- npm run run-generators
+- chmod +x ".travis/push-generators-outputs.sh"
 - ".travis/push-generators-outputs.sh"
 env:
   global:
