@@ -12,7 +12,7 @@ setup_git() {
 commit_files() {
   git checkout -b generators-outputs
   git add .
-  git commit --message "$TRAVIS_COMMIT"
+  git commit --message "$TRAVIS_COMMIT_MESSAG ($TRAVIS_COMMIT)"
 }
 
 upload_files() {
@@ -36,10 +36,12 @@ move_up(){
   cd ..
 }
 
-clear_fixtures
-move_down
-setup_git
-run_generators
-move_down
-commit_files
-upload_files
+if [[ $TRAVIS_BRANCH == 'master' ]]
+  clear_fixtures
+  move_down
+  setup_git
+  run_generators
+  move_down
+  commit_files
+  upload_files
+fi
