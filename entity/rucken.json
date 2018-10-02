@@ -1,0 +1,5 @@
+{
+  "name": "demo",
+  "backend": "@rucken/schematics:nestjs",
+  "frontend": "@rucken/schematics:angular"
+}
