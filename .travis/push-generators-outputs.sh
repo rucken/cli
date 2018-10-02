@@ -37,6 +37,7 @@ move_up(){
 }
 
 if [[ $TRAVIS_BRANCH == 'master' ]]
+then
   clear_fixtures
   move_down
   setup_git
