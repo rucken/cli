@@ -107,7 +107,9 @@
     "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo",
     "run-entity:create-app": "node ./bin/run new test/fixtures/entity -n demo -u demo -e demo@demo.demo",
     "run-entity:create-entity": "node ./bin/run entity test/fixtures/entity -n demo -u demo -e demo@demo.demo -f [name,title]",
-    "run-entity": "run-s run-entity:create-app run-entity:create-entity"
+    "run-entity": "run-s run-entity:create-app run-entity:create-entity",
+    "clear-generators-outputs": "run-s run-new:angular run-entity:angular run-new:nestjs run-entity:nestjs run-new run-entity",
+    "run-generators":"run-s run-new:angular run-entity:angular run-new:nestjs run-entity:nestjs run-new run-entity"
   },
   "greenkeeper": {
     "ignore": [
