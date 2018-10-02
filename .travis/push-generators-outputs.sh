@@ -13,11 +13,19 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add origin-pages https://${GH_TOKEN}@github.com/rucken/cli.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin-pages generators-outputs 
+  git remote add origin https://${GH_TOKEN}@github.com/rucken/cli.git > /dev/null 2>&1
+  git fetch origin generators-outputs
+  git push --quiet --set-upstream origin generators-outputs 
 }
 
-cd ./test/fixtures
+run_generators(){
+  rimraf ./test/fixtures
+  mkdir ./test/fixtures
+  npm run run-generators
+  cd ./test/fixtures
+}
+
+run_generators
 setup_git
 commit_website_files
 upload_files
