@@ -12,7 +12,7 @@ setup_git() {
 commit_files() {
   git checkout -b generators-outputs
   git add .
-  git commit --message "$TRAVIS_COMMIT_MESSAG ($TRAVIS_COMMIT)"
+  git commit --message "Version: $PACKAGE_VERSION Commit: $TRAVIS_COMMIT"
 }
 
 upload_files() {
@@ -38,6 +38,13 @@ move_up(){
 
 if [[ $TRAVIS_BRANCH == 'master' ]]
 then
+  PACKAGE_VERSION=$(cat package.json \
+    | grep version \
+    | head -1 \
+    | awk -F: '{ print $2 }' \
+    | sed 's/[",]//g')
+  export PACKAGE_VERSION=$PACKAGE_VERSION
+
   clear_fixtures
   move_down
   setup_git
