@@ -3,7 +3,7 @@ import { Demo } from '../entities/demo.entity';
 import { plainToClass } from 'class-transformer';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class AddDemoTable1538510712129
+export class AddDemoTable1533634559618
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     // create table

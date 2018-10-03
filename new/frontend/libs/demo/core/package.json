@@ -18,7 +18,7 @@
     "core"
   ],
   "license": "MIT",
-  "author": "demo <demo@demo.demo--dry-run=false>",
+  "author": "demo <demo@demo.demo>",
   "bugs": {
     "url": "https://github.com/demo/core/issues"
   },
@@ -30,7 +30,7 @@
   "maintainers": [
     {
       "name": "demo",
-      "email": "demo@demo.demo--dry-run=false"
+      "email": "demo@demo.demo"
     }
   ],
   "peerDependencies": {

@@ -7,8 +7,8 @@
   },
   "license": "MIT",
   "author": {
-    "name": "demo@demo.demo--dry-run=false",
-    "email": "demo@demo.demo--dry-run=false"
+    "name": "demo@demo.demo",
+    "email": "demo@demo.demo"
   },
   "description": "A simple application demonstrating the basic usage of permissions with NestJS (JWT, Passport, Facebook, Google+, User, Group, Permission)",
   "bugs": {
@@ -36,8 +36,8 @@
   ],
   "maintainers": [
     {
-      "name": "demo@demo.demo--dry-run=false",
-      "email": "demo@demo.demo--dry-run=false"
+      "name": "demo@demo.demo",
+      "email": "demo@demo.demo"
     }
   ],
   "scripts": {
