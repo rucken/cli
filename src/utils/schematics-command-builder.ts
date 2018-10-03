@@ -58,7 +58,7 @@ export function schematicsCommandBuilder(
       projectSchematicsCli +
       ' ' + templateFolder + ':' + templateName + ' ' +
       argsArray.join(' ') +
-      '--dry-run=false --force';
+      ' --dry-run=false --force';
   }
   if (projectNodeModulesCollections['schematics'] && projectNodeModulesCollections['schematics'][templateName]) {
     console.log('Founded and used schematics template from project node_modules');
@@ -66,14 +66,14 @@ export function schematicsCommandBuilder(
       projectSchematicsCli +
       ' ' + templateFolder + ':' + templateName + ' ' +
       argsArray.join(' ') +
-      '--dry-run=false --force';
+      ' --dry-run=false --force';
   }
   if (localNodeModulesCollections['schematics'] && localNodeModulesCollections['schematics'][templateName]) {
     return 'node ' +
       localSchematicsCli +
       ' ' + templateFolder + ':' + templateName + ' ' +
       argsArray.join(' ') +
-      '--dry-run=false --force';
+      ' --dry-run=false --force';
   }
   throw new Error(`Template with name ${template} not founded`);
 }

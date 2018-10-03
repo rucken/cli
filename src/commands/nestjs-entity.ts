@@ -15,6 +15,7 @@ export class NestJSEntity extends Command {
     email: flags.string({ char: 'e', description: 'email' }),
     app: flags.string({ char: 'a', description: 'application name in .nestcli.json' }),
     core: flags.string({ char: 'c', description: 'core library name in .nestcli.json' }),
+    time: flags.string({ description: 'timestamp for create migration (default: current datetime)' })
   };
   static args = [{ name: 'folder' }];
   async run() {
@@ -27,6 +28,7 @@ export class NestJSEntity extends Command {
     const email = flags.email;
     const app = flags.app;
     const core = flags.core;
+    const time = flags.time;
 
     try {
       await this.runEntity(
@@ -37,7 +39,8 @@ export class NestJSEntity extends Command {
         username,
         email,
         app,
-        core
+        core,
+        time
       );
     } catch (error) {
       console.error(error);
@@ -51,7 +54,8 @@ export class NestJSEntity extends Command {
     username?: string,
     email?: string,
     app?: string,
-    core?: string
+    core?: string,
+    time?: string
   ) {
     this.debug('Start', {
       template: template,
@@ -61,7 +65,8 @@ export class NestJSEntity extends Command {
       username: username,
       email: email,
       app: app,
-      core: core
+      core: core,
+      time: time
     });
     return new Promise((resolve, reject) => {
       const inputFolder = folder ? folder.replace(new RegExp('\\' + sep, 'g'), '/').split(sep).join('/') : undefined;
@@ -75,7 +80,8 @@ export class NestJSEntity extends Command {
           username: username,
           email: email,
           app: app,
-          core: core
+          core: core,
+          time: time
         }
       );
       this.debug('command', command);

@@ -19,12 +19,8 @@ upload_files() {
   git push --quiet --set-upstream origin generators-outputs 
 }
 
-clear_fixtures(){
-  rimraf ./test/fixtures
-  mkdir ./test/fixtures
-}
-
 run_generators(){
+  npm run clear-generators-outputs
   npm run run-generators
 }
 
@@ -45,9 +41,9 @@ then
     | sed 's/[",]//g')
   export PACKAGE_VERSION=$PACKAGE_VERSION
 
-  clear_fixtures
   move_down
   setup_git
+  move_up
   run_generators
   move_down
   commit_files

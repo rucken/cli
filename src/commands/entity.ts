@@ -14,7 +14,8 @@ export class Entity extends Command {
     email: flags.string({ char: 'e', description: 'email' }),
     app: flags.string({ char: 'a', description: 'application name in angular.json and .nestcli.json' }),
     core: flags.string({ char: 'c', description: 'core library name in angular.json and .nestcli.json' }),
-    web: flags.string({ char: 'w', description: 'web library name in angular.json' })
+    web: flags.string({ char: 'w', description: 'web library name in angular.json' }),
+    time: flags.string({ description: 'timestamp for create migration (default: current datetime)' })
   };
   static args = [{ name: 'folder' }];
   async run() {
@@ -28,6 +29,7 @@ export class Entity extends Command {
     const app = flags.app;
     const core = flags.core;
     const web = flags.web;
+    const time = flags.time;
     const errorMessage = 'Before create entity, you must create project: rucken new -n demo -u demo -e demo@demo.demo';
     let templateBackend = '';
     let templateFrontend = '';
@@ -65,7 +67,8 @@ export class Entity extends Command {
         username,
         email,
         app,
-        core
+        core,
+        time
       );
     } catch (error) {
       console.error(error);
@@ -94,7 +97,8 @@ export class Entity extends Command {
     username?: string,
     email?: string,
     app?: string,
-    core?: string
+    core?: string,
+    time?: string
   ) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -118,6 +122,10 @@ export class Entity extends Command {
         if (core) {
           args.push('--core');
           args.push(core);
+        }
+        if (time) {
+          args.push('--time');
+          args.push(time);
         }
         await NestJSEntity.run(args);
         resolve();
