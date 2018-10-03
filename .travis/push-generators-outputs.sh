@@ -29,7 +29,7 @@ move_down(){
 }
 
 move_up(){
-  cd ..
+  cd ../..
 }
 
 if [[ $TRAVIS_BRANCH == 'master' ]]
