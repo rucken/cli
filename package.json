@@ -27,7 +27,7 @@
     "tslib": "^1"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "^0.8.3",
+    "@angular-devkit/schematics": "^7.0.0",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@oclif/tslint": "^3",
