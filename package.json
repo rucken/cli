@@ -38,7 +38,7 @@
     "@types/yargs": "^12.0.0",
     "chai": "^4",
     "conventional-changelog-cli": "^2.0.5",
-    "conventional-commits-detector": "^0.1.1",
+    "conventional-commits-detector": "^1.0.0",
     "conventional-recommended-bump": "^4.0.1",
     "globby": "^8",
     "mocha": "^5",
