@@ -5,11 +5,11 @@
     "node": ">=8",
     "npm": ">=6.1.0"
   },
-  "description": "Core with base class and admin entities for application maked on Angular6+",
+  "description": "Core with base class and admin entities for application maked on Angular7+",
   "keywords": [
     "ngx",
     "angular",
-    "angular6",
+    "angular7",
     "i18n",
     "shared",
     "services",
