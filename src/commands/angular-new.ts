@@ -5,7 +5,7 @@ const npmRun = require('npm-run');
 
 export class AngularNew extends Command {
   static aliases = ['new:angular', 'angular-new', 'frontend:new'];
-  static description = 'generate frontend web empty Angular 6+ application based on Rucken template';
+  static description = 'generate frontend web empty Angular7+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
     template: flags.string({ char: 't', description: 'template', default: '@rucken/schematics:angular-new' }),
