@@ -1,7 +1,7 @@
 @rucken/cli
 ===========
 
-Console tools for create and build [Angular6+](https://angular.io/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://github.com/rucken) template
+Console tools for create and build [Angular7+](https://angular.io/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://github.com/rucken) template
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Greenkeeper badge](https://badges.greenkeeper.io/rucken/cli.svg)](https://greenkeeper.io/)
@@ -46,7 +46,7 @@ $ rucken . -n table-name -f [name,title]
 | Version  | Changelog |
 | ------------- | ------------- |
 | [![GitHub tag](https://img.shields.io/github/tag/rucken/schematics.svg)](https://github.com/rucken/schematics)  | [@rucken/schematics - Schematics collections for cli](https://github.com/rucken/schematics/blob/master/CHANGELOG.md)  | 
-[![GitHub tag](https://img.shields.io/github/tag/rucken/core.svg)](https://github.com/rucken/core)  | [@rucken/core - Frontend on Angular6+](https://github.com/rucken/core/blob/master/CHANGELOG.md)  |
+[![GitHub tag](https://img.shields.io/github/tag/rucken/core.svg)](https://github.com/rucken/core)  | [@rucken/core - Frontend on Angular7+](https://github.com/rucken/core/blob/master/CHANGELOG.md)  |
 [![GitHub tag](https://img.shields.io/github/tag/rucken/core-nestjs.svg)](https://github.com/rucken/core-nestjs)  | [@rucken/core-nestjs - Backend on NestJS](https://github.com/rucken/core-nestjs/blob/master/CHANGELOG.md)  |
 
 <!-- changelogsstop -->
