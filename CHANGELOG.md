@@ -1,3 +1,17 @@
+# [3.3.0](https://github.com/rucken/cli/compare/3.2.3...3.3.0) (2018-11-17)
+
+
+### Bug Fixes
+
+* **nestjs-generators:** Add time options for change date time of migration generated for new entity ([bb821cc](https://github.com/rucken/cli/commit/bb821cc))
+
+
+### Features
+
+* **deps:** Update dependencies ([9e375c1](https://github.com/rucken/cli/commit/9e375c1))
+
+
+
 <a name="3.2.3"></a>
 ## [3.2.3](https://github.com/rucken/cli/compare/3.2.2...3.2.3) (2018-09-28)
 
@@ -96,7 +110,7 @@
 
 * **generators:** Add generator for create dto, entity, service and controller for NestJS backend ([fda37ba](https://github.com/rucken/cli/commit/fda37ba))
 * **generators:** Add generator for create empty NestJS backend application ([f783954](https://github.com/rucken/cli/commit/f783954))
-* **generators:** Add generator for create full fullstack  project Angular6+ and NestJS ([bcce815](https://github.com/rucken/cli/commit/bcce815))
+* **generators:** Add generator for create full fullstack  project Angular7+ and NestJS ([bcce815](https://github.com/rucken/cli/commit/bcce815))
 * **generators:** Change name: new->new:angular and  entity->entity:angular ([210dde0](https://github.com/rucken/cli/commit/210dde0))
 
 
