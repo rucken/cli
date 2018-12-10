@@ -5,10 +5,7 @@ setup_git() {
   git config --global user.name "Travis CI"
   git init
   git remote add origin https://${GH_TOKEN}@github.com/rucken/cli.git > /dev/null 2>&1
-  git fetch origin generators-outputs
-  git add .
-  git commit --message "Commit uncommited"
-  git pull origin generators-outputs
+  git pull origin generators-outputs --rebase=preserve --allow-unrelated-histories 
 }
 
 commit_files() {
