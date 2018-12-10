@@ -53,11 +53,11 @@ MIT
 [![Gitter][gitter-image]][gitter-url]
 [![Join the chat at telegram][telegram-image]][telegram-url]
 
-Core with UI for web application maked on Angular6+
+Core with UI for web application maked on Angular7+
 
 ## What is this?
 
-- **Core** - Base entities and services for create applications on `Angular6+`.
+- **Core** - Base entities and services for create applications on `Angular7+`.
 - **Web** - Base ui grids and inputs and etc.
 
 ## Usage

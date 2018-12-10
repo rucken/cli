@@ -20,10 +20,10 @@ msgstr ""
 msgid "No"
 msgstr "Нет"
 
-msgid "Core with Admin UI for web and native application maked on Angular6+"
+msgid "Core with Admin UI for web and native application maked on Angular7+"
 msgstr ""
 "Ядро с пользовательским интерфейсом администратора для веб и нативных "
-"приложений, сделанных на Angular6 +"
+"приложений, сделанных на Angular7 +"
 
 msgid "Russian"
 msgstr "Русский"

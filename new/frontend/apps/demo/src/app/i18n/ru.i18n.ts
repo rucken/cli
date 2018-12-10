@@ -1,7 +1,7 @@
 export const RuI18n = {
   'Your session has expired, please re-login': '',
   No: 'Нет',
-  'Core with Admin UI for web and native application maked on Angular6+': '',
+  'Core with Admin UI for web and native application maked on Angular7+': '',
   Russian: 'Русский',
   English: 'Английский',
   'Sign in with Facebook': 'Вход через Facebook',
