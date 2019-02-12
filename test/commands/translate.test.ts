@@ -111,7 +111,7 @@ describe('translate', () => {
       );
     });
   test
-    .command(['translate', 'test/fixtures/translate', '-f', 'po', '-e', '["folder1"]'])
+    .command(['translate', 'test/fixtures/translate', '-f', 'po', '-e', 'folder1'])
     .it('runs translate with set folder and format po and excludes', _ctx =>
       access(resolvePath('test/fixtures/translate/i18n/template.pot'), constants.F_OK, err => {
         if (err) {
@@ -122,7 +122,7 @@ describe('translate', () => {
       })
     );
   test
-    .command(['translate', 'test/fixtures/translate', '-f', 'json', '-e', '["folder1"]'])
+    .command(['translate', 'test/fixtures/translate', '-f', 'json', '-e', 'folder1'])
     .it('runs translate with set folder and format json and excludes', _ctx =>
       access(resolvePath('test/fixtures/translate/i18n/ru.i18n.ts'), constants.F_OK, _err =>
         access(resolvePath('test/fixtures/translate/i18n/en.i18n.ts'), constants.F_OK, __err => {

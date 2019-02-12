@@ -51,7 +51,7 @@ export * from './folder1/class2';
       )
     );
   test
-    .command(['make-ts-list', 'test/fixtures/make-ts-list', '-e', '["folder1","node_modules"]', '-i', 'index-custom.txt'])
+    .command(['make-ts-list', 'test/fixtures/make-ts-list', '-e', 'folder1', '-e', 'node_modules', '-i', 'index-custom.txt'])
     .it('runs make-ts-list with set folder, excludes and custom index file name ', _ctx =>
       readFile(resolvePath('test/fixtures/make-ts-list/index-custom.txt'), 'utf8', (_err, body) =>
         expect(body).to.contain(`export * from './class1';

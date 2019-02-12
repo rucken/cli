@@ -9,11 +9,14 @@ const po2json = require('po2json');
 const stringifyObject = require('stringify-object');
 
 export class Translate extends Command {
+  static excludes = [
+    '*node_modules*', '*.spec'
+  ];
   static description = 'extract translate from source and make ts class from it';
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    excludes: flags.string({ char: 'e', description: 'exclude directories/files masks', default: '["node_modules"]' }),
+    excludes: flags.string({ char: 'e', multiple: true, description: '[default: ["' + Translate.excludes.join(',') + '"]] exclude directories/files masks' }),
     prefix: flags.string({ char: 'p', description: 'name of class prefix', default: '' }),
     templateName: flags.string({ char: 't', description: 'name of template', default: 'template' }),
     format: flags.enum({ char: 'f', description: 'file prefix and build mode', options: ['po', 'json'], default: 'po' }),
@@ -27,7 +30,7 @@ export class Translate extends Command {
     let jsonFiles: string[] = [];
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
     const format = flags.format;
-    const excludes = flags.excludes ? JSON.parse(flags.excludes) : [];
+    const excludes = flags.excludes || Translate.excludes;
     const prefix = flags.prefix ? flags.prefix : '';
     const templateName = flags.templateName ? flags.templateName : 'template';
     const clean = flags.clean ? flags.clean : false;
