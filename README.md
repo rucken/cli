@@ -61,7 +61,7 @@ $ rucken . -n table-name -f [name,title]
 
 ## `rucken new [FOLDER]`
 
-generate empty backend on NestJS and frontend on Angular 6+ application based on Rucken template
+generate empty backend on NestJS and frontend on Angular7+ application based on Rucken template
 
 ```
 USAGE
@@ -80,7 +80,7 @@ _See code: [src\commands\new.ts](https://github.com/rucken/cli/blob/develop/src/
 
 ## `rucken entity [FOLDER]`
 
-generate backend dto, entity, service and controller for NestJS backend and generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template
+generate backend dto, entity, service and controller for NestJS backend and generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular7+ application based on Rucken template
 
 ```
 USAGE
@@ -103,7 +103,7 @@ _See code: [src\commands\entity.ts](https://github.com/rucken/cli/blob/develop/s
 
 ## `rucken new:angular [FOLDER]`
 
-generate frontend web empty Angular 6+ application based on Rucken template
+generate frontend web empty Angular7+ application based on Rucken template
 
 ```
 USAGE
@@ -149,7 +149,7 @@ _See code: [src\commands\nestjs-new.ts](https://github.com/rucken/cli/blob/devel
 
 ## `rucken entity:angular [FOLDER]`
 
-generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template
+generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular7+ application based on Rucken template
 
 ```
 USAGE

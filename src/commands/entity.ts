@@ -5,7 +5,7 @@ import { AngularEntity } from './angular-entity';
 import { NestJSEntity } from './nestjs-entity';
 
 export class Entity extends Command {
-  static description = 'generate backend dto, entity, service and controller for NestJS backend and generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template';
+  static description = 'generate backend dto, entity, service and controller for NestJS backend and generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular7+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
     name: flags.string({ char: 'n', description: 'entity singular name on ke-bab case', required: true }),

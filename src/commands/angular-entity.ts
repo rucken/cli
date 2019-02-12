@@ -5,7 +5,7 @@ const npmRun = require('npm-run');
 
 export class AngularEntity extends Command {
   static aliases = ['entity:angular', 'angular-entity', 'frontend:entity'];
-  static description = 'generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular 6+ application based on Rucken template';
+  static description = 'generate frontend model, service, grid, lookup input, modal for edit row in grid, modal for select items from grid with items for Angular7+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
     template: flags.string({ char: 't', description: 'template', default: '@rucken/schematics:angular-entity' }),

@@ -5,7 +5,7 @@ import { AngularNew } from './angular-new';
 import { NestJSNew } from './nestjs-new';
 
 export class New extends Command {
-  static description = 'generate empty backend on NestJS and frontend on Angular 6+ application based on Rucken template';
+  static description = 'generate empty backend on NestJS and frontend on Angular7+ application based on Rucken template';
   static flags = {
     help: flags.help({ char: 'h' }),
     backend: flags.string({ description: 'backend template', default: '@rucken/schematics:nestjs-new' }),
