@@ -7,7 +7,7 @@ const sortPaths = require('sort-paths');
 
 export class MakeTsList extends Command {
   static excludes = [
-    '*server*', '*node_modules*', '*public_api.ts*', '*test.ts*', '*.spec'
+    '*server*', '*node_modules*', '*public_api.ts*', '*test.ts*', '*.spec*', 'environment*'
   ];
   static description = 'make index.ts with list of ts files recursive from source folder';
 
