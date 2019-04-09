@@ -1,3 +1,13 @@
+## [3.3.4](https://github.com/rucken/cli/compare/3.3.3...3.3.4) (2019-04-09)
+
+
+### Bug Fixes
+
+* Update dependencies ([c8798fc](https://github.com/rucken/cli/commit/c8798fc))
+* Update paths for detect executable external js libs ([#92](https://github.com/rucken/cli/issues/92)) ([fcd7de3](https://github.com/rucken/cli/commit/fcd7de3))
+
+
+
 ## [3.3.3](https://github.com/rucken/cli/compare/3.3.2...3.3.3) (2019-02-12)
 
 
