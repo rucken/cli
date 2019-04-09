@@ -10,7 +10,7 @@
     "rucken": "./bin/run"
   },
   "dependencies": {
-    "@angular-devkit/schematics-cli": "^0.10.6",
+    "@angular-devkit/schematics-cli": "^0.13.8",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -27,7 +27,7 @@
     "tslib": "^1"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "^7.0.6",
+    "@angular-devkit/schematics": "^7.3.8",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@oclif/tslint": "^3",
