@@ -7,10 +7,24 @@ export function schematicsCommandBuilder(
   args: { [key: string]: string | undefined }
 ) {
   const argsArray: string[] = [];
-  const localSchematicsCli =
-    resolve(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
-  const projectSchematicsCli =
-    resolve(projectPath as string, 'node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
+  let localSchematicsCli;
+  try {
+    localSchematicsCli = resolve(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
+    readFileSync(localSchematicsCli).toString();
+  } catch (__error) {
+    try {
+      localSchematicsCli = resolve(__dirname, '../node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
+      readFileSync(localSchematicsCli).toString();
+    } catch (__error) {
+      try {
+        localSchematicsCli = resolve(__dirname, 'node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
+        readFileSync(localSchematicsCli).toString();
+      } catch (__error) {
+        console.error(__error);
+      }
+    }
+  }
+  const projectSchematicsCli = resolve(projectPath as string, 'node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
   const templateArray = (template as string).split(':');
   const templateFolder = templateArray.length ? templateArray[0] : 'empty';
   const templateName = templateArray.length ? templateArray[1] : 'empty';
