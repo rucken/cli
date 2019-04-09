@@ -226,7 +226,24 @@ export class Translate extends Command {
         if (err) {
           reject(new Error('The path you supplied was not found'));
         } else {
-          const command = 'node ' + resolvePath(__dirname, '..', '..', 'node_modules/@biesbjerg/ngx-translate-extract/bin/cli.js') + ' ' +
+          let extractCli;
+          try {
+            extractCli = resolvePath(__dirname, '..', '..', 'node_modules/@biesbjerg/ngx-translate-extract/bin/cli.js');
+            readFileSync(extractCli).toString();
+          } catch (__error) {
+            try {
+              extractCli = resolvePath(__dirname, '..', 'node_modules/@biesbjerg/ngx-translate-extract/bin/cli.js');
+              readFileSync(extractCli).toString();
+            } catch (__error) {
+              try {
+                extractCli = resolvePath(__dirname, 'node_modules/@biesbjerg/ngx-translate-extract/bin/cli.js');
+                readFileSync(extractCli).toString();
+              } catch (__error) {
+                console.error(__error);
+              }
+            }
+          }
+          const command = 'node ' + extractCli + ' ' +
             '--patterns ' + newExcludes.join(' ') + ' ' +
             '--input ' + inputFolder + ' ' +
             '--output ' + outputFolder + ' ' +
