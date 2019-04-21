@@ -1,7 +1,7 @@
 @rucken/cli
 ===========
 
-Console tools for create and build [Angular7+](https://angular.io/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://github.com/rucken) template
+Console tools for create and build [Angular7+](https://angular.io/), [Ionic](https://ionicframework.com/), [Bootstrap](https://valor-software.com/ngx-bootstrap/#/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://github.com/rucken) template
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Greenkeeper badge](https://badges.greenkeeper.io/rucken/cli.svg)](https://greenkeeper.io/)
@@ -38,6 +38,8 @@ rucken app app-name --type=web --type=nestjs
 rucken lib lib-name --type=frontend --type=nestjs
 # create entities in libraries
 rucken entity entity-name --type=web --type=nestjs
+# create link entities to applications
+rucken entity2app --type=web --type=nestjs
 # create link libraries to applications
 rucken lib2app --type=frontend --type=nestjs
 # install dependencies
