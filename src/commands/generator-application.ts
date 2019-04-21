@@ -90,79 +90,70 @@ export class Application extends Command {
       const ionicTemplate = flags.ionicTemplate;
       // web
       if (type.indexOf('web') !== -1) {
-        if (
-          angularJson['projects'] && angularJson['projects'][name] ||
-          nxJson['projects'] && angularJson['projects'][name]
-        ) {
-          throw new CLIError(`Application with name "${name}" is exists`);
-        }
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          webTemplate || '',
-          [name],
-          {
-            author,
-            email,
-            api,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        await this.prepareWeb(angularJson, name, nxJson, webTemplate, author, email, api, workspace);
       }
       // ionic
       if (type.indexOf('ionic') !== -1) {
-        if (
-          angularJson['projects'] && angularJson['projects'][name + '-ionic'] ||
-          nxJson['projects'] && angularJson['projects'][name + '-ionic']
-        ) {
-          throw new CLIError(`Application with name "${name + '-ionic'}" is exists`);
-        }
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          ionicTemplate || '',
-          [name + '-ionic'],
-          {
-            author,
-            email,
-            api,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        await this.prepareIonic(angularJson, name, nxJson, ionicTemplate, author, email, api, workspace);
       }
       // nestjs
       if (type.indexOf('nestjs') !== -1) {
-        if (
-          angularJson['projects'] && angularJson['projects'][name + '-nestjs'] ||
-          nxJson['projects'] && angularJson['projects'][name + '-nestjs']
-        ) {
-          throw new CLIError(`Application with name "${name + '-nestjs'}" is exists`);
-        }
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          nestjsTemplate || '',
-          [name + '-nestjs'],
-          {
-            author,
-            email,
-            api,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        await this.prepareNestjs(angularJson, name, nxJson, nestjsTemplate, author, email, api, workspace);
       }
+    } catch (error) {
+      throw new CLIError(error);
+    }
+  }
+
+  private async prepareNestjs(angularJson: never, name: any, nxJson: never, nestjsTemplate: string | undefined, author: any, email: any, api: any, workspace: string | undefined) {
+    if (angularJson['projects'] && angularJson['projects'][name + '-nestjs'] ||
+      nxJson['projects'] && angularJson['projects'][name + '-nestjs']) {
+      throw new CLIError(`Application with name "${name + '-nestjs'}" is exists`);
+    }
+    const command = schematicsCommandBuilder(process.cwd(), nestjsTemplate || '', [name + '-nestjs'], {
+      author,
+      email,
+      api,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
+    } catch (error) {
+      throw new CLIError(error);
+    }
+  }
+
+  private async prepareIonic(angularJson: never, name: any, nxJson: never, ionicTemplate: string | undefined, author: any, email: any, api: any, workspace: string | undefined) {
+    if (angularJson['projects'] && angularJson['projects'][name + '-ionic'] ||
+      nxJson['projects'] && angularJson['projects'][name + '-ionic']) {
+      throw new CLIError(`Application with name "${name + '-ionic'}" is exists`);
+    }
+    const command = schematicsCommandBuilder(process.cwd(), ionicTemplate || '', [name + '-ionic'], {
+      author,
+      email,
+      api,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
+    } catch (error) {
+      throw new CLIError(error);
+    }
+  }
+
+  private async prepareWeb(angularJson: never, name: any, nxJson: never, webTemplate: string | undefined, author: any, email: any, api: any, workspace: string | undefined) {
+    if (angularJson['projects'] && angularJson['projects'][name] ||
+      nxJson['projects'] && angularJson['projects'][name]) {
+      throw new CLIError(`Application with name "${name}" is exists`);
+    }
+    const command = schematicsCommandBuilder(process.cwd(), webTemplate || '', [name], {
+      author,
+      email,
+      api,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
     } catch (error) {
       throw new CLIError(error);
     }

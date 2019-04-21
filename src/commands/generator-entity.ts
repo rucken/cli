@@ -75,231 +75,191 @@ export class Entity extends Command {
       const nestjsTemplate = flags.nestjsTemplate;
       // core
       if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1) {
-        if (
-          !coreLib ||
-          angularJson['projects'] && angularJson['projects'][coreLib] ||
-          nxJson['projects'] && angularJson['projects'][coreLib]
-        ) {
-          const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key =>
-            nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
-            nxJson.projects[key].tags.indexOf('library') !== -1
-          );
-          if (choices.length === 0) {
-            throw new CLIError('Library for core frontent entities not founded!');
-          }
-          if (choices.length === 1) {
-            coreLib = choices[0];
-          } else {
-            try {
-              result = await inquirer.prompt(
-                [{
-                  name: 'coreLib',
-                  message: 'Select lib used for store model for frontend application',
-                  type: 'list',
-                  choices,
-                  validate: (value: string) => value.length > 0
-                }]
-              );
-              coreLib = result.coreLib;
-            } catch (error) {
-              throw new CLIError(error);
-            }
-          }
-        }
-        coreLibOrg = coreLib &&
-          angularJson['projects'] &&
-          angularJson['projects'][coreLib] &&
-          angularJson['projects'][coreLib]['root'] &&
-          angularJson['projects'][coreLib]['root'].split('/').length > 2 &&
-          angularJson['projects'][coreLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          coreTemplate || '',
-          [name],
-          {
-            lib: coreLib,
-            org: coreLibOrg,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        ({ coreLib, result, coreLibOrg } = await this.corePrepare(coreLib, angularJson, nxJson, result, coreLibOrg, coreTemplate, name, workspace));
       }
       // web
       if (type.indexOf('web') !== -1) {
-        if (
-          !webLib ||
-          angularJson['projects'] && angularJson['projects'][webLib] ||
-          nxJson['projects'] && angularJson['projects'][webLib]
-        ) {
-          const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key =>
-            nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
-            nxJson.projects[key].tags.indexOf('library') !== -1
-          );
-          if (choices.length === 0) {
-            throw new CLIError('Library for web entities not founded!');
-          }
-          if (choices.length === 1) {
-            webLib = choices[0];
-          } else {
-            try {
-              result = await inquirer.prompt(
-                [{
-                  name: 'webLib',
-                  message: 'Select lib used for store main components for editing data on the model and for the frontend application on Angular7+ with Bootstrap3',
-                  type: 'list',
-                  choices,
-                  validate: (value: string) => value.length > 0
-                }]
-              );
-              webLib = result.webLib;
-            } catch (error) {
-              throw new CLIError(error);
-            }
-          }
-        }
-        webLibOrg = webLib &&
-          angularJson['projects'] &&
-          angularJson['projects'][webLib] &&
-          angularJson['projects'][webLib]['root'] &&
-          angularJson['projects'][webLib]['root'].split('/').length > 2 &&
-          angularJson['projects'][webLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          webTemplate || '',
-          [name],
-          {
-            lib: webLib,
-            org: webLibOrg,
-            entitiesLib: coreLib,
-            entitiesLibOrg: coreLibOrg,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        ({ webLib, result, webLibOrg } = await this.webPrepare(webLib, angularJson, nxJson, result, webLibOrg, webTemplate, name, coreLib, coreLibOrg, workspace));
       }
       // ionic
       if (type.indexOf('ionic') !== -1) {
-        if (
-          !ionicLib ||
-          angularJson['projects'] && angularJson['projects'][ionicLib] ||
-          nxJson['projects'] && angularJson['projects'][ionicLib]
-        ) {
-          const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key =>
-            nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
-            nxJson.projects[key].tags.indexOf('library') !== -1
-          );
-          if (choices.length === 0) {
-            throw new CLIError('Library for ionic entities not founded!');
-          }
-          if (choices.length === 1) {
-            ionicLib = choices[0];
-          } else {
-            try {
-              result = await inquirer.prompt(
-                [{
-                  name: 'ionicLib',
-                  message: 'Select lib used for store of the main components for editing data on the model and for a mobile frontend application on Angular7+ with Ionic4',
-                  type: 'list',
-                  choices,
-                  validate: (value: string) => value.length > 0
-                }]
-              );
-              ionicLib = result.ionicLib;
-            } catch (error) {
-              throw new CLIError(error);
-            }
-          }
-        }
-        ionicLibOrg = ionicLib &&
-          angularJson['projects'] &&
-          angularJson['projects'][ionicLib] &&
-          angularJson['projects'][ionicLib]['root'] &&
-          angularJson['projects'][ionicLib]['root'].split('/').length > 2 &&
-          angularJson['projects'][ionicLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          ionicTemplate || '',
-          [name],
-          {
-            lib: ionicLib,
-            org: ionicLibOrg,
-            entitiesLib: coreLib,
-            entitiesLibOrg: coreLibOrg,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        ({ ionicLib, result, ionicLibOrg } = await this.ionicPrepare(ionicLib, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, name, coreLib, coreLibOrg, workspace));
       }
       // nestjs
       if (type.indexOf('nestjs') !== -1) {
-        if (
-          !nestjsLib ||
-          angularJson['projects'] && angularJson['projects'][nestjsLib] ||
-          nxJson['projects'] && angularJson['projects'][nestjsLib]
-        ) {
-          const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key =>
-            nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('server') !== -1 &&
-            nxJson.projects[key].tags.indexOf('library') !== -1
-          );
-          if (choices.length === 0) {
-            throw new CLIError('Library for nestjs entities not founded!');
-          }
-          if (choices.length === 1) {
-            nestjsLib = choices[0];
-          } else {
-            try {
-              result = await inquirer.prompt(
-                [{
-                  name: 'nestjsLib',
-                  message: 'Select lib used for store of the entity, the DTO, the service and the controller, for editing the entity data for the backend of the application on NestJS with TypeORM',
-                  type: 'list',
-                  choices,
-                  validate: (value: string) => value.length > 0
-                }]
-              );
-              nestjsLib = result.nestjsLib;
-            } catch (error) {
-              throw new CLIError(error);
-            }
-          }
-        }
-        nestjsLibOrg = nestjsLib &&
-          angularJson['projects'] &&
-          angularJson['projects'][nestjsLib] &&
-          angularJson['projects'][nestjsLib]['root'] &&
-          angularJson['projects'][nestjsLib]['root'].split('/').length > 2 &&
-          angularJson['projects'][nestjsLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
-        const command = schematicsCommandBuilder(
-          process.cwd(),
-          nestjsTemplate || '',
-          [name],
-          {
-            lib: nestjsLib,
-            org: nestjsLibOrg,
-            timestamp,
-            workspace
-          }
-        );
-        try {
-          await runCommand(command, (...args: any[]) => this.debug(...args));
-        } catch (error) {
-          throw new CLIError(error);
-        }
+        ({ nestjsLib, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, name, timestamp, workspace));
       }
     } catch (error) {
       throw new CLIError(error);
     }
+  }
+
+  private async prepareNestjs(nestjsLib: string | undefined, angularJson: any, nxJson: any, result: any, nestjsLibOrg: string, nestjsTemplate: string | undefined, name: any, timestamp: any, workspace: string | undefined) {
+    if (!nestjsLib ||
+      angularJson['projects'] && angularJson['projects'][nestjsLib] ||
+      nxJson['projects'] && angularJson['projects'][nestjsLib]) {
+      const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('server') !== -1 &&
+        nxJson.projects[key].tags.indexOf('library') !== -1);
+      if (choices.length === 0) {
+        throw new CLIError('Library for nestjs entities not founded!');
+      }
+      try {
+        result = await inquirer.prompt([{
+          name: 'nestjsLib',
+          message: 'Select lib used for store of the entity, the DTO, the service and the controller, for editing the entity data for the backend of the application on NestJS with TypeORM',
+          type: 'list',
+          choices,
+          validate: (value: string) => value.length > 0
+        }]);
+        nestjsLib = result.nestjsLib;
+      } catch (error) {
+        throw new CLIError(error);
+      }
+    }
+    nestjsLibOrg = nestjsLib &&
+      angularJson['projects'] &&
+      angularJson['projects'][nestjsLib] &&
+      angularJson['projects'][nestjsLib]['root'] &&
+      angularJson['projects'][nestjsLib]['root'].split('/').length > 2 &&
+      angularJson['projects'][nestjsLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
+    const command = schematicsCommandBuilder(process.cwd(), nestjsTemplate || '', [name], {
+      lib: nestjsLib,
+      org: nestjsLibOrg,
+      timestamp,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    return { nestjsLib, result, nestjsLibOrg };
+  }
+
+  private async ionicPrepare(ionicLib: string | undefined, angularJson: any, nxJson: any, result: any, ionicLibOrg: string, ionicTemplate: string | undefined, name: any, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
+    if (!ionicLib ||
+      angularJson['projects'] && angularJson['projects'][ionicLib] ||
+      nxJson['projects'] && angularJson['projects'][ionicLib]) {
+      const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
+        nxJson.projects[key].tags.indexOf('library') !== -1);
+      if (choices.length === 0) {
+        throw new CLIError('Library for ionic entities not founded!');
+      }
+      try {
+        result = await inquirer.prompt([{
+          name: 'ionicLib',
+          message: 'Select lib used for store of the main components for editing data on the model and for a mobile frontend application on Angular7+ with Ionic4',
+          type: 'list',
+          choices,
+          validate: (value: string) => value.length > 0
+        }]);
+        ionicLib = result.ionicLib;
+      } catch (error) {
+        throw new CLIError(error);
+      }
+    }
+    ionicLibOrg = ionicLib &&
+      angularJson['projects'] &&
+      angularJson['projects'][ionicLib] &&
+      angularJson['projects'][ionicLib]['root'] &&
+      angularJson['projects'][ionicLib]['root'].split('/').length > 2 &&
+      angularJson['projects'][ionicLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
+    const command = schematicsCommandBuilder(process.cwd(), ionicTemplate || '', [name], {
+      lib: ionicLib,
+      org: ionicLibOrg,
+      entitiesLib: coreLib,
+      entitiesLibOrg: coreLibOrg,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    return { ionicLib, result, ionicLibOrg };
+  }
+
+  private async webPrepare(webLib: string | undefined, angularJson: any, nxJson: any, result: any, webLibOrg: string, webTemplate: string | undefined, name: any, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
+    if (!webLib ||
+      angularJson['projects'] && angularJson['projects'][webLib] ||
+      nxJson['projects'] && angularJson['projects'][webLib]) {
+      const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
+        nxJson.projects[key].tags.indexOf('library') !== -1);
+      if (choices.length === 0) {
+        throw new CLIError('Library for web entities not founded!');
+      }
+      try {
+        result = await inquirer.prompt([{
+          name: 'webLib',
+          message: 'Select lib used for store main components for editing data on the model and for the frontend application on Angular7+ with Bootstrap3',
+          type: 'list',
+          choices,
+          validate: (value: string) => value.length > 0
+        }]);
+        webLib = result.webLib;
+      } catch (error) {
+        throw new CLIError(error);
+      }
+    }
+    webLibOrg = webLib &&
+      angularJson['projects'] &&
+      angularJson['projects'][webLib] &&
+      angularJson['projects'][webLib]['root'] &&
+      angularJson['projects'][webLib]['root'].split('/').length > 2 &&
+      angularJson['projects'][webLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
+    const command = schematicsCommandBuilder(process.cwd(), webTemplate || '', [name], {
+      lib: webLib,
+      org: webLibOrg,
+      entitiesLib: coreLib,
+      entitiesLibOrg: coreLibOrg,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    return { webLib, result, webLibOrg };
+  }
+
+  private async corePrepare(coreLib: string | undefined, angularJson: any, nxJson: any, result: any, coreLibOrg: string, coreTemplate: string | undefined, name: any, workspace: string | undefined) {
+    if (!coreLib ||
+      angularJson['projects'] && angularJson['projects'][coreLib] ||
+      nxJson['projects'] && angularJson['projects'][coreLib]) {
+      const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
+        nxJson.projects[key].tags.indexOf('library') !== -1);
+      if (choices.length === 0) {
+        throw new CLIError('Library for core frontent entities not founded!');
+      }
+      try {
+        result = await inquirer.prompt([{
+          name: 'coreLib',
+          message: 'Select lib used for store model for frontend application',
+          type: 'list',
+          choices,
+          validate: (value: string) => value.length > 0
+        }]);
+        coreLib = result.coreLib;
+      } catch (error) {
+        throw new CLIError(error);
+      }
+    }
+    coreLibOrg = coreLib &&
+      angularJson['projects'] &&
+      angularJson['projects'][coreLib] &&
+      angularJson['projects'][coreLib]['root'] &&
+      angularJson['projects'][coreLib]['root'].split('/').length > 2 &&
+      angularJson['projects'][coreLib]['root'].split('/').filter((key: string, index: number) => index === 1)[0];
+    const command = schematicsCommandBuilder(process.cwd(), coreTemplate || '', [name], {
+      lib: coreLib,
+      org: coreLibOrg,
+      workspace
+    });
+    try {
+      await runCommand(command, (...args: any[]) => this.debug(...args));
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    return { coreLib, result, coreLibOrg };
   }
 }
