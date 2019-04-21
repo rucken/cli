@@ -1,12 +1,60 @@
 import { readFileSync } from 'fs';
+import * as normalizePackageData from 'normalize-package-data';
 import { resolve } from 'path';
+const npmRun = require('npm-run');
+
+export function loadPackageJson(path: string): normalizePackageData.Package | undefined {
+  try {
+    const json = JSON.parse(
+      readFileSync(path).toString()
+    );
+    normalizePackageData(
+      json
+    );
+    return json;
+  } catch (error) {
+    return undefined;
+  }
+}
+export function loadJson(path: string): undefined {
+  try {
+    const json = JSON.parse(
+      readFileSync(path).toString()
+    );
+    return json;
+  } catch (error) {
+    return undefined;
+  }
+}
+
+export function runCommand(commands: string, debug: (...args: any[]) => void) {
+  return new Promise((resolve, reject) => {
+    debug('command', commands);
+    console.log(commands);
+    npmRun.exec(commands, {}, (err: any, stdout: any, stderr: any) => {
+      debug('err', err);
+      debug('stdout', stdout);
+      debug('stderr', stderr);
+      if (err) {
+        console.error(stderr);
+        debug('End', err);
+        resolve();
+      } else {
+        console.log(stdout);
+        debug('End', true);
+        resolve();
+      }
+    });
+  });
+}
 
 export function schematicsCommandBuilder(
   projectPath: string,
-  template: string | undefined,
-  args: { [key: string]: string | undefined }
+  template: string,
+  args: string[],
+  namedArgs: { [key: string]: string | undefined }
 ) {
-  const argsArray: string[] = [];
+  const argsArray: string[] = args;
   let localSchematicsCli;
   try {
     localSchematicsCli = resolve(__dirname, '../../node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
@@ -24,20 +72,20 @@ export function schematicsCommandBuilder(
       }
     }
   }
-  const projectSchematicsCli = resolve(projectPath as string, 'node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
-  const templateArray = (template as string).split(':');
+  const projectSchematicsCli = resolve(projectPath, 'node_modules/@angular-devkit/schematics-cli/bin/schematics.js');
+  const templateArray = template.split(':');
   const templateFolder = templateArray.length ? templateArray[0] : 'empty';
   const templateName = templateArray.length ? templateArray[1] : 'empty';
   const projectTemplate =
-    resolve(projectPath as string, templateFolder);
+    resolve(projectPath, templateFolder);
   const localNodeModulesTemplate =
     resolve(__dirname, '../../node_modules', templateFolder);
   const projectNodeModulesTemplate =
-    resolve(projectPath as string, 'node_modules', templateFolder);
-  Object.keys(args).forEach(key => {
-    if (args[key] !== undefined) {
+    resolve(projectPath, 'node_modules', templateFolder);
+  Object.keys(namedArgs).forEach(key => {
+    if (namedArgs[key] !== undefined) {
       argsArray.push(
-        `--${key}=${args[key]}`
+        `--${key}=${namedArgs[key]}`
       );
     }
   }
@@ -67,7 +115,7 @@ export function schematicsCommandBuilder(
   } catch (error) {
   }
   if (projectCollections['schematics'] && projectCollections['schematics'][templateName]) {
-    console.log('Founded and used schematics template from project');
+    // console.log('Founded and used schematics template from project');
     return 'node ' +
       projectSchematicsCli +
       ' ' + templateFolder + ':' + templateName + ' ' +
@@ -75,7 +123,7 @@ export function schematicsCommandBuilder(
       ' --dry-run=false --force';
   }
   if (projectNodeModulesCollections['schematics'] && projectNodeModulesCollections['schematics'][templateName]) {
-    console.log('Founded and used schematics template from project node_modules');
+    // console.log('Founded and used schematics template from project node_modules');
     return 'node ' +
       projectSchematicsCli +
       ' ' + templateFolder + ':' + templateName + ' ' +

@@ -1,3 +1,21 @@
+# [4.0.0](https://github.com/rucken/cli/compare/3.3.4...4.0.0) (2019-04-21)
+
+
+### Bug Fixes
+
+* Update dependencies ([1c59f68](https://github.com/rucken/cli/commit/1c59f68))
+* **translate:** Update tests ([33f1e2e](https://github.com/rucken/cli/commit/33f1e2e))
+
+
+### Features
+
+* Add generator for applications and libraries ([8decaf7](https://github.com/rucken/cli/commit/8decaf7))
+* Add generator for entity ([9a1bdc0](https://github.com/rucken/cli/commit/9a1bdc0))
+* Add generators for link entities and libraries to application ([8e6f4ce](https://github.com/rucken/cli/commit/8e6f4ce))
+* Remove all generators, add workspace generator ([cb6dcae](https://github.com/rucken/cli/commit/cb6dcae))
+
+
+
 ## [3.3.4](https://github.com/rucken/cli/compare/3.3.3...3.3.4) (2019-04-09)
 
 

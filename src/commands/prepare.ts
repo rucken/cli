@@ -1,4 +1,4 @@
-import { flags, Command } from '@oclif/command';
+import { Command, flags } from '@oclif/command';
 import { readFileSync } from 'fs';
 import { resolve as resolvePath } from 'path';
 import { Config } from './config';
@@ -20,22 +20,14 @@ export class Prepare extends Command {
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
     const mode = flags.mode;
     const angularConfigPath = resolvePath(folder, 'angular.json');
-    const nestJsConfigPath = resolvePath(folder, '.nestcli.json');
 
     let angularConfig: any;
-    let nestJsConfig: any;
     try {
       const content = readFileSync(angularConfigPath).toString();
       angularConfig = JSON.parse(content);
       // tslint:disable-next-line:no-unused
     } catch (error) {
-      try {
-        const content = readFileSync(nestJsConfigPath).toString();
-        nestJsConfig = JSON.parse(content);
-        angularConfig = nestJsConfig;
-      } catch (__error) {
-        console.error(__error);
-      }
+      console.error(error);
     }
     const apps: any[] = [];
     const libs: any[] = [];
@@ -79,15 +71,13 @@ export class Prepare extends Command {
     } catch (error) {
       console.error(error);
     }
-    if (!nestJsConfig) {
-      try {
-        await this.runConfig(
-          folder,
-          mode
-        );
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      await this.runConfig(
+        folder,
+        mode
+      );
+    } catch (error) {
+      console.error(error);
     }
   }
   runConfig(

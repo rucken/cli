@@ -4,16 +4,14 @@ import { resolve as resolvePath } from 'path';
 
 describe('translate', () => {
   beforeEach(done =>
-    unlink(resolvePath('i18n/template.pot'), _err =>
-      unlink(resolvePath('test/fixtures/translate/folder1/i18n/ru.i18n.ts'), __err =>
-        unlink(resolvePath('test/fixtures/translate/folder1/i18n/en.i18n.ts'), ___err =>
-          unlink(resolvePath('test/fixtures/translate/i18n/ru.i18n.ts'), ____err =>
-            unlink(resolvePath('test/fixtures/translate/i18n/en.i18n.ts'), _____err =>
-              unlink(resolvePath('test/fixtures/translate/i18n/template.pot'), ______err =>
-                unlink(resolvePath('test/fixtures/translate/folder1/i18n/template.pot'), _______err =>
-                  unlink(resolvePath('test/fixtures/translate/i18n/custom-template.pot'), ________err =>
-                    done()
-                  )
+    unlink(resolvePath('test/fixtures/translate/folder1/i18n/ru.i18n.ts'), __err =>
+      unlink(resolvePath('test/fixtures/translate/folder1/i18n/en.i18n.ts'), ___err =>
+        unlink(resolvePath('test/fixtures/translate/i18n/ru.i18n.ts'), ____err =>
+          unlink(resolvePath('test/fixtures/translate/i18n/en.i18n.ts'), _____err =>
+            unlink(resolvePath('test/fixtures/translate/i18n/template.pot'), ______err =>
+              unlink(resolvePath('test/fixtures/translate/folder1/i18n/template.pot'), _______err =>
+                unlink(resolvePath('test/fixtures/translate/i18n/custom-template.pot'), ________err =>
+                  done()
                 )
               )
             )
@@ -23,16 +21,14 @@ describe('translate', () => {
     )
   );
   afterEach(done =>
-    unlink(resolvePath('i18n/template.pot'), _err =>
-      unlink(resolvePath('test/fixtures/translate/folder1/i18n/ru.i18n.ts'), __err =>
-        unlink(resolvePath('test/fixtures/translate/folder1/i18n/en.i18n.ts'), ___err =>
-          unlink(resolvePath('test/fixtures/translate/i18n/ru.i18n.ts'), ____err =>
-            unlink(resolvePath('test/fixtures/translate/i18n/en.i18n.ts'), _____err =>
-              unlink(resolvePath('test/fixtures/translate/i18n/template.pot'), ______err =>
-                unlink(resolvePath('test/fixtures/translate/folder1/i18n/template.pot'), _______err =>
-                  unlink(resolvePath('test/fixtures/translate/i18n/custom-template.pot'), ________err =>
-                    done()
-                  )
+    unlink(resolvePath('test/fixtures/translate/folder1/i18n/ru.i18n.ts'), __err =>
+      unlink(resolvePath('test/fixtures/translate/folder1/i18n/en.i18n.ts'), ___err =>
+        unlink(resolvePath('test/fixtures/translate/i18n/ru.i18n.ts'), ____err =>
+          unlink(resolvePath('test/fixtures/translate/i18n/en.i18n.ts'), _____err =>
+            unlink(resolvePath('test/fixtures/translate/i18n/template.pot'), ______err =>
+              unlink(resolvePath('test/fixtures/translate/folder1/i18n/template.pot'), _______err =>
+                unlink(resolvePath('test/fixtures/translate/i18n/custom-template.pot'), ________err =>
+                  done()
                 )
               )
             )
