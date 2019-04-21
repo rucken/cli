@@ -15,9 +15,11 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^3.5.0",
+    "@rucken/schematics": "^4.0.1",
+    "@types/inquirer": "^6.0.0",
     "@types/recursive-readdir": "^2.2.0",
     "@types/replace-ext": "0.0.27",
+    "inquirer": "^6.3.1",
     "npm-run": "^5.0.1",
     "po2json": "^1.0.0-alpha",
     "recursive-readdir": "^2.2.2",
@@ -99,17 +101,7 @@
     "run-translate": "node ./bin/run translate test/fixtures/translate/folder1 -f po -c -p Core",
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
     "run-config": "node ./bin/run config test/fixtures/config/dev -m dev",
-    "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev",
-    "run-new:angular": "node ./bin/run new:angular test/fixtures/angular-new -n demo -u demo -e demo@demo.demo",
-    "run-entity:angular": "node ./bin/run entity:angular test/fixtures/angular-entity -n demo -u demo -e demo@demo.demo -f [name,title]",
-    "run-new:nestjs": "node ./bin/run new:nestjs test/fixtures/nestjs-new -n demo -u demo -e demo@demo.demo",
-    "run-entity:nestjs": "node ./bin/run entity:nestjs test/fixtures/nestjs-entity -n demo -u demo -e demo@demo.demo -f [name,title] --time=1533634559618",
-    "run-new": "node ./bin/run new test/fixtures/new -n demo -u demo -e demo@demo.demo",
-    "run-entity:create-app": "node ./bin/run new test/fixtures/entity -n demo -u demo -e demo@demo.demo",
-    "run-entity:create-entity": "node ./bin/run entity test/fixtures/entity -n demo -u demo -e demo@demo.demo -f [name,title] --time=1533634559618",
-    "run-entity": "run-s run-entity:create-app run-entity:create-entity",
-    "run-generators": "run-s run-new:angular run-entity:angular run-new:nestjs run-entity:nestjs run-new run-entity",
-    "clear-generators-outputs": "rimraf test/fixtures/angular-new test/fixtures/angular-entity test/fixtures/nestjs-new test/fixtures/nestjs-entity test/fixtures/new test/fixtures/entity"
+    "run-prepare": "node ./bin/run prepare test/fixtures/prepare -m dev"
   },
   "greenkeeper": {
     "ignore": [
