@@ -1,17 +1,17 @@
 import { Command, flags } from '@oclif/command';
+import { CLIError } from '@oclif/errors';
 import * as inquirer from 'inquirer';
 import { join } from 'path';
 import { loadJson, loadPackageJson, runCommand, schematicsCommandBuilder } from '../utils/schematics-command-builder';
-import { CLIError } from '@oclif/errors';
 export class Library extends Command {
   static aliases = ['library', 'lib'];
   static description = 'Library generator, based on the Rucken template';
   static flags = {
-    type: flags.string({ char: 't', description: 'Type(s) of library.', multiple: true, options: ['web', 'nestjs'] }),
+    type: flags.string({ char: 't', description: 'Type(s) of library.', multiple: true, options: ['core', 'nestjs'] }),
     author: flags.string({ char: 'a', description: 'Author name (it is recommended to use Github user for better integration).' }),
     email: flags.string({ char: 'e', description: 'Author email name.' }),
     org: flags.string({ char: 'o', description: 'The name of organization.' }),
-    webTemplate: flags.string({ description: 'Frontend library generator', default: '@rucken/schematics:rucken-lib' }),
+    coreTemplate: flags.string({ description: 'Frontend library generator', default: '@rucken/schematics:rucken-lib' }),
     nestjsTemplate: flags.string({ description: 'Backend library generator on NestJS', default: '@rucken/schematics:rucken-lib-nestjs' }),
     workspace: flags.string({ char: 'w', description: 'The workspace directory name.' }),
     help: flags.help({ char: 'h' })
@@ -48,7 +48,7 @@ export class Library extends Command {
               name: 'type',
               message: 'What type(s) would you like to create for the library?',
               type: 'checkbox',
-              choices: ['web', 'nestjs'],
+              choices: ['core', 'nestjs'],
               validate: (value: string) => value.length > 0
             }] : []
           ),
@@ -82,10 +82,10 @@ export class Library extends Command {
       author = author || flags.author || (packageJson && packageJson.author && packageJson.author.name);
       email = email || flags.email || (packageJson && packageJson.author && packageJson.author.email);
       org = org || flags.org;
-      const webTemplate = flags.webTemplate;
+      const coreTemplate = flags.coreTemplate;
       const nestjsTemplate = flags.nestjsTemplate;
-      // web
-      if (type.indexOf('web') !== -1) {
+      // core
+      if (type.indexOf('core') !== -1) {
         if (
           angularJson['projects'] && angularJson['projects'][name] ||
           nxJson['projects'] && angularJson['projects'][name]
@@ -94,7 +94,7 @@ export class Library extends Command {
         }
         const command = schematicsCommandBuilder(
           process.cwd(),
-          webTemplate || '',
+          coreTemplate || '',
           [name],
           {
             author,
