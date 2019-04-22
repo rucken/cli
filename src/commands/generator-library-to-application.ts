@@ -1,8 +1,9 @@
 import { Command, flags } from '@oclif/command';
 import { CLIError } from '@oclif/errors';
 import * as inquirer from 'inquirer';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { loadJson, loadPackageJson, runCommand, schematicsCommandBuilder } from '../utils/schematics-command-builder';
+import { Prepare } from './prepare';
 
 export class LibraryToApplication extends Command {
   static aliases = ['library-to-application', 'lib-to-app', 'lib2app'];
@@ -70,6 +71,13 @@ export class LibraryToApplication extends Command {
         ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, nestjsApp, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, workspace));
         ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjsApp(nestjsLib, nestjsApp, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, workspace));
       }
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    try {
+      await Prepare.run([
+        resolve(join(workspace || process.cwd()))
+      ]);
     } catch (error) {
       throw new CLIError(error);
     }

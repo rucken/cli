@@ -1,8 +1,9 @@
 import { Command, flags } from '@oclif/command';
 import { CLIError } from '@oclif/errors';
 import * as inquirer from 'inquirer';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { loadJson, loadPackageJson, runCommand, schematicsCommandBuilder } from '../utils/schematics-command-builder';
+import { Prepare } from './prepare';
 export class Library extends Command {
   static aliases = ['library', 'lib'];
   static description = 'Library generator, based on the Rucken template';
@@ -92,6 +93,13 @@ export class Library extends Command {
       if (type.indexOf('nestjs') !== -1) {
         await this.prepareNestjs(angularJson, name, nxJson, nestjsTemplate, author, email, org, workspace);
       }
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    try {
+      await Prepare.run([
+        resolve(join(workspace || process.cwd()))
+      ]);
     } catch (error) {
       throw new CLIError(error);
     }

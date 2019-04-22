@@ -11,7 +11,7 @@ export class Prepare extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    mode: flags.enum({ char: 'm', options: ['dev', 'prod'], default: 'prod' })
+    mode: flags.enum({ char: 'm', options: ['dev', 'prod'] })
   };
   static args = [{ name: 'folder' }];
 
@@ -71,13 +71,15 @@ export class Prepare extends Command {
     } catch (error) {
       console.error(error);
     }
-    try {
-      await this.runConfig(
-        folder,
-        mode
-      );
-    } catch (error) {
-      console.error(error);
+    if (mode) {
+      try {
+        await this.runConfig(
+          folder,
+          mode
+        );
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
   runConfig(

@@ -1,8 +1,9 @@
 import { Command, flags } from '@oclif/command';
 import { CLIError } from '@oclif/errors';
 import * as inquirer from 'inquirer';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { loadJson, loadPackageJson, runCommand, schematicsCommandBuilder } from '../utils/schematics-command-builder';
+import { Prepare } from './prepare';
 
 export class Entity extends Command {
   static aliases = ['entity'];
@@ -89,6 +90,13 @@ export class Entity extends Command {
       if (type.indexOf('nestjs') !== -1) {
         ({ nestjsLib, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, name, timestamp, workspace));
       }
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    try {
+      await Prepare.run([
+        resolve(join(workspace || process.cwd()))
+      ]);
     } catch (error) {
       throw new CLIError(error);
     }

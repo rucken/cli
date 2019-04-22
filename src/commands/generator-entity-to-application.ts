@@ -1,8 +1,9 @@
 import { Command, flags } from '@oclif/command';
 import { CLIError } from '@oclif/errors';
 import * as inquirer from 'inquirer';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { loadJson, loadPackageJson, runCommand, schematicsCommandBuilder } from '../utils/schematics-command-builder';
+import { Prepare } from './prepare';
 
 export class EntityToApplication extends Command {
   static aliases = ['entity-to-application', 'entity-to-app', 'entity2app'];
@@ -87,6 +88,13 @@ export class EntityToApplication extends Command {
         ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonic(name, ionicLib, ionicApp, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, coreLib, coreLibOrg, workspace));
         ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonicApp(name, ionicLib, ionicApp, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, coreLib, coreLibOrg, workspace));
       }
+    } catch (error) {
+      throw new CLIError(error);
+    }
+    try {
+      await Prepare.run([
+        resolve(join(workspace || process.cwd()))
+      ]);
     } catch (error) {
       throw new CLIError(error);
     }

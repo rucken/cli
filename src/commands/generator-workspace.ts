@@ -1,7 +1,7 @@
 import { Command, flags } from '@oclif/command';
+import { CLIError } from '@oclif/errors';
 import * as inquirer from 'inquirer';
 import { runCommand, schematicsCommandBuilder } from '../utils/schematics-command-builder';
-import { CLIError } from '@oclif/errors';
 export class Workspace extends Command {
   static aliases = ['workspace', 'ws'];
   static description = 'Workspace generator, based on the Rucken template';
