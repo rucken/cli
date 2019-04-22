@@ -10,10 +10,13 @@ export class LibraryToApplication extends Command {
   static description = 'Linking the library to the application, based on the Rucken template';
   static flags = {
     type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['frontend', 'nestjs', 'all'] }),
+
+    lib: flags.string({ description: 'The name of the library.' }),
     frontendLib: flags.string({ description: 'The name of the frontend library.' }),
     nestjsLib: flags.string({ description: 'The name of the nestjs library.' }),
 
-    frontendApp: flags.string({ description: 'The name of the frontend frontend application.' }),
+    app: flags.string({ description: 'The name of the application.' }),
+    frontendApp: flags.string({ description: 'The name of the frontend application.' }),
     nestjsApp: flags.string({ description: 'The name of the nestjs application.' }),
 
     frontendTemplate: flags.string({ description: 'Frontend library generator', default: '@rucken/schematics:rucken-lib-to-app' }),
@@ -52,9 +55,11 @@ export class LibraryToApplication extends Command {
       let frontendLibOrg = '';
       let nestjsLibOrg = '';
 
+      const lib = flags.lib;
       let frontendLib = flags.frontendLib;
       let nestjsLib = flags.nestjsLib;
 
+      const app = flags.app;
       let frontendApp = flags.frontendApp;
       let nestjsApp = flags.nestjsApp;
 
@@ -63,13 +68,49 @@ export class LibraryToApplication extends Command {
 
       // frontend
       if (type.indexOf('frontend') !== -1 || type.indexOf('all') !== -1) {
-        ({ frontendLib, frontendApp, result, frontendLibOrg } = await this.prepareFrontend(frontendLib, frontendApp, angularJson, nxJson, result, frontendLibOrg, frontendTemplate, workspace));
-        ({ frontendLib, frontendApp, result, frontendLibOrg } = await this.prepareFrontendApp(frontendLib, frontendApp, angularJson, nxJson, result, frontendLibOrg, frontendTemplate, workspace));
+        ({ frontendLib, frontendApp, result, frontendLibOrg } = await this.prepareFrontend(
+          (type.indexOf('all') !== -1 && !frontendLib && lib) ? lib : frontendLib,
+          (type.indexOf('all') !== -1 && !frontendApp && app) ? app : frontendApp,
+          angularJson,
+          nxJson,
+          result,
+          frontendLibOrg,
+          frontendTemplate,
+          workspace
+        ));
+        ({ frontendLib, frontendApp, result, frontendLibOrg } = await this.prepareFrontendApp(
+          frontendLib,
+          frontendApp,
+          angularJson,
+          nxJson,
+          result,
+          frontendLibOrg,
+          frontendTemplate,
+          workspace
+        ));
       }
       // nestjs
       if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
-        ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, nestjsApp, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, workspace));
-        ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjsApp(nestjsLib, nestjsApp, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, workspace));
+        ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjs(
+          (type.indexOf('all') !== -1 && !nestjsLib && lib) ? lib + '-nestjs' : nestjsLib,
+          (type.indexOf('all') !== -1 && !nestjsApp && app) ? app + '-nestjs' : nestjsApp,
+          angularJson,
+          nxJson,
+          result,
+          nestjsLibOrg,
+          nestjsTemplate,
+          workspace
+        ));
+        ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjsApp(
+          nestjsLib,
+          nestjsApp,
+          angularJson,
+          nxJson,
+          result,
+          nestjsLibOrg,
+          nestjsTemplate,
+          workspace
+        ));
       }
     } catch (error) {
       throw new CLIError(error);
@@ -84,9 +125,11 @@ export class LibraryToApplication extends Command {
   }
 
   private async prepareNestjs(nestjsLib: string | undefined, nestjsApp: string | undefined, angularJson: any, nxJson: any, result: any, nestjsLibOrg: string, nestjsTemplate: string | undefined, workspace: string | undefined) {
-    if (!nestjsLib ||
-      angularJson['projects'] && angularJson['projects'][nestjsLib] ||
-      nxJson['projects'] && angularJson['projects'][nestjsLib]) {
+    if (
+      !nestjsLib ||
+      !(angularJson['projects'] && angularJson['projects'][nestjsLib] ||
+        nxJson['projects'] && angularJson['projects'][nestjsLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('server') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -114,9 +157,11 @@ export class LibraryToApplication extends Command {
     return { nestjsLib, nestjsApp, result, nestjsLibOrg };
   }
   private async prepareNestjsApp(nestjsLib: string | undefined, nestjsApp: string | undefined, angularJson: any, nxJson: any, result: any, nestjsLibOrg: string, nestjsTemplate: string | undefined, workspace: string | undefined) {
-    if (!nestjsApp ||
-      angularJson['projects'] && angularJson['projects'][nestjsApp] ||
-      nxJson['projects'] && angularJson['projects'][nestjsApp]) {
+    if (
+      !nestjsApp ||
+      !(angularJson['projects'] && angularJson['projects'][nestjsApp] ||
+        nxJson['projects'] && angularJson['projects'][nestjsApp])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('server') !== -1 &&
         nxJson.projects[key].tags.indexOf('application') !== -1);
       if (choices.length === 0) {
@@ -153,9 +198,11 @@ export class LibraryToApplication extends Command {
   }
 
   private async prepareFrontend(frontendLib: string | undefined, frontendApp: string | undefined, angularJson: any, nxJson: any, result: any, frontendLibOrg: string, frontendTemplate: string | undefined, workspace: string | undefined) {
-    if (!frontendLib ||
-      angularJson['projects'] && angularJson['projects'][frontendLib] ||
-      nxJson['projects'] && angularJson['projects'][frontendLib]) {
+    if (
+      !frontendLib ||
+      !(angularJson['projects'] && angularJson['projects'][frontendLib] ||
+        nxJson['projects'] && angularJson['projects'][frontendLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -184,9 +231,11 @@ export class LibraryToApplication extends Command {
   }
 
   private async prepareFrontendApp(frontendLib: string | undefined, frontendApp: string | undefined, angularJson: any, nxJson: any, result: any, frontendLibOrg: string, frontendTemplate: string | undefined, workspace: string | undefined) {
-    if (!frontendApp ||
-      angularJson['projects'] && angularJson['projects'][frontendApp] ||
-      nxJson['projects'] && angularJson['projects'][frontendApp]) {
+    if (
+      !frontendApp ||
+      !(angularJson['projects'] && angularJson['projects'][frontendApp] ||
+        nxJson['projects'] && angularJson['projects'][frontendApp])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('application') !== -1);
       if (choices.length === 0) {

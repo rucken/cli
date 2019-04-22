@@ -78,7 +78,7 @@ ALIASES
   $ rucken ws
 ```
 
-_See code: [src/commands/generator-workspace.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/generator-workspace.ts)_
+_See code: [src/commands/generator-workspace.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/generator-workspace.ts)_
 
 ## `rucken generator-application [NAME]`
 
@@ -112,7 +112,7 @@ ALIASES
   $ rucken app
 ```
 
-_See code: [src/commands/generator-application.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/generator-application.ts)_
+_See code: [src/commands/generator-application.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/generator-application.ts)_
 
 ## `rucken generator-entity [NAME]`
 
@@ -134,6 +134,8 @@ OPTIONS
                                    components for editing data on the model and for a mobile frontend application on
                                    Angular7+ with Ionic4
 
+  --lib=lib                        The name of the library.
+
   --nestjsLib=nestjsLib            The name of the nestjs library.
 
   --nestjsTemplate=nestjsTemplate  [default: @rucken/schematics:rucken-entity-nestjs] The generator of the entity, the
@@ -152,7 +154,7 @@ ALIASES
   $ rucken entity
 ```
 
-_See code: [src/commands/generator-entity.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/generator-entity.ts)_
+_See code: [src/commands/generator-entity.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/generator-entity.ts)_
 
 ## `rucken generator-entity-to-application [NAME]`
 
@@ -166,12 +168,15 @@ OPTIONS
   -h, --help                     show CLI help
   -t, --type=web|ionic|all       Type(s) of applications.
   -w, --workspace=workspace      The workspace directory name.
+  --app=app                      The name of the application.
   --coreLib=coreLib              The name of the core library with entity.
   --ionicApp=ionicApp            The name of the ionic application.
   --ionicLib=ionicLib            The name of the ionic library with entity.
 
   --ionicTemplate=ionicTemplate  [default: @rucken/schematics:rucken-entity-ionic-to-app] Binding components for editing
                                  an entity to a mobile frontend application on Angular7+ with Ionic4
+
+  --lib=lib                      The name of the library with entity.
 
   --webApp=webApp                The name of the web application.
 
@@ -186,7 +191,7 @@ ALIASES
   $ rucken entity2app
 ```
 
-_See code: [src/commands/generator-entity-to-application.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/generator-entity-to-application.ts)_
+_See code: [src/commands/generator-entity-to-application.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/generator-entity-to-application.ts)_
 
 ## `rucken generator-library [NAME]`
 
@@ -213,7 +218,7 @@ ALIASES
   $ rucken lib
 ```
 
-_See code: [src/commands/generator-library.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/generator-library.ts)_
+_See code: [src/commands/generator-library.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/generator-library.ts)_
 
 ## `rucken generator-library-to-application [NAME]`
 
@@ -227,9 +232,11 @@ OPTIONS
   -h, --help                           show CLI help
   -t, --type=frontend|nestjs|all       Type(s) of applications.
   -w, --workspace=workspace            The workspace directory name.
-  --frontendApp=frontendApp            The name of the frontend frontend application.
+  --app=app                            The name of the application.
+  --frontendApp=frontendApp            The name of the frontend application.
   --frontendLib=frontendLib            The name of the frontend library.
   --frontendTemplate=frontendTemplate  [default: @rucken/schematics:rucken-lib-to-app] Frontend library generator
+  --lib=lib                            The name of the library.
   --nestjsApp=nestjsApp                The name of the nestjs application.
   --nestjsLib=nestjsLib                The name of the nestjs library.
 
@@ -242,7 +249,7 @@ ALIASES
   $ rucken lib2app
 ```
 
-_See code: [src/commands/generator-library-to-application.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/generator-library-to-application.ts)_
+_See code: [src/commands/generator-library-to-application.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/generator-library-to-application.ts)_
 
 <!-- generatorsstop -->
 
@@ -268,7 +275,7 @@ OPTIONS
   -m, --mode=(dev|prod)  [default: prod]
 ```
 
-_See code: [src/commands/config.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/config.ts)_
+_See code: [src/commands/config.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/config.ts)_
 
 ## `rucken help [COMMAND]`
 
@@ -304,7 +311,7 @@ OPTIONS
   -i, --indexFileName=indexFileName  [default: index.ts] output file
 ```
 
-_See code: [src/commands/make-ts-list.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/make-ts-list.ts)_
+_See code: [src/commands/make-ts-list.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/make-ts-list.ts)_
 
 ## `rucken prepare [FOLDER]`
 
@@ -316,10 +323,10 @@ USAGE
 
 OPTIONS
   -h, --help             show CLI help
-  -m, --mode=(dev|prod)  [default: prod]
+  -m, --mode=(dev|prod)
 ```
 
-_See code: [src/commands/prepare.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/prepare.ts)_
+_See code: [src/commands/prepare.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/prepare.ts)_
 
 ## `rucken translate [FOLDER]`
 
@@ -338,7 +345,7 @@ OPTIONS
   -t, --templateName=templateName  [default: template] name of template
 ```
 
-_See code: [src/commands/translate.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/translate.ts)_
+_See code: [src/commands/translate.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/translate.ts)_
 
 ## `rucken version-updater [FOLDER]`
 
@@ -353,7 +360,7 @@ OPTIONS
   -r, --root=root  [default: .] root project with package.json for get inforamtion about dependencies and it versions
 ```
 
-_See code: [src/commands/version-updater.ts](https://github.com/rucken/cli/blob/v3.3.4/src/commands/version-updater.ts)_
+_See code: [src/commands/version-updater.ts](https://github.com/rucken/cli/blob/v4.0.0/src/commands/version-updater.ts)_
 <!-- commandsstop -->
 
 [travis-image]: https://travis-ci.org/rucken/cli.svg?branch=master

@@ -10,6 +10,7 @@ export class Entity extends Command {
   static description = 'The generator of the entity, based on the Rucken template';
   static flags = {
     type: flags.string({ char: 't', description: 'Type(s) of entities.', multiple: true, options: ['web', 'ionic', 'nestjs', 'all'] }),
+    lib: flags.string({ description: 'The name of the library.' }),
     coreLib: flags.string({ description: 'The name of the core library.' }),
     webLib: flags.string({ description: 'The name of the web library.' }),
     ionicLib: flags.string({ description: 'The name of the ionic library.' }),
@@ -66,6 +67,7 @@ export class Entity extends Command {
       let webLibOrg = '';
       let ionicLibOrg = '';
       let nestjsLibOrg = '';
+      const lib = flags.lib;
       let coreLib = flags.coreLib;
       let webLib = flags.webLib;
       let ionicLib = flags.ionicLib;
@@ -76,19 +78,60 @@ export class Entity extends Command {
       const nestjsTemplate = flags.nestjsTemplate;
       // core
       if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
-        ({ coreLib, result, coreLibOrg } = await this.corePrepare(coreLib, angularJson, nxJson, result, coreLibOrg, coreTemplate, name, workspace));
+        ({ coreLib, result, coreLibOrg } = await this.corePrepare(
+          (type.indexOf('all') !== -1 && !coreLib && lib) ? lib : coreLib,
+          angularJson,
+          nxJson,
+          result,
+          coreLibOrg,
+          coreTemplate,
+          name,
+          workspace
+        ));
       }
       // web
       if (type.indexOf('web') !== -1 || type.indexOf('all') !== -1) {
-        ({ webLib, result, webLibOrg } = await this.webPrepare(webLib, angularJson, nxJson, result, webLibOrg, webTemplate, name, coreLib, coreLibOrg, workspace));
+        ({ webLib, result, webLibOrg } = await this.webPrepare(
+          (type.indexOf('all') !== -1 && !webLib && lib) ? lib + '-web' : webLib,
+          angularJson,
+          nxJson,
+          result,
+          webLibOrg,
+          webTemplate,
+          name,
+          coreLib,
+          coreLibOrg,
+          workspace
+        ));
       }
       // ionic
       if (type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
-        ({ ionicLib, result, ionicLibOrg } = await this.ionicPrepare(ionicLib, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, name, coreLib, coreLibOrg, workspace));
+        ({ ionicLib, result, ionicLibOrg } = await this.ionicPrepare(
+          (type.indexOf('all') !== -1 && !ionicLib && lib) ? lib + '-ionic' : ionicLib,
+          angularJson,
+          nxJson,
+          result,
+          ionicLibOrg,
+          ionicTemplate,
+          name,
+          coreLib,
+          coreLibOrg,
+          workspace
+        ));
       }
       // nestjs
       if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
-        ({ nestjsLib, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, name, timestamp, workspace));
+        ({ nestjsLib, result, nestjsLibOrg } = await this.prepareNestjs(
+          (type.indexOf('all') !== -1 && !nestjsLib && lib) ? lib + '-nestjs' : nestjsLib,
+          angularJson,
+          nxJson,
+          result,
+          nestjsLibOrg,
+          nestjsTemplate,
+          name,
+          timestamp,
+          workspace
+        ));
       }
     } catch (error) {
       throw new CLIError(error);
@@ -103,9 +146,11 @@ export class Entity extends Command {
   }
 
   private async prepareNestjs(nestjsLib: string | undefined, angularJson: any, nxJson: any, result: any, nestjsLibOrg: string, nestjsTemplate: string | undefined, name: any, timestamp: any, workspace: string | undefined) {
-    if (!nestjsLib ||
-      angularJson['projects'] && angularJson['projects'][nestjsLib] ||
-      nxJson['projects'] && angularJson['projects'][nestjsLib]) {
+    if (
+      !nestjsLib ||
+      !(angularJson['projects'] && angularJson['projects'][nestjsLib] ||
+        nxJson['projects'] && angularJson['projects'][nestjsLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('server') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -145,9 +190,11 @@ export class Entity extends Command {
   }
 
   private async ionicPrepare(ionicLib: string | undefined, angularJson: any, nxJson: any, result: any, ionicLibOrg: string, ionicTemplate: string | undefined, name: any, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
-    if (!ionicLib ||
-      angularJson['projects'] && angularJson['projects'][ionicLib] ||
-      nxJson['projects'] && angularJson['projects'][ionicLib]) {
+    if (
+      !ionicLib ||
+      !(angularJson['projects'] && angularJson['projects'][ionicLib] ||
+        nxJson['projects'] && angularJson['projects'][ionicLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -188,9 +235,11 @@ export class Entity extends Command {
   }
 
   private async webPrepare(webLib: string | undefined, angularJson: any, nxJson: any, result: any, webLibOrg: string, webTemplate: string | undefined, name: any, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
-    if (!webLib ||
-      angularJson['projects'] && angularJson['projects'][webLib] ||
-      nxJson['projects'] && angularJson['projects'][webLib]) {
+    if (
+      !webLib ||
+      !(angularJson['projects'] && angularJson['projects'][webLib] ||
+        nxJson['projects'] && angularJson['projects'][webLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -231,9 +280,11 @@ export class Entity extends Command {
   }
 
   private async corePrepare(coreLib: string | undefined, angularJson: any, nxJson: any, result: any, coreLibOrg: string, coreTemplate: string | undefined, name: any, workspace: string | undefined) {
-    if (!coreLib ||
-      angularJson['projects'] && angularJson['projects'][coreLib] ||
-      nxJson['projects'] && angularJson['projects'][coreLib]) {
+    if (
+      !coreLib ||
+      !(angularJson['projects'] && angularJson['projects'][coreLib] ||
+        nxJson['projects'] && angularJson['projects'][coreLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {

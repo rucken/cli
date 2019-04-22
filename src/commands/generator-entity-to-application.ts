@@ -10,10 +10,13 @@ export class EntityToApplication extends Command {
   static description = 'Linking the entity to the application, based on the Rucken template';
   static flags = {
     type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['web', 'ionic', 'all'] }),
+
+    lib: flags.string({ description: 'The name of the library with entity.' }),
     coreLib: flags.string({ description: 'The name of the core library with entity.' }),
     webLib: flags.string({ description: 'The name of the web library with entity.' }),
     ionicLib: flags.string({ description: 'The name of the ionic library with entity.' }),
 
+    app: flags.string({ description: 'The name of the application.' }),
     webApp: flags.string({ description: 'The name of the web application.' }),
     ionicApp: flags.string({ description: 'The name of the ionic application.' }),
 
@@ -65,10 +68,12 @@ export class EntityToApplication extends Command {
       let webLibOrg = '';
       let ionicLibOrg = '';
 
+      const lib = flags.lib;
       let coreLib = flags.coreLib;
       let webLib = flags.webLib;
       let ionicLib = flags.ionicLib;
 
+      const app = flags.app;
       let webApp = flags.webApp;
       let ionicApp = flags.ionicApp;
 
@@ -76,17 +81,72 @@ export class EntityToApplication extends Command {
       const ionicTemplate = flags.ionicTemplate;
       // core
       if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
-        ({ coreLib, result, coreLibOrg } = await this.prepareCore(name, coreLib, angularJson, nxJson, result, coreLibOrg));
+        ({ coreLib, result, coreLibOrg } = await this.prepareCore(
+          name,
+          (type.indexOf('all') !== -1 && !coreLib && lib) ? lib : coreLib,
+          angularJson,
+          nxJson,
+          result,
+          coreLibOrg
+        ));
       }
       // web
       if (type.indexOf('web') !== -1 || type.indexOf('all') !== -1) {
-        ({ webLib, webApp, result, webLibOrg } = await this.prepareWeb(name, webLib, webApp, angularJson, nxJson, result, webLibOrg, webTemplate, coreLib, coreLibOrg, workspace));
-        ({ webLib, webApp, result, webLibOrg } = await this.prepareWebApp(name, webLib, webApp, angularJson, nxJson, result, webLibOrg, webTemplate, coreLib, coreLibOrg, workspace));
+        ({ webLib, webApp, result, webLibOrg } = await this.prepareWeb(
+          name,
+          (type.indexOf('all') !== -1 && !webLib && lib) ? lib + '-web' : webLib,
+          (type.indexOf('all') !== -1 && !webApp && app) ? app : webApp,
+          angularJson,
+          nxJson,
+          result,
+          webLibOrg,
+          webTemplate,
+          coreLib,
+          coreLibOrg,
+          workspace
+        ));
+        ({ webLib, webApp, result, webLibOrg } = await this.prepareWebApp(
+          name,
+          webLib,
+          webApp,
+          angularJson,
+          nxJson,
+          result,
+          webLibOrg,
+          webTemplate,
+          coreLib,
+          coreLibOrg,
+          workspace
+        ));
       }
       // ionic
       if (type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
-        ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonic(name, ionicLib, ionicApp, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, coreLib, coreLibOrg, workspace));
-        ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonicApp(name, ionicLib, ionicApp, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, coreLib, coreLibOrg, workspace));
+        ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonic(
+          name,
+          (type.indexOf('all') !== -1 && !ionicLib && lib) ? lib + '-ionic' : ionicLib,
+          (type.indexOf('all') !== -1 && !ionicApp && app) ? app + '-ionic' : ionicApp,
+          angularJson,
+          nxJson,
+          result,
+          ionicLibOrg,
+          ionicTemplate,
+          coreLib,
+          coreLibOrg,
+          workspace
+        ));
+        ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonicApp(
+          name,
+          ionicLib,
+          ionicApp,
+          angularJson,
+          nxJson,
+          result,
+          ionicLibOrg,
+          ionicTemplate,
+          coreLib,
+          coreLibOrg,
+          workspace
+        ));
       }
     } catch (error) {
       throw new CLIError(error);
@@ -101,9 +161,11 @@ export class EntityToApplication extends Command {
   }
 
   private async prepareIonic(name: string, ionicLib: string | undefined, ionicApp: string | undefined, angularJson: any, nxJson: any, result: any, ionicLibOrg: string, ionicTemplate: string | undefined, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
-    if (!ionicLib ||
-      angularJson['projects'] && angularJson['projects'][ionicLib] ||
-      nxJson['projects'] && angularJson['projects'][ionicLib]) {
+    if (
+      !ionicLib ||
+      !(angularJson['projects'] && angularJson['projects'][ionicLib] ||
+        nxJson['projects'] && angularJson['projects'][ionicLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -131,9 +193,11 @@ export class EntityToApplication extends Command {
     return { ionicLib, ionicApp, result, ionicLibOrg };
   }
   private async prepareIonicApp(name: string, ionicLib: string | undefined, ionicApp: string | undefined, angularJson: any, nxJson: any, result: any, ionicLibOrg: string, ionicTemplate: string | undefined, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
-    if (!ionicApp ||
-      angularJson['projects'] && angularJson['projects'][ionicApp] ||
-      nxJson['projects'] && angularJson['projects'][ionicApp]) {
+    if (
+      !ionicApp ||
+      !(angularJson['projects'] && angularJson['projects'][ionicApp] ||
+        nxJson['projects'] && angularJson['projects'][ionicApp])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('application') !== -1);
       if (choices.length === 0) {
@@ -169,9 +233,11 @@ export class EntityToApplication extends Command {
   }
 
   private async prepareWeb(name: string, webLib: string | undefined, webApp: string | undefined, angularJson: any, nxJson: any, result: any, webLibOrg: string, webTemplate: string | undefined, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
-    if (!webLib ||
-      angularJson['projects'] && angularJson['projects'][webLib] ||
-      nxJson['projects'] && angularJson['projects'][webLib]) {
+    if (
+      !webLib ||
+      !(angularJson['projects'] && angularJson['projects'][webLib] ||
+        nxJson['projects'] && angularJson['projects'][webLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {
@@ -200,9 +266,11 @@ export class EntityToApplication extends Command {
   }
 
   private async prepareWebApp(name: string, webLib: string | undefined, webApp: string | undefined, angularJson: any, nxJson: any, result: any, webLibOrg: string, webTemplate: string | undefined, coreLib: string | undefined, coreLibOrg: string, workspace: string | undefined) {
-    if (!webApp ||
-      angularJson['projects'] && angularJson['projects'][webApp] ||
-      nxJson['projects'] && angularJson['projects'][webApp]) {
+    if (
+      !webApp ||
+      !(angularJson['projects'] && angularJson['projects'][webApp] ||
+        nxJson['projects'] && angularJson['projects'][webApp])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('application') !== -1);
       if (choices.length === 0) {
@@ -238,9 +306,11 @@ export class EntityToApplication extends Command {
   }
 
   private async prepareCore(name: string, coreLib: string | undefined, angularJson: any, nxJson: any, result: any, coreLibOrg: string) {
-    if (!coreLib ||
-      angularJson['projects'] && angularJson['projects'][coreLib] ||
-      nxJson['projects'] && angularJson['projects'][coreLib]) {
+    if (
+      !coreLib ||
+      !(angularJson['projects'] && angularJson['projects'][coreLib] ||
+        nxJson['projects'] && angularJson['projects'][coreLib])
+    ) {
       const choices = nxJson.projects && Object.keys(nxJson.projects).filter(key => nxJson.projects[key].tags && nxJson.projects[key].tags.indexOf('client') !== -1 &&
         nxJson.projects[key].tags.indexOf('library') !== -1);
       if (choices.length === 0) {

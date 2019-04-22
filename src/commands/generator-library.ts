@@ -87,11 +87,29 @@ export class Library extends Command {
       const nestjsTemplate = flags.nestjsTemplate;
       // frontend
       if (type.indexOf('frontend') !== -1 || type.indexOf('all') !== -1) {
-        await this.prepareFrontend(angularJson, name, nxJson, frontendTemplate, author, email, org, workspace);
+        await this.prepareFrontend(
+          angularJson,
+          name,
+          nxJson,
+          frontendTemplate,
+          author,
+          email,
+          org,
+          workspace
+        );
       }
       // nestjs
       if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
-        await this.prepareNestjs(angularJson, name, nxJson, nestjsTemplate, author, email, org, workspace);
+        await this.prepareNestjs(
+          angularJson,
+          type.indexOf('all') !== -1 ? name + '-nestjs' : name,
+          nxJson,
+          nestjsTemplate,
+          author,
+          email,
+          org,
+          workspace
+        );
       }
     } catch (error) {
       throw new CLIError(error);
@@ -106,11 +124,11 @@ export class Library extends Command {
   }
 
   private async prepareNestjs(angularJson: never, name: any, nxJson: never, nestjsTemplate: string | undefined, author: any, email: any, org: any, workspace: string | undefined) {
-    if (angularJson['projects'] && angularJson['projects'][name + '-nestjs'] ||
-      nxJson['projects'] && angularJson['projects'][name + '-nestjs']) {
-      throw new CLIError(`Library with name "${name + '-nestjs'}" is exists`);
+    if (angularJson['projects'] && angularJson['projects'][name] ||
+      nxJson['projects'] && angularJson['projects'][name]) {
+      throw new CLIError(`Library with name "${name}" is exists`);
     }
-    const command = schematicsCommandBuilder(process.cwd(), nestjsTemplate || '', [name + '-nestjs'], {
+    const command = schematicsCommandBuilder(process.cwd(), nestjsTemplate || '', [name], {
       author,
       email,
       org,
