@@ -20,8 +20,8 @@ upload_files() {
 }
 
 run_generators(){
-  npm run clear-generators-outputs
-  npm run run-generators
+  ./scripts/create-fixtures.sh
+  ./scripts/build-fixtures.sh
 }
 
 move_down(){
