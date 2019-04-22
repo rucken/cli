@@ -20,6 +20,8 @@ upload_files() {
 }
 
 run_generators(){
+  find . -type 'f' | grep -v ".git" | xargs rm -r
+  find . -type 'd' | grep -v ".gitignore" | xargs rmdir -r
   ./scripts/create-fixtures.sh
   ./scripts/build-fixtures.sh
 }
