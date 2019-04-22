@@ -9,7 +9,7 @@ export class Entity extends Command {
   static aliases = ['entity'];
   static description = 'The generator of the entity, based on the Rucken template';
   static flags = {
-    type: flags.string({ char: 't', description: 'Type(s) of entities.', multiple: true, options: ['web', 'ionic', 'nestjs'] }),
+    type: flags.string({ char: 't', description: 'Type(s) of entities.', multiple: true, options: ['web', 'ionic', 'nestjs', 'all'] }),
     coreLib: flags.string({ description: 'The name of the core library.' }),
     webLib: flags.string({ description: 'The name of the web library.' }),
     ionicLib: flags.string({ description: 'The name of the ionic library.' }),
@@ -52,7 +52,7 @@ export class Entity extends Command {
               name: 'type',
               message: 'What type(s) would you like to create for the entity?',
               type: 'checkbox',
-              choices: ['web', 'ionic', 'nestjs'],
+              choices: ['web', 'ionic', 'nestjs', 'all'],
               validate: (value: string) => value.length > 0
             }] : []
           )
@@ -75,19 +75,19 @@ export class Entity extends Command {
       const ionicTemplate = flags.ionicTemplate;
       const nestjsTemplate = flags.nestjsTemplate;
       // core
-      if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1) {
+      if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
         ({ coreLib, result, coreLibOrg } = await this.corePrepare(coreLib, angularJson, nxJson, result, coreLibOrg, coreTemplate, name, workspace));
       }
       // web
-      if (type.indexOf('web') !== -1) {
+      if (type.indexOf('web') !== -1 || type.indexOf('all') !== -1) {
         ({ webLib, result, webLibOrg } = await this.webPrepare(webLib, angularJson, nxJson, result, webLibOrg, webTemplate, name, coreLib, coreLibOrg, workspace));
       }
       // ionic
-      if (type.indexOf('ionic') !== -1) {
+      if (type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
         ({ ionicLib, result, ionicLibOrg } = await this.ionicPrepare(ionicLib, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, name, coreLib, coreLibOrg, workspace));
       }
       // nestjs
-      if (type.indexOf('nestjs') !== -1) {
+      if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
         ({ nestjsLib, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, name, timestamp, workspace));
       }
     } catch (error) {

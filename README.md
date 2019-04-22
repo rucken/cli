@@ -92,7 +92,7 @@ OPTIONS
   -a, --author=author              Author name (it is recommended to use Github user for better integration).
   -e, --email=email                Author email name.
   -h, --help                       show CLI help
-  -t, --type=web|ionic|nestjs      Type(s) of applications.
+  -t, --type=web|ionic|nestjs|all  Type(s) of applications.
   -w, --workspace=workspace        The workspace directory name.
 
   --api=api                        [default: /api] The backend api address (/api, http://host.com/api,
@@ -124,7 +124,7 @@ USAGE
 
 OPTIONS
   -h, --help                       show CLI help
-  -t, --type=web|ionic|nestjs      Type(s) of entities.
+  -t, --type=web|ionic|nestjs|all  Type(s) of entities.
   -w, --workspace=workspace        The workspace directory name.
   --coreLib=coreLib                The name of the core library.
   --coreTemplate=coreTemplate      [default: @rucken/schematics:rucken-entity] Model generator and frontend application
@@ -164,7 +164,7 @@ USAGE
 
 OPTIONS
   -h, --help                     show CLI help
-  -t, --type=web|ionic           Type(s) of applications.
+  -t, --type=web|ionic|all       Type(s) of applications.
   -w, --workspace=workspace      The workspace directory name.
   --coreLib=coreLib              The name of the core library with entity.
   --ionicApp=ionicApp            The name of the ionic application.
@@ -201,7 +201,7 @@ OPTIONS
   -e, --email=email                    Author email name.
   -h, --help                           show CLI help
   -o, --org=org                        The name of organization.
-  -t, --type=frontend|nestjs           Type(s) of library.
+  -t, --type=frontend|nestjs|all       Type(s) of library.
   -w, --workspace=workspace            The workspace directory name.
   --frontendTemplate=frontendTemplate  [default: @rucken/schematics:rucken-lib] Frontend library generator
 
@@ -225,7 +225,7 @@ USAGE
 
 OPTIONS
   -h, --help                           show CLI help
-  -t, --type=frontend|nestjs           Type(s) of applications.
+  -t, --type=frontend|nestjs|all       Type(s) of applications.
   -w, --workspace=workspace            The workspace directory name.
   --frontendApp=frontendApp            The name of the frontend frontend application.
   --frontendLib=frontendLib            The name of the frontend library.

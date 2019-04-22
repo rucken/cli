@@ -9,7 +9,7 @@ export class LibraryToApplication extends Command {
   static aliases = ['library-to-application', 'lib-to-app', 'lib2app'];
   static description = 'Linking the library to the application, based on the Rucken template';
   static flags = {
-    type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['frontend', 'nestjs'] }),
+    type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['frontend', 'nestjs', 'all'] }),
     frontendLib: flags.string({ description: 'The name of the frontend library.' }),
     nestjsLib: flags.string({ description: 'The name of the nestjs library.' }),
 
@@ -41,7 +41,7 @@ export class LibraryToApplication extends Command {
               name: 'type',
               message: 'What type(s) of library would you like to link for the application(s)?',
               type: 'checkbox',
-              choices: ['frontend', 'nestjs'],
+              choices: ['frontend', 'nestjs', 'all'],
               validate: (value: string) => value.length > 0
             }] : []
           )
@@ -62,12 +62,12 @@ export class LibraryToApplication extends Command {
       const nestjsTemplate = flags.nestjsTemplate;
 
       // frontend
-      if (type.indexOf('frontend') !== -1) {
+      if (type.indexOf('frontend') !== -1 || type.indexOf('all') !== -1) {
         ({ frontendLib, frontendApp, result, frontendLibOrg } = await this.prepareFrontend(frontendLib, frontendApp, angularJson, nxJson, result, frontendLibOrg, frontendTemplate, workspace));
         ({ frontendLib, frontendApp, result, frontendLibOrg } = await this.prepareFrontendApp(frontendLib, frontendApp, angularJson, nxJson, result, frontendLibOrg, frontendTemplate, workspace));
       }
       // nestjs
-      if (type.indexOf('nestjs') !== -1) {
+      if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
         ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjs(nestjsLib, nestjsApp, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, workspace));
         ({ nestjsLib, nestjsApp, result, nestjsLibOrg } = await this.prepareNestjsApp(nestjsLib, nestjsApp, angularJson, nxJson, result, nestjsLibOrg, nestjsTemplate, workspace));
       }

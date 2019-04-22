@@ -9,7 +9,7 @@ export class EntityToApplication extends Command {
   static aliases = ['entity-to-application', 'entity-to-app', 'entity2app'];
   static description = 'Linking the entity to the application, based on the Rucken template';
   static flags = {
-    type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['web', 'ionic'] }),
+    type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['web', 'ionic', 'all'] }),
     coreLib: flags.string({ description: 'The name of the core library with entity.' }),
     webLib: flags.string({ description: 'The name of the web library with entity.' }),
     ionicLib: flags.string({ description: 'The name of the ionic library with entity.' }),
@@ -52,7 +52,7 @@ export class EntityToApplication extends Command {
               name: 'type',
               message: 'What type(s) of entity would you like to link for the application(s)?',
               type: 'checkbox',
-              choices: ['web', 'ionic'],
+              choices: ['web', 'ionic', 'all'],
               validate: (value: string) => value.length > 0
             }] : []
           )
@@ -75,16 +75,16 @@ export class EntityToApplication extends Command {
       const webTemplate = flags.webTemplate;
       const ionicTemplate = flags.ionicTemplate;
       // core
-      if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1) {
+      if (type.indexOf('web') !== -1 || type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
         ({ coreLib, result, coreLibOrg } = await this.prepareCore(name, coreLib, angularJson, nxJson, result, coreLibOrg));
       }
       // web
-      if (type.indexOf('web') !== -1) {
+      if (type.indexOf('web') !== -1 || type.indexOf('all') !== -1) {
         ({ webLib, webApp, result, webLibOrg } = await this.prepareWeb(name, webLib, webApp, angularJson, nxJson, result, webLibOrg, webTemplate, coreLib, coreLibOrg, workspace));
         ({ webLib, webApp, result, webLibOrg } = await this.prepareWebApp(name, webLib, webApp, angularJson, nxJson, result, webLibOrg, webTemplate, coreLib, coreLibOrg, workspace));
       }
       // ionic
-      if (type.indexOf('ionic') !== -1) {
+      if (type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
         ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonic(name, ionicLib, ionicApp, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, coreLib, coreLibOrg, workspace));
         ({ ionicLib, ionicApp, result, ionicLibOrg } = await this.prepareIonicApp(name, ionicLib, ionicApp, angularJson, nxJson, result, ionicLibOrg, ionicTemplate, coreLib, coreLibOrg, workspace));
       }

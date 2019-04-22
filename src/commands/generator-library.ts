@@ -8,7 +8,7 @@ export class Library extends Command {
   static aliases = ['library', 'lib'];
   static description = 'Library generator, based on the Rucken template';
   static flags = {
-    type: flags.string({ char: 't', description: 'Type(s) of library.', multiple: true, options: ['frontend', 'nestjs'] }),
+    type: flags.string({ char: 't', description: 'Type(s) of library.', multiple: true, options: ['frontend', 'nestjs', 'all'] }),
     author: flags.string({ char: 'a', description: 'Author name (it is recommended to use Github user for better integration).' }),
     email: flags.string({ char: 'e', description: 'Author email name.' }),
     org: flags.string({ char: 'o', description: 'The name of organization.' }),
@@ -49,7 +49,7 @@ export class Library extends Command {
               name: 'type',
               message: 'What type(s) would you like to create for the library?',
               type: 'checkbox',
-              choices: ['frontend', 'nestjs'],
+              choices: ['frontend', 'nestjs', 'all'],
               validate: (value: string) => value.length > 0
             }] : []
           ),
@@ -86,11 +86,11 @@ export class Library extends Command {
       const frontendTemplate = flags.frontendTemplate;
       const nestjsTemplate = flags.nestjsTemplate;
       // frontend
-      if (type.indexOf('frontend') !== -1) {
+      if (type.indexOf('frontend') !== -1 || type.indexOf('all') !== -1) {
         await this.prepareFrontend(angularJson, name, nxJson, frontendTemplate, author, email, org, workspace);
       }
       // nestjs
-      if (type.indexOf('nestjs') !== -1) {
+      if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
         await this.prepareNestjs(angularJson, name, nxJson, nestjsTemplate, author, email, org, workspace);
       }
     } catch (error) {

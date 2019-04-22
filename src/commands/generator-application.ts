@@ -9,7 +9,7 @@ export class Application extends Command {
   static aliases = ['application', 'app'];
   static description = 'Application generator, based on the Rucken template';
   static flags = {
-    type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['web', 'ionic', 'nestjs'] }),
+    type: flags.string({ char: 't', description: 'Type(s) of applications.', multiple: true, options: ['web', 'ionic', 'nestjs', 'all'] }),
     author: flags.string({ char: 'a', description: 'Author name (it is recommended to use Github user for better integration).' }),
     email: flags.string({ char: 'e', description: 'Author email name.' }),
     api: flags.string({ description: 'The backend api address (/api, http://host.com/api, https://api.host.com).', default: '/api' }),
@@ -51,7 +51,7 @@ export class Application extends Command {
               name: 'type',
               message: 'What type(s) would you like to create for the application(s)?',
               type: 'checkbox',
-              choices: ['web', 'ionic', 'nestjs'],
+              choices: ['web', 'ionic', 'nestjs', 'all'],
               validate: (value: string) => value.length > 0
             }] : []
           ),
@@ -90,15 +90,15 @@ export class Application extends Command {
       const nestjsTemplate = flags.nestjsTemplate;
       const ionicTemplate = flags.ionicTemplate;
       // web
-      if (type.indexOf('web') !== -1) {
+      if (type.indexOf('web') !== -1 || type.indexOf('all') !== -1) {
         await this.prepareWeb(angularJson, name, nxJson, webTemplate, author, email, api, workspace);
       }
       // ionic
-      if (type.indexOf('ionic') !== -1) {
+      if (type.indexOf('ionic') !== -1 || type.indexOf('all') !== -1) {
         await this.prepareIonic(angularJson, name, nxJson, ionicTemplate, author, email, api, workspace);
       }
       // nestjs
-      if (type.indexOf('nestjs') !== -1) {
+      if (type.indexOf('nestjs') !== -1 || type.indexOf('all') !== -1) {
         await this.prepareNestjs(angularJson, name, nxJson, nestjsTemplate, author, email, api, workspace);
       }
     } catch (error) {
