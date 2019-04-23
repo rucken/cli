@@ -1,3 +1,14 @@
+## [4.0.1](https://github.com/rucken/cli/compare/4.0.0...4.0.1) (2019-04-23)
+
+
+### Bug Fixes
+
+* Add new type "all" in all generators ([6569968](https://github.com/rucken/cli/commit/6569968))
+* Add run prepare after work generators ([6a3c0c5](https://github.com/rucken/cli/commit/6a3c0c5))
+* Add support auto create apps and libs with prefix "-ionic" "-web" "-nestjs" ([f821859](https://github.com/rucken/cli/commit/f821859))
+
+
+
 # [4.0.0](https://github.com/rucken/cli/compare/3.3.4...4.0.0) (2019-04-21)
 
 
