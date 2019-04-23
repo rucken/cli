@@ -1,0 +1,1 @@
+{"version":3,"file":"core-config.interface.js","sourceRoot":"","sources":["../../../../libs/rucken/core-nestjs/src/interfaces/core-config.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface ICoreConfig {\n  demo: boolean;\n  port?: number;\n  externalPort?: number;\n  domain?: string;\n  protocol?: 'http' | 'https';\n  indexFile?: string;\n}\n"]}

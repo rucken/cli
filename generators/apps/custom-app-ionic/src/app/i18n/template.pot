@@ -1,0 +1,263 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Select language"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Custom app ionic"
+msgstr ""
+
+msgid ""
+"Admin UI for Ionic4 with Angular7+ mobile custom-app-ionic application "
+"based on Rucken template"
+msgstr ""
+
+msgid "Russian"
+msgstr ""
+
+msgid "Demo users:"
+msgstr ""
+
+msgid "Admin: admin@admin.com<br/>Password: 12345678"
+msgstr ""
+
+msgid "User 1: user1@user1.com<br/>Password: 12345678"
+msgstr ""
+
+msgid "User 2: user2@user2.com<br/>Password: 12345678"
+msgstr ""
+
+msgid "Sign in with Facebook"
+msgstr ""
+
+msgid "Sign in with Google+"
+msgstr ""
+
+msgid "Custom entities"
+msgstr ""
+
+msgid "Custom entities page"
+msgstr ""
+
+msgid "Groups"
+msgstr ""
+
+msgid "Groups page"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Home page"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Profile page"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "Users page"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Projects"
+msgstr ""
+
+msgid "Projects page"
+msgstr ""
+
+msgid "Tasks"
+msgstr ""
+
+msgid "Tasks page"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "user with admin group: admin@admin.com, password: 12345678"
+msgstr ""
+
+msgid "user with user group: user1@user1.com, password: 12345678"
+msgstr ""
+
+msgid "user with user group: user2@user2.com, password: 12345678"
+msgstr ""
+
+msgid "Core with Admin UI for web and native application maked on Angular7+"
+msgstr ""
+
+msgid ""
+"<p>Demo users:</p><ul>\n"
+"<li>user with admin group: admin@admin.com, password: 12345678</li>\n"
+"<li>user with user group: user1@user1.com, password: 12345678</li>\n"
+"<li>user with user group: user2@user2.com, password: 12345678</li>\n"
+"</ul>"
+msgstr ""
+
+msgid ""
+"<ul>\n"
+"<li>user with admin group: admin@admin.com, password: 12345678</li>\n"
+"<li>user with user group: user1@user1.com, password: 12345678</li>\n"
+"<li>user with user group: user2@user2.com, password: 12345678</li>\n"
+"</ul>"
+msgstr ""
+
+msgid "Loading..."
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Sort field"
+msgstr ""
+
+msgid "Sort type"
+msgstr ""
+
+msgid "Id"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Administrator"
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Last login"
+msgstr ""
+
+msgid "Date joined"
+msgstr ""
+
+msgid "Date of birth"
+msgstr ""
+
+msgid "Asc"
+msgstr ""
+
+msgid "Desc"
+msgstr ""
+
+msgid "Users filters"
+msgstr ""
+
+msgid "Sign out"
+msgstr ""
+
+msgid "Do you really want to leave?"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Error Log"
+msgstr ""
+
+msgid "Sign in"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Repeat password"
+msgstr ""
+
+msgid "Full name"
+msgstr ""
+
+msgid "User filters"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Authorization"
+msgstr ""
+
+msgid "Authorization page"
+msgstr ""
+
+msgid "Split button!"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Your session has expired, please re-login"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Registration"
+msgstr ""
+
+msgid "Item #{{id}}"
+msgstr ""
+
+msgid "Create new item"
+msgstr ""
+
+msgid "Update item #{{id}}"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Delete item #{{id}}"
+msgstr ""
+
+msgid "Do you really want to delete item?"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Confirm password"
+msgstr ""
+
+msgid "Language"
+msgstr ""

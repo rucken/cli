@@ -1,0 +1,24 @@
+<prompt-form-modal
+  [bindIO]
+  [iconTopYes]="data.id ? 'checkmark' : 'add'"
+  [hideFooter]="true"
+>
+</prompt-form-modal>
+<ion-content padding-top [class.readonly_content]="readonly">
+  <prompt-form-modal [bindIO] [hideHeader]="true">
+    <form [formGroup]="form" novalidate>
+      <form-group [bindIO] name="title" [title]="strings.title">
+        <ion-input
+          formControlName="title"
+          [disableControl]="readonly"
+          [autofocus]="true"
+        >
+        </ion-input>
+      </form-group>
+      <form-group [bindIO] name="name" [title]="strings.name">
+        <ion-textarea formControlName="name" [disableControl]="readonly">
+        </ion-textarea>
+      </form-group>
+    </form>
+  </prompt-form-modal>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/custom-org/custom-lib-web",
+  "lib": {
+    "entryFile": "src/public_api.ts"
+  },
+  "whitelistedNonPeerDependencies": ["."]
+}

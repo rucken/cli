@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../apps/custom-app-nestjs/src/app/index.ts"],"names":[],"mappings":";;;AAAA,uDAA6B;AAE7B,0DAAgC","sourcesContent":["export * from './app.module';\nexport * from './config/config.interface';\nexport * from './config/config';\n"]}

@@ -1,0 +1,29 @@
+<prompt-form-modal
+  [bindIO]
+  iconTopYes="checkmark"
+  iconTopNo="close"
+  [hideFooter]="true"
+>
+</prompt-form-modal>
+<ion-content padding-top>
+  <prompt-form-modal [bindIO] [hideHeader]="true">
+    <form [formGroup]="form" novalidate>
+      <form-group [bindIO] name="sortField" [title]="strings.sortField">
+        <select-input
+          [items]="sortFields"
+          formControlName="sortField"
+          [disableControl]="readonly"
+        >
+        </select-input>
+      </form-group>
+      <form-group [bindIO] name="sortType" [title]="strings.sortType">
+        <select-input
+          [items]="sortTypes"
+          formControlName="sortType"
+          [disableControl]="readonly"
+        >
+        </select-input>
+      </form-group>
+    </form>
+  </prompt-form-modal>
+</ion-content>
