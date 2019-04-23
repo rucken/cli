@@ -36,10 +36,12 @@ run_generators(){
   yes | cp -rf ./.gitignore ./test/fixtures/.gitignore
   ./scripts/create-fixtures.sh
   ./scripts/build-fixtures.sh
+  ls
 }
 
 move_up(){
   cd ../..
+  ls
 }
 
 PACKAGE_VERSION=$(cat package.json \
