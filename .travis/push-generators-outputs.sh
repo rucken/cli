@@ -16,13 +16,11 @@ commit_files() {
 }
 
 upload_files() {
-  ls
   git push --quiet --set-upstream origin generators-outputs 
 }
 
 run_generators(){
-  find ./test/fixtures -type 'f' | grep -v ".gitignore" | xargs rm -r
-  find ./test/fixtures -type 'd' | grep -v ".git" | xargs rmdir
+  git rm -r *
   ./scripts/create-fixtures.sh
   # ./scripts/build-fixtures.sh
 }
