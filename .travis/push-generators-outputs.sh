@@ -16,6 +16,7 @@ commit_files() {
 }
 
 upload_files() {
+  ls
   git push --quiet --set-upstream origin generators-outputs 
 }
 
