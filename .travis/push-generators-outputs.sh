@@ -23,7 +23,7 @@ run_generators(){
   git rm -r * -f -q
   git commit -m 'Delete all the stuff'
   ./scripts/create-fixtures.sh
-  # ./scripts/build-fixtures.sh
+  ./scripts/build-fixtures.sh
 }
 
 move_down(){
@@ -39,21 +39,18 @@ move_up(){
   cd ../..
 }
 
-if [[ $TRAVIS_BRANCH == 'master' ]]
-then
-  PACKAGE_VERSION=$(cat package.json \
-    | grep version \
-    | head -1 \
-    | awk -F: '{ print $2 }' \
-    | sed 's/[",]//g')
-  export PACKAGE_VERSION=$PACKAGE_VERSION
+PACKAGE_VERSION=$(cat package.json \
+  | grep version \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g')
+export PACKAGE_VERSION=$PACKAGE_VERSION
 
-  remove_exists
-  move_down
-  setup_git
-  move_up
-  run_generators
-  move_down
-  commit_files
-  upload_files
-fi
+remove_exists
+move_down
+setup_git
+move_up
+run_generators
+move_down
+commit_files
+upload_files

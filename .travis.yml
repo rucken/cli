@@ -1,9 +1,11 @@
 language: node_js
 node_js:
 - '10'
-after_success:
-- chmod +x ".travis/push-generators-outputs.sh"
-- ".travis/push-generators-outputs.sh"
+deploy:
+  provider: script
+  script: bash .travis/push-generators-outputs.sh
+  on:
+    branch: master
 env:
   global:
     secure: iyfXlHa9Tj8zI/oRdePXqa7ZTrtaQ9NTxF2DWS2J8+0vS5/39t1d1OQJybblPhMCnGhMq5DtIzGrck9WU3opE9I0Lck50X6w8Jzz8B742O8lmB/xxT8VZRHKVXRTqdLm/FTRBIUHlRtecHjUp268BhF7GVoGmxT8thRdqFGngxJ7W9PMLE5VSoEVz59LZfDuEDLET3kjAtlrCbja8WF5RAmG17AYRHUy4EHTk2IONVogT+1UHzA14qC9wjJ3SrzCxNBhQBTHtMHHEo5+1FPNBtpF7RtY1D+2uSvXqKlAinyD87UTtZFAMYkgALEnkGJyc0elVsNNanN4NgMFEsgi8vvrIHLSY5QyUA8Df2r4tZLn2iWByVqrrL5aBx3ZOyxy22RB6IhUisBXFxukqPUsljM9SsBBXcEEq8D8/gXo7rggm/Rby7egI/xVo7eHbeuU55NejT01Rd7tYlWHUXucM+EKZ4Os3C+VrXsgRLbchEStbjiN9x+FZxyyqr0RhxcSDmn4JKfJoicg6cB++Lhvsmu1LZmvhMkTHfSYfI6vaeisvkiTrxFj6TmJNNNnD/DUCj+eH+3k+2xcKYHxyKLxvRxrRrlsb1g8eCZ8y2mTGbY1oWXsnV9OFi6c5Up6uJY6xzuDb2o+f6wBJwH1MSmNWgWCRjoi9NR2codBEMkzGiA=
