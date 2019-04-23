@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ title$ | async | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button href="https://github.com/rucken/ionic">
+        <ion-icon slot="icon-only" name="logo-github"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding-top padding>
+  <div [innerHTML]="readme | safeHtml"></div>
+</ion-content>

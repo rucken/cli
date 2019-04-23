@@ -1,0 +1,6 @@
+{
+  "appId": "com.customappionic",
+  "appName": "custom-app-ionic",
+  "bundledWebRuntime": false,
+  "webDir": "dist/custom-app-ionic"
+}
