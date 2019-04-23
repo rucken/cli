@@ -1,1 +1,0 @@
-{"version":3,"file":"jwt-config.interface.js","sourceRoot":"","sources":["../../../../libs/rucken/auth-nestjs/src/interfaces/jwt-config.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface IJwtConfig {\n  authHeaderPrefix: string;\n  expirationDelta: string;\n  secretKey?: string;\n}\n"]}
