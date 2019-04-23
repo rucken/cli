@@ -7,8 +7,6 @@ setup_git() {
   git remote add origin https://${GH_TOKEN}@github.com/rucken/cli.git > /dev/null 2>&1
   git clean -fx
   git pull origin generators-outputs --rebase=preserve --allow-unrelated-histories
-  git rm -r * -f -q
-  git commit -m 'Delete all the stuff'
 }
 
 commit_files() {
@@ -21,11 +19,6 @@ upload_files() {
   git push --quiet --set-upstream origin generators-outputs 
 }
 
-run_generators(){
-  ./scripts/create-fixtures.sh
-  ./scripts/build-fixtures.sh
-}
-
 move_down(){
   cd ./test/fixtures
 }
@@ -33,6 +26,16 @@ move_down(){
 remove_exists() {
   rm -rf ./test/fixtures
   mkdir -p ./test/fixtures
+}
+
+run_generators(){
+  move_down
+  git rm -r * -f -q
+  git commit -m 'Delete all the stuff' 
+  move_up 
+  yes | cp -rf ./.gitignore ./test/fixtures/.gitignore
+  ./scripts/create-fixtures.sh
+  ./scripts/build-fixtures.sh
 }
 
 move_up(){
