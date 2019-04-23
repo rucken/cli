@@ -22,8 +22,8 @@ upload_files() {
 run_generators(){
   git rm -r * -f -q
   git commit -m 'Delete all the stuff'
-  ./scripts/create-fixtures.sh
-  ./scripts/build-fixtures.sh
+  ../../scripts/create-fixtures.sh
+  ../../scripts/build-fixtures.sh
 }
 
 move_down(){

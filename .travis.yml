@@ -3,7 +3,7 @@ node_js:
 - '10'
 deploy:
   provider: script
-  script: bash .travis/push-generators-outputs.sh
+  script: bash ./scripts/publish-generators-outputs.sh
   on:
     branch: master
 env:
