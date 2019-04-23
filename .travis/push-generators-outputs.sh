@@ -4,7 +4,7 @@ setup_git() {
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
   git init
-  git remote add origin https://endykaufman:${GH_TOKEN}@github.com/rucken/cli.git > /dev/null 2>&1
+  git remote add origin https://${GH_TOKEN}@github.com/rucken/cli.git > /dev/null 2>&1
   git clean -fx
   git pull origin generators-outputs --rebase=preserve --allow-unrelated-histories
 }
@@ -29,6 +29,11 @@ move_down(){
   cd ./test/fixtures
 }
 
+remove_exists() {
+  rm -rf ./test/fixtures
+  mkdir -p ./test/fixtures
+}
+
 move_up(){
   cd ../..
 }
@@ -42,6 +47,7 @@ then
     | sed 's/[",]//g')
   export PACKAGE_VERSION=$PACKAGE_VERSION
 
+  remove_exists
   move_down
   setup_git
   move_up
