@@ -1,0 +1,1 @@
+{"version":3,"file":"in-user.dto.js","sourceRoot":"","sources":["../../../../libs/rucken/core-nestjs/src/dto/in-user.dto.ts"],"names":[],"mappings":";;AAAA,8CAA0C;AAE1C,MAAa,SAAU,SAAQ,kBAAO;CAAG;AAAzC,8BAAyC","sourcesContent":["import { UserDto } from '../dto/user.dto';\n\nexport class InUserDto extends UserDto {}\n"]}
