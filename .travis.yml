@@ -3,6 +3,7 @@ node_js:
 - '11'
 deploy:
   provider: script
+  skip_cleanup: true
   script: bash ./scripts/publish-generators-outputs.sh
   on:
     branch: master
