@@ -20,7 +20,8 @@ upload_files() {
 }
 
 run_generators(){
-  git rm -r *
+  git rm -r * -f -q
+  git commit -m 'Delete all the stuff'
   ./scripts/create-fixtures.sh
   # ./scripts/build-fixtures.sh
 }
