@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "lib": ["es5", "es6"],
+    "target": "es6",
+    "module": "commonjs",
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": ".",
+    "outDir": "../../dist/out-tsc/custom-app-nestjs",
+    "types": ["node"]
+  },
+  "exclude": ["**/*.spec.ts"],
+  "include": ["**/*.ts"]
+}
