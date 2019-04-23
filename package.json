@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular7+, Bootstrap, Ionic and NestJS application based on Rucken template",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -114,7 +114,7 @@
     "prepare": "rimraf lib && tsc",
     "postinstall": "node ./scripts/patch.js",
     "watch": "rimraf lib && tsc --watch",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.ts\" --timeout 1000000",
+    "test": "nyc mocha --forbid-only \"./test/{,!(fixtures)/**}/*.test.ts\" --timeout 1000000 && sh ./scripts/create-fixtures.sh",
     "readme": "oclif-dev readme && git add README.md",
     "run-translate": "node ./bin/run translate test/fixtures/translate/folder1 -f po -c -p Core",
     "run-version-updater": "node ./bin/run version-updater test/fixtures/version-updater/folder1 -r test/fixtures/version-updater",
