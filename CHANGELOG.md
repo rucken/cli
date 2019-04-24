@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/rucken/cli/compare/4.0.2...4.1.0) (2019-04-24)
+
+
+### Features
+
+* Update dependencies and ionic application template and update method for correct detect latest deps versions ([8bf1600](https://github.com/rucken/cli/commit/8bf1600))
+
+
+
 ## [4.0.2](https://github.com/rucken/cli/compare/4.0.1...4.0.2) (2019-04-24)
 
 
