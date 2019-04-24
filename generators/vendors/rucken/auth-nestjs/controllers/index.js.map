@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../libs/rucken/auth-nestjs/src/controllers/index.ts"],"names":[],"mappings":";;AAAA,uDAAmD;AAEtC,QAAA,gBAAgB,GAAG,CAAC,gCAAc,CAAC,CAAC","sourcesContent":["import { AuthController } from './auth.controller';\n\nexport const AUTH_CONTROLLERS = [AuthController];\n"]}

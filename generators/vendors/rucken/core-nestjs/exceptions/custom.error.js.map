@@ -1,1 +1,0 @@
-{"version":3,"file":"custom.error.js","sourceRoot":"","sources":["../../../../libs/rucken/core-nestjs/src/exceptions/custom.error.ts"],"names":[],"mappings":";;AAAA,MAAa,WAAY,SAAQ,KAAK;IACpC,YAAY,KAAa;QACvB,KAAK,CAAC,KAAK,CAAC,CAAC;IACf,CAAC;CACF;AAJD,kCAIC","sourcesContent":["export class CustomError extends Error {\n  constructor(error: string) {\n    super(error);\n  }\n}\n"]}
