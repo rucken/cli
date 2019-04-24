@@ -1,3 +1,13 @@
+## [4.0.2](https://github.com/rucken/cli/compare/4.0.1...4.0.2) (2019-04-24)
+
+
+### Bug Fixes
+
+* Add on install check exists patching file ([3b45138](https://github.com/rucken/cli/commit/3b45138))
+* Update dependencies ([b60a288](https://github.com/rucken/cli/commit/b60a288))
+
+
+
 ## [4.0.1](https://github.com/rucken/cli/compare/4.0.0...4.0.1) (2019-04-23)
 
 
