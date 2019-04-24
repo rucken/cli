@@ -1,0 +1,23 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
+class InContentTypeDto {
+}
+tslib_1.__decorate([
+    class_validator_1.IsOptional(),
+    tslib_1.__metadata("design:type", Number)
+], InContentTypeDto.prototype, "id", void 0);
+tslib_1.__decorate([
+    class_validator_1.MaxLength(100),
+    swagger_1.ApiModelProperty(),
+    tslib_1.__metadata("design:type", String)
+], InContentTypeDto.prototype, "name", void 0);
+tslib_1.__decorate([
+    class_validator_1.MaxLength(255),
+    swagger_1.ApiModelProperty(),
+    tslib_1.__metadata("design:type", String)
+], InContentTypeDto.prototype, "title", void 0);
+exports.InContentTypeDto = InContentTypeDto;
+//# sourceMappingURL=in-content-type.dto.js.map

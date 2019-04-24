@@ -1,0 +1,1 @@
+{"version":3,"file":"custom-transforms.js","sourceRoot":"","sources":["../../../../libs/rucken/core-nestjs/src/utils/custom-transforms.ts"],"names":[],"mappings":";;AAAA,SAAgB,kBAAkB,CAAC,KAA0B;IAC3D,OAAO,CAAC,CAAC,KAAK,CAAC;AACjB,CAAC;AAFD,gDAEC","sourcesContent":["export function transformToBoolean(value: boolean | undefined) {\n  return !!value;\n}\n"]}
