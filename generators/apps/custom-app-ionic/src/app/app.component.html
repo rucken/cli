@@ -1,0 +1,30 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>{{ title | translate }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="onSwitchLang()">
+              <ion-icon slot="icon-only" src="assets/svg/earth.svg"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <app-navbar
+          [title]="title"
+          [showSignIn]="!(currentUser$ | async)"
+          [showSignOut]="currentUser$ | async"
+          [showAbout]="true"
+          (signIn)="onSignIn()"
+          (signOut)="onSignOut()"
+          (about)="onAbout()"
+          #navbar
+        >
+        </app-navbar>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

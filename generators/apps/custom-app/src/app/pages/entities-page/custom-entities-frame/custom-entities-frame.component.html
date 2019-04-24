@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <h3 class="page-header">
+    <span class="ident">{{ parentTitle$ | async | translate }}:</span>
+    <span>{{ title$ | async | translate }}</span>
+  </h3>
+  <custom-entities-grid
+    [apiUrl]="apiUrl"
+    [autoload]="true"
+  ></custom-entities-grid>
+</div>
