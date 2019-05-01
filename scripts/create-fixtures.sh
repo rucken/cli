@@ -2,6 +2,7 @@
 rm -rf ./test/fixtures/generators
 node ./bin/run workspace fixtures --workspace=./test/fixtures/generators --author=EndyKaufman --email=admin@site15.ru 
 cd ./test/fixtures/generators
+npm i
 
 node ../../../bin/run app custom-app --api=/api --type=all
 

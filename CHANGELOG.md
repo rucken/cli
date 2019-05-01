@@ -1,3 +1,12 @@
+## [4.1.1](https://github.com/rucken/cli/compare/4.1.0...4.1.1) (2019-05-01)
+
+
+### Bug Fixes
+
+* Update dependencies ([4a1a403](https://github.com/rucken/cli/commit/4a1a403))
+
+
+
 # [4.1.0](https://github.com/rucken/cli/compare/4.0.2...4.1.0) (2019-04-24)
 
 

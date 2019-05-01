@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular7+, Bootstrap, Ionic and NestJS application based on Rucken template",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -12,11 +12,11 @@
   "dependencies": {
     "@angular-devkit/schematics-cli": "^0.13.8",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
-    "@nrwl/schematics": "^7.8.1",
+    "@nrwl/schematics": "^7.8.3",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^4.1.0",
+    "@rucken/schematics": "^4.1.1",
     "@schematics/angular": "^7.3.8",
     "@types/inquirer": "^6.0.1",
     "@types/normalize-package-data": "^2.4.0",
@@ -41,10 +41,10 @@
     "@types/chai": "^4",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5",
-    "@types/node": "~11.13.7",
+    "@types/node": "~11.13.8",
     "@types/yargs": "^13.0.0",
     "chai": "^4",
-    "conventional-changelog-cli": "^2.0.12",
+    "conventional-changelog-cli": "^2.0.17",
     "conventional-commits-detector": "^1.0.2",
     "conventional-recommended-bump": "^4.1.1",
     "globby": "^9",
