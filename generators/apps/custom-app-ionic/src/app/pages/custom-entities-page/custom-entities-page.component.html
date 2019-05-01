@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ title$ | async | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="customEntityList.onFilterClick()">
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar
+      (ionChange)="customEntityList.setSearchText($event)"
+      [placeholder]="'Search' | translate"
+    ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <custom-entities-list
+    [apiUrl]="apiUrl"
+    #customEntityList
+  ></custom-entities-list>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="customEntityList?.list?.notReadonlyAndEnableCreate$ | async"
+  >
+    <ion-fab-button (click)="customEntityList.onCreateClick()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
