@@ -35,7 +35,6 @@ run_generators(){
   move_up 
   yes | cp -rf ./.gitignore ./test/fixtures/.gitignore
   ./scripts/create-fixtures.sh
-  ./scripts/build-fixtures.sh
 }
 
 move_up(){
