@@ -1,8 +1,0 @@
-{
-  "name": "custom-app-ionic",
-  "integrations": {
-    "capacitor": {},
-    "cordova": {}
-  },
-  "type": "angular"
-}
