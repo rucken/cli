@@ -1,3 +1,12 @@
+## [4.1.3](https://github.com/rucken/cli/compare/4.1.2...4.1.3) (2019-05-03)
+
+
+### Bug Fixes
+
+* **rucken-lib-nestjs:** Clear index.ts for entities ([f920fd7](https://github.com/rucken/cli/commit/f920fd7))
+
+
+
 ## [4.1.2](https://github.com/rucken/cli/compare/4.1.1...4.1.2) (2019-05-02)
 
 
