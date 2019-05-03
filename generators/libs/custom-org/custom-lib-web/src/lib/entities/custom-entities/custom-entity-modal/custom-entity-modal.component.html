@@ -1,0 +1,16 @@
+<form [formGroup]="form" novalidate>
+  <prompt-form-modal [bindIO]>
+    <div class="row">
+      <div class="col-md-12">
+        <form-group [bindIO] name="title" [title]="strings.title" focus>
+          <input formControlName="title" [readonly]="readonly" />
+        </form-group>
+      </div>
+      <div class="col-md-12">
+        <form-group [bindIO] name="name" [title]="strings.name">
+          <textarea formControlName="name" [readonly]="readonly"> </textarea>
+        </form-group>
+      </div>
+    </div>
+  </prompt-form-modal>
+</form>

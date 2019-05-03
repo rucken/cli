@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "commonjs",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@custom-org/custom-lib": ["libs/custom-org/custom-lib/src"],
+      "@custom-org/custom-lib/*": ["libs/custom-org/custom-lib/src/*"],
+      "@custom-org/custom-lib-nestjs": [
+        "libs/custom-org/custom-lib-nestjs/src"
+      ],
+      "@custom-org/custom-lib-nestjs/*": [
+        "libs/custom-org/custom-lib-nestjs/src/*"
+      ],
+      "@custom-org/custom-lib-web": ["libs/custom-org/custom-lib-web/src"],
+      "@custom-org/custom-lib-web/*": ["libs/custom-org/custom-lib-web/src/*"],
+      "@custom-org/custom-lib-ionic": ["libs/custom-org/custom-lib-ionic/src"],
+      "@custom-org/custom-lib-ionic/*": [
+        "libs/custom-org/custom-lib-ionic/src/*"
+      ]
+    }
+  },
+  "exclude": ["scripts", "node_modules", "tmp"],
+  "module": "commonjs"
+}

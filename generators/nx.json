@@ -1,0 +1,33 @@
+{
+  "npmScope": "fixtures",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "custom-app": {
+      "tags": ["angular", "client", "application", "custom-app"]
+    },
+    "custom-app-ionic": {
+      "tags": ["angular", "client", "application", "ionic", "custom-app-ionic"]
+    },
+    "custom-app-nestjs": {
+      "tags": ["nestjs", "server", "application", "custom-app-nestjs"]
+    },
+    "custom-lib": {
+      "tags": ["angular", "client", "library", "custom-lib", "custom-org"]
+    },
+    "custom-lib-nestjs": {
+      "tags": ["nestjs", "server", "library", "custom-lib-nestjs", "custom-org"]
+    },
+    "custom-lib-web": {
+      "tags": ["angular", "client", "library", "custom-lib-web", "custom-org"]
+    },
+    "custom-lib-ionic": {
+      "tags": ["angular", "client", "library", "custom-lib-ionic", "custom-org"]
+    }
+  }
+}

@@ -1,0 +1,106 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.ios,
+.md {
+  ion-select {
+    padding-left: 0px;
+  }
+  ion-card-header {
+    padding-bottom: 0px;
+  }
+  ion-item-group {
+    form-group {
+      ion-label,
+      .select-text {
+        margin-left: 0px;
+      }
+    }
+  }
+  .margin-left-0 {
+    margin-left: 0px;
+  }
+  ion-select {
+    &.full-width {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+  form-group {
+    .swiper-slide {
+      display: block;
+    }
+    ion-label,
+    .select-text {
+      margin-left: 10px;
+    }
+    ion-input,
+    ion-select,
+    ion-textarea,
+    ion-datetime {
+      padding: 5px 0px;
+    }
+    .has-default {
+      ion-item {
+        margin-top: -10px;
+        ion-input,
+        ion-select,
+        ion-textarea,
+        ion-datetime {
+          margin-bottom: 10px;
+          border-bottom: 1px solid var(--ion-color-primary);
+        }
+        p {
+          width: 100%;
+          margin-top: 0px;
+          font-size: 0.8em;
+          color: var(--ion-color-primary);
+        }
+      }
+    }
+    .has-error {
+      ion-item {
+        margin-top: -10px;
+        ion-input,
+        ion-select,
+        ion-textarea,
+        ion-datetime {
+          border-bottom: 1px solid var(--ion-color-danger);
+        }
+        p {
+          width: 100%;
+          margin-top: 0px;
+          font-size: 0.8em;
+          color: var(--ion-color-danger);
+        }
+      }
+    }
+  }
+  .readonly_content {
+    .has-default {
+      ion-item {
+        ion-input,
+        ion-select,
+        ion-textarea,
+        ion-datetime {
+          margin-bottom: 10px;
+          border-bottom: 1px solid var(--ion-color-light);
+        }
+        p {
+          margin-top: 0px;
+          font-size: 0.8em;
+          color: var(--ion-color-light);
+        }
+      }
+    }
+  }
+}
