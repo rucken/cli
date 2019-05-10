@@ -25,6 +25,8 @@ export class Entity extends Command {
   };
   static args = [{ name: 'name' }];
   async run() {
+    process.setMaxListeners(0);
+    require('events').EventEmitter.defaultMaxListeners = 100;
     const { args, flags } = this.parse(Entity);
     const workspace = flags.workspace;
     const packageJson = loadPackageJson(join(workspace || process.cwd(), 'package.json'));

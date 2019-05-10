@@ -19,6 +19,8 @@ export class MakeTsList extends Command {
   static args = [{ name: 'folder' }];
 
   async run() {
+    process.setMaxListeners(0);
+    require('events').EventEmitter.defaultMaxListeners = 100;
     const { args, flags } = this.parse(MakeTsList);
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
     const excludes = flags.excludes || MakeTsList.excludes;

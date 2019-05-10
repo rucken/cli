@@ -28,6 +28,8 @@ export class EntityToApplication extends Command {
   };
   static args = [{ name: 'name' }];
   async run() {
+    process.setMaxListeners(0);
+    require('events').EventEmitter.defaultMaxListeners = 100;
     const { args, flags } = this.parse(EntityToApplication);
     const workspace = flags.workspace;
     const packageJson: any = loadPackageJson(join(workspace || process.cwd(), 'package.json'));
