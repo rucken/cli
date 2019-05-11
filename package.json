@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular7+, Bootstrap, Ionic and NestJS application based on Rucken template",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"
@@ -16,7 +16,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@rucken/schematics": "^4.1.4",
+    "@rucken/schematics": "^4.1.5",
     "@schematics/angular": "^7.3.9",
     "@types/inquirer": "^6.0.1",
     "@types/normalize-package-data": "^2.4.0",
