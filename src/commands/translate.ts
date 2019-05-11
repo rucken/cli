@@ -26,6 +26,8 @@ export class Translate extends Command {
   static args = [{ name: 'folder' }];
 
   async run() {
+    process.setMaxListeners(0);
+    require('events').EventEmitter.defaultMaxListeners = 100;
     const { args, flags } = this.parse(Translate);
     let jsonFiles: string[] = [];
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
@@ -35,10 +37,14 @@ export class Translate extends Command {
     const templateName = flags.templateName ? flags.templateName : 'template';
     const clean = flags.clean ? flags.clean : false;
     if (format === 'json') {
-      jsonFiles = await this.listOfJsonFiles(
-        folder,
-        excludes
-      );
+      try {
+        jsonFiles = await this.listOfJsonFiles(
+          folder,
+          excludes
+        );
+      } catch (error) {
+        console.error(error);
+      }
       try {
         await this.ngxTranslateExtract(
           folder,

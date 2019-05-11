@@ -11,6 +11,8 @@ export class Config extends Command {
   static args = [{ name: 'folder' }];
 
   async run() {
+    process.setMaxListeners(0);
+    require('events').EventEmitter.defaultMaxListeners = 100;
     const { args, flags } = this.parse(Config);
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
     const angularConfigPath = resolvePath(folder, 'angular.json');

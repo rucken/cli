@@ -29,10 +29,10 @@ remove_exists() {
 }
 
 run_generators(){
-  move_down
-  git rm -r * -f -q
-  git commit -m 'Delete all the stuff' 
-  move_up 
+  # move_down
+  # git rm -r * -f -q
+  # git commit -m 'Delete all the stuff' 
+  # move_up 
   yes | cp -rf ./.gitignore ./test/fixtures/.gitignore
   ./scripts/create-fixtures.sh
 }

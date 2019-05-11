@@ -12,6 +12,8 @@ export class VersionUpdater extends Command {
   static args = [{ name: 'folder' }];
 
   async run() {
+    process.setMaxListeners(0);
+    require('events').EventEmitter.defaultMaxListeners = 100;
     const { args, flags } = this.parse(VersionUpdater);
     const folder = args.folder ? resolvePath(args.folder) : resolvePath('.');
     const root = flags.root ? resolvePath(flags.root) : resolvePath('.');
