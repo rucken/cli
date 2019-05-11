@@ -17,7 +17,7 @@ import {
   DEFAULT_CORE_CONFIG
 } from "@rucken/core-nestjs";
 import { ConnectionString } from "connection-string";
-import { load } from "dotenv";
+import { config as load } from "dotenv";
 import { accessSync, readFileSync } from "fs";
 import * as path from "path";
 import { ICustomAppNestjsConfig } from "./config.interface";
