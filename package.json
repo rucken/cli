@@ -1,7 +1,7 @@
 {
   "name": "@rucken/cli",
   "description": "Console tools for create and build Angular7+, Bootstrap, Ionic and NestJS application based on Rucken template",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "author": {
     "name": "endy",
     "email": "admin@site15.ru"

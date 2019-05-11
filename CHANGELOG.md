@@ -1,3 +1,13 @@
+## [4.1.4](https://github.com/rucken/cli/compare/4.1.3...4.1.4) (2019-05-11)
+
+
+### Bug Fixes
+
+* Set setMaxListeners to 0 ([9270bbb](https://github.com/rucken/cli/commit/9270bbb))
+* Update dependencies ([ffdd9c3](https://github.com/rucken/cli/commit/ffdd9c3))
+
+
+
 ## [4.1.3](https://github.com/rucken/cli/compare/4.1.2...4.1.3) (2019-05-03)
 
 
