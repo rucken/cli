@@ -1,3 +1,12 @@
+## [4.1.5](https://github.com/rucken/cli/compare/4.1.4...4.1.5) (2019-05-11)
+
+
+### Bug Fixes
+
+* Update dependencies for work space ([859d497](https://github.com/rucken/cli/commit/859d497))
+
+
+
 ## [4.1.4](https://github.com/rucken/cli/compare/4.1.3...4.1.4) (2019-05-11)
 
 
