@@ -36,7 +36,7 @@
   "devDependencies": {
     "@angular-devkit/schematics": "^7.3.9",
     "@oclif/dev-cli": "^1",
-    "@oclif/test": "^1",
+    "@oclif/test": "^1.2.5",
     "@oclif/tslint": "^3",
     "@types/chai": "^4",
     "@types/glob": "^7.1.1",
