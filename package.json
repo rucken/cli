@@ -10,7 +10,7 @@
     "rucken": "./bin/run"
   },
   "dependencies": {
-    "@angular-devkit/schematics-cli": "^0.13.9",
+    "@angular-devkit/schematics-cli": "^0.803.3",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
     "@nrwl/schematics": "^7.8.5",
     "@oclif/command": "^1",
