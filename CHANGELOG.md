@@ -1,3 +1,12 @@
+## [4.1.6](https://github.com/rucken/cli/compare/4.1.5...4.1.6) (2020-02-11)
+
+
+### Bug Fixes
+
+* Update @rucken/schematics version ([acbadf6](https://github.com/rucken/cli/commit/acbadf621f54624a3aab3dfe5e3dbe8e3993332a))
+
+
+
 ## [4.1.5](https://github.com/rucken/cli/compare/4.1.4...4.1.5) (2019-05-11)
 
 
