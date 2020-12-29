@@ -1,7 +1,7 @@
 @rucken/cli
 ===========
 
-Console tools for create and build [Angular7+](https://angular.io/), [Ionic](https://ionicframework.com/), [Bootstrap](https://valor-software.com/ngx-bootstrap/#/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://rucken.io) template
+Console tools for create and build [Angular7+](https://angular.io/), [Ionic](https://ionicframework.com/), [Bootstrap](https://valor-software.com/ngx-bootstrap/#/) and [NestJS](https://nestjs.com/) application based on [Rucken](https://rucken.ru) template
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Greenkeeper badge](https://badges.greenkeeper.io/rucken/cli.svg)](https://greenkeeper.io/)
