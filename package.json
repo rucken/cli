@@ -28,7 +28,7 @@
     "po2json": "^1.0.0-alpha",
     "prettier": "^1.17.0",
     "recursive-readdir": "^2.2.2",
-    "replace-ext": "^1.0.0",
+    "replace-ext": "^2.0.0",
     "sort-paths": "^1.1.1",
     "stringify-object": "^3.3.0",
     "tslib": "^1"
